@@ -7,7 +7,7 @@ const NavBar: React.FC = () => {
       <Container>
           <NavLinks>
               <ul>
-                  <li>SOBRE</li>
+                  <li className="active">SOBRE</li>
                   <li>PLATAFORMAS</li>
                   <li>CONTATO</li>
                   <li>DOCUMENTOS</li>

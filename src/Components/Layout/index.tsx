@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Wrapper } from './style';
 import Header from '../Header';
 import NavBar from '../NavBar';
+import Squares from '../Squares';
 import Main from '../Main';
 
 const Layout: React.FC = () => {
@@ -11,6 +12,7 @@ const Layout: React.FC = () => {
       <Wrapper>
         <Header />
         <NavBar />
+        <Squares/>
         <Main />
       </Wrapper>
     </Container>
