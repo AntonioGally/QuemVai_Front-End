@@ -25,7 +25,7 @@ export const SearchInput = styled.input`
   
   ::-webkit-input-placeholder {
     color: var(--placeholder);
-    padding-left: 11px;
+    padding-left: 30px;
     font-family: "Roboto regular";
     font-size: 16px;
 }

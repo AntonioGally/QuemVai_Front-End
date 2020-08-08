@@ -9,7 +9,7 @@ import {
   Avatar,
   Banner,
 } from "./style";
-import banner from "../../images/banner/banner12.jpg";
+import banner from "../../images/banner/banner2.jpg";
 import imagem from "./user.svg";
 
 const Header: React.FC = () => {
