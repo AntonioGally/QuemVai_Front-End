@@ -1,10 +1,13 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import App from '../../App'
 
 const Contato: React.FC = () => {
   return(
-      <div><h1>Contato Page</h1></div>
+      <div>
+        <App />
+        <h1>Contato Page</h1>
+      </div>
   );
 }
 

@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 
-// import { Container } from './styles';
+import App from "../../App";
 
 const Documentos: React.FC = () => {
-  return(
-      <div>
-          <h1>Documentos Page</h1>
-      </div>
+  return (
+    <div>
+      <App />
+      <h1>Documentos Page</h1>
+    </div>
   );
-}
+};
 
 export default Documentos;
