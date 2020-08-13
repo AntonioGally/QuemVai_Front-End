@@ -1,11 +1,13 @@
 import React from 'react';
 
-import App from '../../App'
+import Header from '../../components/Header';
+import NavBar from '../../components/NavBar';
 
 const Contato: React.FC = () => {
   return(
       <div>
-        <App />
+        <Header/>
+        <NavBar/>
         <h1>Contato Page</h1>
       </div>
   );
