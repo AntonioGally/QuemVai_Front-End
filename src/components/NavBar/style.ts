@@ -25,16 +25,17 @@ export const MyLink = styled.div`
     color: black !important;
     cursor: pointer;
   }
-
+>a{
   &.active {
-    &::after {
+    &::before {
       position: absolute;
       width: calc(100%);
       height: 5px;
       content: "";
-
       background-color: #00d446;
       border-radius: 2.5px;
-    }
-  }
+      left: 1%;
+      top: 100%;
+    }c
+  }}
 `;
