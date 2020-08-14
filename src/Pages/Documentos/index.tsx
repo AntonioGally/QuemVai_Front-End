@@ -1,11 +1,13 @@
 import React from "react";
 
-import App from "../../App";
+import Header from '../../components/Header';
+import NavBar from '../../components/NavBar';
 
 const Documentos: React.FC = () => {
   return (
     <div>
-      <App />
+      <Header />
+      <NavBar />
       <h1>Documentos Page</h1>
     </div>
   );
