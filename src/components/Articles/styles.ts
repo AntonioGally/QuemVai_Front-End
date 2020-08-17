@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MyImage = styled.div`
+export const MyImage = styled.img`
     width:300px;
     height:300px;
     background-color:#4CAF50;
@@ -9,7 +9,7 @@ export const MyImage = styled.div`
 `;
 
 export const MyRow = styled.div`
-    margin-top: 8%;
+    padding:4% 0;
 `;
 
 export const MyCol = styled.div`

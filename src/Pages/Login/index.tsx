@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 
 const Login: React.FC = () => {
   return (
@@ -9,6 +10,8 @@ const Login: React.FC = () => {
       <Header />
       <NavBar />
       <h1>Login Page</h1>
+
+      <Footer />
     </div>
   );
 };
