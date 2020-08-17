@@ -1,30 +1,28 @@
 import styled from "styled-components";
 
+export const MyImage = styled.div`
+    width:300px;
+    height:300px;
+    background-color:#4CAF50;
+    margin-top:5%;
+    border-radius:15px;
+`;
+
 export const MyRow = styled.div`
-  border-radius: 15px;
-  background-color: #b8ffee;  
-  &.WithoutBG {
-    background-color: white;
-  }
-  &.RowPlataform {
-    border-radius: 0;
-    background-color: white;
-    text-align: justify;
-    margin-bottom:30px;
-  }
+    margin-top: 8%;
+    padding:4% 0 0;
 `;
 
 export const MyCol = styled.div`
-  margin-top: 4%;
   &.text {
     padding: 0 5%;
   }
 
-  @media (min-width: 1200px) {
-    &.text {
-      word-break: normal;
-      max-width: 45% !important;
-    }
+  @media (min-width: 1000px) {
+   
+    word-break: normal;
+    max-width: 45% !important;
+    
   }
   @media (min-width: 1200px) {
     &.ColPlataform {
@@ -34,19 +32,11 @@ export const MyCol = styled.div`
   }
 `;
 
+
 export const TitleContent = styled.h1`
   font-family: "Roboto Regular";
 
-  @media (max-width: 500px) {
-    &.plataforms{
-      margin-top:25% !important;
-    }
-  }
-  
-  &.plataforms {
-    margin-top:5%;
-    text-align: center;
-  }
+
 `;
 export const TextContent = styled.div`
   @media (max-width: 500px) {

@@ -36,6 +36,6 @@ export const MyLink = styled.div`
       border-radius: 2.5px;
       left: 1%;
       top: 100%;
-    }c
+    }
   }}
 `;

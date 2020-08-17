@@ -8,10 +8,11 @@ import Login from './Pages/Login';
 import { Route, HashRouter } from 'react-router-dom'
 
 ReactDOM.render((
-  <HashRouter>
+  
+  <HashRouter>    
     <Route exact path="/" component={App} />
     <Route path="/Contato" component={Contato} />  
-    <Route path="/Documentos" component={Documentos} />  
+    <Route path="/Documentos" component={Documentos} />   
     <Route path="/Login" component={Login} />  
   </HashRouter>
   

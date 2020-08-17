@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MyRow = styled.div`
-    margin-top:5%;
+    margin-top:8%;
 `;
 export const SquareStyle = styled.div`
     width:250px;
