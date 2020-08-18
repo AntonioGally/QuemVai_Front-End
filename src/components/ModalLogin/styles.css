@@ -1,0 +1,34 @@
+@media (min-width: 768px) {
+  .CellPhone {
+    display: none;
+  }
+  .Desktop {
+    display: unset;
+  }
+}
+@media (max-width: 768px) {
+  .CellPhone {
+    display: unset;
+  }
+  .Desktop {
+    display: none;
+  }
+}
+.CellPhone {
+  padding: 4%;
+}
+.MyModal {
+  background-color: #b8ffee;
+}
+
+.withOutPadding {
+  padding: 0 !important;
+}
+
+.MyAllForm {
+  width: 70%;
+}
+.MyContainerForm {
+  display: flex;
+  justify-content: center;
+}

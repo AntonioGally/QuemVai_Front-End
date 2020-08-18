@@ -1,29 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Image, Form, FormControl} from "react-bootstrap";
-import Navbar from 'react-bootstrap/Navbar';
-
+import { Image, Form, FormControl, Modal, Navbar } from "react-bootstrap";
+import ModalLogin from "../ModalLogin";
 import user from "../../img/icones/user.svg";
 import banner2 from "../../img/banner/banner2.jpg";
 
-import {MyForm, Teste} from './style';
-
-// import { Container } from './styles';
+import {  MyNav } from "./style";
+import './styles.css';
 
 const Header: React.FC = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div style={{height:"100%"}}>
+    <div style={{ height: "100%" }}>
       <Image src={banner2} fluid />
-      <Teste><Navbar className="justify-content-between" >
-        <Form inline>
-            <MyForm><FormControl type="text" placeholder="Search for something" className="md-4" /></MyForm>
-            
-        </Form>
-        <Form inline>
-            <Image src={user} width="70px" rounded style={{cursor:"pointer"}}/>
-        </Form>
-      </Navbar></Teste>
-      
+      <MyNav>
+        <Navbar className="justify-content-between">    
+           <Form inline className="InputDesktop">
+              
+                <FormControl type="text" placeholder="Search for something" />
+              
+            </Form>        
+          <Form inline>
+            <Image
+              src={user}
+              width="70px"
+              rounded
+              style={{ cursor: "pointer" }}
+              onClick={handleShow}
+            />
+          </Form>
+        </Navbar>
+      </MyNav>
+
+      <Modal show={show} onHide={handleClose} centered size="lg">
+        <ModalLogin />
+      </Modal>
     </div>
   );
 };

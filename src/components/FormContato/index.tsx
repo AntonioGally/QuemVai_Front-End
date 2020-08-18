@@ -62,7 +62,7 @@ const FormContato: React.FC = () => {
                 <MyForm>
                   <Form style={{ marginTop: "5%", marginLeft: "5%" }}>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="textarea" rows={10} />
+                      <Form.Control as="textarea" rows={10} style={{borderRadius:'10px'}}/>
                     </Form.Group>
                   </Form>
                   <Button size="lg" variant="primary float-right" type="submit">
@@ -74,14 +74,13 @@ const FormContato: React.FC = () => {
           </Row>
 
           <Social>
-            <Row>
+            <Row style={{marginBottom: "3%"}}>
               <img
                 src={facebook}
                 alt="facebook logo"
                 style={{
                   width: "32px",
-                  height: "32px",
-                  marginBottom: "3%",
+                  height: "32px",                  
                   cursor: "pointer",
                 }}
               />

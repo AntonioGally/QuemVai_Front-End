@@ -1,0 +1,23 @@
+.MyCarousel{
+    width:100%;
+    height:250px;
+    overflow: hidden;
+}
+
+@media (min-width:1400px){
+    .BreakPoint-1{
+        display: none;
+    }
+    .BreakPoint-0{
+        display: unset;
+    }
+}
+
+@media (max-width:1200px){
+    .BreakPoint-1{
+        display: unset;
+    }
+    .BreakPoint-0{
+        display: none;
+    }
+}

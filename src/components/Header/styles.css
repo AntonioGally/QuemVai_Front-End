@@ -1,0 +1,12 @@
+@media (min-width:1000px){
+    .InputDesktop input{        
+        width:100% !important;
+    }
+    .InputDesktop{
+        width:25%;
+    }
+}
+
+.InputDesktop input{        
+    border-radius:30px;
+}

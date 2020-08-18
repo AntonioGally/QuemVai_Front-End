@@ -9,6 +9,9 @@ export const SquareStyle = styled.div`
     background-color:#C4C4C4;
     margin-top:5%;
     border-radius:15px;
+    &.red{
+        background-color:red;
+    }
 
 `;
 export const MyCol = styled.div`
