@@ -73,44 +73,67 @@ const Square: React.FC = () => {
               </MyRow>
             </div>
           </div>
+          <a
+            className="carousel-control-prev"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Previous</span>
+          </a>
+          <a
+            className="carousel-control-next"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Next</span>
+          </a>
         </div>
       </div>
 
+      <div className="BreakPoint-0">
+        <MyRow>
+          <Row className="d-flex justify-content-center">
+            <MyCol>
+              <Col>
+                <SquareStyle />
+              </Col>
+            </MyCol>
 
-    <div className="BreakPoint-0">
-      <MyRow>
-        <Row className="d-flex justify-content-center">
-          <MyCol>
-            <Col>
-              <SquareStyle />
-            </Col>
-          </MyCol>
+            <MyCol>
+              <Col>
+                <SquareStyle />
+              </Col>
+            </MyCol>
 
-          <MyCol>
-            <Col>
-              <SquareStyle />
-            </Col>
-          </MyCol>
+            <MyCol>
+              <Col>
+                <SquareStyle />
+              </Col>
+            </MyCol>
 
-          <MyCol>
-            <Col>
-              <SquareStyle />
-            </Col>
-          </MyCol>
+            <MyCol>
+              <Col>
+                <SquareStyle />
+              </Col>
+            </MyCol>
 
-          <MyCol>
-            <Col>
-              <SquareStyle />
-            </Col>
-          </MyCol>
-
-          <MyCol>
-            <Col>
-              <SquareStyle />
-            </Col>
-          </MyCol>
-        </Row>
-      </MyRow>
+            <MyCol>
+              <Col>
+                <SquareStyle />
+              </Col>
+            </MyCol>
+          </Row>
+        </MyRow>
       </div>
     </Container>
   );

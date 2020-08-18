@@ -6,14 +6,14 @@
 
 @media (min-width:1400px){
     .BreakPoint-1{
-        display: none;
+        display: none !important;
     }
     .BreakPoint-0{
-        display: unset;
+        display: unset !important;
     }
 }
 
-@media (max-width:1200px){
+@media (min-width:1200px){
     .BreakPoint-1{
         display: unset;
     }
