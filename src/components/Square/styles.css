@@ -1,23 +1,110 @@
-.MyCarousel{
-    width:100%;
-    height:250px;
-    overflow: hidden;
+.BreakPoint-4{
+    display:none;
+}
+.BreakPoint-3{
+    display:none;
+}
+.BreakPoint-2{
+    display:none;
+}
+.BreakPoint-1{
+    display:none;
+}
+.BreakPoint-0{
+    display:none;
 }
 
-@media (min-width:1400px){
+
+@media(max-width:600px){
+    .BreakPoint-4{
+        display:unset;
+    }
+    .BreakPoint-3{
+        display:none;
+    }
+    .BreakPoint-2{
+        display:none;
+    }
     .BreakPoint-1{
-        display: none !important;
+        display:none;
     }
     .BreakPoint-0{
-        display: unset !important;
+        display:none;
+    }
+}
+@media screen and (min-width: 601px) and (max-width: 840px) {
+    .BreakPoint-4{
+        display:none;
+    }
+    .BreakPoint-3{
+        display:unset;
+    }
+    .BreakPoint-2{
+        display:none;
+    }
+    .BreakPoint-1{
+        display:none;
+    }
+    .BreakPoint-0{
+        display:none;
     }
 }
 
-@media (min-width:1200px){
+@media screen and (min-width: 841px) and (max-width: 1200px) {
+    .BreakPoint-4{
+        display:none;
+    }
+    .BreakPoint-3{
+        display:none;
+    }
+    .BreakPoint-2{
+        display:unset;
+    }
     .BreakPoint-1{
-        display: unset;
+        display:none;
     }
     .BreakPoint-0{
-        display: none;
+        display:none;
     }
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+    .BreakPoint-4{
+        display:none;
+    }
+    .BreakPoint-3{
+        display:none;
+    }
+    .BreakPoint-2{
+        display:none;
+    }
+    .BreakPoint-1{
+        display:unset;
+    }
+    .BreakPoint-0{
+        display:none;
+    }
+}
+
+@media screen and (min-width: 1401px){
+    .BreakPoint-4{
+        display:none;
+    }
+    .BreakPoint-3{
+        display:none;
+    }
+    .BreakPoint-2{
+        display:none;
+    }
+    .BreakPoint-1{
+        display:none;
+    }
+    .BreakPoint-0{
+        display:unset;
+    }
+}
+
+.MyCard:hover{
+    border-color: springgreen !important;
+    transition: all .3s ease-out;
 }

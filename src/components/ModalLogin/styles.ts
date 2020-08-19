@@ -24,14 +24,15 @@ export const SocialContainer = styled.div`
   height:300px;
   background-color:#B8FFEE;
   display:flex;
-  flex-direction:column;
   align-items:center;
+  justify-content:center;
 
   border-top-left-radius: 75px;
   border-bottom-right-radius: 75px;
 `;
+
 export const MySocialRow = styled.div`
-  margin-top:50%;
+  
 `;
 const svgCss = css`
   width: 30px;

@@ -36,7 +36,7 @@ const Header: React.FC = () => {
         </Navbar>
       </MyNav>
 
-      <Modal show={show} onHide={handleClose} centered size="lg">
+      <Modal show={show} onHide={handleClose} centered size="xl">
         <ModalLogin />
       </Modal>
     </div>

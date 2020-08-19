@@ -37,7 +37,7 @@ const ModalLogin: React.FC = () => {
               <Col
                 xs={12}
                 md={4}
-                style={{ backgroundColor: "#6FCF97", padding: "5% 2%" }}
+                style={{ backgroundColor: "#6FCF97", padding: "5% 4%" }}
                 className="d-flex align-items-center"
               >
                 <SocialContainer>

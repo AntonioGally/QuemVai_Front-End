@@ -63,7 +63,7 @@ const NavBar: React.FC = () => {
           </Nav.Item>
         </Nav>
       </MyNavBar>
-      <Modal show={show} onHide={handleClose} centered size="lg">
+      <Modal show={show} onHide={handleClose} centered size="xl">
         <ModalLogin />
       </Modal>
     </>
