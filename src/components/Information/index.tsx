@@ -59,7 +59,7 @@ const Information: React.FC = () => {
         </Row>
       </MyRow>
 
-      <MyRow style={{ margin: "5% 0 0 0" }}>
+      <MyRow style={{ margin: "0 0 0 0" }}>
         <Row className="d-flex justify-content-center" style={{ margin: 0 }}>
           <MyCol>
             <Col>

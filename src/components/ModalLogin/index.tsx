@@ -1,5 +1,5 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 import {
   Modal,
   Container,
@@ -78,13 +78,13 @@ const ModalLogin: React.FC = () => {
                       <FormControl type="password" className="md-4" />
                     </MyForm>
                     <MyButton>
-                      <Button
-                        variant="primary"
-                        type="submit"
-                        className="float-right"
+                      <NavLink
+                        to="/MainAplication"
+                        className="float-right btn btn-primary"
+                        style={{ marginBottom: "10px" }}
                       >
                         Entrar
-                      </Button>
+                      </NavLink>
 
                       <Button variant="outline-success" className="float-right">
                         Cadastrar
@@ -99,16 +99,16 @@ const ModalLogin: React.FC = () => {
           <div className="CellPhone">
             <Row className="d-flex justify-content-center">
               <Col xs={12} md={8}>
-              <div className="text-center">
-                <Image
-                  src={QuemVaiLogo}
-                  fluid
-                  style={{
-                    marginBottom: "5%",
-                    width: "250px",
-                    height: "250px",
-                  }}
-                />
+                <div className="text-center">
+                  <Image
+                    src={QuemVaiLogo}
+                    fluid
+                    style={{
+                      marginBottom: "5%",
+                      width: "250px",
+                      height: "250px",
+                    }}
+                  />
                 </div>
               </Col>
               <Col xs={12} md={4}>
@@ -126,13 +126,13 @@ const ModalLogin: React.FC = () => {
                     <FormControl type="password" className="md-4" />
                   </MyForm>
                   <MyButton>
-                    <Button
-                      variant="primary"
-                      type="submit"
-                      className="float-right"
+                    <NavLink
+                      to="/MainAplication"
+                      className="float-right btn btn-primary"
+                      style={{ marginBottom: "10px" }}
                     >
                       Entrar
-                    </Button>
+                    </NavLink>
 
                     <Button variant="outline-success" className="float-right">
                       Cadastrar

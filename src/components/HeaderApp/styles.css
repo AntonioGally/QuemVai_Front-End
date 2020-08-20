@@ -1,0 +1,18 @@
+@media (max-width:768px){
+    .MyNavHeaderApp{
+        padding: 0 10px 0 10px;
+    }
+    .MyNavDropdownHeaderApp{
+        margin-bottom: 10px;
+    }
+    .MyFormHeaderApp{
+        margin-left:10px;
+    }
+}
+
+.MyInputHeaderApp{
+    border-radius:17px;
+}
+.MyNavBarHeaderApp{
+    background-color:#ABE5B1;
+}
