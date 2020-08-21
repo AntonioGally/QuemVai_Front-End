@@ -1,0 +1,10 @@
+@media (max-width:768px){
+    .MyMap{
+        height: 70vh !important;
+    }
+}
+.MyMap{
+    border:0;
+    width: 100%;
+    height: 100vh;
+}

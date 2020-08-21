@@ -6,11 +6,9 @@ import './styles.css'
 const PeopleOnline: React.FC = () => {
   return (
     <div className="row MyRowPeopleOnlineApp ">
-     <UserButton isOnline={true} />
-     <UserButton isOnline={true} />
-     <UserButton isOnline={true} />
-     <UserButton isOnline={true} />
-     <UserButton isOnline={true} />
+     <UserButton isOnline={true} userName={'Antônio'}/>
+     <UserButton isOnline={true} userName={'Antônio'}/>
+     <UserButton isOnline={true} userName={'Antônio'}/>
     </div>
   );
 };

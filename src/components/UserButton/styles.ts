@@ -11,8 +11,8 @@ export const Button = styled.button<Props>`
     height: 50px !important;
     margin-right:10px;
   }
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   position: relative;
   cursor: pointer;
   border-radius: 50%;  
@@ -22,8 +22,8 @@ export const Button = styled.button<Props>`
       width: 50px !important;
       height: 50px !important;
     }
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
   }
 
   &::before {

@@ -1,26 +1,32 @@
-import React from 'react';
+import React from "react";
 
 // import { Container } from './styles';
-import HeaderApp from "../HeaderApp";
+import SideBarApp from "../SideBarApp";
 import GoogleMaps from "../GoogleMaps";
-import PeopleOnline from "../PeopleOnline";
+import SideBarPeopleOnline from "../SideBarPeopleOnline";
 
 const LayoutDesktopApp: React.FC = () => {
   return (
-      <div>
-          <div className="Desktop">
-          <div className="col" style={{ padding: "0" }}>
-            <HeaderApp />
-          </div>
-          <div className="col" style={{ padding: "0" }}>
-            <GoogleMaps />
-          </div>
-          <div className="col" style={{ padding: "0" }}>
-            <PeopleOnline />
+    <div>
+      <div className="Desktop">
+        <div className="container-fluid" style={{ padding: "0" }}>
+          <div className="row" style={{margin:'0'}}>
+            <div className="col-2" style={{ padding: "0" }}>
+              <SideBarApp />
+            </div>
+
+            <div className="col-9" style={{ padding: "0" }}>
+              <GoogleMaps/>
+            </div>
+
+            <div className="col-1" style={{ padding: "0", backgroundColor:'#B8FFEE' }}>
+              <SideBarPeopleOnline />
+            </div>
           </div>
         </div>
       </div>
+    </div>
   );
-}
+};
 
 export default LayoutDesktopApp;
