@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Navbar, Form, FormControl, NavDropdown } from "react-bootstrap";
+import {NavLink} from 'react-router-dom';
 import './styles.css';
 
 const HeaderApp: React.FC = () => {
@@ -31,6 +32,8 @@ const HeaderApp: React.FC = () => {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+
+            <NavLink to="/" className="nav-link">Sair</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
