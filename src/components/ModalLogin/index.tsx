@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   Modal,
   Container,
@@ -20,9 +20,25 @@ import {
 } from "./styles";
 import "./styles.css";
 
+import { useForm } from "react-hook-form";
 import QuemVaiLogo from "../../img/logo/QuemVaiLogo.png";
 
+type IFormInput = {
+  email: String;
+  password: String;
+};
+let validationRedirect = false;
+
 const ModalLogin: React.FC = () => {
+  const { register, handleSubmit, errors } = useForm<IFormInput>();
+  const onSubmit = (data: IFormInput) => {
+    console.log(data);
+    validationRedirect = true;
+  };
+  if (validationRedirect) {
+    validationRedirect = false;
+    return <Redirect to="/MainAplication" />;
+  }
   return (
     <div className="MyModal">
       <div className="CellPhone">
@@ -63,28 +79,78 @@ const ModalLogin: React.FC = () => {
                     }}
                   />
                 </div>
-                <Form className="MyContainerForm">
+                <Form
+                  className="MyContainerForm"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
                   <div className="MyAllForm">
                     <MyForm>
                       <Form.Label>
                         <h5>Email</h5>
                       </Form.Label>
-                      <FormControl type="text" className="md-4" />
+                      <FormControl
+                        type="email"
+                        className="md-4"
+                        name="email"
+                        id="email"
+                        ref={register({
+                          required: true,
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                            message: "Insira um email válido",
+                          },
+                        })}
+                      />
+
+                      {errors.email &&
+                        (errors.email as any).type === "required" && (
+                          <div className="error">Insira um email</div>
+                        )}
+                      {errors.email &&
+                        (errors.email as any).type === "pattern" && (
+                          <div className="error">
+                            {(errors.email as any).message}
+                          </div>
+                        )}
                     </MyForm>
                     <MyForm>
                       <Form.Label>
                         <h5>Senha</h5>
                       </Form.Label>
-                      <FormControl type="password" className="md-4" />
+                      <FormControl
+                        type="password"
+                        className="md-4"
+                        name="password"
+                        id="password"
+                        ref={register({
+                          minLength: {
+                            value: 8,
+                            message: "Insira no mínimo 8 caractéres",
+                          },
+                          required: true,
+                        })}
+                      />
+
+                      {errors.password &&
+                        (errors.password as any).type === "required" && (
+                          <div className="error">Insira uma senha</div>
+                        )}
+
+                      {errors.password &&
+                        (errors.password as any).type === "minLength" && (
+                          <div className="error">
+                            {(errors.password as any).message}
+                          </div>
+                        )}
                     </MyForm>
                     <MyButton>
-                      <NavLink
-                        to="/MainAplication"
+                      <Button
                         className="float-right btn btn-primary"
                         style={{ marginBottom: "10px" }}
+                        type="submit"
                       >
                         Entrar
-                      </NavLink>
+                      </Button>
 
                       <Button variant="outline-success" className="float-right">
                         Cadastrar
@@ -117,22 +183,69 @@ const ModalLogin: React.FC = () => {
                     <Form.Label>
                       <h5>Email</h5>
                     </Form.Label>
-                    <FormControl type="text" className="md-4" />
+                    <FormControl
+                      type="email"
+                      className="md-4"
+                      name="email"
+                      id="email"
+                      ref={register({
+                        required: true,
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "Insira um email válido",
+                        },
+                      })}
+                    />
+
+                    {errors.email &&
+                      (errors.email as any).type === "required" && (
+                        <div className="error">Insira um email</div>
+                      )}
+                    {errors.email &&
+                      (errors.email as any).type === "pattern" && (
+                        <div className="error">
+                          {(errors.email as any).message}
+                        </div>
+                      )}
                   </MyForm>
                   <MyForm>
                     <Form.Label>
                       <h5>Senha</h5>
                     </Form.Label>
-                    <FormControl type="password" className="md-4" />
+                    <FormControl
+                      type="password"
+                      className="md-4"
+                      name="password"
+                      id="password"
+                      ref={register({
+                        minLength: {
+                          value: 8,
+                          message: "Insira no mínimo 8 caractéres",
+                        },
+                        required: true,
+                      })}
+                    />
+
+                    {errors.password &&
+                      (errors.password as any).type === "required" && (
+                        <div className="error">Insira uma senha</div>
+                      )}
+
+                    {errors.password &&
+                      (errors.password as any).type === "minLength" && (
+                        <div className="error">
+                          {(errors.password as any).message}
+                        </div>
+                      )}
                   </MyForm>
                   <MyButton>
-                    <NavLink
-                      to="/MainAplication"
+                    <Button
                       className="float-right btn btn-primary"
                       style={{ marginBottom: "10px" }}
+                      type="submit"
                     >
                       Entrar
-                    </NavLink>
+                    </Button>
 
                     <Button variant="outline-success" className="float-right">
                       Cadastrar

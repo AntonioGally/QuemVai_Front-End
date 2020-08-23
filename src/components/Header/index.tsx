@@ -2,13 +2,14 @@ import React, { useState } from "react";
 
 import { Image, Form, FormControl, Modal, Navbar } from "react-bootstrap";
 import ModalLogin from "../ModalLogin";
-import user from "../../img/icones/user.svg";
+
 import banner2 from "../../img/banner/banner2.jpg";
 
 import {  MyNav } from "./style";
 import './styles.css';
 
 const Header: React.FC = () => {
+  const user = "https://whowill.blob.core.windows.net/fotos/4f5133bf-ae84-9fa6-3193-c9d45caad795.jpg";
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
