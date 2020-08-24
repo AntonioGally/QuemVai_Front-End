@@ -1,0 +1,9 @@
+paleta de cores light
+background : #fff;
+primary : #33D7A3;
+footer : #33D7A3;
+fontWhite : #fff;
+fontBlack : #000;
+buttonFill : #ED461D;
+buttonOutLined: #ED461D;
+input: #B2FFE7;

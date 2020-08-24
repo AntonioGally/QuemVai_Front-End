@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
    /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -307,5 +307,18 @@ template {
 
 [hidden] {
   display: none;
+}
+
+:root{
+  /* paleta de cores light */
+--background : #fff;
+--primary : #33D7A3;
+--footer : #33D7A3;
+--fontWhite : #fff;
+--fontBlack : #000;
+--buttonFill : #ED461D;
+--buttonOutLined: #ED461D;
+--input: #B2FFE7;
+
 }
 `;

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Image, Form, FormControl, Modal, Navbar } from "react-bootstrap";
+import { Image, Form, FormControl, Navbar } from "react-bootstrap";
 import ModalLogin from "../ModalLogin";
 
 import banner2 from "../../img/banner/banner2.jpg";
@@ -10,10 +10,8 @@ import './styles.css';
 
 const Header: React.FC = () => {
   const user = "https://whowill.blob.core.windows.net/fotos/4f5133bf-ae84-9fa6-3193-c9d45caad795.jpg";
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div style={{ height: "100%" }}>
@@ -31,15 +29,13 @@ const Header: React.FC = () => {
               width="70px"
               rounded
               style={{ cursor: "pointer" }}
-              onClick={handleShow}
+              onClick={() => setModalShow(true)}
             />
           </Form>
         </Navbar>
-      </MyNav>
 
-      <Modal show={show} onHide={handleClose} centered size="xl">
-        <ModalLogin />
-      </Modal>
+        <ModalLogin show={modalShow}   onHide={() => setModalShow(false)}/>
+      </MyNav>
     </div>
   );
 };

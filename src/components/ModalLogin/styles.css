@@ -5,6 +5,10 @@
   .Desktop {
     display: unset;
   }
+  .MyRowModalLogin{
+    height: 720px;
+  }
+
 }
 @media (max-width: 768px) {
   .CellPhone {
@@ -31,4 +35,43 @@
 .MyContainerForm {
   display: flex;
   justify-content: center;
+}
+
+.MyTextModalLogin1{
+  font-family: 'Poppins';
+  font-size:24pt;
+  font-weight: 600;
+  color:black;
+}
+
+.MyInputModalLogin{
+  background-color:#b2ffe7;
+  border-radius: 15px !important;
+}
+
+.MyButtonSubmitModalLogin{
+  background-color: #ED461D;
+  border-radius:6.5px !important;
+  color:white;
+  width:50%;
+  padding:10px;
+}
+.MyButtonSubmitModalLogin:hover{
+  background-color: #ED461D;
+  opacity: .8;
+  color:white;
+  transition: all .5s ease-in-out;
+}
+.MyButtonRegistertModalLogin{
+  color:#ED461D;
+  border:1px solid #ED461D; 
+  border-radius:6.5px !important;
+  width:50%;
+  padding:10px;
+}
+.MyButtonRegistertModalLogin:hover{
+  background-color: #ED461D;
+  border:1px solid white; 
+  color:white;
+  transition: all .5s ease;
 }

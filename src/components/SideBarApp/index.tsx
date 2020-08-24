@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import {} from "./styles";
 import user from "../../img/icones/user.svg";
 import { NavLink } from "react-router-dom";
 

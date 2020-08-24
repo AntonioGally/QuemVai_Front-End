@@ -6,13 +6,11 @@ import {
   Row,
   Col,
   Form,
-  FormControl,
-  Button,
   Image,
+  Alert,
 } from "react-bootstrap";
+
 import {
-  MyForm,
-  MyButton,
   SocialContainer,
   InstaLogo,
   FacebookLogo,
@@ -21,242 +19,176 @@ import {
 import "./styles.css";
 
 import { useForm } from "react-hook-form";
-import QuemVaiLogo from "../../img/logo/QuemVaiLogo.png";
+import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
+
+export interface Props {
+  show: boolean;
+  onHide: any;
+}
 
 type IFormInput = {
   email: String;
   password: String;
 };
-let validationRedirect = false;
 
-const ModalLogin: React.FC = () => {
+const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
+  const [showAlert, setShowAlert] = React.useState(false);
+  const [redirect, setRedirect] = React.useState(false);
   const { register, handleSubmit, errors } = useForm<IFormInput>();
+
   const onSubmit = (data: IFormInput) => {
     console.log(data);
-    validationRedirect = true;
+    if (data.email === "admin@admin.com" && data.password === "admin123") {
+      setRedirect(true);
+    } else {
+      return setShowAlert(true);
+    }
   };
-  if (validationRedirect) {
-    validationRedirect = false;
+  if (redirect) {
     return <Redirect to="/MainAplication" />;
   }
+
   return (
     <div className="MyModal">
-      <div className="CellPhone">
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-      </div>
-      <Modal.Body className="show-grid withOutPadding">
-        <Container>
-          <div className="Desktop">
-            <Row>
-              <Col
-                xs={12}
-                md={4}
-                style={{ backgroundColor: "#6FCF97", padding: "5% 4%" }}
-                className="d-flex align-items-center"
-              >
-                <SocialContainer>
-                  <MySocialRow>
-                    <Row style={{ marginBottom: "10%" }}>
-                      <InstaLogo /> Chume Company
+      <Modal size="xl" centered show={show} onHide={onHide}>
+        <div>
+          <Modal.Header closeButton className="CellPhone"></Modal.Header>
+
+          <Modal.Body style={{ padding: 0 }}>
+            <Container fluid style={{ padding: 0 }}>
+              <Row style={{ margin: 0 }} className="MyRowModalLogin">
+                <Col md={5} style={{ padding: 0 }} className="Desktop">
+                  <SocialContainer>
+                    <MySocialRow>
+                      <Row
+                        style={{ marginBottom: "10%", alignItems: "center" }}
+                      >
+                        <InstaLogo /> Chume Company
+                      </Row>
+                      <Row style={{ alignItems: "center" }}>
+                        <FacebookLogo /> Chume Company
+                      </Row>
+                    </MySocialRow>
+                  </SocialContainer>
+                </Col>
+                <Col md={7} sm={12} style={{ padding: 0 }}>
+                  <Row style={{ margin: 0 }} className="justify-content-center">
+                    <Image
+                      src={QuemVaiLogo2}
+                      alt="Logo Quem Vai"
+                      style={{ width: "200px", height: "200px" }}
+                    />
+                  </Row>
+
+                  <Row
+                    style={{ margin: "2% 0" }}
+                    className="justify-content-center"
+                  >
+                    <div className="MyTextModalLogin1">
+                      Entre e encontre mais{" "}
+                      <div style={{ color: "#3EDAA8" }}>lazer!</div>
+                    </div>
+                  </Row>
+
+                  <Form onSubmit={handleSubmit(onSubmit)}>
+                    <Row
+                      style={{ margin: "2% 0" }}
+                      className="justify-content-center"
+                    >
+                      <Form.Group style={{ width: "65%" }}>
+                        <h5 style={{ fontWeight: "bold" }}>Email</h5>
+                        <Form.Control
+                          type="email"
+                          name="email"
+                          id="email"
+                          className="MyInputModalLogin"
+                          ref={register({
+                            required: true,
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                              message: "Insira um email válido",
+                            },
+                          })}
+                        />
+                        {errors.email &&
+                          (errors.email as any).type === "required" && (
+                            <div className="error">Insira um email</div>
+                          )}
+                        {errors.email &&
+                          (errors.email as any).type === "pattern" && (
+                            <div className="error">
+                              {(errors.email as any).message}
+                            </div>
+                          )}
+                      </Form.Group>
                     </Row>
-                    <Row>
-                      <FacebookLogo /> Chume Company
+
+                    <Row
+                      style={{ margin: 0 }}
+                      className="justify-content-center"
+                    >
+                      <Form.Group style={{ width: "65%" }}>
+                        <h5 style={{ fontWeight: "bold" }}>Senha</h5>
+                        <Form.Control
+                          type="password"
+                          name="password"
+                          id="password"
+                          className="MyInputModalLogin"
+                          ref={register({
+                            minLength: {
+                              value: 8,
+                              message: "Insira no mínimo 8 caractéres",
+                            },
+                            required: true,
+                          })}
+                        />
+
+                        {errors.password &&
+                          (errors.password as any).type === "required" && (
+                            <div className="error">Insira uma senha</div>
+                          )}
+
+                        {errors.password &&
+                          (errors.password as any).type === "minLength" && (
+                            <div className="error">
+                              {(errors.password as any).message}
+                            </div>
+                          )}
+                      </Form.Group>
                     </Row>
-                  </MySocialRow>
-                </SocialContainer>
-              </Col>
-              <Col xs={12} md={8}>
-                <div className="text-center">
-                  <Image
-                    src={QuemVaiLogo}
-                    fluid
-                    style={{
-                      marginBottom: "5%",
-                      width: "250px",
-                      height: "250px",
-                    }}
-                  />
-                </div>
-                <Form
-                  className="MyContainerForm"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <div className="MyAllForm">
-                    <MyForm>
-                      <Form.Label>
-                        <h5>Email</h5>
-                      </Form.Label>
-                      <FormControl
-                        type="email"
-                        className="md-4"
-                        name="email"
-                        id="email"
-                        ref={register({
-                          required: true,
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                            message: "Insira um email válido",
-                          },
-                        })}
-                      />
 
-                      {errors.email &&
-                        (errors.email as any).type === "required" && (
-                          <div className="error">Insira um email</div>
-                        )}
-                      {errors.email &&
-                        (errors.email as any).type === "pattern" && (
-                          <div className="error">
-                            {(errors.email as any).message}
-                          </div>
-                        )}
-                    </MyForm>
-                    <MyForm>
-                      <Form.Label>
-                        <h5>Senha</h5>
-                      </Form.Label>
-                      <FormControl
-                        type="password"
-                        className="md-4"
-                        name="password"
-                        id="password"
-                        ref={register({
-                          minLength: {
-                            value: 8,
-                            message: "Insira no mínimo 8 caractéres",
-                          },
-                          required: true,
-                        })}
-                      />
-
-                      {errors.password &&
-                        (errors.password as any).type === "required" && (
-                          <div className="error">Insira uma senha</div>
-                        )}
-
-                      {errors.password &&
-                        (errors.password as any).type === "minLength" && (
-                          <div className="error">
-                            {(errors.password as any).message}
-                          </div>
-                        )}
-                    </MyForm>
-                    <MyButton>
-                      <Button
-                        className="float-right btn btn-primary"
-                        style={{ marginBottom: "10px" }}
+                    <Row
+                      style={{ margin: "2% 0 0" }}
+                      className="justify-content-center"
+                    >
+                      <button
                         type="submit"
+                        className="btn MyButtonSubmitModalLogin"
                       >
                         Entrar
-                      </Button>
-
-                      <Button variant="outline-success" className="float-right">
-                        Cadastrar
-                      </Button>
-                    </MyButton>
-                  </div>
-                </Form>
-              </Col>
-            </Row>{" "}
-          </div>
-
-          <div className="CellPhone">
-            <Row className="d-flex justify-content-center">
-              <Col xs={12} md={8}>
-                <div className="text-center">
-                  <Image
-                    src={QuemVaiLogo}
-                    fluid
-                    style={{
-                      marginBottom: "5%",
-                      width: "250px",
-                      height: "250px",
-                    }}
-                  />
-                </div>
-              </Col>
-              <Col xs={12} md={4}>
-                <Form>
-                  <MyForm>
-                    <Form.Label>
-                      <h5>Email</h5>
-                    </Form.Label>
-                    <FormControl
-                      type="email"
-                      className="md-4"
-                      name="email"
-                      id="email"
-                      ref={register({
-                        required: true,
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                          message: "Insira um email válido",
-                        },
-                      })}
-                    />
-
-                    {errors.email &&
-                      (errors.email as any).type === "required" && (
-                        <div className="error">Insira um email</div>
-                      )}
-                    {errors.email &&
-                      (errors.email as any).type === "pattern" && (
-                        <div className="error">
-                          {(errors.email as any).message}
-                        </div>
-                      )}
-                  </MyForm>
-                  <MyForm>
-                    <Form.Label>
-                      <h5>Senha</h5>
-                    </Form.Label>
-                    <FormControl
-                      type="password"
-                      className="md-4"
-                      name="password"
-                      id="password"
-                      ref={register({
-                        minLength: {
-                          value: 8,
-                          message: "Insira no mínimo 8 caractéres",
-                        },
-                        required: true,
-                      })}
-                    />
-
-                    {errors.password &&
-                      (errors.password as any).type === "required" && (
-                        <div className="error">Insira uma senha</div>
-                      )}
-
-                    {errors.password &&
-                      (errors.password as any).type === "minLength" && (
-                        <div className="error">
-                          {(errors.password as any).message}
-                        </div>
-                      )}
-                  </MyForm>
-                  <MyButton>
-                    <Button
-                      className="float-right btn btn-primary"
-                      style={{ marginBottom: "10px" }}
-                      type="submit"
+                      </button>
+                    </Row>
+                    <Row
+                      style={{ margin: "5% 0 2%" }}
+                      className="justify-content-center"
                     >
-                      Entrar
-                    </Button>
-
-                    <Button variant="outline-success" className="float-right">
-                      Cadastrar
-                    </Button>
-                  </MyButton>
-                </Form>
-              </Col>
-            </Row>
-          </div>
-        </Container>
-      </Modal.Body>
+                      <button
+                        type="button"
+                        className="btn MyButtonRegistertModalLogin"
+                      >
+                        Cadastrar
+                      </button>
+                    </Row>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          {/* <Modal.Footer>
+            <Button onClick={onHide}>Close</Button>
+          </Modal.Footer> */}
+        </div>
+      </Modal>
     </div>
   );
 };

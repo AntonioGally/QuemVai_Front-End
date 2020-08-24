@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { MyNavBar, MyLink } from "./style";
 import { NavLink } from "react-router-dom";
 
-import { Modal, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import ModalLogin from "../ModalLogin";
 
 const NavBar: React.FC = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
@@ -55,7 +52,7 @@ const NavBar: React.FC = () => {
               <span
                 className="nav-link"
                 style={{ cursor: "pointer" }}
-                onClick={handleShow}
+                onClick={() => setModalShow(true)}
               >
                 Login
               </span>
@@ -63,9 +60,8 @@ const NavBar: React.FC = () => {
           </Nav.Item>
         </Nav>
       </MyNavBar>
-      <Modal show={show} onHide={handleClose} centered size="xl">
-        <ModalLogin />
-      </Modal>
+      <ModalLogin show={modalShow}   onHide={() => setModalShow(false)}/>
+      
     </>
   );
 };

@@ -3,40 +3,23 @@ import styled, { css } from "styled-components";
 import { InstagramAlt } from "@styled-icons/boxicons-logos/InstagramAlt";
 import { FacebookCircle } from "@styled-icons/boxicons-logos/FacebookCircle";
 
-export const MyForm = styled.div`
-  > input {
-    border-radius: 30px !important;
-  }
 
-  margin-bottom: 10%;
-`;
-
-export const MyButton = styled.div`
-  display: flex;
-  flex-direction: column;
-  > Button {
-    margin-bottom: 5%;
-  }
-`;
 
 export const SocialContainer = styled.div`
   width:100%;
-  height:300px;
-  background-color:#B8FFEE;
+  height:720px;
+  background-color:#33D7A3;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  border-top-left-radius: 75px;
-  border-bottom-right-radius: 75px;
 `;
 
 export const MySocialRow = styled.div`
   
 `;
 const svgCss = css`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   flex-shrink: 0;
   margin-right:10px;
 `;
