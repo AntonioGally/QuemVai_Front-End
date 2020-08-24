@@ -7,7 +7,6 @@ import {
   Col,
   Form,
   Image,
-  Alert,
 } from "react-bootstrap";
 
 import {
@@ -31,8 +30,7 @@ type IFormInput = {
   password: String;
 };
 
-const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
-  const [showAlert, setShowAlert] = React.useState(false);
+const ModalLogin: React.FC<Props> = ({ show, onHide }) => {  
   const [redirect, setRedirect] = React.useState(false);
   const { register, handleSubmit, errors } = useForm<IFormInput>();
 
@@ -41,7 +39,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
     if (data.email === "admin@admin.com" && data.password === "admin123") {
       setRedirect(true);
     } else {
-      return setShowAlert(true);
+      console.log('cara tu n é adm, tu n entra')
     }
   };
   if (redirect) {
