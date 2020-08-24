@@ -45,33 +45,33 @@
 }
 
 .MyInputModalLogin{
-  background-color:#b2ffe7;
+  background-color:var(--input);
   border-radius: 15px !important;
 }
 
 .MyButtonSubmitModalLogin{
-  background-color: #ED461D;
+  background-color: var(--buttonFill);
   border-radius:6.5px !important;
-  color:white;
+  color:var(--fontWhite);
   width:50%;
   padding:10px;
 }
 .MyButtonSubmitModalLogin:hover{
-  background-color: #ED461D;
+  background-color: var(--buttonFill);
   opacity: .8;
-  color:white;
+  color:var(--fontWhite);
   transition: all .5s ease-in-out;
 }
 .MyButtonRegistertModalLogin{
-  color:#ED461D;
-  border:1px solid #ED461D; 
+  color:var(--buttonOutLined);
+  border:1px solid var(--buttonOutLined); 
   border-radius:6.5px !important;
   width:50%;
   padding:10px;
 }
 .MyButtonRegistertModalLogin:hover{
-  background-color: #ED461D;
-  border:1px solid white; 
-  color:white;
+  background-color: var(--buttonOutLined);
+  border:1px solid var(--fontWhite); 
+  color:var(--fontWhite);
   transition: all .5s ease;
 }

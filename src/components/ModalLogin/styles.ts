@@ -8,7 +8,7 @@ import { FacebookCircle } from "@styled-icons/boxicons-logos/FacebookCircle";
 export const SocialContainer = styled.div`
   width:100%;
   height:720px;
-  background-color:#33D7A3;
+  background-color:var(--primary);
   display:flex;
   align-items:center;
   justify-content:center;

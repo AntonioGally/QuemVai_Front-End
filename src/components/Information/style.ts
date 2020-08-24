@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const MyRow = styled.div`
   border-radius: 15px;
-  background-color: #b8ffee;  
+  background-color: var(--primary);  
   &.WithoutBG {
-    background-color: white;
+    background-color: var(--background);
   }
   &.RowPlataform {
     border-radius: 0;
@@ -15,7 +15,6 @@ export const MyRow = styled.div`
 `;
 
 export const MyCol = styled.div`
-  margin-top: 4%;
   &.text {
     padding: 0 5%;
   }

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <div>
       <footer
         className="page-footer font-small"
-        style={{ backgroundColor: "#17a2b8" }}
+        style={{ backgroundColor: "var(--primary)" }}
       >
         <div className="container">
           <div className="row d-flex justify-content-center" >

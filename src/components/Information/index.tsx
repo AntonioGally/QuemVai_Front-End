@@ -12,7 +12,7 @@ const Information: React.FC = () => {
   return (
     <Container fluid style={{ padding: 0 }}>
       <MyRow style={{ margin: "5% 0 0 0" }}>
-        <Row className="d-flex justify-content-center" style={{ margin: 0 }}>
+        <Row className="d-flex justify-content-center" style={{ margin: 0, padding:'45px 0'}}>
           <MyCol>
             <Col>
               <Image src={img1Sobre} fluid />
@@ -37,17 +37,18 @@ const Information: React.FC = () => {
       </MyRow>
 
       <MyRow className="WithoutBG">
-        <Row className="d-flex justify-content-center" style={{ margin: 0 }}>
+        <Row className="d-flex justify-content-center" style={{ margin: 0, padding:'45px 0'}}>
           <MyCol className="text">
             <Col>
-              <TitleContent>Melhores áreas de lazer</TitleContent>
+              <TitleContent>Convide seus amigos </TitleContent>
 
               <TextContent>
-                buscando por categorias da escolha do usuário. Encontre seu
-                local ideal para realizar a atividade que possui em mente.
-                Pesquisa de diversas quadras, praças, parques, etc., para tornar
-                a experiência completa.
+                para participar dos eventos que você realiza, monte times,
+                aumente seu nível de amizade se tornando melhor amigo de outro
+                usuário, para ter acesso a mais informações pessoais. Faça novos
+                amigos e junte a galera.
               </TextContent>
+             
             </Col>
           </MyCol>
 
@@ -60,7 +61,7 @@ const Information: React.FC = () => {
       </MyRow>
 
       <MyRow style={{ margin: "0 0 0 0" }}>
-        <Row className="d-flex justify-content-center" style={{ margin: 0 }}>
+        <Row className="d-flex justify-content-center" style={{ margin: 0, padding:'45px 0'}}>
           <MyCol>
             <Col>
               <Image src={img3Sobre} fluid />
@@ -69,13 +70,13 @@ const Information: React.FC = () => {
 
           <MyCol className="text WithoutMarginT">
             <Col>
-              <TitleContent>Convide seus amigos </TitleContent>
+              <TitleContent>Melhores áreas de lazer</TitleContent>
 
               <TextContent>
-                para participar dos eventos que você realiza, monte times,
-                aumente seu nível de amizade se tornando melhor amigo de outro
-                usuário, para ter acesso a mais informações pessoais. Faça novos
-                amigos e junte a galera.
+                buscando por categorias da escolha do usuário. Encontre seu
+                local ideal para realizar a atividade que possui em mente.
+                Pesquisa de diversas quadras, praças, parques, etc., para tornar
+                a experiência completa.
               </TextContent>
             </Col>
           </MyCol>
