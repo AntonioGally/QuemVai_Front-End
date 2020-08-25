@@ -1,10 +1,19 @@
 @media (max-width:768px){
-    .MyMap{
-        height: 70vh !important;
+    .MyColGoogleMaps{
+        display:unset !important;
+    }
+    .MyRowGoogleMaps{
+        position: absolute;
+        margin:90px 0 0 15px; 
+        width:100%;
+        padding:0 20px;
     }
 }
 .MyMap{
     border:0;
     width: 100%;
     height: 100vh;
+}
+.MyRowGoogleMaps{
+    position: absolute;
 }

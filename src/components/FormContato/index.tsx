@@ -50,23 +50,13 @@ const FormContato: React.FC = () => {
                         placeholder="ex.: Robson da Silva"
                         style={{ borderRadius: "10px" }}
                         ref={register({
-                          required: true,
-                          pattern: {
-                            value: /^[A-Za-z]+$/i,
-                            message: "Insira nome válido",
-                          },
+                          required: true,                        
                         })}
                       />
                       {errors.userName &&
                         (errors.userName as any).type === "required" && (
                           <div className="error">O nome é obrigatório</div>
-                        )}
-                      {errors.userName &&
-                        (errors.userName as any).type === "pattern" && (
-                          <div className="error">
-                            {(errors.userName as any).message}
-                          </div>
-                        )}
+                        )}                     
                     </Form.Group>
                   </MyForm>
 

@@ -70,7 +70,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                   </SocialContainer>
                 </Col>
                 <Col md={7} sm={12} style={{ padding: 0 }}>
-                  <Row style={{ margin: 0 }} className="justify-content-center">
+                  <Row style={{ margin: '2% 0' }} className="justify-content-center">
                     <Image
                       src={QuemVaiLogo2}
                       alt="Logo Quem Vai"
