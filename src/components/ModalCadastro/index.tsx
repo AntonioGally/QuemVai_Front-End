@@ -1,51 +1,29 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import { Modal, Container, Row, Col, Form, Image } from "react-bootstrap";
-
+// import { useForm } from "react-hook-form";
+import "./styles.css";
 import {
   SocialContainer,
+  MySocialRow,
   InstaLogo,
   FacebookLogo,
-  MySocialRow,
 } from "./styles";
-import "./styles.css";
-import ModalCadastro from "../ModalCadastro";
-import { useForm } from "react-hook-form";
+import { Modal, Row, Container, Col, Image, Form } from "react-bootstrap";
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
+
+import ModalLogin from '../ModalLogin';
 
 export interface Props {
   show: boolean;
   onHide: any;
 }
 
-type IFormInput = {
-  email: String;
-  password: String;
-};
-
-const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
+const ModalCadastro: React.FC<Props> = ({ show, onHide }) => {
   const [modalShow, setModalShow] = React.useState(false);
-  const [redirect, setRedirect] = React.useState(false);
-  const { register, handleSubmit, errors } = useForm<IFormInput>();
-
-  const onSubmit = (data: IFormInput) => {
-    console.log(data);
-    if (data.email === "admin@admin.com" && data.password === "admin123") {
-      setRedirect(true);
-    } else {
-      console.log("cara tu n é adm, tu n entra");
-    }
-  };
-  if (redirect) {
-    return <Redirect to="/MainAplication" />;
-  }
-
   return (
     <div className="MyModal">
       <Modal size="xl" centered show={show} onHide={onHide}>
         <div>
           <Modal.Header closeButton className="CellPhone"></Modal.Header>
-
           <Modal.Body style={{ padding: 0 }}>
             <Container fluid style={{ padding: 0 }}>
               <Row style={{ margin: 0 }} className="MyRowModalLogin">
@@ -63,6 +41,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                     </MySocialRow>
                   </SocialContainer>
                 </Col>
+
                 <Col md={7} sm={12} style={{ padding: 0 }}>
                   <Row
                     style={{ margin: "2% 0" }}
@@ -79,13 +58,10 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                     style={{ margin: "2% 0" }}
                     className="justify-content-center"
                   >
-                    <div className="MyTextModalLogin1">
-                      Entre e encontre mais{" "}
-                      <div style={{ color: "#3EDAA8" }}>lazer!</div>
-                    </div>
+                    <div className="MyTextModalLogin1">Cadastre-se</div>
                   </Row>
 
-                  <Form onSubmit={handleSubmit(onSubmit)}>
+                  <Form>
                     <Row
                       style={{ margin: "2% 0" }}
                       className="justify-content-center"
@@ -97,58 +73,37 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                           name="email"
                           id="email"
                           className="MyInputModalLogin"
-                          ref={register({
-                            required: true,
-                            pattern: {
-                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                              message: "Insira um email válido",
-                            },
-                          })}
                         />
-                        {errors.email &&
-                          (errors.email as any).type === "required" && (
-                            <div className="error">Insira um email</div>
-                          )}
-                        {errors.email &&
-                          (errors.email as any).type === "pattern" && (
-                            <div className="error">
-                              {(errors.email as any).message}
-                            </div>
-                          )}
                       </Form.Group>
                     </Row>
 
                     <Row
-                      style={{ margin: 0 }}
+                      style={{ margin: "2% 0" }}
                       className="justify-content-center"
                     >
                       <Form.Group style={{ width: "65%" }}>
-                        <h5 style={{ fontWeight: "bold" }}>Senha</h5>
+                        <h5 style={{ fontWeight: "bold" }}>Nome</h5>
                         <Form.Control
-                          type="password"
-                          name="password"
-                          id="password"
+                          type="text"
+                          name="email"
+                          id="email"
                           className="MyInputModalLogin"
-                          ref={register({
-                            minLength: {
-                              value: 8,
-                              message: "Insira no mínimo 8 caractéres",
-                            },
-                            required: true,
-                          })}
                         />
+                      </Form.Group>
+                    </Row>
 
-                        {errors.password &&
-                          (errors.password as any).type === "required" && (
-                            <div className="error">Insira uma senha</div>
-                          )}
-
-                        {errors.password &&
-                          (errors.password as any).type === "minLength" && (
-                            <div className="error">
-                              {(errors.password as any).message}
-                            </div>
-                          )}
+                    <Row
+                      style={{ margin: "2% 0" }}
+                      className="justify-content-center"
+                    >
+                      <Form.Group style={{ width: "65%" }}>
+                        <h5 style={{ fontWeight: "bold" }}>Celular</h5>
+                        <Form.Control
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="MyInputModalLogin"
+                        />
                       </Form.Group>
                     </Row>
 
@@ -163,19 +118,19 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                         Entrar
                       </button>
                     </Row>
+
                     <Row
-                      style={{ margin: "5% 0 2%" }}
+                      style={{ margin: "2% 0 0" }}
                       className="justify-content-center"
                     >
                       <button
-                        type="button"
                         className="btn MyButtonRegistertModalLogin"
                         onClick={() => {
                           setModalShow(true);
                         }}
                         style={{padding:0}}
                       >
-                        <div onClick={onHide} style={{padding:'10px'}}>Cadastrar</div>
+                       <div onClick={onHide} style={{padding:'10px'}}>Voltar</div>
                       </button>
                     </Row>
                   </Form>
@@ -185,9 +140,9 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
           </Modal.Body>
         </div>
       </Modal>
-      <ModalCadastro show={modalShow} onHide={() => setModalShow(false)} />
+      {/* <ModalLogin show={modalShow} onHide={() => setModalShow(false)} /> */}
     </div>
   );
 };
 
-export default ModalLogin;
+export default ModalCadastro;

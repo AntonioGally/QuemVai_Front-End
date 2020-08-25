@@ -319,6 +319,7 @@ template {
 --buttonFill : #ED461D;
 --buttonOutLined: #ED461D;
 --input: #B2FFE7;
+--borderInput: #0000008c;
 
 }
 `;
