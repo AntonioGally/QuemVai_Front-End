@@ -75,3 +75,6 @@
   color:var(--fontWhite);
   transition: all .5s ease;
 }
+.error{
+  color:red;
+}

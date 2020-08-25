@@ -20,7 +20,7 @@ const Information: React.FC = () => {
           </MyCol>
 
           <MyCol className="text WithoutMarginT">
-            <Col>
+            <Col style={{color:'var(--fontWhite)'}}>
               <TitleContent>Quem Vai?</TitleContent>
 
               <TextContent>
@@ -69,7 +69,7 @@ const Information: React.FC = () => {
           </MyCol>
 
           <MyCol className="text WithoutMarginT">
-            <Col>
+            <Col style={{color:'var(--fontWhite)'}}>
               <TitleContent>Melhores áreas de lazer</TitleContent>
 
               <TextContent>

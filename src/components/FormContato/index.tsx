@@ -42,7 +42,7 @@ const FormContato: React.FC = () => {
                 <Col sm={12} md={6}>
                   <MyLableText> Qual o seu nome? </MyLableText>
                   <MyForm className="firstColumn">
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                       <Form.Control
                         type="text"
                         name="userName"
@@ -72,7 +72,7 @@ const FormContato: React.FC = () => {
 
                   <MyLableText> E o seu E-mail? </MyLableText>
                   <MyForm className="firstColumn">
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group >
                       <Form.Control
                         type="email"
                         name="userEmail"
@@ -106,7 +106,7 @@ const FormContato: React.FC = () => {
                     </MyLableText>
                   </div>
                   <MyForm className="firstColumn">
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                       <Form.Control
                         type="text"
                         name="userSubject"
@@ -131,10 +131,12 @@ const FormContato: React.FC = () => {
                 </Col>
 
                 <Col sm={12} md={6}>
-                  <h4 style={{ marginBottom: "2%" }}>Digite sua mensagem *</h4>
+                  <MyLableText style={{marginBottom:'2% 0'}}>
+                    Digite sua mensagem
+                  </MyLableText>
                   <MyForm>
                     <div style={{ margin: "5%" }}>
-                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Group>
                         <Form.Control
                           as="textarea"
                           name="userMessage"

@@ -47,7 +47,7 @@ hr {
 
 
 pre {
-  font-family: monospace, monospace; /* 1 */
+  font-family: 'Poppins',monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -85,7 +85,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
+  font-family: 'Poppins',monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -138,7 +138,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
+  font-family: 'Poppins',inherit; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */

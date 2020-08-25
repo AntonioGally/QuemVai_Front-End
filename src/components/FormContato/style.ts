@@ -71,6 +71,9 @@ export const MyLableText = styled.h3`
     margin-left: 5px;
     font-weight: 200;
   }
+  @media (max-width:768px){
+    font-size: 20px;
+  }
 `;
 export const MyButton = styled.button`
   background-color: var(--buttonFill);
