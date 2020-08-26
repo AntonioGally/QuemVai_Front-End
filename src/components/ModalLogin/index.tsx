@@ -38,7 +38,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
     }
   };
   if (redirect) {
-    return <Redirect to="/MainAplication" />;
+    return <Redirect to="/Admin" />;
   }
 
   return (
