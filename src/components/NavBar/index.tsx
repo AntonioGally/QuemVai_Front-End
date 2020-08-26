@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 
 import { Nav } from "react-bootstrap";
 import ModalLogin from "../ModalLogin";
+// import { transitions, positions, Provider as AlertProvider } from "react-alert";
+
+
 
 const NavBar: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -60,8 +63,7 @@ const NavBar: React.FC = () => {
           </Nav.Item>
         </Nav>
       </MyNavBar>
-      <ModalLogin show={modalShow}   onHide={() => setModalShow(false)}/>
-      
+      <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };

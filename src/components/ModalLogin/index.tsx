@@ -26,6 +26,7 @@ type IFormInput = {
 const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [redirect, setRedirect] = React.useState(false);
+
   const { register, handleSubmit, errors } = useForm<IFormInput>();
 
   const onSubmit = (data: IFormInput) => {
@@ -33,7 +34,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
     if (data.email === "admin@admin.com" && data.password === "admin123") {
       setRedirect(true);
     } else {
-      console.log("cara tu n é adm, tu n entra");
+      console.log("tu n é adm pora");
     }
   };
   if (redirect) {
@@ -163,22 +164,24 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                         Entrar
                       </button>
                     </Row>
-                    <Row
-                      style={{ margin: "5% 0 2%" }}
-                      className="justify-content-center"
-                    >
-                      <button
-                        type="button"
-                        className="btn MyButtonRegistertModalLogin"
-                        onClick={() => {
-                          setModalShow(true);
-                        }}
-                        style={{padding:0}}
-                      >
-                        <div onClick={onHide} style={{padding:'10px'}}>Cadastrar</div>
-                      </button>
-                    </Row>
                   </Form>
+                  <Row
+                    style={{ margin: "2% 0 0" }}
+                    className="justify-content-center"
+                  >
+                    <button
+                      type="button"
+                      className="btn MyButtonRegistertModalLogin"
+                      onClick={() => {
+                        setModalShow(true);
+                      }}
+                      style={{ padding: 0 }}
+                    >
+                      <div onClick={onHide} style={{ padding: "10px" }}>
+                        Cadastrar
+                      </div>
+                    </button>
+                  </Row>
                 </Col>
               </Row>
             </Container>
