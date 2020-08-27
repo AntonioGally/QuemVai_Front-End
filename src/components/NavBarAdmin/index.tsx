@@ -14,7 +14,7 @@ const NavBarAdmin: React.FC = () => {
             <MyLink className="WithoutMarginL">
               <NavLink
                 exact
-                to="/Admin"
+                to="/AdminQuadras"
                 className="nav-link "
                 activeClassName="active"
               >
@@ -25,7 +25,7 @@ const NavBarAdmin: React.FC = () => {
           <Nav.Item>
             <MyLink>
               <NavLink
-                to="/Contato"
+                to="/AdminEmail"
                 className="nav-link "
                 activeClassName="active"
               >

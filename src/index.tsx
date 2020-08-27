@@ -6,7 +6,8 @@ import App from "./App";
 import Contato from "./Pages/Contato";
 import Documentos from "./Pages/Documentos";
 import MainAplication from "./Pages/MainAplication";
-import Admin from "./Pages/Admin";
+import AdminQuadras from "./Pages/AdminQuadras";
+import AdminEmail from "./Pages/AdminEmail";
 
 import { Route, HashRouter } from "react-router-dom";
 
@@ -18,7 +19,8 @@ ReactDOM.render(
       <Route path="/Contato" component={Contato} />
       <Route path="/Documentos" component={Documentos} />
       <Route path="/MainAplication" component={MainAplication} />
-      <Route path="/Admin" component={Admin} />
+      <Route path="/AdminQuadras" component={AdminQuadras} />
+      <Route path="/AdminEmail" component={AdminEmail} />
     </HashRouter>
   </>,
 
