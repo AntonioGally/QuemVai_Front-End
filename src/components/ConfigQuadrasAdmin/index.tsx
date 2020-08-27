@@ -129,6 +129,13 @@ const ConfigQuadrasAdmin: React.FC = () => {
                     type="submit"
                     style={{ marginLeft: "10px" }}
                   >
+                    Excluir
+                  </Button>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    style={{ marginLeft: "10px" }}
+                  >
                     Alterar
                   </Button>
                 </Form.Row>
