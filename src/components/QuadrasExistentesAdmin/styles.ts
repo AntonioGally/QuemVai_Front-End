@@ -5,4 +5,5 @@ export const MyContainer = styled.div`
   height: 450px;
   background-color: var(--primary);
   overflow-y: scroll;
+  padding:20px;
 `;

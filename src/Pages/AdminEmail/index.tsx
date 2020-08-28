@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { MyHeader } from "./styles";
 import NavBarAdmin from "../../components/NavBarAdmin";
-
-// import Footer from "../../components/Footer";
+import EmailReceived from "../../components/EmailReceived";
+import EmailResponded from "../../components/EmailResponded";
+import Footer from "../../components/Footer";
 
 // import { Container } from './styles';
 
@@ -24,9 +25,10 @@ const AdminEmail: React.FC = () => {
 
     <NavBarAdmin />
     
-
+    <EmailReceived />
+    <EmailResponded />
     
-    {/* <Footer /> */}
+    <Footer />
   </Container>
   );
 }

@@ -1,30 +1,31 @@
 import React from "react";
 
 import { Row, Col } from "react-bootstrap";
-
 import { MyContainer } from "./styles";
-import EmailReceivedData from "../DataList/EmailReceivedData";
+import EmailRespondedData from "../DataList/EmailRespondedData";
 
 const emails = {
-  EmailId: 1,
   EmailUsuario: "antonio.gally@gmail.com",
   EmailAssunto: "Assunto do email",
   EmailMensagem:
     "Mensagem do Email Mensagem do Email Mensagem do Email Mensagem do Email ",
-  EmailStatus: false,
+  EmailStatus: true,
   EmailData: 20112002,
 };
 
 const listData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const EmailReceived: React.FC = () => {
+const EmailResponded: React.FC = () => {
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
         <div style={{ width: "70%" }}>
-          <h3 style={{ marginBottom: "3%" }}>Emails Recebidos</h3>
+          <h3 style={{ marginBottom: "3%" }}>Emails Respondidos</h3>
           <MyContainer>
-            <Row style={{ margin: '2% 0', border:'1px solid black'}} className="justify-content-center">
+            <Row
+              style={{ margin: "2% 0", border: "1px solid black" }}
+              className="justify-content-center"
+            >
               <Col
                 style={{
                   padding: "10px 5px",
@@ -33,7 +34,18 @@ const EmailReceived: React.FC = () => {
                 }}
                 className="text-center"
               >
-                Id do Email
+                Email Resposta
+              </Col>
+
+              <Col
+                style={{
+                  padding: "10px 5px",
+                  borderRight: "1px solid black",
+                  borderLeft: "1px solid black",
+                }}
+                className="text-center"
+              >
+                Email Respondido
               </Col>
               <Col
                 style={{ padding: "10px 5px", borderRight: "1px solid black" }}
@@ -67,9 +79,10 @@ const EmailReceived: React.FC = () => {
               </Col>
             </Row>
             {listData.map((i) => (
-              <EmailReceivedData
+              <EmailRespondedData
                 key={i}
                 EmailId={i}
+                EmailRespondedId={i}
                 EmailUsuario={emails.EmailUsuario}
                 EmailAssunto={emails.EmailAssunto}
                 EmailMensagem={emails.EmailMensagem}
@@ -84,4 +97,4 @@ const EmailReceived: React.FC = () => {
   );
 };
 
-export default EmailReceived;
+export default EmailResponded;

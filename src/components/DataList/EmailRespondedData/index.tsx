@@ -1,28 +1,28 @@
 import React from "react";
+
 import { Row, Col } from "react-bootstrap";
 
-import { MyRow } from "./styles";
+import { MyRow, StatusMessage } from "./styles";
+import "./RespondedData.css";
 
 export interface Props {
-  NomeQuadra: string;
-  EnderecoQuadra: string;
-  CepQuadra: number;
-  UfQuadra: string;
-  LatitudeQuadra: number;
-  LongitudeQuadra: number;
-  DescricaoQuadra: string;
-  StatusQuadra: string;
+  EmailId: number;
+  EmailRespondedId: number;
+  EmailUsuario: string;
+  EmailAssunto: string;
+  EmailMensagem: string;
+  EmailStatus: boolean;
+  EmailData: number;
 }
 
-const QuadrasExistentesData: React.FC<Props> = ({
-  NomeQuadra,
-  EnderecoQuadra,
-  CepQuadra,
-  UfQuadra,
-  LatitudeQuadra,
-  LongitudeQuadra,
-  DescricaoQuadra,
-  StatusQuadra,
+const EmailRespondedData: React.FC<Props> = ({
+  EmailId,
+  EmailRespondedId,
+  EmailUsuario,
+  EmailAssunto,
+  EmailMensagem,
+  EmailStatus,
+  EmailData,
 }) => {
   return (
     <MyRow>
@@ -35,53 +35,52 @@ const QuadrasExistentesData: React.FC<Props> = ({
           }}
           className="text-center"
         >
-          {NomeQuadra}
+          {EmailId}
+        </Col>
+        <Col
+          style={{
+            padding: "10px 5px",
+            borderRight: "1px solid black",
+            borderLeft: "1px solid black",
+          }}
+          className="text-center"
+        >
+          {EmailRespondedId}
         </Col>
         <Col
           style={{ padding: "10px 5px", borderRight: "1px solid black" }}
           className="text-center"
         >
-          {EnderecoQuadra}
+          {EmailUsuario}
         </Col>
         <Col
           style={{ padding: "10px 5px", borderRight: "1px solid black" }}
           className="text-center"
         >
-          {CepQuadra}
+          {EmailAssunto}
+        </Col>
+        <Col
+          style={{ padding: "10px 5px", borderRight: "1px solid black" }}
+          className="MyColRespondedData text-center"
+        >
+          {EmailMensagem}
         </Col>
         <Col
           style={{ padding: "10px 5px", borderRight: "1px solid black" }}
           className="text-center"
         >
-          {UfQuadra}
+          {EmailStatus && <StatusMessage>Respondido</StatusMessage>}
+          {!EmailStatus && <StatusMessage>Não Respondido</StatusMessage>}
         </Col>
         <Col
           style={{ padding: "10px 5px", borderRight: "1px solid black" }}
           className="text-center"
         >
-          {LatitudeQuadra}
-        </Col>
-        <Col
-          style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-          className="text-center"
-        >
-          {LongitudeQuadra}
-        </Col>
-        <Col
-          style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-          className="text-center"
-        >
-          {DescricaoQuadra}
-        </Col>
-        <Col
-          style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-          className="text-center"
-        >
-          {StatusQuadra}
+          {EmailData}
         </Col>
       </Row>
     </MyRow>
   );
 };
 
-export default QuadrasExistentesData;
+export default EmailRespondedData;
