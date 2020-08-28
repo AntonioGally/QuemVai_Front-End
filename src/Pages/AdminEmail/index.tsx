@@ -21,7 +21,9 @@ const AdminEmail: React.FC = () => {
         <h3>admin@admin.com</h3>
       </MyHeader>
     </header>
+
     <NavBarAdmin />
+    
 
     
     {/* <Footer /> */}

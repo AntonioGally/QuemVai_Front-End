@@ -4,7 +4,6 @@ export const MyContainer = styled.div`
   width:100%;
   height: 700px;
   background-color: var(--primary);
-  margin-bottom:10%;
   padding:3%;
 `;
 export const ErrorMessage = styled.div`

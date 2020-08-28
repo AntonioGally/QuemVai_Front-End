@@ -6,6 +6,7 @@ import { MyHeader } from "./styles";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import QuadrasExistentesAdmin from "../../components/QuadrasExistentesAdmin";
 import ConfigQuadrasAdmin from "../../components/ConfigQuadrasAdmin";
+import AddQuadrasAdmin from "../../components/AddQuadrasAdmin";
 import Footer from "../../components/Footer";
 
 const Admin: React.FC = () => {
@@ -24,7 +25,7 @@ const Admin: React.FC = () => {
 
       <QuadrasExistentesAdmin />
       <ConfigQuadrasAdmin />
-
+      <AddQuadrasAdmin />
       <Footer />
     </Container>
   );
