@@ -5,8 +5,7 @@ import { Container } from "react-bootstrap";
 import { MyHeader } from "./styles";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import QuadrasExistentesAdmin from "../../components/QuadrasExistentesAdmin";
-import ConfigQuadrasAdmin from "../../components/ConfigQuadrasAdmin";
-import AddQuadrasAdmin from "../../components/AddQuadrasAdmin";
+import QuadrasConfigAddLayout from "../../components/QuadrasConfigAddLayout";
 import Footer from "../../components/Footer";
 
 const Admin: React.FC = () => {
@@ -24,8 +23,7 @@ const Admin: React.FC = () => {
       <NavBarAdmin />
 
       <QuadrasExistentesAdmin />
-      <ConfigQuadrasAdmin />
-      <AddQuadrasAdmin />
+      <QuadrasConfigAddLayout />
       <Footer />
     </Container>
   );
