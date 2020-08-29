@@ -1,5 +1,6 @@
-.MyColRespondedData{
-    white-space: nowrap;     
-    overflow: hidden;
-    text-overflow: ellipsis; 
+.MyColRespondedData {
+  max-width: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

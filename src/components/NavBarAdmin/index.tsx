@@ -35,16 +35,17 @@ const NavBarAdmin: React.FC = () => {
           </Nav.Item>
           <Nav.Item>
             <MyLink>
-              <span
-                className="nav-link"
-                style={{ cursor: "pointer" }}                
+              <NavLink
+                to="/AdminEsportes"
+                className="nav-link "
+                activeClassName="active"
               >
                 Esportes
-              </span>
+              </NavLink>
             </MyLink>
           </Nav.Item>
         </Nav>
-      </MyNavBar>      
+      </MyNavBar>
     </>
   );
 };

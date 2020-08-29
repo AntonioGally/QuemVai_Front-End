@@ -149,7 +149,7 @@ const FormContato: React.FC = () => {
                         type="submit"
                         className="btn MyButtonSubmitModalLogin float-right"
                       >
-                        Entrar
+                        Enviar
                       </MyButton>
                     </div>
                   </MyForm>

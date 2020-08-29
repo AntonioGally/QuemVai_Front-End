@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Row, Col } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 import { MyContainer } from "./styles";
 import EmailReceivedData from "../DataList/EmailReceivedData";
@@ -24,59 +24,31 @@ const EmailReceived: React.FC = () => {
         <div style={{ width: "70%" }}>
           <h3 style={{ marginBottom: "3%" }}>Emails Recebidos</h3>
           <MyContainer>
-            <Row style={{ margin: '2% 0', border:'1px solid black'}} className="justify-content-center">
-              <Col
-                style={{
-                  padding: "10px 5px",
-                  borderRight: "1px solid black",
-                  borderLeft: "1px solid black",
-                }}
-                className="text-center"
-              >
-                Id do Email
-              </Col>
-              <Col
-                style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-                className="text-center"
-              >
-                Email do usuário
-              </Col>
-              <Col
-                style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-                className="text-center"
-              >
-                Assunto do Email
-              </Col>
-              <Col
-                style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-                className="text-center"
-              >
-                Mensagem do Email
-              </Col>
-              <Col
-                style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-                className="text-center"
-              >
-                Status do Email
-              </Col>
-              <Col
-                style={{ padding: "10px 5px", borderRight: "1px solid black" }}
-                className="text-center"
-              >
-                Data de envio
-              </Col>
-            </Row>
-            {listData.map((i) => (
-              <EmailReceivedData
-                key={i}
-                EmailId={i}
-                EmailUsuario={emails.EmailUsuario}
-                EmailAssunto={emails.EmailAssunto}
-                EmailMensagem={emails.EmailMensagem}
-                EmailStatus={emails.EmailStatus}
-                EmailData={emails.EmailData}
-              />
-            ))}
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Email do Usuário</th>
+                  <th>Assunto</th>
+                  <th>Mensagem</th>
+                  <th>Status do Email</th>
+                  <th>Data de envio</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listData.map((i) => (
+                  <EmailReceivedData
+                    key={i}
+                    EmailId={i}
+                    EmailUsuario={emails.EmailUsuario}
+                    EmailAssunto={emails.EmailAssunto}
+                    EmailMensagem={emails.EmailMensagem}
+                    EmailStatus={emails.EmailStatus}
+                    EmailData={emails.EmailData}
+                  />
+                ))}
+              </tbody>
+            </Table>
           </MyContainer>
         </div>
       </div>
