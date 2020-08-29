@@ -1,8 +1,9 @@
 import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
 
-import ConfigQuadrasAdmin from "../ConfigQuadrasAdmin";
-import AddQuadrasAdmin from "../AddQuadrasAdmin";
+// import ConfigQuadrasAdmin from "../ConfigQuadrasAdmin";
+import ConfigQuadraIdForm from "../IdSearchForm/ConfigQuadraIdForm";
+// import AddQuadrasAdmin from "../AddQuadrasAdmin";
 
 import { MyContainer } from "./styles";
 
@@ -17,10 +18,10 @@ const QuadrasConfigAddLayout: React.FC = () => {
           <MyContainer>
             <Tabs defaultActiveKey="ConfigQuadras">
               <Tab eventKey="ConfigQuadras" title="Configurações das Quadras">
-                <ConfigQuadrasAdmin />
+                <ConfigQuadraIdForm />
               </Tab>
               <Tab eventKey="AddQuuadras" title="Adicionar Quadras">
-                <AddQuadrasAdmin />
+                <h1>aaa</h1>
               </Tab>
             </Tabs>
           </MyContainer>
