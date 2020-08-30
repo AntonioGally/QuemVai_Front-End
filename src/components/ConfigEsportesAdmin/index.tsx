@@ -4,86 +4,105 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage } from "./styles";
-type FormId = {
-  id: string;
-};
 
-const ConfigEsportesAdmin: React.FC = () => {
-  const { register, handleSubmit } = useForm<FormId>();
-  const [existingId, setExistingId] = React.useState(false);
-  const [isDisabled, setIsDisabled] = React.useState(
-    !existingId ? true : false
-  );
-  const [erros, setErros] = React.useState(false);
+export interface FormEsporteConfig {
+  NomeEsporteConfig: string;
+  DescricaoEsporteConfig: string;
+  LocalizacaoEsporteConfig: number;
+  IdEsporteConfig: number;
+}
 
-  function onSubmit(data: FormId) {
-    if (data.id === "123") {
-      setExistingId(true);
-      setIsDisabled(false);
-      setErros(false);
-    } else {
-      setExistingId(false);
-      setIsDisabled(true);
-      setErros(true);
-    }
+const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
+  NomeEsporteConfig,
+  DescricaoEsporteConfig,
+  LocalizacaoEsporteConfig,
+  IdEsporteConfig,
+}) => {
+  const { register, handleSubmit, errors } = useForm<FormEsporteConfig>();
+
+  function onSubmitForm(data: FormEsporteConfig) {
+    console.log(data);
   }
 
-  if (existingId) {
-    console.log("o id existe zé mané");
-  }
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "5% 0" }}>
         <MyContainer>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Row>
-              <Col md={3}>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="id"
-                    placeholder="Insira o ID do Esporte"
-                    ref={register}
-                  />
-                </Form.Group>
-                {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>}
-              </Col>
-
-              <Col>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  style={{ marginLeft: "10px" }}
-                >
-                  Pesquisar
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-
-          <Form>
-            <fieldset disabled={isDisabled}>
+          <Form onSubmit={handleSubmit(onSubmitForm)}>
+            <fieldset>
               <Form.Row style={{ marginTop: "5%" }}>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="NomeEsporte">Nome</Form.Label>
-                    <Form.Control id="NomeEsporte" />
+                    <Form.Label htmlFor="NomeEsporteConfig">Nome</Form.Label>
+                    <Form.Control
+                      name="NomeEsporteConfig"
+                      id="NomeEsporteConfig"
+                      defaultValue={NomeEsporteConfig}
+                      ref={register({
+                        required: true,
+                      })}
+                    />
+                    {errors.NomeEsporteConfig &&
+                      (errors.NomeEsporteConfig as any).type === "required" && (
+                        <div className="error">
+                          <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
+                        </div>
+                      )}
                   </Form.Group>
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="DescricaoEsporte">
+                    <Form.Label htmlFor="DescricaoEsporteConfig">
                       Descrição
                     </Form.Label>
-                    <Form.Control id="DescricaoEsporte" />
+                    <Form.Control
+                      name="DescricaoEsporteConfig"
+                      id="DescricaoEsporteConfig"
+                      defaultValue={DescricaoEsporteConfig}
+                      ref={register({
+                        required: true,
+                      })}
+                    />
+                    {errors.DescricaoEsporteConfig &&
+                      (errors.DescricaoEsporteConfig as any).type ===
+                        "required" && (
+                        <div className="error">
+                          <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
+                        </div>
+                      )}
                   </Form.Group>
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="LocalizacaoEsporte">
+                    <Form.Label htmlFor="LocalizacaoEsporteConfig">
                       Localização
                     </Form.Label>
-                    <Form.Control id="LocalizacaoEsporte" />
+                    <Form.Control
+                      name="LocalizacaoEsporteConfig"
+                      id="LocalizacaoEsporteConfig"
+                      defaultValue={LocalizacaoEsporteConfig}
+                      ref={register({
+                        required: true,
+                      })}
+                    />
+                    {errors.LocalizacaoEsporteConfig &&
+                      (errors.LocalizacaoEsporteConfig as any).type ===
+                        "required" && (
+                        <div className="error">
+                          <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
+                        </div>
+                      )}
+                  </Form.Group>
+                </Col>
+                <Col md={3}>
+                  <Form.Group>
+                    <Form.Label htmlFor="IdEsporteConfig">Id</Form.Label>
+                    <Form.Control
+                      name="IdEsporteConfig"
+                      id="IdEsporteConfig"
+                      defaultValue={IdEsporteConfig}
+                      readOnly
+                    />
                   </Form.Group>
                 </Col>
               </Form.Row>

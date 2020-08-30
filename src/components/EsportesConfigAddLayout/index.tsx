@@ -1,6 +1,6 @@
 import React from "react";
 
-import ConfigEsportesAdmin from "../ConfigEsportesAdmin";
+import ConfigEsportesIdForm from "../IdSearchForm/ConfigEsportesIdForm";
 import AddEsportesAdmin from "../AddEsportesAdmin";
 import { MyContainer } from './styles';
 import {Tabs, Tab} from "react-bootstrap";
@@ -14,7 +14,7 @@ const QuadrasConfigAddLayout: React.FC = () => {
           <MyContainer>
             <Tabs defaultActiveKey="ConfigEsports">
               <Tab eventKey="ConfigEsports" title="Configurações dos Esportes">
-                <ConfigEsportesAdmin />
+                <ConfigEsportesIdForm />
               </Tab>
               <Tab eventKey="AddEsports" title="Adicionar os Esportes">
                 <AddEsportesAdmin />
