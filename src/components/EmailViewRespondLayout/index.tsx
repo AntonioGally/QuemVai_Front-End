@@ -2,8 +2,8 @@ import React from "react";
 
 import { Tab, Tabs } from "react-bootstrap";
 
-import ViewEmail from '../ViewEmail';
-import RespondEmail from '../RespondEmail';
+import EmailReceivedIdForm from "../IdSearchForm/EmailReceivedIdForm";
+import EmailRespondIdForm from "../IdSearchForm/EmailRespondIdForm";
 
 import { MyContainer } from "./styles";
 
@@ -16,10 +16,10 @@ const EmailViewRespondLayout: React.FC = () => {
           <MyContainer>
             <Tabs defaultActiveKey="ViewEmail">
               <Tab eventKey="ViewEmail" title="Visualizar Email">
-                <ViewEmail />
+                <EmailReceivedIdForm />
               </Tab>
               <Tab eventKey="RespondEmail" title="Responder Email">
-                <RespondEmail />
+                <EmailRespondIdForm />
               </Tab>
             </Tabs>
           </MyContainer>

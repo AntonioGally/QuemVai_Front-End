@@ -1,66 +1,28 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Form, Col, Button } from "react-bootstrap";
-import { ErrorMessage, MyLableText, MyForm, MyButton } from "./styles";
+import { Form, Col } from "react-bootstrap";
+import { MyLableText, MyForm, MyButton } from "./styles";
 
-type FormId = {
-  id: string;
+export interface IdEmailResponded {
+  IdEmailResponded: number;
+}
+type FormEmailResponded = {
+  UserNameEmailResponded: string;
+  UserEmailResponded: string;
+  TitleEmailResponded: string;
+  MessageEmailResponded: string;
 };
+const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
+  const { register, handleSubmit, errors } = useForm<FormEmailResponded>();
 
-const RespondEmail: React.FC = () => {
-  const { register, handleSubmit } = useForm<FormId>();
-  const [existingId, setExistingId] = React.useState(false);
-  const [isDisabled, setIsDisabled] = React.useState(
-    !existingId ? true : false
-  );
-  const [erros, setErros] = React.useState(false);
-
-  function onSubmit(data: FormId) {
-    if (data.id === "123") {
-      setExistingId(true);
-      setIsDisabled(false);
-      setErros(false);
-    } else {
-      setExistingId(false);
-      setIsDisabled(true);
-      setErros(true);
-    }
-  }
-
-  if (existingId) {
-    console.log("o id existe zé mané");
+  function onSubmit(data: FormEmailResponded) {
+    console.log(data);
   }
   return (
     <div style={{ margin: "2% 0" }}>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Row style={{ margin: "5% 0" }}>
-          <Col md={3}>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                name="id"
-                placeholder="Insira o ID do Email"
-                ref={register}
-              />
-            </Form.Group>
-            {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>}
-          </Col>
-
-          <Col>
-            <Button
-              variant="primary"
-              type="submit"
-              style={{ marginLeft: "10px" }}
-            >
-              Pesquisar
-            </Button>
-          </Col>
-        </Form.Row>
-      </Form>
-
-      <Form>
-        <fieldset disabled={isDisabled}>
+        <fieldset>
           <Form.Row>
             <Col sm={12} md={6}>
               <MyLableText> Nome da Empresa </MyLableText>
@@ -68,11 +30,19 @@ const RespondEmail: React.FC = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    name="userName"
-                    id="userName"
+                    name="UserNameEmailResponded"
+                    id="UserNameEmailResponded"
                     defaultValue="ChumeCompany"
                     style={{ borderRadius: "10px" }}
+                    ref={register({
+                      required: true,
+                    })}
                   />
+                  {errors.UserNameEmailResponded &&
+                    (errors.UserNameEmailResponded as any).type ===
+                      "required" && (
+                      <div className="error">O nome é obrigatório</div>
+                    )}
                 </Form.Group>
               </MyForm>
 
@@ -81,11 +51,28 @@ const RespondEmail: React.FC = () => {
                 <Form.Group>
                   <Form.Control
                     type="email"
-                    name="userEmail"
-                    id="userEmail"
+                    name="UserEmailResponded"
+                    id="UserEmailResponded"
                     defaultValue="company.chume@gmail.com"
                     style={{ borderRadius: "10px" }}
+                    ref={register({
+                      required: true,
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: "Insira um email válido",
+                      },
+                    })}
                   />
+                  {errors.UserEmailResponded &&
+                    (errors.UserEmailResponded as any).type === "required" && (
+                      <div className="error">O Email é obrigatório</div>
+                    )}
+                  {errors.UserEmailResponded &&
+                    (errors.UserEmailResponded as any).type === "pattern" && (
+                      <div className="error">
+                        {(errors.UserEmailResponded as any).message}
+                      </div>
+                    )}
                 </Form.Group>
               </MyForm>
 
@@ -96,10 +83,17 @@ const RespondEmail: React.FC = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    name="userSubject"
-                    id="userSubject"
+                    name="TitleEmailResponded"
+                    id="TitleEmailResponded"
                     style={{ borderRadius: "10px" }}
+                    ref={register({
+                      required: true,                     
+                    })}
                   />
+                  {errors.TitleEmailResponded &&
+                    (errors.TitleEmailResponded as any).type === "required" && (
+                      <div className="error">O Assunto é obrigatório</div>
+                    )}                 
                 </Form.Group>
               </MyForm>
             </Col>
@@ -113,11 +107,19 @@ const RespondEmail: React.FC = () => {
                   <Form.Group>
                     <Form.Control
                       as="textarea"
-                      name="userMessage"
-                      id="userMessage"
+                      name="MessageEmailResponded"
+                      id="MessageEmailResponded"
                       rows={10}
                       style={{ borderRadius: "10px" }}
+                      ref={register({
+                        required: true,
+                      })}
                     />
+                    {errors.MessageEmailResponded &&
+                      (errors.MessageEmailResponded as any).type ===
+                        "required" && (
+                        <div className="error">A mensagem é obrigatória</div>
+                      )}
                   </Form.Group>
                   <MyButton
                     type="submit"
@@ -127,6 +129,19 @@ const RespondEmail: React.FC = () => {
                   </MyButton>
                 </div>
               </MyForm>
+              <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
+                <Col md={3}>
+                  <Form.Group>
+                    <Form.Label htmlFor="IdEmailResponded">ID</Form.Label>
+                    <Form.Control
+                      id="IdEmailResponded"
+                      name="IdEmailResponded"
+                      defaultValue={IdEmailResponded}
+                      readOnly
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Row>
             </Col>
           </Form.Row>
         </fieldset>

@@ -1,57 +1,26 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 
-import { Form, Col, Button } from "react-bootstrap";
-import { ErrorMessage, MyLableText, MyForm } from "./styles";
+import { Form, Col } from "react-bootstrap";
+import { MyLableText, MyForm } from "./styles";
 
-type FormId = {
-  id: string;
-};
+export interface FormEmailReceived {
+  IdEmailReceived: number;
+  UserNameEmailReceived: string;
+  UserEmailReceived: string;
+  TitleEmailReceived: string;
+  MessageEmailReceived: string;
+}
 
-const ViewEmail: React.FC = () => {
-  const { register, handleSubmit } = useForm<FormId>();
-  // const [existingId, setExistingId] = React.useState(false);
-
-  const [erros, setErros] = React.useState(false);
-
-  function onSubmit(data: FormId) {
-    if (data.id === "123") {
-      // setExistingId(true);
-      setErros(false);
-    } else {
-      // setExistingId(false);
-      setErros(true);
-    }
-  }
+const ViewEmail: React.FC<FormEmailReceived> = ({
+  IdEmailReceived,
+  UserNameEmailReceived,
+  UserEmailReceived,
+  TitleEmailReceived,
+  MessageEmailReceived,
+}) => {
 
   return (
-    <div style={{ margin: "2% 0" }}>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Row style={{ margin: "5% 0" }}>
-          <Col md={3}>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                name="id"
-                placeholder="Insira o ID do Email"
-                ref={register}
-              />
-            </Form.Group>
-            {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>}
-          </Col>
-
-          <Col>
-            <Button
-              variant="primary"
-              type="submit"
-              style={{ marginLeft: "10px" }}
-            >
-              Pesquisar
-            </Button>
-          </Col>
-        </Form.Row>
-      </Form>
-
+    <div style={{ margin: "10% 0" }}>
       <Form>
         <fieldset disabled>
           <Form.Row>
@@ -61,9 +30,10 @@ const ViewEmail: React.FC = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    name="userName"
-                    id="userName"
+                    name="UserNameEmailReceived"
+                    id="UserNameEmailReceived"
                     style={{ borderRadius: "10px" }}
+                    defaultValue={UserNameEmailReceived}
                   />
                 </Form.Group>
               </MyForm>
@@ -73,9 +43,10 @@ const ViewEmail: React.FC = () => {
                 <Form.Group>
                   <Form.Control
                     type="email"
-                    name="userEmail"
-                    id="userEmail"
+                    name="UserEmailReceived"
+                    id="UserEmailReceived"
                     style={{ borderRadius: "10px" }}
+                    defaultValue={UserEmailReceived}
                   />
                 </Form.Group>
               </MyForm>
@@ -87,9 +58,10 @@ const ViewEmail: React.FC = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    name="userSubject"
-                    id="userSubject"
+                    name="TitleEmailReceived"
+                    id="TitleEmailReceived"
                     style={{ borderRadius: "10px" }}
+                    defaultValue={TitleEmailReceived}
                   />
                 </Form.Group>
               </MyForm>
@@ -104,14 +76,28 @@ const ViewEmail: React.FC = () => {
                   <Form.Group>
                     <Form.Control
                       as="textarea"
-                      name="userMessage"
-                      id="userMessage"
+                      name="MessageEmailReceived"
+                      id="MessageEmailReceived"
                       rows={10}
                       style={{ borderRadius: "10px" }}
+                      defaultValue={MessageEmailReceived}
                     />
                   </Form.Group>
                 </div>
               </MyForm>
+              <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
+                <Col md={3}>
+                  <Form.Group>
+                    <Form.Label htmlFor="IdEmailReceived">ID</Form.Label>
+                    <Form.Control
+                      id="IdEmailReceived"
+                      name="IdEmailReceived"
+                      defaultValue={IdEmailReceived}
+                      readOnly
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Row>
             </Col>
           </Form.Row>
         </fieldset>

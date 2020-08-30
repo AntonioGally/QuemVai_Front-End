@@ -19,7 +19,7 @@ const QuadraInformation = {
   DescricaoQuadra: "Quadra com pista de skate",
   StatusQuadra: true,
 };
-let IdTyped: number;
+var IdTyped: number;
 const ConfigQuadraIdForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<ConfigQuadraIdForm>();
   const [existingId, setExistingId] = React.useState(false);
@@ -29,13 +29,11 @@ const ConfigQuadraIdForm: React.FC = () => {
     var NewId = Number(data.id);
     if (NewId === 123) {
       setExistingId(true);
-      setErros(false);
-      console.log(IdTyped);
+      setErros(false);     
       IdTyped = NewId;
     } else {
       setExistingId(false);
       setErros(true);
-      console.log("n é esse id");
     }
   }
   if (existingId) {
