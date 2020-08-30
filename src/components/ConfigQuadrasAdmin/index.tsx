@@ -3,31 +3,31 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage } from "./styles";
-export interface FormConfigQuadras {
-  id: number;
-  nomeQuadra: string;
-  enderecoQuadra: string;
-  CepQuadra: number;
-  UfQuadra: string;
-  LatitudeQuadra: number;
-  LongitudeQuadra: number;
-  DescricaoQuadra: string;
-  StatusQuadra: boolean;
+export interface FormQuadraConfig {
+  IdQuadraConfig: number;
+  NomeQuadraConfig: string;
+  EnderecoQuadraConfig: string;
+  CepQuadraConfig: number;
+  UfQuadraConfig: string;
+  LatitudeQuadraConfig: number;
+  LongitudeQuadraConfig: number;
+  DescricaoQuadraConfig: string;
+  StatusQuadraConfig: boolean;
 }
-const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
-  id,
-  nomeQuadra,
-  enderecoQuadra,
-  CepQuadra,
-  UfQuadra,
-  LatitudeQuadra,
-  LongitudeQuadra,
-  DescricaoQuadra,
-  StatusQuadra,
+const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
+  IdQuadraConfig,
+  NomeQuadraConfig,
+  EnderecoQuadraConfig,
+  CepQuadraConfig,
+  UfQuadraConfig,
+  LatitudeQuadraConfig,
+  LongitudeQuadraConfig,
+  DescricaoQuadraConfig,
+  StatusQuadraConfig,
 }) => {
-  const { register, handleSubmit, errors } = useForm<FormConfigQuadras>();
+  const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();
 
-  function onSubmitForm(data: FormConfigQuadras) {
+  function onSubmitForm(data: FormQuadraConfig) {
     console.log(data);
   }
 
@@ -41,17 +41,17 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
               <Form.Row style={{ marginTop: "5%" }}>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="NomeQuadra">Nome</Form.Label>
+                    <Form.Label htmlFor="NomeQuadraConfig">Nome</Form.Label>
                     <Form.Control
-                      id="NomeQuadra"
-                      name="NomeQuadra"
-                      defaultValue={nomeQuadra}
+                      id="NomeQuadraConfig"
+                      name="NomeQuadraConfig"
+                      defaultValue={NomeQuadraConfig}
                       ref={register({
                         required: true,
                       })}
                     />
-                    {errors.nomeQuadra &&
-                      (errors.nomeQuadra as any).type === "required" && (
+                    {errors.NomeQuadraConfig &&
+                      (errors.NomeQuadraConfig as any).type === "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
@@ -60,17 +60,20 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="EnderecoQuadra">Endereço</Form.Label>
+                    <Form.Label htmlFor="EnderecoQuadraConfig">
+                      Endereço
+                    </Form.Label>
                     <Form.Control
-                      id="EnderecoQuadra"
-                      name="EnderecoQuadra"
-                      defaultValue={enderecoQuadra}
+                      id="EnderecoQuadraConfig"
+                      name="EnderecoQuadraConfig"
+                      defaultValue={EnderecoQuadraConfig}
                       ref={register({
                         required: true,
                       })}
                     />
-                    {errors.enderecoQuadra &&
-                      (errors.enderecoQuadra as any).type === "required" && (
+                    {errors.EnderecoQuadraConfig &&
+                      (errors.EnderecoQuadraConfig as any).type ===
+                        "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
@@ -79,11 +82,11 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="CepQuadra">CEP</Form.Label>
+                    <Form.Label htmlFor="CepQuadraConfig">CEP</Form.Label>
                     <Form.Control
-                      id="CepQuadra"
-                      name="CepQuadra"
-                      defaultValue={CepQuadra}
+                      id="CepQuadraConfig"
+                      name="CepQuadraConfig"
+                      defaultValue={CepQuadraConfig}
                       ref={register({
                         required: true,
                         max: {
@@ -92,28 +95,28 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
                         },
                       })}
                     />
-                    {errors.CepQuadra &&
-                      (errors.CepQuadra as any).type === "required" && (
+                    {errors.CepQuadraConfig &&
+                      (errors.CepQuadraConfig as any).type === "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
                       )}
 
-                    {errors.CepQuadra &&
-                      (errors.CepQuadra as any).type === "max" && (
+                    {errors.CepQuadraConfig &&
+                      (errors.CepQuadraConfig as any).type === "max" && (
                         <div className="error">
-                          {(errors.CepQuadra as any).message}
+                          {(errors.CepQuadraConfig as any).message}
                         </div>
                       )}
                   </Form.Group>
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="UfQuadra">UF</Form.Label>
+                    <Form.Label htmlFor="UfQuadraConfig">UF</Form.Label>
                     <Form.Control
-                      id="UfQuadra"
-                      name="UfQuadra"
-                      defaultValue={UfQuadra}
+                      id="UfQuadraConfig"
+                      name="UfQuadraConfig"
+                      defaultValue={UfQuadraConfig}
                       ref={register({
                         required: true,
                         maxLength: {
@@ -122,17 +125,17 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
                         },
                       })}
                     />
-                    {errors.UfQuadra &&
-                      (errors.UfQuadra as any).type === "required" && (
+                    {errors.UfQuadraConfig &&
+                      (errors.UfQuadraConfig as any).type === "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
                       )}
 
-                    {errors.UfQuadra &&
-                      (errors.UfQuadra as any).type === "maxLength" && (
+                    {errors.UfQuadraConfig &&
+                      (errors.UfQuadraConfig as any).type === "maxLength" && (
                         <div className="error">
-                          {(errors.UfQuadra as any).message}
+                          {(errors.UfQuadraConfig as any).message}
                         </div>
                       )}
                   </Form.Group>
@@ -142,17 +145,20 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
               <Form.Row style={{ marginTop: "5%" }}>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="LatitudeQuadra">Latitude</Form.Label>
+                    <Form.Label htmlFor="LatitudeQuadraConfig">
+                      Latitude
+                    </Form.Label>
                     <Form.Control
-                      id="LatitudeQuadra"
-                      name="LatitudeQuadra"
-                      defaultValue={LatitudeQuadra}
+                      id="LatitudeQuadraConfig"
+                      name="LatitudeQuadraConfig"
+                      defaultValue={LatitudeQuadraConfig}
                       ref={register({
                         required: true,
                       })}
                     />
-                    {errors.LatitudeQuadra &&
-                      (errors.LatitudeQuadra as any).type === "required" && (
+                    {errors.LatitudeQuadraConfig &&
+                      (errors.LatitudeQuadraConfig as any).type ===
+                        "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
@@ -161,57 +167,68 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="LongitudeQuadra">Longitude</Form.Label>
+                    <Form.Label htmlFor="LongitudeQuadraConfig">
+                      Longitude
+                    </Form.Label>
                     <Form.Control
-                      id="LongitudeQuadra"
-                      name="LongitudeQuadra"
-                      defaultValue={LongitudeQuadra}
+                      id="LongitudeQuadraConfig"
+                      name="LongitudeQuadraConfig"
+                      defaultValue={LongitudeQuadraConfig}
                       ref={register({
                         required: true,
                       })}
                     />
-                    {errors.LongitudeQuadra &&
-                      (errors.LongitudeQuadra as any).type === "required" && (
+                    {errors.LongitudeQuadraConfig &&
+                      (errors.LongitudeQuadraConfig as any).type ===
+                        "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
                       )}
                   </Form.Group>
                 </Col>
-                <Col md={3}>
+                <Col md={5}>
                   <Form.Group>
-                    <Form.Label htmlFor="DescricaoQuadra">Descrição</Form.Label>
+                    <Form.Label htmlFor="DescricaoQuadraConfig">
+                      Descrição
+                    </Form.Label>
                     <Form.Control
-                      id="DescricaoQuadra"
-                      name="DescricaoQuadra"
-                      defaultValue={DescricaoQuadra}
+                      id="DescricaoQuadraConfig"
+                      name="DescricaoQuadraConfig"
+                      defaultValue={DescricaoQuadraConfig}
                       ref={register({
                         required: true,
                       })}
                     />
-                    {errors.DescricaoQuadra &&
-                      (errors.DescricaoQuadra as any).type === "required" && (
+                    {errors.DescricaoQuadraConfig &&
+                      (errors.DescricaoQuadraConfig as any).type ===
+                        "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
                       )}
                   </Form.Group>
                 </Col>
-                <Col md={3}>
+                <Col md={1}>
                   <Form.Group>
-                    <div style={{display:'none'}}>{StatusQuadra && (AuxStatus = "true")}</div>
-                    <div style={{display:'none'}}>{!StatusQuadra && (AuxStatus = "false")}</div>
-                    <Form.Label htmlFor="StatusQuadra">Status</Form.Label>
+                    <div style={{ display: "none" }}>
+                      {StatusQuadraConfig && (AuxStatus = "true")}
+                    </div>
+                    <div style={{ display: "none" }}>
+                      {!StatusQuadraConfig && (AuxStatus = "false")}
+                    </div>
+                    <Form.Label htmlFor="StatusQuadraConfig">Status</Form.Label>
                     <Form.Control
-                      id="StatusQuadra"
-                      name="StatusQuadra"
+                      id="StatusQuadraConfig"
+                      name="StatusQuadraConfig"
                       defaultValue={AuxStatus}
                       ref={register({
                         required: true,
                       })}
                     />
-                    {errors.StatusQuadra &&
-                      (errors.StatusQuadra as any).type === "required" && (
+                    {errors.StatusQuadraConfig &&
+                      (errors.StatusQuadraConfig as any).type ===
+                        "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
                         </div>
@@ -222,24 +239,24 @@ const ConfigQuadrasAdmin: React.FC<FormConfigQuadras> = ({
               <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="StatusQuadra">ID</Form.Label>
+                    <Form.Label htmlFor="IdQuadraConfig">ID</Form.Label>
                     <Form.Control
-                      id="IdQuadra"
-                      name="IdQuadra"
-                      defaultValue={id}
+                      id="IdQuadraConfig"
+                      name="IdQuadraConfig"
+                      defaultValue={IdQuadraConfig}
                       readOnly
                     />
                   </Form.Group>
                 </Col>
               </Form.Row>
               <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
-                {/* <Button
+                <Button
                   variant="primary"
                   type="submit"
                   style={{ marginLeft: "10px" }}
                 >
                   Excluir
-                </Button> */}
+                </Button>
                 <Button
                   variant="primary"
                   type="submit"

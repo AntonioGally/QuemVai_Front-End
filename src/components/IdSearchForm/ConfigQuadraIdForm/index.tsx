@@ -24,7 +24,6 @@ const ConfigQuadraIdForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<ConfigQuadraIdForm>();
   const [existingId, setExistingId] = React.useState(false);
   const [erros, setErros] = React.useState(false);
-  
 
   function onSubmitId(data: ConfigQuadraIdForm) {
     var NewId = Number(data.id);
@@ -32,25 +31,25 @@ const ConfigQuadraIdForm: React.FC = () => {
       setExistingId(true);
       setErros(false);
       console.log(IdTyped);
+      IdTyped = NewId;
     } else {
       setExistingId(false);
       setErros(true);
       console.log("n é esse id");
     }
-    IdTyped = NewId;
   }
   if (existingId) {
     return (
       <ConfigQuadrasAdmin
-        id={IdTyped}
-        nomeQuadra={QuadraInformation.nomeQuadra}
-        enderecoQuadra={QuadraInformation.enderecoQuadra}
-        CepQuadra={QuadraInformation.CepQuadra}
-        UfQuadra={QuadraInformation.UfQuadra}
-        LatitudeQuadra={QuadraInformation.LatitudeQuadra}
-        LongitudeQuadra={QuadraInformation.LongitudeQuadra}
-        DescricaoQuadra={QuadraInformation.DescricaoQuadra}
-        StatusQuadra={QuadraInformation.StatusQuadra}
+        IdQuadraConfig={IdTyped}
+        NomeQuadraConfig={QuadraInformation.nomeQuadra}
+        EnderecoQuadraConfig={QuadraInformation.enderecoQuadra}
+        CepQuadraConfig={QuadraInformation.CepQuadra}
+        UfQuadraConfig={QuadraInformation.UfQuadra}
+        LatitudeQuadraConfig={QuadraInformation.LatitudeQuadra}
+        LongitudeQuadraConfig={QuadraInformation.LongitudeQuadra}
+        DescricaoQuadraConfig={QuadraInformation.DescricaoQuadra}
+        StatusQuadraConfig={QuadraInformation.StatusQuadra}
       />
     );
   }
