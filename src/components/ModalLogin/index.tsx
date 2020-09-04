@@ -1,7 +1,6 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import { Modal, Container, Row, Col, Form, Image } from "react-bootstrap";
-
+import { Redirect } from "react-router-dom";
 import {
   SocialContainer,
   InstaLogo,
@@ -13,6 +12,9 @@ import ModalCadastro from "../ModalCadastro";
 import { useForm } from "react-hook-form";
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 
+import api from "../services/api";
+import { login } from "../services/auth";
+
 export interface Props {
   show: boolean;
   onHide: any;
@@ -21,24 +23,58 @@ export interface Props {
 type IFormInput = {
   email: String;
   password: String;
+  error?: string;
 };
 
 const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
   const [modalShow, setModalShow] = React.useState(false);
-  const [redirect, setRedirect] = React.useState(false);
-
+  const [redirectAdmin, SetRedirectAdmin] = React.useState(false);
+  const [redirectUser, SetRedirectUser] = React.useState(false);
+  const [erroLogin, SetErroLogin] = React.useState(false);
   const { register, handleSubmit, errors } = useForm<IFormInput>();
 
-  const onSubmit = (data: IFormInput) => {
-    console.log(data);
-    if (data.email === "admin@admin.com" && data.password === "admin123") {
-      setRedirect(true);
-    } else {
-      console.log("tu n é adm pora");
+  const onSubmit = async (data: IFormInput) => {
+    const email = data.email;
+    const password = data.password;
+
+    var config = {
+      headers: { "x-password": password },
+    };
+
+    try {
+      const response = await api.post(
+        "/api/login/signin/user",
+        { email },
+        config
+      );
+
+      login(response.data["User token"]);
+    } catch (err) {
+      console.log(err);
+      SetErroLogin(true);
     }
+    const AdminVerification = () => {
+      return new Promise(() => {
+        setTimeout(() => {
+          if (localStorage.getItem("@QuemVaiAdmin-Token")) {
+            SetRedirectAdmin(true);      
+          } else if (localStorage.getItem("@QuemVaiUser-Token")) {
+            SetRedirectUser(true);
+          }
+        }, 500);
+      });
+    };
+    AdminVerification();
   };
-  if (redirect) {
+
+  if (erroLogin) {
+    console.log("ele entrou no if");
+  }
+  if (redirectAdmin) { 
     return <Redirect to="/AdminQuadras" />;
+  }
+  if (redirectUser) {
+    return <Redirect to="/MainAplication" />;
   }
 
   return (

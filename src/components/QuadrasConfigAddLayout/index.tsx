@@ -12,7 +12,7 @@ const QuadrasConfigAddLayout: React.FC = () => {
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
         <div style={{ width: "70%" }}>
           <h3 style={{ marginBottom: "3%" }}>
-            Configurar e Adicionar Esportes
+            Configurar e Adicionar Quadras
           </h3>
           <MyContainer>
             <Tabs defaultActiveKey="ConfigQuadras">
