@@ -1,23 +1,37 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import {useParams} from 'react-router-dom';
 import { MyContainer } from "./styles";
 import { Table } from "react-bootstrap";
 import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
 
-const quadras = {
-  NomeQuadra: "Nome da quadra",
-  EnderecoQuadra: "Endereço da quadra",
-  CepQuadra: 111222333,
-  UfQuadra: "Uf da quadra",
-  LatitudeQuadra: 123456,
-  LongitudeQuadra: 654321,
-  DescricaoQuadra: "Descrição da quadra",
-  StatusQuadra: "Status da quadra",
-};
 
-const list = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+import api from "../services/api";
+import { getTokenAdmin } from "../services/auth";
+
+import { ListSpaceAdmin } from "../@types";
+
+interface Data {
+  Quadras: ListSpaceAdmin [];
+}
+
+
+
 
 const QuadrasExistentesAdmin: React.FC = () => {
+  const { pagename = 'AdminQuadras' } = useParams();
+  const [data, setData] = useState<Data>();
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/admin/find/all", {
+        headers: { "x-auth-token": getTokenAdmin() },
+      }),
+    ]).then(async (responses) => {
+      const [AllSpaces] = responses;
+      const quadras = await AllSpaces.data;
+      setData({Quadras : quadras});
+    });
+  }, [pagename]);  
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
@@ -39,18 +53,18 @@ const QuadrasExistentesAdmin: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {list.map((i) => (
+                {data?.Quadras.map((information) => (
                   <QuadrasExistentesData
-                    key={i}
-                    IdQuadra={i}
-                    NomeQuadra={quadras.NomeQuadra + " " + list[i]}
-                    EnderecoQuadra={quadras.EnderecoQuadra}
-                    CepQuadra={quadras.CepQuadra}
-                    UfQuadra={quadras.UfQuadra}
-                    LatitudeQuadra={quadras.LatitudeQuadra}
-                    LongitudeQuadra={quadras.LongitudeQuadra}
-                    DescricaoQuadra={quadras.DescricaoQuadra}
-                    StatusQuadra={quadras.StatusQuadra}
+                    key={information.id}
+                    IdQuadra={information.id}
+                    NomeQuadra={information.name}
+                    EnderecoQuadra={information.address}
+                    CepQuadra={information.CEP}
+                    UfQuadra={information.UF}
+                    LatitudeQuadra={information.latitude}
+                    LongitudeQuadra={information.longitude}
+                    DescricaoQuadra={information.description}
+                    StatusQuadra={information.status}
                   />
                 ))}
               </tbody>

@@ -10,7 +10,7 @@ export interface Props {
   LatitudeQuadra: number;
   LongitudeQuadra: number;
   DescricaoQuadra: string;
-  StatusQuadra: string;
+  StatusQuadra: boolean;
 }
 
 const QuadrasExistentesData: React.FC<Props> = ({

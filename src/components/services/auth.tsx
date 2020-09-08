@@ -2,9 +2,10 @@ import api from "./api";
 
 export const TOKEN_KEY_ADMIN = "@QuemVaiAdmin-Token";
 export const TOKEN_KEY = "@QuemVaiUser-Token";
-export const isAuthenticatedAdmin = () =>
-  localStorage.getItem(TOKEN_KEY_ADMIN) !== null;
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
+export var isAuthenticatedAdmin= () => localStorage.getItem(TOKEN_KEY_ADMIN) !== null;
+
+
 
 export const login = async (token: string) => {
   try {
