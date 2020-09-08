@@ -1,23 +1,32 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import { Table } from "react-bootstrap";
 
 import { MyContainer } from "./styles";
 import EmailReceivedData from "../DataList/EmailReceivedData";
 
-const emails = {
-  EmailId: 1,
-  EmailUsuario: "antonio.gally@gmail.com",
-  EmailAssunto: "Assunto do email",
-  EmailMensagem:
-    "Mensagem do Email Mensagem do Email Mensagem do Email Mensagem do Email ",
-  EmailStatus: false,
-  EmailData: 20112002,
-};
+import api from "../services/api";
+import {ListEmailReceivedAdmin} from "../@types";
+import { getTokenAdmin } from "../services/auth";
 
-const listData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+interface Data {
+  EmailsReceived: ListEmailReceivedAdmin [];
+}
 
 const EmailReceived: React.FC = () => {
+
+  const [data, setData] = useState<Data>();
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/admin/get/emails", {
+        headers: { "x-auth-token": getTokenAdmin() },
+      }),
+    ]).then(async (responses) => {
+      const [AllEmailsReceived] = responses;
+      const emails = await AllEmailsReceived.data;
+      setData({EmailsReceived : emails});
+    });
+  }, []);  
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
@@ -36,15 +45,15 @@ const EmailReceived: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {listData.map((i) => (
+                {data?.EmailsReceived.map((information) => (
                   <EmailReceivedData
-                    key={i}
-                    EmailId={i}
-                    EmailUsuario={emails.EmailUsuario}
-                    EmailAssunto={emails.EmailAssunto}
-                    EmailMensagem={emails.EmailMensagem}
-                    EmailStatus={emails.EmailStatus}
-                    EmailData={emails.EmailData}
+                    key={information.id}
+                    EmailId={information.id}
+                    EmailUsuario={information.email_user}
+                    EmailAssunto={information.subject}
+                    EmailMensagem={information.message}
+                    EmailStatus={information.status}
+                    EmailData={information.createdAt}
                   />
                 ))}
               </tbody>

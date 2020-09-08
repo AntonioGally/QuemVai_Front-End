@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useParams} from 'react-router-dom';
+
 import { MyContainer } from "./styles";
 import { Table } from "react-bootstrap";
 import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
@@ -7,7 +7,6 @@ import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
 
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
-
 import { ListSpaceAdmin } from "../@types";
 
 interface Data {
@@ -18,7 +17,7 @@ interface Data {
 
 
 const QuadrasExistentesAdmin: React.FC = () => {
-  const { pagename = 'AdminQuadras' } = useParams();
+  
   const [data, setData] = useState<Data>();
 
   useEffect(() => {
@@ -31,7 +30,9 @@ const QuadrasExistentesAdmin: React.FC = () => {
       const quadras = await AllSpaces.data;
       setData({Quadras : quadras});
     });
-  }, [pagename]);  
+  }, []);  
+
+
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>

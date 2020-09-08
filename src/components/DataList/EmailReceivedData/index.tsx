@@ -1,7 +1,6 @@
 import React from "react";
 
 
-import { StatusMessage } from "./styles";
 import "./ReceivedData.css";
 
 export interface Props {
@@ -9,8 +8,8 @@ export interface Props {
   EmailUsuario: string;
   EmailAssunto: string;
   EmailMensagem: string;
-  EmailStatus: boolean;
-  EmailData: number;
+  EmailStatus: string;
+  EmailData: Date;
 }
 
 const EmailReceivedData: React.FC<Props> = ({
@@ -29,8 +28,7 @@ const EmailReceivedData: React.FC<Props> = ({
         <td>{EmailAssunto}</td>
         <td className="MyColReceivedData">{EmailMensagem}</td>
         <td>
-          {EmailStatus && <StatusMessage>Respondido</StatusMessage>}
-          {!EmailStatus && <StatusMessage>Não Respondido</StatusMessage>}
+          {EmailStatus}
         </td>
         <td>{EmailData}</td>
       </tr>

@@ -13,3 +13,25 @@ export interface ListSpaceAdmin {
     }
     status: boolean;
 }
+
+
+export interface ListEmailReceivedAdmin {
+    id: number;
+    email_user: string;
+    subject: string;
+    message: string;
+    status: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface ListEmailRespondedAdmin {
+    id: number;
+    email_user: string;
+    ownerMessage : {
+        subject : string;
+        message : string;
+    }
+    status : string;
+    updatedAt : Date;
+}
