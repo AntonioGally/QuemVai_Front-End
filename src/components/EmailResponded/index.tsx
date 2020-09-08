@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Table } from "react-bootstrap";
 import { MyContainer } from "./styles";
 import EmailRespondedData from "../DataList/EmailRespondedData";
 
-const emails = {
-  EmailUsuario: "antonio.gally@gmail.com",
-  EmailAssunto: "Assunto do email",
-  EmailMensagem:
-    "Mensagem do Email Mensagem do Email Mensagem do Email Mensagem do Email ",
-  EmailStatus: true,
-  EmailData: 20112002,
-};
+import api from "../services/api";
+import { ListEmailRespondedAdmin } from "../@types";
+import { getTokenAdmin } from "../services/auth";
 
-const listData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+interface Data {
+  EmailsResponded: ListEmailRespondedAdmin[];
+}
 const EmailResponded: React.FC = () => {
+  const [data, setData] = useState<Data>();
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/admin/get/responded/email", {
+        headers: { "x-auth-token": getTokenAdmin() },
+      }),
+    ]).then(async (responses) => {
+      const [AllEmailsResponded] = responses;
+      const emails = await AllEmailsResponded.data;
+      setData({ EmailsResponded: emails });
+    });
+  }, []);
+
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
@@ -26,6 +35,7 @@ const EmailResponded: React.FC = () => {
               <thead>
                 <tr>
                   <th>ID</th>
+
                   <th>Email do Usuário</th>
                   <th>Assunto</th>
                   <th>Mensagem</th>
@@ -34,16 +44,19 @@ const EmailResponded: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {listData.map((i) => (
+                {data?.EmailsResponded.map((information) => (
                   <EmailRespondedData
-                    key={i}
-                    EmailId={i}
-                    EmailRespondedId={i}
-                    EmailUsuario={emails.EmailUsuario}
-                    EmailAssunto={emails.EmailAssunto}
-                    EmailMensagem={emails.EmailMensagem}
-                    EmailStatus={emails.EmailStatus}
-                    EmailData={emails.EmailData}
+                    key={information.id}
+                    EmailId={information.id}
+                    EmailUsuario={information.email_user}
+                    EmailAssunto={information.ownerMessage.map((i) => {
+                      return i.subject;
+                    })}
+                    EmailMensagem={information.ownerMessage.map((i) => {
+                      return i.message;
+                    })}
+                    EmailStatus={information.status}
+                    EmailData={information.updatedAt}
                   />
                 ))}
               </tbody>
