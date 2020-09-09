@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export interface Props {
   IdQuadra: number;
   NomeQuadra: string;
@@ -35,7 +34,8 @@ const QuadrasExistentesData: React.FC<Props> = ({
         <td>{LatitudeQuadra}</td>
         <td>{LongitudeQuadra}</td>
         <td>{DescricaoQuadra}</td>
-        <td>{StatusQuadra}</td>
+        {StatusQuadra && <td>Ativa</td>}
+        {!StatusQuadra && <td>Inativa</td>}
       </tr>
     </>
   );
