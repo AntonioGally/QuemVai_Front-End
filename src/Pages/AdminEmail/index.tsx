@@ -26,8 +26,8 @@ const AdminEmail: React.FC = () => {
 
       <NavBarAdmin />
 
-      <EmailReceived />
       <EmailResponded />
+      <EmailReceived />
       <EmailViewRespondLayout />
       
 

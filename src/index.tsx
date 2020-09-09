@@ -14,6 +14,25 @@ import AdminEsportes from "./Pages/AdminEsportes";
 import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 
 import { isAuthenticatedAdmin } from "./components/services/auth";
+import { isAuthenticated } from "./components/services/auth";
+
+const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {        
+        if (isAuthenticated() || isAuthenticatedAdmin()) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          );
+        }        
+      }}
+    />
+  );
+};
+
 const PrivateRouteAdmin = ({ component: Component, ...rest }: any) => {
   return (
     <Route
@@ -37,7 +56,7 @@ ReactDOM.render(
         <Route exact path="/" component={App} />
         <Route path="/Contato" component={Contato} />
         <Route path="/Documentos" component={Documentos} />
-        <Route path="/MainAplication" component={MainAplication} />
+        <PrivateRouteUser path="/MainAplication" component={MainAplication} />
         <PrivateRouteAdmin path="/AdminQuadras" component={AdminQuadras} />
         <PrivateRouteAdmin path="/AdminEmail" component={AdminEmail} />
         <PrivateRouteAdmin path="/AdminEsportes" component={AdminEsportes} />
