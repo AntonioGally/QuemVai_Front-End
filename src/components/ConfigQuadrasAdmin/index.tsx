@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage } from "./styles";
+
+import api from "../services/api";
+import { getTokenAdmin } from "../services/auth";
+
 export interface FormQuadraConfig {
-  IdQuadraConfig: number;
-  NomeQuadraConfig: string;
-  EnderecoQuadraConfig: string;
-  CepQuadraConfig: number;
-  UfQuadraConfig: string;
-  LatitudeQuadraConfig: number;
-  LongitudeQuadraConfig: number;
-  DescricaoQuadraConfig: string;
-  StatusQuadraConfig: boolean;
+  IdQuadraConfig: any;
+  NomeQuadraConfig: any;
+  EnderecoQuadraConfig: any;
+  CepQuadraConfig: any;
+  UfQuadraConfig: any;
+  LatitudeQuadraConfig: any;
+  LongitudeQuadraConfig: any;
+  DescricaoQuadraConfig: any;
+  StatusQuadraConfig: any;
 }
 const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   IdQuadraConfig,
@@ -25,23 +29,70 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   DescricaoQuadraConfig,
   StatusQuadraConfig,
 }) => {
-  const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();
+  const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();  
+  const [deleteClick, setDeleteClick] = React.useState(false);
 
-  function onSubmitForm(data: FormQuadraConfig) {
-    console.log(data);
+  var config = {
+    headers: { "x-auth-token": getTokenAdmin() },
+  };
+
+  const onSubmitForm = async (data: FormQuadraConfig) => {
+    const name = data.NomeQuadraConfig;
+    const description = data.DescricaoQuadraConfig;
+
+
+    try {
+      const response = await api.put(
+        `/api/admin/update/${IdQuadraConfig}`,
+        { name, description },
+        config
+      );      
+
+      if (response.data.Updated) {
+        alert("Quadra atualizada com sucesso!");
+        window.location.reload();
+      }
+      if (!response.data.Updated) {
+        alert("Houve algum problema!");
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  function handleDelete() {    
+    setDeleteClick(true);
   }
+
+  useEffect(() => {
+    if (deleteClick) {
+      Promise.all([api.put(`/api/admin/find/delete/${IdQuadraConfig}`, "", config)]).then(
+        async (responses) => {
+          const [DeletedInformation] = responses;
+          if (DeletedInformation.status === 200 && deleteClick) {
+            alert("Quadra deletada com sucesso");
+            window.location.reload();
+          }
+          if (DeletedInformation.status === 404 && deleteClick) {
+            alert("Esse Id não existe");
+          }
+        }
+      );
+    }
+  }, [ IdQuadraConfig, deleteClick, config]);
 
   var AuxStatus = "";
   return (
     <div>
-      <div className="row justify-content-center" style={{ margin: "5% 0" }}>
+      <div className="row justify-content-center" style={{ margin: "2% 0 5%" }}>
         <MyContainer>
           <Form onSubmit={handleSubmit(onSubmitForm)}>
             <fieldset>
               <Form.Row style={{ marginTop: "5%" }}>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="NomeQuadraConfig">Nome</Form.Label>
+                    <Form.Label htmlFor="NomeQuadraConfig">Nome*</Form.Label>
                     <Form.Control
                       id="NomeQuadraConfig"
                       name="NomeQuadraConfig"
@@ -64,6 +115,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                       Endereço
                     </Form.Label>
                     <Form.Control
+                      readOnly
                       id="EnderecoQuadraConfig"
                       name="EnderecoQuadraConfig"
                       defaultValue={EnderecoQuadraConfig}
@@ -84,6 +136,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                   <Form.Group>
                     <Form.Label htmlFor="CepQuadraConfig">CEP</Form.Label>
                     <Form.Control
+                      readOnly
                       id="CepQuadraConfig"
                       name="CepQuadraConfig"
                       defaultValue={CepQuadraConfig}
@@ -114,6 +167,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                   <Form.Group>
                     <Form.Label htmlFor="UfQuadraConfig">UF</Form.Label>
                     <Form.Control
+                      readOnly
                       id="UfQuadraConfig"
                       name="UfQuadraConfig"
                       defaultValue={UfQuadraConfig}
@@ -149,6 +203,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                       Latitude
                     </Form.Label>
                     <Form.Control
+                      readOnly
                       id="LatitudeQuadraConfig"
                       name="LatitudeQuadraConfig"
                       defaultValue={LatitudeQuadraConfig}
@@ -171,6 +226,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                       Longitude
                     </Form.Label>
                     <Form.Control
+                      readOnly
                       id="LongitudeQuadraConfig"
                       name="LongitudeQuadraConfig"
                       defaultValue={LongitudeQuadraConfig}
@@ -190,7 +246,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                 <Col md={5}>
                   <Form.Group>
                     <Form.Label htmlFor="DescricaoQuadraConfig">
-                      Descrição
+                      Descrição*
                     </Form.Label>
                     <Form.Control
                       id="DescricaoQuadraConfig"
@@ -219,6 +275,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                     </div>
                     <Form.Label htmlFor="StatusQuadraConfig">Status</Form.Label>
                     <Form.Control
+                      readOnly
                       id="StatusQuadraConfig"
                       name="StatusQuadraConfig"
                       defaultValue={AuxStatus}
@@ -251,14 +308,14 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
               </Form.Row>
               <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
                 <Button
-                  variant="primary"
-                  type="submit"
+                  variant="outline-danger"
                   style={{ marginLeft: "10px" }}
+                  onClick={() => handleDelete()}
                 >
                   Excluir
                 </Button>
                 <Button
-                  variant="primary"
+                  variant="success"
                   type="submit"
                   style={{ marginLeft: "10px" }}
                 >

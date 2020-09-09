@@ -3,6 +3,8 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { MyContainer, ErrorMessage } from "./styles";
 
+import api from "../services/api";
+import { getTokenAdmin } from "../services/auth";
 // import { Container } from './styles';
 
 type FormCadastroAdd = {
@@ -14,15 +16,42 @@ type FormCadastroAdd = {
   LatitudeQuadraAdd: number;
   LongitudeQuadraAdd: number;
   DescricaoQuadraAdd: string;
-  StatusQuadraAdd: string;
 };
 
 const AddQuadrasAdmin: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<FormCadastroAdd>();
 
-  function onSubmit(data: FormCadastroAdd) {
-    console.log(data);
-  }
+  const onSubmit = async (data: FormCadastroAdd) => {
+    var config = {
+      headers: { "x-auth-token": getTokenAdmin() },
+    };
+
+    try {
+      const name = data.NomeQuadraAdd;
+
+      const address = data.EnderecoQuadraAdd;
+      const CEP = data.CepQuadraAdd;
+      const latitude = data.LatitudeQuadraAdd;
+      const longitude = data.LongitudeQuadraAdd;
+      const description = data.DescricaoQuadraAdd;
+      const UF = data.UfQuadraAdd;
+
+      const response = await api.post(
+        "/api/admin/cadastrar",
+        { name, address, CEP, latitude, longitude, description, UF },
+        config
+      );
+
+      if (response.data["User created"]) {
+        alert("Quadra criada com sucesso!");
+      }
+      if (!response.data["User created"]) {
+        alert("Houve algum problema!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -185,25 +214,6 @@ const AddQuadrasAdmin: React.FC = () => {
                     />
                     {errors.DescricaoQuadraAdd &&
                       (errors.DescricaoQuadraAdd as any).type ===
-                        "required" && (
-                        <div className="error">
-                          <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
-                        </div>
-                      )}
-                  </Form.Group>
-                </Col>
-                <Col md={3}>
-                  <Form.Group>
-                    <Form.Label htmlFor="StatusQuadraAdd">Status</Form.Label>
-                    <Form.Control
-                      name="StatusQuadraAdd"
-                      id="StatusQuadraAdd"
-                      ref={register({
-                        required: true,
-                      })}
-                    />
-                    {errors.StatusQuadraAdd &&
-                      (errors.StatusQuadraAdd as any).type ===
                         "required" && (
                         <div className="error">
                           <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
