@@ -1,21 +1,19 @@
 import React from "react";
 
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage } from "./styles";
 
 export interface FormEsporteConfig {
-  NomeEsporteConfig: string;
-  DescricaoEsporteConfig: string;
-  LocalizacaoEsporteConfig: number;
-  IdEsporteConfig: number;
+  NomeEsporteConfig: any;
+  DescricaoEsporteConfig: any;
+  IdEsporteConfig: any;
 }
 
 const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
   NomeEsporteConfig,
   DescricaoEsporteConfig,
-  LocalizacaoEsporteConfig,
   IdEsporteConfig,
 }) => {
   const { register, handleSubmit, errors } = useForm<FormEsporteConfig>();
@@ -35,6 +33,7 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                   <Form.Group>
                     <Form.Label htmlFor="NomeEsporteConfig">Nome</Form.Label>
                     <Form.Control
+                      readOnly
                       name="NomeEsporteConfig"
                       id="NomeEsporteConfig"
                       defaultValue={NomeEsporteConfig}
@@ -56,6 +55,7 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                       Descrição
                     </Form.Label>
                     <Form.Control
+                      readOnly
                       name="DescricaoEsporteConfig"
                       id="DescricaoEsporteConfig"
                       defaultValue={DescricaoEsporteConfig}
@@ -74,28 +74,6 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                 </Col>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="LocalizacaoEsporteConfig">
-                      Localização
-                    </Form.Label>
-                    <Form.Control
-                      name="LocalizacaoEsporteConfig"
-                      id="LocalizacaoEsporteConfig"
-                      defaultValue={LocalizacaoEsporteConfig}
-                      ref={register({
-                        required: true,
-                      })}
-                    />
-                    {errors.LocalizacaoEsporteConfig &&
-                      (errors.LocalizacaoEsporteConfig as any).type ===
-                        "required" && (
-                        <div className="error">
-                          <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
-                        </div>
-                      )}
-                  </Form.Group>
-                </Col>
-                <Col md={3}>
-                  <Form.Group>
                     <Form.Label htmlFor="IdEsporteConfig">Id</Form.Label>
                     <Form.Control
                       name="IdEsporteConfig"
@@ -105,22 +83,6 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                     />
                   </Form.Group>
                 </Col>
-              </Form.Row>
-              <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  style={{ marginLeft: "10px" }}
-                >
-                  Excluir
-                </Button>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  style={{ marginLeft: "10px" }}
-                >
-                  Alterar
-                </Button>
               </Form.Row>
             </fieldset>
           </Form>

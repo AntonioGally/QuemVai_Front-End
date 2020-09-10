@@ -30,7 +30,6 @@ export interface ConfigSpaceAdmin {
   status: boolean;
 }
 
-
 export interface ListEmailReceivedAdmin {
   id: number;
   email_user: string;
@@ -51,11 +50,9 @@ export interface ViewEmailReceivedAdmin {
   updatedAt: Date;
 }
 
-
 export interface ViewEmailRespondedAdmin {
-  id: number;  
+  id: number;
 }
-
 
 export interface ListEmailRespondedAdmin {
   id: number;
@@ -70,9 +67,15 @@ export interface ListEmailRespondedAdmin {
   updatedAt: Date;
 }
 
-
 export interface ListSportsAdmin {
-  id : number;
+  id: number;
   name: string;
   description: string;
+}
+export interface ConfigSportsAdmin {
+  Criado: {
+    id: number;
+    name: string;
+    description: string;
+  };
 }

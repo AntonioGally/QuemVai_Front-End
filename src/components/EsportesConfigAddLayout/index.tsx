@@ -5,6 +5,8 @@ import AddEsportesAdmin from "../AddEsportesAdmin";
 import { MyContainer } from './styles';
 import {Tabs, Tab} from "react-bootstrap";
 
+
+
 const QuadrasConfigAddLayout: React.FC = () => {
   return (
     <div>

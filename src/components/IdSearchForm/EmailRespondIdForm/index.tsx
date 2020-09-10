@@ -86,7 +86,7 @@ const EmailRespondIdForm: React.FC = () => {
                 </div>
               )}
             </Form.Group>
-            {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>}
+            <ErrorMessage>{erros}</ErrorMessage>
           </Col>
 
           <Col>
