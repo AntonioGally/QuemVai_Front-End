@@ -4,40 +4,28 @@ import { Form, Col } from "react-bootstrap";
 import { MyLableText, MyForm } from "./styles";
 
 export interface FormEmailReceived {
-  IdEmailReceived: number;
-  UserNameEmailReceived: string;
-  UserEmailReceived: string;
-  TitleEmailReceived: string;
-  MessageEmailReceived: string;
+  IdEmailReceived: any;
+  UserEmailReceived: any;
+  TitleEmailReceived: any;
+  StatusEmailReceived: any;
+  DateEmailReceived: any;
+  MessageEmailReceived: any;
 }
 
 const ViewEmail: React.FC<FormEmailReceived> = ({
   IdEmailReceived,
-  UserNameEmailReceived,
   UserEmailReceived,
   TitleEmailReceived,
+  StatusEmailReceived,
+  DateEmailReceived,
   MessageEmailReceived,
 }) => {
-
   return (
     <div style={{ margin: "10% 0" }}>
       <Form>
         <fieldset disabled>
           <Form.Row>
             <Col sm={12} md={6}>
-              <MyLableText> Nome do usuário </MyLableText>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="UserNameEmailReceived"
-                    id="UserNameEmailReceived"
-                    style={{ borderRadius: "10px" }}
-                    defaultValue={UserNameEmailReceived}
-                  />
-                </Form.Group>
-              </MyForm>
-
               <MyLableText> Email do Usuário </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
@@ -62,6 +50,32 @@ const ViewEmail: React.FC<FormEmailReceived> = ({
                     id="TitleEmailReceived"
                     style={{ borderRadius: "10px" }}
                     defaultValue={TitleEmailReceived}
+                  />
+                </Form.Group>
+              </MyForm>
+
+              <MyLableText> Status do Email </MyLableText>
+              <MyForm className="firstColumn">
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="StatusEmailReceived"
+                    id="StatusEmailReceived"
+                    style={{ borderRadius: "10px" }}
+                    defaultValue={StatusEmailReceived}
+                  />
+                </Form.Group>
+              </MyForm>
+
+              <MyLableText> Data de envio </MyLableText>
+              <MyForm className="firstColumn">
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="DateEmailReceived"
+                    id="DateEmailReceived"
+                    style={{ borderRadius: "10px" }}
+                    defaultValue={DateEmailReceived}
                   />
                 </Form.Group>
               </MyForm>

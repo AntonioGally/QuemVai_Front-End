@@ -21,6 +21,7 @@ const ConfigQuadraIdForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<ConfigQuadraIdForm>();
   const [existingId, setExistingId] = React.useState(false);
   const [erros, setErros] = React.useState(false);
+  
   const [id, setId] = React.useState(Number);
   const [didSubmit, setDidSubmit] = React.useState(false);
   const [data, setData] = useState<Data>();

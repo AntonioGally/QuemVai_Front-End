@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import { Form, Col } from "react-bootstrap";
 import { MyLableText, MyForm, MyButton } from "./styles";
 
+import api from "../services/api";
+import { getTokenAdmin } from "../services/auth";
+
 export interface IdEmailResponded {
-  IdEmailResponded: number;
+  IdEmailResponded: any;
 }
 type FormEmailResponded = {
   UserNameEmailResponded: string;
@@ -16,9 +19,37 @@ type FormEmailResponded = {
 const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
   const { register, handleSubmit, errors } = useForm<FormEmailResponded>();
 
-  function onSubmit(data: FormEmailResponded) {
-    console.log(data);
-  }
+  const onSubmit = async (data: FormEmailResponded) => {
+    const subject = data.TitleEmailResponded;
+    const msg = data.MessageEmailResponded;
+
+    var config = {
+      headers: { "x-auth-token": getTokenAdmin() },
+      validateStatus: function (status:any) {
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+    };
+
+    try {
+      const response = await api.post(
+        `/api/admin/response/email/${IdEmailResponded}`,
+        { subject, msg },
+        config
+      );
+      if (response.status === 200) {
+        alert("Email Respondido com sucesso!");
+        window.location.reload();
+      }
+
+      if (response.status === 404) {
+        alert("Houve algum problema!");
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div style={{ margin: "2% 0" }}>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -29,6 +60,7 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
               <MyForm className="firstColumn">
                 <Form.Group>
                   <Form.Control
+                    readOnly
                     type="text"
                     name="UserNameEmailResponded"
                     id="UserNameEmailResponded"
@@ -50,6 +82,7 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
               <MyForm className="firstColumn">
                 <Form.Group>
                   <Form.Control
+                    readOnly
                     type="email"
                     name="UserEmailResponded"
                     id="UserEmailResponded"
@@ -77,7 +110,7 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
               </MyForm>
 
               <div className="row" style={{ margin: 0 }}>
-                <MyLableText>Assunto do Email</MyLableText>
+                <MyLableText>Assunto do Email *</MyLableText>
               </div>
               <MyForm className="firstColumn">
                 <Form.Group>
@@ -87,20 +120,35 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
                     id="TitleEmailResponded"
                     style={{ borderRadius: "10px" }}
                     ref={register({
-                      required: true,                     
+                      required: true,
                     })}
                   />
                   {errors.TitleEmailResponded &&
                     (errors.TitleEmailResponded as any).type === "required" && (
                       <div className="error">O Assunto é obrigatório</div>
-                    )}                 
+                    )}
+                </Form.Group>
+              </MyForm>
+
+              <div className="row" style={{ margin: 0 }}>
+                <MyLableText>ID</MyLableText>
+              </div>
+              <MyForm className="firstColumn">
+                <Form.Group>
+                  <Form.Control
+                    id="IdEmailResponded"
+                    name="IdEmailResponded"
+                    defaultValue={IdEmailResponded}
+                    style={{ borderRadius: "10px" }}
+                    readOnly
+                  />
                 </Form.Group>
               </MyForm>
             </Col>
 
             <Col sm={12} md={6}>
               <MyLableText style={{ marginBottom: "2% 0" }}>
-                Mensagem do Email
+                Mensagem do Email *
               </MyLableText>
               <MyForm>
                 <div style={{ margin: "5%" }}>
@@ -129,7 +177,7 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
                   </MyButton>
                 </div>
               </MyForm>
-              <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
+              {/* <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
                 <Col md={3}>
                   <Form.Group>
                     <Form.Label htmlFor="IdEmailResponded">ID</Form.Label>
@@ -141,7 +189,7 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
                     />
                   </Form.Group>
                 </Col>
-              </Form.Row>
+              </Form.Row> */}
             </Col>
           </Form.Row>
         </fieldset>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import ViewEmail from "../../ViewEmail";
@@ -6,44 +6,70 @@ import ViewEmail from "../../ViewEmail";
 import { Form, Col, Button } from "react-bootstrap";
 import { ErrorMessage } from "./styles";
 
+import api from "../../services/api";
+import { ViewEmailReceivedAdmin } from "../../@types";
+import { getTokenAdmin } from "../../services/auth";
+
 type EmailReceivedIdForm = {
   IdEmailReceived: number;
 };
 
-const EmailReceivedInformation = {
-  UserNameEmailReceived: "Joaquim Joca",
-  UserEmailReceived: "joaquim.joca@gmail.com",
-  TitleEmailReceived: "Oie",
-  MessageEmailReceived: "Oie Chume Company",
-};
-var IdTyped: number;
+interface Data {
+  InformationEmailReceived: ViewEmailReceivedAdmin;
+}
+
 const EmailReceivedIdForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<EmailReceivedIdForm>();
   const [existingId, setExistingId] = React.useState(false);
-  const [erros, setErros] = React.useState(false);
+  const [erros, setErros] = React.useState("");
+
+  const [id, setId] = React.useState(Number);
+  const [didSubmit, setDidSubmit] = React.useState(false);
+  const [data, setData] = useState<Data>();
 
   function onSubmitId(data: EmailReceivedIdForm) {
-
-    
-    var NewId = Number(data.IdEmailReceived);
-    if (NewId === 123) {
-      setExistingId(true);
-      setErros(false);
-      IdTyped = NewId;
-    } else {
-      setExistingId(false);
-      setErros(true);
-    }
+    const NewId = Number(data.IdEmailReceived);
+    setId(NewId);
+    setDidSubmit(true);
   }
+
+  useEffect(() => {
+    Promise.all([
+      api.get(`/api/admin/get/email/find/${id}`, {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": getTokenAdmin() },
+      }),
+    ]).then(async (responses) => {
+      const [ViewEmailReceived] = responses;
+
+      if (ViewEmailReceived.status === 204 && didSubmit) {
+        setErros("Esse ID não existe :(");
+      }
+      if (ViewEmailReceived.status === 422 && didSubmit) {
+        setErros("Esse Email já foi respondido");
+      }
+
+      const emails = await ViewEmailReceived.data;
+      setData({ InformationEmailReceived: emails });
+
+      if (ViewEmailReceived.status === 200) {
+        setErros("");
+        setExistingId(true);
+      }
+    });
+  }, [id, didSubmit]);
 
   if (existingId) {
     return (
       <ViewEmail
-        IdEmailReceived={IdTyped}
-        UserNameEmailReceived={EmailReceivedInformation.UserNameEmailReceived}
-        UserEmailReceived={EmailReceivedInformation.UserEmailReceived}
-        TitleEmailReceived={EmailReceivedInformation.TitleEmailReceived}
-        MessageEmailReceived={EmailReceivedInformation.MessageEmailReceived}
+        IdEmailReceived={data?.InformationEmailReceived.id}
+        UserEmailReceived={data?.InformationEmailReceived.email_user}
+        TitleEmailReceived={data?.InformationEmailReceived.subject}
+        StatusEmailReceived={data?.InformationEmailReceived.status}
+        DateEmailReceived={data?.InformationEmailReceived.createdAt}
+        MessageEmailReceived={data?.InformationEmailReceived.message}
       />
     );
   }
@@ -69,7 +95,7 @@ const EmailReceivedIdForm: React.FC = () => {
                   </div>
                 )}
             </Form.Group>
-            {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>}
+            <ErrorMessage>{erros}</ErrorMessage>
           </Col>
 
           <Col>

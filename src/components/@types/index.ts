@@ -31,7 +31,6 @@ export interface ConfigSpaceAdmin {
 }
 
 
-
 export interface ListEmailReceivedAdmin {
   id: number;
   email_user: string;
@@ -41,6 +40,22 @@ export interface ListEmailReceivedAdmin {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface ViewEmailReceivedAdmin {
+  id: number;
+  email_user: string;
+  subject: string;
+  message: string;
+  status: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+
+export interface ViewEmailRespondedAdmin {
+  id: number;  
+}
+
 
 export interface ListEmailRespondedAdmin {
   id: number;
