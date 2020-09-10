@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Table } from "react-bootstrap";
 import EsportesExistentesData from "../DataList/EsportesExistentesData";
 import { MyContainer } from "./styles";
 
-const esportes = {
-  NomeEsporte: "Nome do Esporte",
-  DescricaoEsporte: "Descrição do Esporte",
-  LocalizacaoEsporte: "Localização do Esporte",
-};
+import api from "../services/api";
+import { getTokenAdmin } from "../services/auth";
+import { ListSportsAdmin } from "../@types";
 
-const list = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+interface Data {
+  Esportes: ListSportsAdmin[];
+}
 
 const EsportesExistentesAdmin: React.FC = () => {
+  const [data, setData] = useState<Data>();
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/admin/get/sport/cadastrar", {
+        headers: { "x-auth-token": getTokenAdmin() },
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      }),
+    ]).then(async (responses) => {
+      const [AllSports] = responses;
+      const esportes = await AllSports.data;
+      setData({ Esportes: esportes });
+
+      if (AllSports.status === 404) {
+        alert("Houve algum problema com a listagem das quadras");
+      }
+    });
+  }, []);
+
   return (
     <div className="row justify-content-center" style={{ margin: "10% 0" }}>
       <div style={{ width: "70%" }}>
@@ -25,17 +46,15 @@ const EsportesExistentesAdmin: React.FC = () => {
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Descrição</th>
-                <th>Localização</th>
               </tr>
             </thead>
             <tbody>
-              {list.map((i) => (
+              {data?.Esportes.map((information) => (
                 <EsportesExistentesData
-                  key={i}
-                  IdEsporte={i}
-                  NomeEsporte={esportes.NomeEsporte}
-                  DescricaoEsporte={esportes.DescricaoEsporte}
-                  LocalizacaoEsporte={esportes.LocalizacaoEsporte}
+                  key={information.id}
+                  IdEsporte={information.id}
+                  NomeEsporte={information.name}
+                  DescricaoEsporte={information.description}
                 />
               ))}
             </tbody>

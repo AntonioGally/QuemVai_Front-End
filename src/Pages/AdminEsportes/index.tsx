@@ -24,7 +24,7 @@ const AdminEsportes: React.FC = () => {
       <NavBarAdmin />
 
       <EsportesExistentesAdmin />
-      <EsportesConfigAddLauout />
+      {/* <EsportesConfigAddLauout /> */}
       <Footer />
     </Container>
   );

@@ -4,19 +4,15 @@ import { useForm } from "react-hook-form";
 import { Form, Col, Button } from "react-bootstrap";
 
 import { ErrorMessage, MyContainer } from "./styles";
-// import ConfigEsportesAdmin from "../../ConfigEsportesAdmin";
+import ConfigEsportesAdmin from "../../ConfigEsportesAdmin";
 
 // import api from "../../services/api";
 // import { ConfigSpaceAdmin } from "../../@types";
 // import { getTokenAdmin } from "../../services/auth";
 
-type ConfigEsportesIdForm = {
-  id: number;
-};
-
-// interface Data {
-//   InformationQuadras: ConfigSpaceAdmin;
-// }
+// type ConfigEsportesIdForma = {
+//   id: number;
+// };
 
 // const EsportesInformation = {
 //   NomeEsporteConfig: "Futebol",
@@ -27,37 +23,22 @@ type ConfigEsportesIdForm = {
 // var IdTyped: number;
 
 const ConfigEsportesIdForm: React.FC = () => {
-  const { register, errors } = useForm<ConfigEsportesIdForm>();
+  // const { register, errors, handleSubmit} = useForm<ConfigEsportesIdForma>();
   // const [existingId, setExistingId] = React.useState(false);
-  const [erros, setErros] = React.useState(false);
-  setErros(false);
+  // const [erros, setErros] = React.useState(false);
+  // setErros(false);
 
-  // const [data, setData] = useState<Data>();
-
-  // const onSubmitId = async (data: ConfigEsportesIdForm) => {
+  // const onSubmitId = async (data: ConfigEsportesIdForma) => {
   //   var NewId = Number(data.id);
-
-  //   try {
-  //     const response = await api.get(`/api/admin/find/space/${NewId}`, {
-  //       headers: { "x-auth-token": getTokenAdmin() },
-  //     });
-  //     setData({ InformationQuadras: response.data });
+  //   if (NewId === 123) {
   //     setExistingId(true);
-  //   } catch (err) {
-  //     console.log(err);
+  //     setErros(false);
+  //     IdTyped = NewId;
+  //   } else {
+  //     setExistingId(false);
   //     setErros(true);
   //   }
   // };
-
-  // var NewId = Number(data.id);
-  // if (NewId === 123) {
-  //   setExistingId(true);
-  //   setErros(false);
-  //   IdTyped = NewId;
-  // } else {
-  //   setExistingId(false);
-  //   setErros(true);
-  // }
 
   // if (existingId) {
   //   return (
@@ -80,17 +61,17 @@ const ConfigEsportesIdForm: React.FC = () => {
                   type="text"
                   name="id"
                   placeholder="Insira o ID do Esporte"
-                  ref={register({
-                    required: true,
-                  })}
+                  // ref={register({
+                  //   required: true,
+                  // })}
                 />
-                {errors.id && (errors.id as any).type === "required" && (
+                {/* {errors.id && (errors.id as any).type === "required" && (
                   <div className="error">
                     <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
-                  </div>
+                  </div> */}
                 )}
               </Form.Group>
-              {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>}
+              {/* {erros && <ErrorMessage>Esse ID não existe :(</ErrorMessage>} */}
             </Col>
 
             <Col>
@@ -105,6 +86,7 @@ const ConfigEsportesIdForm: React.FC = () => {
           </Form.Row>
         </Form>
       </MyContainer>
+      <h1>Teste</h1>
     </div>
   );
 };

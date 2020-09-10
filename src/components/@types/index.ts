@@ -69,3 +69,10 @@ export interface ListEmailRespondedAdmin {
   status: string;
   updatedAt: Date;
 }
+
+
+export interface ListSportsAdmin {
+  id : number;
+  name: string;
+  description: string;
+}
