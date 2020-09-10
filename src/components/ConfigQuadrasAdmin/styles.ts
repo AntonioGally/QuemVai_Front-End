@@ -10,3 +10,9 @@ export const ErrorMessage = styled.div`
   font-size:20px;
   font-weight:500;
 `;
+
+export const MyTable = styled.div`  
+  height: 300px;
+  background-color: var(--primary);
+  overflow-y: scroll;
+`;

@@ -66,6 +66,7 @@ const ConfigQuadraIdForm: React.FC = () => {
         LongitudeQuadraConfig={data?.InformationQuadras.longitude}
         DescricaoQuadraConfig={data?.InformationQuadras.description}
         StatusQuadraConfig={data?.InformationQuadras.status}
+        Sports = {data?.InformationQuadras.space}
       />
     );
   }

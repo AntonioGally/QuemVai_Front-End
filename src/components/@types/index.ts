@@ -8,9 +8,11 @@ export interface ListSpaceAdmin {
   latitude: number;
   longitude: number;
   name: string;
-  space: {
-    id: string;
-  };
+  space: [
+    {
+      id: number;
+    }
+  ];
   status: boolean;
 }
 
@@ -24,9 +26,13 @@ export interface ConfigSpaceAdmin {
   latitude: number;
   longitude: number;
   name: string;
-  space: {
-    id: string;
-  };
+  space: [
+    {
+      id: number;
+      name: string;
+      description: string;
+    }
+  ];
   status: boolean;
 }
 

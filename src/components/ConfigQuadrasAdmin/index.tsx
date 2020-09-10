@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
-import { MyContainer, ErrorMessage } from "./styles";
-
+import { MyContainer, ErrorMessage, MyTable } from "./styles";
+import "./ConfigQuadrasAdmin.css";
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
 
@@ -17,6 +17,7 @@ export interface FormQuadraConfig {
   LongitudeQuadraConfig: any;
   DescricaoQuadraConfig: any;
   StatusQuadraConfig: any;
+  Sports: any;
 }
 const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   IdQuadraConfig,
@@ -28,8 +29,9 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   LongitudeQuadraConfig,
   DescricaoQuadraConfig,
   StatusQuadraConfig,
+  Sports,
 }) => {
-  const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();  
+  const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();
   const [deleteClick, setDeleteClick] = React.useState(false);
 
   var config = {
@@ -40,13 +42,12 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
     const name = data.NomeQuadraConfig;
     const description = data.DescricaoQuadraConfig;
 
-
     try {
       const response = await api.put(
         `/api/admin/update/${IdQuadraConfig}`,
         { name, description },
         config
-      );      
+      );
 
       if (response.data.Updated) {
         alert("Quadra atualizada com sucesso!");
@@ -61,26 +62,26 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
     }
   };
 
-  function handleDelete() {    
+  function handleDelete() {
     setDeleteClick(true);
   }
 
   useEffect(() => {
     if (deleteClick) {
-      Promise.all([api.put(`/api/admin/find/delete/${IdQuadraConfig}`, "", config)]).then(
-        async (responses) => {
-          const [DeletedInformation] = responses;
-          if (DeletedInformation.status === 200 && deleteClick) {
-            alert("Quadra deletada com sucesso");
-            window.location.reload();
-          }
-          if (DeletedInformation.status === 404 && deleteClick) {
-            alert("Esse Id não existe");
-          }
+      Promise.all([
+        api.put(`/api/admin/find/delete/${IdQuadraConfig}`, "", config),
+      ]).then(async (responses) => {
+        const [DeletedInformation] = responses;
+        if (DeletedInformation.status === 200 && deleteClick) {
+          alert("Quadra deletada com sucesso");
+          window.location.reload();
         }
-      );
+        if (DeletedInformation.status === 404 && deleteClick) {
+          alert("Esse Id não existe");
+        }
+      });
     }
-  }, [ IdQuadraConfig, deleteClick, config]);
+  }, [IdQuadraConfig, deleteClick, config]);
 
   var AuxStatus = "";
   return (
@@ -307,20 +308,48 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                 </Col>
               </Form.Row>
               <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
-                <Button
-                  variant="outline-danger"
-                  style={{ marginLeft: "10px" }}
-                  onClick={() => handleDelete()}
-                >
-                  Excluir
-                </Button>
-                <Button
-                  variant="success"
-                  type="submit"
-                  style={{ marginLeft: "10px" }}
-                >
-                  Alterar
-                </Button>
+                <Col md={9}>
+                  <h3>Esportes</h3>
+                  <MyTable>
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Nome</th>
+                          <th>Descrição</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Sports.map((information: any) => (
+                          <tr key={information.id}>
+                            <td>{information.id}</td>
+                            <td>{information.name}</td>
+                            <td className="MyColDescriptionData">
+                              {information.description}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </MyTable>
+                </Col>
+
+                <Col md={3}>
+                  <Button
+                    variant="outline-danger"
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => handleDelete()}
+                  >
+                    Excluir
+                  </Button>
+                  <Button
+                    variant="success"
+                    type="submit"
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Alterar
+                  </Button>
+                </Col>
               </Form.Row>
             </fieldset>
           </Form>
