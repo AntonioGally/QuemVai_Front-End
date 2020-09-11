@@ -58,6 +58,19 @@ export interface ViewEmailReceivedAdmin {
 
 export interface ViewEmailRespondedAdmin {
   id: number;
+  email_user: string;
+  ownerMessage: [
+    {
+      subject: string;
+      message: string;
+    }
+  ];
+  status: string;
+  updatedAt: Date;
+}
+
+export interface EmailRespondedAdmin {
+  id: number;
 }
 
 export interface ListEmailRespondedAdmin {

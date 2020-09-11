@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import ViewEmail from "../../ViewEmail";
+import ViewEmail from "../../ViewEmailReceived";
 
 import { Form, Col, Button } from "react-bootstrap";
 import { ErrorMessage } from "./styles";

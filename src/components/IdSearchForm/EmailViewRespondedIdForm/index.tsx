@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import ViewEmailResponded from "../../ViewEmailResponded";
+
 import { Form, Col, Button } from "react-bootstrap";
 import { ErrorMessage } from "./styles";
 
-import RespondEmail from "../../RespondEmail";
-
 import api from "../../services/api";
-import { EmailRespondedAdmin } from "../../@types";
+import { ViewEmailRespondedAdmin } from "../../@types";
 import { getTokenAdmin } from "../../services/auth";
 
 type EmailRespondedIdForm = {
-  IdEmail: number;
+  IdEmailResponded: number;
 };
 
 interface Data {
-  InformationEmailResponded: EmailRespondedAdmin;
+  InformationEmailResponded: ViewEmailRespondedAdmin;
 }
 
-const EmailRespondIdForm: React.FC = () => {
+const EmailViewRespondedIdForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<EmailRespondedIdForm>();
   const [existingId, setExistingId] = React.useState(false);
   const [erros, setErros] = React.useState("");
@@ -27,15 +27,15 @@ const EmailRespondIdForm: React.FC = () => {
   const [didSubmit, setDidSubmit] = React.useState(false);
   const [data, setData] = useState<Data>();
 
-  function onSubmit(data: EmailRespondedIdForm) {
-    const NewId = Number(data.IdEmail);
+  function onSubmitId(data: EmailRespondedIdForm) {
+    const NewId = Number(data.IdEmailResponded);
     setId(NewId);
     setDidSubmit(true);
   }
 
   useEffect(() => {
     Promise.all([
-      api.get(`/api/admin/get/email/find/${id}`, {
+      api.get(`/api/admin/get/responded/email/find/${id}`, {
         validateStatus: function (status) {
           return status < 500; // Resolve only if the status code is less than 500
         },
@@ -54,7 +54,7 @@ const EmailRespondIdForm: React.FC = () => {
       const emails = await ViewEmailResponded.data;
       setData({ InformationEmailResponded: emails });
 
-      if (ViewEmailResponded.status === 200) {
+      if (ViewEmailResponded.status === 200 && didSubmit) {
         setErros("");
         setExistingId(true);
       }
@@ -62,29 +62,33 @@ const EmailRespondIdForm: React.FC = () => {
   }, [id, didSubmit]);
 
   if (existingId) {
+    console.log(data?.InformationEmailResponded);
     return (
-      <RespondEmail IdEmailResponded={data?.InformationEmailResponded.id} />
+      <ViewEmailResponded Informations={data?.InformationEmailResponded} />
     );
   }
+
   return (
     <div style={{ margin: "2% 0" }}>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmitId)}>
         <Form.Row style={{ margin: "5% 0" }}>
           <Col md={3}>
             <Form.Group>
               <Form.Control
                 type="text"
-                name="IdEmail"
+                name="IdEmailResponded"
+                id="IdEmailResponded"
                 placeholder="Insira o ID do Email"
                 ref={register({
                   required: true,
                 })}
               />
-              {errors.IdEmail && (errors.IdEmail as any).type === "required" && (
-                <div className="error">
-                  <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
-                </div>
-              )}
+              {errors.IdEmailResponded &&
+                (errors.IdEmailResponded as any).type === "required" && (
+                  <div className="error">
+                    <ErrorMessage>Esse campo é Obrigatório</ErrorMessage>
+                  </div>
+                )}
             </Form.Group>
             <ErrorMessage>{erros}</ErrorMessage>
           </Col>
@@ -104,4 +108,4 @@ const EmailRespondIdForm: React.FC = () => {
   );
 };
 
-export default EmailRespondIdForm;
+export default EmailViewRespondedIdForm;
