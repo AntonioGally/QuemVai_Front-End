@@ -13,6 +13,12 @@ export const SocialContainer = styled.div`
   align-items:center;
   justify-content:center;
 `;
+export const ErroLogin = styled.div`
+  font-size: 18px;
+  font-family: "Poppins";
+  color: red;
+  font-weight:600;
+`;
 
 export const MySocialRow = styled.div`
   

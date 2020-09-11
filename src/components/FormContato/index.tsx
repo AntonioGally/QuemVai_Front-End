@@ -15,6 +15,8 @@ import {
 import facebook from "../../img/icones/facebook.svg";
 import instagram from "../../img/icones/instagram.svg";
 
+import api from "../services/api";
+
 type IFormInput = {
   userName: string;
   userEmail: string;
@@ -23,9 +25,34 @@ type IFormInput = {
 };
 
 const FormContato: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm<IFormInput>();
-  const onSubmit = (data: IFormInput) => {
-    console.log(data);
+  const { register, handleSubmit, errors } = useForm<IFormInput>();  
+
+  const onSubmit = async (data: IFormInput) => {
+    const destinatario = data.userEmail;
+    const assunto = data.userSubject;
+    const msg = data.userMessage;
+
+    var config = {      
+      validateStatus: function (status: any) {
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+    };
+    try {
+      const response = await api.post(
+        "/api/send/email",
+        { destinatario,assunto, msg },
+        config
+      );
+      if (response.status === 200) {
+        alert("Email Enviado com sucesso!");        
+      }
+
+      if (response.status === 404) {
+        alert("Houve algum problema!");        
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div>
@@ -50,19 +77,19 @@ const FormContato: React.FC = () => {
                         placeholder="ex.: Robson da Silva"
                         style={{ borderRadius: "10px" }}
                         ref={register({
-                          required: true,                        
+                          required: true,
                         })}
                       />
                       {errors.userName &&
                         (errors.userName as any).type === "required" && (
                           <div className="error">O nome é obrigatório</div>
-                        )}                     
+                        )}
                     </Form.Group>
                   </MyForm>
 
                   <MyLableText> E o seu E-mail? </MyLableText>
                   <MyForm className="firstColumn">
-                    <Form.Group >
+                    <Form.Group>
                       <Form.Control
                         type="email"
                         name="userEmail"
@@ -121,7 +148,7 @@ const FormContato: React.FC = () => {
                 </Col>
 
                 <Col sm={12} md={6}>
-                  <MyLableText style={{marginBottom:'2% 0'}}>
+                  <MyLableText style={{ marginBottom: "2% 0" }}>
                     Digite sua mensagem
                   </MyLableText>
                   <MyForm>

@@ -40,12 +40,12 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
         config
       );
 
-      if (response.statusText === "Space not found") {
+      if (response.data === "Space not found") {
         setErros("O ID da quadra não existe!");
       }
-      if (response.statusText === "Sport not found") {
+      if (response.data === "Sport not found") {
         setErros("O ID do esporte não existe!");
-      }
+      }     
 
       if (response.status === 200) {
         alert("Esporte adicionado com sucesso!");

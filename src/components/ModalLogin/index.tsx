@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Modal, Container, Row, Col, Form, Image } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import {
@@ -6,6 +6,7 @@ import {
   InstaLogo,
   FacebookLogo,
   MySocialRow,
+  ErroLogin,
 } from "./styles";
 import "./styles.css";
 import ModalCadastro from "../ModalCadastro";
@@ -13,7 +14,7 @@ import { useForm } from "react-hook-form";
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 
 import api from "../services/api";
-import { login } from "../services/auth";
+import { login, isAuthenticated, isAuthenticatedAdmin } from "../services/auth";
 
 export interface Props {
   show: boolean;
@@ -31,7 +32,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
   const [redirectAdmin, SetRedirectAdmin] = React.useState(false);
   const [redirectUser, SetRedirectUser] = React.useState(false);
   const [erroLogin, SetErroLogin] = React.useState(false);
-  const { register, handleSubmit, errors } = useForm<IFormInput>();
+  const { register, handleSubmit, errors } = useForm<IFormInput>();  
 
   const onSubmit = async (data: IFormInput) => {
     const email = data.email;
@@ -57,7 +58,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
       return new Promise(() => {
         setTimeout(() => {
           if (localStorage.getItem("@QuemVaiAdmin-Token")) {
-            SetRedirectAdmin(true);      
+            SetRedirectAdmin(true);
           } else if (localStorage.getItem("@QuemVaiUser-Token")) {
             SetRedirectUser(true);
           }
@@ -67,15 +68,26 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
     AdminVerification();
   };
 
+  useEffect(() => {
+    if (isAuthenticatedAdmin()){
+      SetRedirectAdmin(true);
+    }
+    else if (isAuthenticated()) {
+      SetRedirectUser(true);
+    }
+  }, []);
+
   if (erroLogin) {
     console.log("ele entrou no if");
   }
-  if (redirectAdmin) { 
+  if (redirectAdmin) {
     return <Redirect to="/AdminQuadras" />;
   }
   if (redirectUser) {
     return <Redirect to="/MainAplication" />;
   }
+
+
 
   return (
     <div className="MyModal">
@@ -188,9 +200,18 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                           )}
                       </Form.Group>
                     </Row>
-
                     <Row
                       style={{ margin: "2% 0 0" }}
+                      className="justify-content-center"
+                    >
+                      {erroLogin ? (
+                        <ErroLogin>Email ou senha incorreto</ErroLogin>
+                      ) : (
+                        ""
+                      )}
+                    </Row>
+                    <Row
+                      style={{ margin: "0" }}
                       className="justify-content-center"
                     >
                       <button

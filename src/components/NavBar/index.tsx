@@ -7,11 +7,8 @@ import { Nav } from "react-bootstrap";
 import ModalLogin from "../ModalLogin";
 // import { transitions, positions, Provider as AlertProvider } from "react-alert";
 
-
-
 const NavBar: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
-
   return (
     <>
       <MyNavBar>
@@ -63,7 +60,7 @@ const NavBar: React.FC = () => {
           </Nav.Item>
         </Nav>
       </MyNavBar>
-      <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
+      {modalShow ? (<ModalLogin show={modalShow} onHide={() => setModalShow(false)} />) : ""}
     </>
   );
 };

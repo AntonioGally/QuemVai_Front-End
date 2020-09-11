@@ -15,13 +15,13 @@ import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 
 import { isAuthenticatedAdmin } from "./components/services/auth";
 import { isAuthenticated } from "./components/services/auth";
-
+ 
 const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
   return (
     <Route
       {...rest}
       render={(props) => {        
-        if (isAuthenticated() || isAuthenticatedAdmin()) {
+        if ((isAuthenticated() || isAuthenticatedAdmin())) {
           return <Component {...props} />;
         } else {
           return (
@@ -38,7 +38,7 @@ const PrivateRouteAdmin = ({ component: Component, ...rest }: any) => {
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticatedAdmin() ? (
+        (isAuthenticatedAdmin()) ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
