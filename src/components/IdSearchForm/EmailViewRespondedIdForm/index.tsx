@@ -61,8 +61,7 @@ const EmailViewRespondedIdForm: React.FC = () => {
     });
   }, [id, didSubmit]);
 
-  if (existingId) {
-    console.log(data?.InformationEmailResponded);
+  if (existingId) {    
     return (
       <ViewEmailResponded Informations={data?.InformationEmailResponded} />
     );

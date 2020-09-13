@@ -9,10 +9,8 @@ export const ErrorMessage = styled.div`
 export const MyForm = styled.div`
   margin-bottom: 5%;
 
-  @media (min-width: 1200px) {
-    &.firstColumn {
-      width: 60%;
-    }
+  &.firstColumn {
+    width: 65%;
   }
 `;
 
@@ -20,12 +18,12 @@ export const MyLableText = styled.h3`
   font-family: "Poppins";
   font-size: 28px;
   color: black;
-  > span {
-    font-size: 18px;
-    margin-left: 5px;
-    font-weight: 200;
-  }
+  
   @media (max-width: 768px) {
     font-size: 20px;
+  }
+  &.title {
+    margin:3% 0 5% 8%;
+    color:white;
   }
 `;

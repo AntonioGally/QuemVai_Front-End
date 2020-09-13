@@ -25,14 +25,14 @@ type IFormInput = {
 };
 
 const FormContato: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm<IFormInput>();  
+  const { register, handleSubmit, errors } = useForm<IFormInput>();
 
   const onSubmit = async (data: IFormInput) => {
     const destinatario = data.userEmail;
     const assunto = data.userSubject;
     const msg = data.userMessage;
 
-    var config = {      
+    var config = {
       validateStatus: function (status: any) {
         return status < 500; // Resolve only if the status code is less than 500
       },
@@ -40,15 +40,15 @@ const FormContato: React.FC = () => {
     try {
       const response = await api.post(
         "/api/send/email",
-        { destinatario,assunto, msg },
+        { destinatario, assunto, msg },
         config
       );
       if (response.status === 200) {
-        alert("Email Enviado com sucesso!");        
+        alert("Email Enviado com sucesso!");
       }
 
       if (response.status === 404) {
-        alert("Houve algum problema!");        
+        alert("Houve algum problema!");
       }
     } catch (err) {
       console.log(err);
