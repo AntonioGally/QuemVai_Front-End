@@ -3,6 +3,7 @@ import { Form, Col, Button, Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage, MyTable } from "./styles";
+import DeleteSport from "./DeleteSport";
 import "./ConfigQuadrasAdmin.css";
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
@@ -307,52 +308,53 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
-                <Col md={9}>
-                  <h3>Esportes</h3>
-                  <MyTable>
-                    <Table striped bordered hover>
-                      <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>Nome</th>
-                          <th>Descrição</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {Sports.map((information: any) => (
-                          <tr key={information.id}>
-                            <td>{information.id}</td>
-                            <td>{information.name}</td>
-                            <td className="MyColDescriptionData">
-                              {information.description}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                  </MyTable>
-                </Col>
-
-                <Col md={3}>
-                  <Button
-                    variant="outline-danger"
-                    style={{ marginLeft: "10px" }}
-                    onClick={() => handleDelete()}
-                  >
-                    Excluir
-                  </Button>
-                  <Button
-                    variant="success"
-                    type="submit"
-                    style={{ marginLeft: "10px" }}
-                  >
-                    Alterar
-                  </Button>
-                </Col>
-              </Form.Row>
             </fieldset>
           </Form>
+          <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
+            <Col md={9}>
+              <h3>Esportes</h3>
+              <MyTable>
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>Descrição</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Sports.map((information: any) => (
+                      <tr key={information.id}>
+                        <td>{information.id}</td>
+                        <td>{information.name}</td>
+                        <td className="MyColDescriptionData">
+                          {information.description}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+                <DeleteSport id_quadra={IdQuadraConfig}/>
+              </MyTable>
+            </Col>
+
+            <Col md={3}>
+              <Button
+                variant="outline-danger"
+                style={{ marginLeft: "10px" }}
+                onClick={() => handleDelete()}
+              >
+                Excluir
+              </Button>
+              <Button
+                variant="success"
+                type="submit"
+                style={{ marginLeft: "10px" }}
+              >
+                Alterar
+              </Button>
+            </Col>
+          </Form.Row>
         </MyContainer>
       </div>
     </div>
