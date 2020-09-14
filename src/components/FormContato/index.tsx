@@ -57,7 +57,7 @@ const FormContato: React.FC = () => {
   return (
     <div>
       <MyContainer>
-        <Container fluid>
+        <Container fluid style={{width:'80%'}}>
           <Row className="d-flex justify-content-center fluid">
             <MyTitleForm>
               Dê o seu feedback para podermos melhorar cada vez mais
@@ -86,6 +86,7 @@ const FormContato: React.FC = () => {
                         )}
                     </Form.Group>
                   </MyForm>
+                  
 
                   <MyLableText> E o seu E-mail? </MyLableText>
                   <MyForm className="firstColumn">

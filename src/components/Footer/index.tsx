@@ -14,13 +14,13 @@ const Footer: React.FC = () => {
             
               <div className="row" style={{margin:'4% 0 4%'}}>
                 <div className="col text-center">
-                  <a href="/" className="fb-ic">
+                  <a href="https://www.facebook.com/ChumeCompany/" className="fb-ic">
                     <FaceBookIcon />
                   </a>
                 </div>
 
                 <div className="col text-center">
-                  <a href="/" className="tw-ic">
+                  <a href="https://www.instagram.com/chume_co/" className="tw-ic">
                     <InstagramIcon />
                   </a>
                 </div>

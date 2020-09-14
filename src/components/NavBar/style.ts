@@ -14,7 +14,7 @@ export const MyLink = styled.div`
     }
 
     font-size: 28px;
-    margin-left: 8.125em;
+    margin-left: 10rem;
   }
 
   font-family: "Roboto Light";

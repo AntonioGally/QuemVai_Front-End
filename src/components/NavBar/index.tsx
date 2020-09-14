@@ -49,6 +49,17 @@ const NavBar: React.FC = () => {
           </Nav.Item>
           <Nav.Item>
             <MyLink>
+              <NavLink
+                to="/CadastroUser"
+                className="nav-link "
+                activeClassName="active"
+              >
+                Cadastro
+              </NavLink>
+            </MyLink>
+          </Nav.Item>
+          <Nav.Item>
+            <MyLink>
               <span
                 className="nav-link"
                 style={{ cursor: "pointer" }}
@@ -60,7 +71,11 @@ const NavBar: React.FC = () => {
           </Nav.Item>
         </Nav>
       </MyNavBar>
-      {modalShow ? (<ModalLogin show={modalShow} onHide={() => setModalShow(false)} />) : ""}
+      {modalShow ? (
+        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Modal, Container, Row, Col, Form, Image } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import {
   SocialContainer,
   InstaLogo,
@@ -32,7 +32,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
   const [redirectAdmin, SetRedirectAdmin] = React.useState(false);
   const [redirectUser, SetRedirectUser] = React.useState(false);
   const [erroLogin, SetErroLogin] = React.useState(false);
-  const { register, handleSubmit, errors } = useForm<IFormInput>();  
+  const { register, handleSubmit, errors } = useForm<IFormInput>();
 
   const onSubmit = async (data: IFormInput) => {
     const email = data.email;
@@ -69,10 +69,9 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
   };
 
   useEffect(() => {
-    if (isAuthenticatedAdmin()){
+    if (isAuthenticatedAdmin()) {
       SetRedirectAdmin(true);
-    }
-    else if (isAuthenticated()) {
+    } else if (isAuthenticated()) {
       SetRedirectUser(true);
     }
   }, []);
@@ -86,8 +85,6 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
   if (redirectUser) {
     return <Redirect to="/MainAplication" />;
   }
-
-
 
   return (
     <div className="MyModal">
@@ -226,18 +223,27 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                     style={{ margin: "2% 0 0" }}
                     className="justify-content-center"
                   >
-                    <button
+                    <Link
+                      to="/CadastroUser"
+                      type="button"
+                      className="btn MyButtonRegistertModalLogin"
+                      style={{ padding: 0 }}
+                    >
+                      <div style={{ padding: "10px" }}>Cadastrar</div>
+                    </Link>
+                    
+                    {/* <button
                       type="button"
                       className="btn MyButtonRegistertModalLogin"
                       onClick={() => {
-                        setModalShow(true);
-                      }}
+                        setModalShow(true);                        
+                      }}                      
                       style={{ padding: 0 }}
                     >
-                      <div onClick={onHide} style={{ padding: "10px" }}>
+                      <div style={{ padding: "10px" }}>
                         Cadastrar
                       </div>
-                    </button>
+                    </button> */}
                   </Row>
                 </Col>
               </Row>
