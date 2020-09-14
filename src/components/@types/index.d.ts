@@ -102,3 +102,14 @@ export interface ConfigSportsAdmin {
     description: string;
   };
 }
+
+export interface FormCadastroUser {
+  userName: string;
+  userNickName: string;
+  userEmail: string;
+  userDDD: number;
+  UserNumber: number;
+  userPhoto: any;
+  userPassword: string;
+  userConfirmPassword: string;
+}

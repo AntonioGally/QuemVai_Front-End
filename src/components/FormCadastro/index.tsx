@@ -1,9 +1,11 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router-dom";
+import ModalLogin from "../ModalLogin";
 import { Container, Col, Row, Form, InputGroup } from "react-bootstrap";
 import facebook from "../../img/icones/facebook.svg";
 import instagram from "../../img/icones/instagram.svg";
+import { FormCadastroUser } from "../@types";
 import api from "../services/api";
 import {
   MyContainer,
@@ -14,28 +16,24 @@ import {
   MyButton,
 } from "./styles";
 
-type IFormInput = {
-  userName: string;
-  userNickName: string;
-  userEmail: string;
-  userDDD: number;
-  UserNumber: number;
-  userPhoto: any;
-};
-
 const FormCadastro: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm<IFormInput>();
+  const { register, handleSubmit, errors } = useForm<FormCadastroUser>();
   const [succes, setSucces] = React.useState(false);
   const [erros, setErros] = React.useState("");
-	
-	var photos = "";
+  const [modalShow, setModalShow] = React.useState(true);
+  const [succesPassword, setSuccesPassword] = React.useState(false);
 
-  const SubmitForm = async (data: IFormInput) => {
+  const SubmitForm = async (data: FormCadastroUser) => {
     const name = data.userName;
     const username = data.userNickName;
     const email = data.userEmail;
     const cellPhoneNumber = data.UserNumber;
     const DDD = data.userDDD;
+    const userSenha = data.userPassword;
+    const userConfirmaSenha = data.userConfirmPassword;
+
+    var photos = "";
+    var senhaFinal = "";
 
     var file = data.userPhoto[0];
     var fileType = file.type;
@@ -44,7 +42,7 @@ const FormCadastro: React.FC = () => {
       var image = new Image();
       (image.src as any) = reader.result;
 
-      image.onload = function () {
+      image.onload = async function () {
         var maxWidth = 500,
           maxHeight = 500,
           imageWidth = image.width,
@@ -72,43 +70,58 @@ const FormCadastro: React.FC = () => {
 
         var finalFile = canvas.toDataURL(fileType);
         photos = finalFile;
-        console.log(photos);
+
+        if (userSenha === userConfirmaSenha) {
+          senhaFinal = userSenha;
+          setSuccesPassword(true);
+        } else {
+          setErros("As senhas não estão iguais :(");
+          setSuccesPassword(false);
+        }
+
+        try {
+          if (succesPassword) {            
+            var config = {
+              headers: { "x-password": senhaFinal },
+              validateStatus: function (status: any) {
+                return status < 500; // Resolve only if the status code is less than 500
+              },
+            };
+
+            const response = await api.post(
+              "/api/login/signup/user",
+              { cellPhoneNumber, email, DDD, name, username, photos },
+              config
+            );
+
+            if (response.status === 200 && response.data["User registered"]) {
+              alert("Você foi cadastrado com sucesso!");
+              setSucces(true);
+            }
+            if (response.status === 406) {
+              setErros("Esse Email já foi registrado");
+            }
+
+            if (response.status === 404) {
+              alert("Houve algum problema!");
+            }
+          }
+        } catch (err) {
+          console.log(err);
+        }
       };
     };
-    
-
-    var config = {
-      validateStatus: function (status: any) {
-        return status < 500; // Resolve only if the status code is less than 500
-      },
-    };
-    try {
-      console.log(photos);
-      const response = await api.post(
-        "/api/login/signup/user",
-        { cellPhoneNumber, email, DDD, name, username, photos },
-        config
-      );
-
-      if (response.status === 200 && response.data["User registered"]) {
-        alert("Você foi cadastrado com sucesso!");
-        setSucces(true);
-      }
-      if (response.status === 406) {
-        setErros("Esse Email já foi registrado");
-      }
-
-      if (response.status === 404) {
-        alert("Houve algum problema!");
-      }
-    } catch (err) {
-      console.log(err);
-		}
-		reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
   };
 
-  if (succes) {
-    return <Redirect to="/" />;
+  if (succes) {    
+    return (
+      <>
+      <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
+      <Redirect to="/"/>
+      </>
+    );
+    
   }
   return (
     <div>
@@ -206,11 +219,31 @@ const FormCadastro: React.FC = () => {
                                 value: /^[0-9]+$/i,
                                 message: "Insira um número válido",
                               },
+                              max: {
+                                value: 3,
+                                message: "Insira no máximo 3 números",
+                              },
+                              min: {
+                                value: 2,
+                                message: "Insira no mínimo 2 números",
+                              },
                               required: true,
                             })}
                           />
                           {errors.userDDD &&
                             (errors.userDDD as any).type === "pattern" && (
+                              <div className="error">
+                                {(errors.userDDD as any).message}
+                              </div>
+                            )}
+                          {errors.userDDD &&
+                            (errors.userDDD as any).type === "max" && (
+                              <div className="error">
+                                {(errors.userDDD as any).message}
+                              </div>
+                            )}
+                          {errors.userDDD &&
+                            (errors.userDDD as any).type === "min" && (
                               <div className="error">
                                 {(errors.userDDD as any).message}
                               </div>
@@ -232,12 +265,32 @@ const FormCadastro: React.FC = () => {
                                 value: /^[0-9]+$/i,
                                 message: "Insira um número válido",
                               },
+                              max: {
+                                value: 10,
+                                message: "Insira no máximo 10 números",
+                              },
+                              min: {
+                                value: 8,
+                                message: "Insira no mínimo 8 números",
+                              },
                               required: true,
                             })}
                           />
                         </Col>
                         {errors.UserNumber &&
                           (errors.UserNumber as any).type === "pattern" && (
+                            <div className="error">
+                              {(errors.UserNumber as any).message}
+                            </div>
+                          )}
+                        {errors.UserNumber &&
+                          (errors.UserNumber as any).type === "max" && (
+                            <div className="error">
+                              {(errors.UserNumber as any).message}
+                            </div>
+                          )}
+                        {errors.UserNumber &&
+                          (errors.UserNumber as any).type === "min" && (
                             <div className="error">
                               {(errors.UserNumber as any).message}
                             </div>
@@ -252,6 +305,70 @@ const FormCadastro: React.FC = () => {
                 </Col>
 
                 <Col sm={12} md={6}>
+                  <MyLableText> Sua Senha: </MyLableText>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
+                      <Form.Control
+                        type="password"
+                        name="userPassword"
+                        id="userPassword"
+                        placeholder="ex.: *******"
+                        style={{ borderRadius: "10px" }}
+                        ref={register({
+                          required: true,
+                          minLength: {
+                            value: 8,
+                            message:
+                              "Insira uma senha com no mínimo 8 caractéres",
+                          },
+                        })}
+                      />
+                      {errors.userPassword &&
+                        (errors.userPassword as any).type === "required" && (
+                          <div className="error">A senha é obrigatória</div>
+                        )}
+                      {errors.userPassword &&
+                        (errors.userPassword as any).type === "minLenght" && (
+                          <div className="error">
+                            {(errors.userPassword as any).message}
+                          </div>
+                        )}
+                    </Form.Group>
+                  </MyForm>
+                  <MyLableText> Confirme sua Senha: </MyLableText>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
+                      <Form.Control
+                        type="password"
+                        name="userConfirmPassword"
+                        id="userConfirmPassword"
+                        placeholder="ex.: *******"
+                        style={{ borderRadius: "10px" }}
+                        ref={register({
+                          required: true,
+                          minLength: {
+                            value: 8,
+                            message:
+                              "Insira uma senha com no mínimo 8 caractéres",
+                          },
+                        })}
+                      />
+                      {errors.userConfirmPassword &&
+                        (errors.userConfirmPassword as any).type ===
+                          "required" && (
+                          <div className="error">
+                            A Confirmação da senha é obrigatória
+                          </div>
+                        )}
+                      {errors.userConfirmPassword &&
+                        (errors.userConfirmPassword as any).type ===
+                          "minLenght" && (
+                          <div className="error">
+                            {(errors.userConfirmPassword as any).message}
+                          </div>
+                        )}
+                    </Form.Group>
+                  </MyForm>
                   <MyLableText style={{ marginBottom: "2% 0" }}>
                     Escolha sua foto:
                   </MyLableText>
