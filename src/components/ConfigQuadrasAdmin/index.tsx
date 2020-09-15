@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Form, Col, Button, Table } from "react-bootstrap";
+
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage, MyTable } from "./styles";
@@ -20,6 +21,27 @@ export interface FormQuadraConfig {
   StatusQuadraConfig: any;
   Sports: any;
 }
+
+// function ModalConfig(props: any, id: number) {
+//   return (
+//     <Modal {...props} centered>
+//       <Modal.Header closeButton />
+
+//       <Modal.Body>
+//         <p>Tem certeza que deseja deletar a quadra {id} ?</p>
+//       </Modal.Body>
+
+//       <Modal.Footer>
+//         <Button variant="danger" onClick={() => setModalShow(false)}>
+//           Não
+//         </Button>
+//         <Button variant="success" onClick={() => setDeleteClick(true)}>
+//           Sim
+//         </Button>
+//       </Modal.Footer>
+//     </Modal>
+//   );
+// }
 const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   IdQuadraConfig,
   NomeQuadraConfig,
@@ -34,6 +56,7 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
 }) => {
   const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();
   const [deleteClick, setDeleteClick] = React.useState(false);
+  // const [modalShow, setModalShow] = React.useState(false);
 
   var config = {
     headers: { "x-auth-token": getTokenAdmin() },
@@ -308,9 +331,32 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                   </Form.Group>
                 </Col>
               </Form.Row>
+              <Form.Row style={{ justifyContent: "flex-end" }}>
+                <Col md={3}>
+                  <Button
+                    variant="outline-danger"
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => handleDelete()}
+                  >
+                    Excluir
+                  </Button>
+                  {/* <ModalConfig
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                    id={IdQuadraConfig}
+                  /> */}
+                  <Button
+                    variant="success"
+                    type="submit"
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Alterar
+                  </Button>
+                </Col>
+              </Form.Row>
             </fieldset>
           </Form>
-          <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
+          <Form.Row style={{ justifyContent: "flex-start" }}>
             <Col md={9}>
               <h3>Esportes</h3>
               <MyTable>
@@ -334,25 +380,8 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                     ))}
                   </tbody>
                 </Table>
-                <DeleteSport id_quadra={IdQuadraConfig}/>
+                <DeleteSport id_quadra={IdQuadraConfig} />
               </MyTable>
-            </Col>
-
-            <Col md={3}>
-              <Button
-                variant="outline-danger"
-                style={{ marginLeft: "10px" }}
-                onClick={() => handleDelete()}
-              >
-                Excluir
-              </Button>
-              <Button
-                variant="success"
-                type="submit"
-                style={{ marginLeft: "10px" }}
-              >
-                Alterar
-              </Button>
             </Col>
           </Form.Row>
         </MyContainer>
