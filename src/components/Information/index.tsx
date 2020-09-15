@@ -7,6 +7,7 @@ import company from "../../img/icones/company.svg";
 import android from "../../img/icones/android.svg";
 import dashboard from "../../img/icones/dashboard.svg";
 import { MyRow, MyCol, TitleContent, TextContent } from "./style";
+import "./Information.css";
 
 const Information: React.FC = () => {
   return (
@@ -84,7 +85,7 @@ const Information: React.FC = () => {
       </MyRow>
 
       {/* PLATAFORMAS */}
-      <div className="Desktop">
+      <div className="DesktopInformation">
         <MyRow className="WithoutBG">
           <TitleContent className="plataforms">Plataformas</TitleContent>
           <Row className="d-flex justify-content-center">
@@ -205,7 +206,7 @@ const Information: React.FC = () => {
         </MyRow>
       </div>
 
-      <div className="CellPhone">
+      <div className="CellPhoneInformation">
         <MyRow className="WithoutBG">
           <TitleContent className="plataforms">Plataformas</TitleContent>
           <Row className="d-flex justify-content-center">

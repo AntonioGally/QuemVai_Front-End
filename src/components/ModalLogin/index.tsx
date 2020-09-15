@@ -7,9 +7,9 @@ import {
   FacebookLogo,
   MySocialRow,
   ErroLogin,
+  TittlePassword,
 } from "./styles";
 import "./styles.css";
-import ModalCadastro from "../ModalCadastro";
 import { useForm } from "react-hook-form";
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 
@@ -28,7 +28,6 @@ type IFormInput = {
 };
 
 const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
-  const [modalShow, setModalShow] = React.useState(false);
   const [redirectAdmin, SetRedirectAdmin] = React.useState(false);
   const [redirectUser, SetRedirectUser] = React.useState(false);
   const [erroLogin, SetErroLogin] = React.useState(false);
@@ -76,9 +75,6 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
     }
   }, []);
 
-  if (erroLogin) {
-    console.log("ele entrou no if");
-  }
   if (redirectAdmin) {
     return <Redirect to="/AdminQuadras" />;
   }
@@ -169,7 +165,17 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                       className="justify-content-center"
                     >
                       <Form.Group style={{ width: "65%" }}>
-                        <h5 style={{ fontWeight: "bold" }}>Senha</h5>
+                        <TittlePassword>
+                          <span>
+                            Senha{" "}
+                            <Link
+                              to="/ForgotPassword"
+                              className="ForgotPassword"
+                            >
+                              Esqueci :(
+                            </Link>{" "}
+                          </span>
+                        </TittlePassword>
                         <Form.Control
                           type="password"
                           name="password"
@@ -220,7 +226,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                     </Row>
                   </Form>
                   <Row
-                    style={{ margin: "2% 0 0" }}
+                    style={{ margin: "2% 0 2%" }}
                     className="justify-content-center"
                   >
                     <Link
@@ -231,7 +237,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                     >
                       <div style={{ padding: "10px" }}>Cadastrar</div>
                     </Link>
-                    
+
                     {/* <button
                       type="button"
                       className="btn MyButtonRegistertModalLogin"
@@ -251,7 +257,6 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
           </Modal.Body>
         </div>
       </Modal>
-      <ModalCadastro show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 };

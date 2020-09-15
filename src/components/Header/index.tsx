@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Image, Form, FormControl, Navbar } from "react-bootstrap";
 import ModalLogin from "../ModalLogin";
 
 import banner2 from "../../img/banner/banner2.jpg";
+import user from "../../img/icones/user.svg";
 
 import { MyNav } from "./style";
 import "./styles.css";
+import api from "../services/api";
+import { getToken } from "../services/auth";
 
 const Header: React.FC = () => {
-  const user =
-    "https://whowill.blob.core.windows.net/fotos/4f5133bf-ae84-9fa6-3193-c9d45caad795.jpg";
-
+  const [userPhoto, setUserPhoto] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/user/bring/me", {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": getToken() },
+      }),
+    ]).then(async (responses) => {
+      const [Info] = responses;
+      const informations = await Info;
+      setUserPhoto(informations.data["info"]["photos"]);
+    });
+  }, [userPhoto]);
   return (
     <div style={{ height: "100%" }}>
       <Image src={banner2} fluid />
@@ -22,8 +38,9 @@ const Header: React.FC = () => {
             <FormControl type="text" placeholder="Search for something" />
           </Form>
           <Form inline>
+            
             <Image
-              src={user}
+              src={userPhoto ? userPhoto : user}
               width="70px"
               rounded
               style={{ cursor: "pointer" }}
@@ -32,7 +49,11 @@ const Header: React.FC = () => {
           </Form>
         </Navbar>
       </MyNav>
-      {modalShow ? (<ModalLogin show={modalShow} onHide={() => setModalShow(false)} />) : ""}
+      {modalShow ? (
+        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

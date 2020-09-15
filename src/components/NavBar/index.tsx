@@ -36,7 +36,7 @@ const NavBar: React.FC = () => {
               </NavLink>
             </MyLink>
           </Nav.Item>
-          <Nav.Item>
+          {/* <Nav.Item>
             <MyLink>
               <NavLink
                 to="/Documentos"
@@ -46,7 +46,7 @@ const NavBar: React.FC = () => {
                 Documentos
               </NavLink>
             </MyLink>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item>
             <MyLink>
               <NavLink

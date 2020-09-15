@@ -34,7 +34,7 @@ export const MyCol = styled.div`
 `;
 
 export const TitleContent = styled.h1`
-  font-family: "Roboto Regular";
+  font-family: "Poppins";
 
   @media (max-width: 500px) {
     &.plataforms{
@@ -53,7 +53,7 @@ export const TextContent = styled.div`
   }
   margin-top: 3%;
   margin-bottom:3%;
-  font-family: "Roboto Regular";
+  font-family: "Poppins";
   font-size: 20px;
   text-align: justify;
 `;

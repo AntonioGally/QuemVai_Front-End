@@ -6,17 +6,17 @@ import NavBar from "../../components/NavBar";
 import Information from "../../components/Information";
 import Footer from "../../components/Footer";
 
-const TitleContent1 = "Card 1";
-const TitleContent2 = "Card 2";
-const TitleContent3 = "Card 3";
-const TitleContent4 = "Card 4";
-const TitleContent5 = "Card 5";
+const TitleContent1 = "O Aplicativo";
+const TitleContent2 = "A Empresa";
+const TitleContent3 = "Plataformas";
+const TitleContent4 = "Localização";
+const TitleContent5 = "Social";
 
-const TextContent1 = "Text Card 1";
-const TextContent2 = "Text Card 2";
-const TextContent3 = "Text Card 3";
-const TextContent4 = "Text Card 4";
-const TextContent5 = "Text Card 5";
+const TextContent1 = "Desenvolvido com o intuito de marcar encontros em áreas de lazer públicas.";
+const TextContent2 = "Chume Company é uma empresa de desenvolvimento de sistemas.";
+const TextContent3 = "O Aplicativo Quem Vai está disponível para Android e IOS, e também para plataforma Web.";
+const TextContent4 = "Localize as Áreas de lazer mais próximas de você e de seus amigos!";
+const TextContent5 = "Encontre novos amigos no Aplicativo Quem Vai!";
 
 const Sobre: React.FC = () => {
   return (

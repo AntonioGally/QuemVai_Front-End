@@ -1,5 +1,4 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ModalLogin from "../ModalLogin";
 import { Container, Col, Row, Form, InputGroup } from "react-bootstrap";
@@ -80,7 +79,7 @@ const FormCadastro: React.FC = () => {
         }
 
         try {
-          if (succesPassword) {            
+          if (succesPassword) {
             var config = {
               headers: { "x-password": senhaFinal },
               validateStatus: function (status: any) {
@@ -114,14 +113,12 @@ const FormCadastro: React.FC = () => {
     reader.readAsDataURL(file);
   };
 
-  if (succes) {    
+  if (succes) {
     return (
       <>
-      <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
-      <Redirect to="/"/>
+        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />        
       </>
     );
-    
   }
   return (
     <div>
