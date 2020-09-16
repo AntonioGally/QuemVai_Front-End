@@ -63,7 +63,7 @@ export interface ViewEmailRespondedAdmin {
   message: string;
   ownerMessage: [
     {
-      email_user : string;
+      email_user: string;
       subject: string;
       message: string;
     }
@@ -104,6 +104,31 @@ export interface ConfigSportsAdmin {
 }
 
 export interface FormCadastroUser {
+  userName: string;
+  userNickName: string;
+  userEmail: string;
+  userDDD: number;
+  UserNumber: number;
+  userPhoto: any;
+  userPassword: string;
+  userConfirmPassword: string;
+}
+
+export interface FormConfigUser {
+  info: {
+    id: number,
+    name: string,
+    username: string,
+    email: string,
+    cellPhoneNumber: number,
+    DDD: number,
+    status: string,
+    isAdmin: boolean,
+    photos: string
+  }
+}
+
+export interface FormConfigUserAltered {
   userName: string;
   userNickName: string;
   userEmail: string;

@@ -204,7 +204,7 @@ const FormCadastro: React.FC = () => {
                   <MyForm className="firstColumn">
                     <Form.Group>
                       <InputGroup>
-                        <Col md={2} style={{ padding: 0 }}>
+                        <Col md={2} style={{ padding: 0, marginRight:"1%" }}>
                           <Form.Control
                             type="text"
                             name="userDDD"
@@ -383,7 +383,7 @@ const FormCadastro: React.FC = () => {
                           />
                           {errors.userPhoto &&
                             (errors.userPhoto as any).type === "required" && (
-                              <div className="error">A foto é obrigatório</div>
+                              <div className="error">A foto é obrigatória</div>
                             )}
                         </Form.File>
                       </div>

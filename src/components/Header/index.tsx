@@ -54,8 +54,9 @@ const Header: React.FC = () => {
           <Form inline>
             <Image
               src={userPhoto ? userPhoto : user}
-              width="70px"
-              rounded
+              width="80px"   
+              height="80px"
+              roundedCircle      
               style={{ cursor: "pointer" }}
               onClick={() => setModalShow(true)}
             />
