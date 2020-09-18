@@ -134,7 +134,4 @@ export interface FormConfigUserAltered {
   userEmail: string;
   userDDD: number;
   UserNumber: number;
-  userPhoto: any;
-  userPassword: string;
-  userConfirmPassword: string;
 }

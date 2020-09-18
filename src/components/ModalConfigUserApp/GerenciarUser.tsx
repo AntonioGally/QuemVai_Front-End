@@ -1,28 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./ModalConfigStyles.css";
-import { Row, Col, Form, Container, InputGroup, Image } from "react-bootstrap";
+import { Row, Col, Form, Container, InputGroup } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
 
 import api from "../services/api";
-import { getTokenAdmin, getToken } from "../services/auth";
+import { getToken } from "../services/auth";
 import { FormConfigUser, FormConfigUserAltered } from "../@types";
+
+import ModalConfirmDeleteAcc from "./confirmation/ModalConfirmDeleteAcc";
 
 interface Data {
   PushInformations: FormConfigUser;
 }
 
 const ModalConfigUserApp: React.FC = () => {
-  const { register, errors } = useForm<FormConfigUserAltered>();
-  const [token, setToken] = useState();
+  const { register, handleSubmit, errors } = useForm<FormConfigUserAltered>();
   const [data, setData] = useState<Data>();
+  const [erros, setErros] = React.useState("");
+  const [modalShow, setModalShow] = React.useState(false);
+
+  const FormSubmitConfigUser = async (data: FormConfigUserAltered) => {
+    const name = data.userName;
+    const username = data.userNickName;
+    const email = data.userEmail;
+    const cellPhoneNumber = data.UserNumber;
+    const DDD = data.userDDD;
+
+    try {
+      var config = {
+        headers: { "x-auth-token": getToken() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+      const response = await api.put(
+        "/api/user/update/me",
+        { cellPhoneNumber, email, DDD, name, username },
+        config
+      );
+      if (response.data["Updated"]) {
+        alert("Dados atualizados com sucesso!");
+        window.location.reload();
+      }
+      if (!response.data["Updated"]) {
+        setErros("Houve algum problema na atualização de dados");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-    if (getToken()) {
-      setToken(getToken() as any);
-    } else if (getTokenAdmin()) {
-      setToken(getTokenAdmin() as any);
-    }
     Promise.all([
       api.get("/api/user/bring/me", {
         validateStatus: function (status) {
@@ -36,15 +65,15 @@ const ModalConfigUserApp: React.FC = () => {
       const informations = await PushUserInformation.data;
       setData({ PushInformations: informations });
     });
-  }, [token]);
-  console.log(data);
+  }, []);
+
   return (
     <div className="WrapperModalConfig">
       <Container fluid>
         <MyTitleForm style={{ marginBottom: "4%" }}>
           Suas informações:
         </MyTitleForm>
-        <Form>
+        <Form onSubmit={handleSubmit(FormSubmitConfigUser)}>
           <Row style={{ marginBottom: "4%" }}>
             <Col md={6}>
               <MyLableText> Nome: </MyLableText>
@@ -230,45 +259,19 @@ const ModalConfigUserApp: React.FC = () => {
                   </InputGroup>
                 </Form.Group>
               </MyForm>
+              <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
           </Row>
-          <Row>
+          <Row style={{ justifyContent: "flex-end" }}>
             <Col md={6}>
-              <MyLableText> Foto de perfil: </MyLableText>
-              <MyForm className="firstColumn">
-                <Image
-                  src={data?.PushInformations.info.photos}
-                  width="120px"
-                  height="120px"
-                  roundedCircle
-                />
-              </MyForm>
-            </Col>
-            <Col md={6}>
-              <MyLableText style={{ marginBottom: "2% 0" }}>
-                Altere sua foto:
-              </MyLableText>
               <MyForm>
                 <div style={{ margin: "5%" }}>
-                  <div className="mb-3">
-                    <Form.File custom>
-                      <Form.File.Label>Procurar...</Form.File.Label>
-                      <Form.File.Input
-                        name="userPhoto"
-                        id="userPhoto"
-                        ref={register({
-                          required: true,
-                        })}
-                      />
-                      {errors.userPhoto &&
-                        (errors.userPhoto as any).type === "required" && (
-                          <div className="error">A foto é obrigatória</div>
-                        )}
-                    </Form.File>
-                  </div>
-
                   <div className="row" style={{ justifyContent: "flex-end" }}>
-                    <MyButton type="submit" className="btn" style={{width:"40%"}}>
+                    <MyButton
+                      type="submit"
+                      className="btn"
+                      style={{ width: "40%" }}
+                    >
                       Alterar dados
                     </MyButton>
                   </div>
@@ -277,60 +280,32 @@ const ModalConfigUserApp: React.FC = () => {
             </Col>
           </Row>
         </Form>
-
-        <Form>
-          <Row style={{ alignItems: "center" }}>
-            <Col md={6}>
-              <MyLableText> Alterar sua senha: </MyLableText>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <Form.Control
-                    type="password"
-                    name="userPassword"
-                    id="userPassword"
-                    placeholder="ex.: *******"
-                    style={{ borderRadius: "10px" }}
-                    ref={register({
-                      required: true,
-                      minLength: {
-                        value: 8,
-                        message: "Insira uma senha com no mínimo 8 caractéres",
-                      },
-                    })}
-                  />
-                  {errors.userPassword &&
-                    (errors.userPassword as any).type === "required" && (
-                      <div className="error">A senha é obrigatória</div>
-                    )}
-                  {errors.userPassword &&
-                    (errors.userPassword as any).type === "minLenght" && (
-                      <div className="error">
-                        {(errors.userPassword as any).message}
-                      </div>
-                    )}
-                </Form.Group>
-              </MyForm>
-            </Col>
-            <Col md={6}>
-              <MyButton
-                type="submit"
-                className="btn"
-                style={{ marginTop: "13px", width: "40%" }}
-              >
-                Alterar senha
-              </MyButton>
-            </Col>
-          </Row>
-        </Form>
-
-        <Row style={{ marginTop: "5%" }}>
+        <Row style={{ marginTop: "5%", justifyContent: "flex-end" }}>
           <Col md={6}>
-            <MyButton type="submit" className="btn" style={{ width: "40%" }}>
-              Deletar conta
-            </MyButton>
+            <MyForm>
+              <div style={{ margin: "5%" }}>
+                <div className="row" style={{ justifyContent: "flex-end" }}>
+                  <MyButton
+                    className="btn"
+                    onClick={() => setModalShow(true)}
+                    style={{ width: "40%" }}
+                  >
+                    Deletar conta
+                  </MyButton>
+                </div>
+              </div>
+            </MyForm>
           </Col>
         </Row>
       </Container>
+      {modalShow ? (
+        <ModalConfirmDeleteAcc
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

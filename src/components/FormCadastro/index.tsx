@@ -38,7 +38,7 @@ const FormCadastro: React.FC = () => {
     var fileType = file.type;
     var reader = new FileReader();
     reader.onloadend = () => {
-      var image = new Image();
+      var image : any = new Image();
       (image.src as any) = reader.result;
 
       image.onload = async function () {
@@ -116,7 +116,7 @@ const FormCadastro: React.FC = () => {
   if (succes) {
     return (
       <>
-        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />        
+        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
       </>
     );
   }
@@ -204,7 +204,7 @@ const FormCadastro: React.FC = () => {
                   <MyForm className="firstColumn">
                     <Form.Group>
                       <InputGroup>
-                        <Col md={2} style={{ padding: 0, marginRight:"1%" }}>
+                        <Col md={2} style={{ padding: 0, marginRight: "1%" }}>
                           <Form.Control
                             type="text"
                             name="userDDD"
@@ -312,12 +312,11 @@ const FormCadastro: React.FC = () => {
                         placeholder="ex.: *******"
                         style={{ borderRadius: "10px" }}
                         ref={register({
-                          required: true,
                           minLength: {
                             value: 8,
-                            message:
-                              "Insira uma senha com no mínimo 8 caractéres",
+                            message: "Insira no mínimo 8 caractéres",
                           },
+                          required: true,
                         })}
                       />
                       {errors.userPassword &&
@@ -342,12 +341,11 @@ const FormCadastro: React.FC = () => {
                         placeholder="ex.: *******"
                         style={{ borderRadius: "10px" }}
                         ref={register({
-                          required: true,
                           minLength: {
                             value: 8,
-                            message:
-                              "Insira uma senha com no mínimo 8 caractéres",
+                            message: "Insira no mínimo 8 caractéres",
                           },
+                          required: true,
                         })}
                       />
                       {errors.userConfirmPassword &&

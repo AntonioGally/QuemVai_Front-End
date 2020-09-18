@@ -4,7 +4,7 @@ import "./styles.css";
 import { NavLink } from "react-router-dom";
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import api from "../services/api";
-import { getToken, getTokenAdmin } from "../services/auth";
+import { getToken, getTokenAdmin, logout } from "../services/auth";
 
 const SideBarApp: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState("");
@@ -92,6 +92,7 @@ const SideBarApp: React.FC = () => {
               to="/"
               style={{ width: "80%", padding: "5px 0" }}
               className="btn MyButtonSidebarApp"
+              onClick={() => logout()}
             >
               Sair
             </NavLink>
