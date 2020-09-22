@@ -6,13 +6,10 @@
   border-radius: 15px;
 }
 
-.navLinkWrapper {
-  margin-top: 15%;
-}
 .MyNavItem {
   display: flex;
   justify-content: center;
-  margin-bottom: 7%;
+  margin-bottom: 12%;
 }
 .MyNavLink {
   background-color: var(--buttonFill) !important;

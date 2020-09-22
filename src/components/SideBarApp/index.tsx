@@ -3,7 +3,7 @@ import "./styles.css";
 
 import { NavLink } from "react-router-dom";
 import api from "../services/api";
-import { getToken, getTokenAdmin, logout, Token } from "../services/auth";
+import { getToken, getTokenAdmin, Token } from "../services/auth";
 
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";
@@ -97,10 +97,9 @@ const SideBarApp: React.FC = () => {
             <NavLink
               to="/"
               style={{ width: "80%", padding: "5px 0" }}
-              className="btn MyButtonSidebarApp"
-              onClick={() => logout()}
+              className="btn MyButtonSidebarApp"              
             >
-              Sair
+              Voltar
             </NavLink>
           </div>
         </div>

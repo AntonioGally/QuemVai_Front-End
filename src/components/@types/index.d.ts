@@ -116,16 +116,16 @@ export interface FormCadastroUser {
 
 export interface FormConfigUser {
   info: {
-    id: number,
-    name: string,
-    username: string,
-    email: string,
-    cellPhoneNumber: number,
-    DDD: number,
-    status: string,
-    isAdmin: boolean,
-    photos: string
-  }
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    cellPhoneNumber: number;
+    DDD: number;
+    status: string;
+    isAdmin: boolean;
+    photos: string;
+  };
 }
 
 export interface FormConfigUserAltered {
@@ -134,4 +134,20 @@ export interface FormConfigUserAltered {
   userEmail: string;
   userDDD: number;
   UserNumber: number;
+}
+
+export interface InvitesSendedList {
+  id_Friend: number;
+  UserOwner: {
+    username: string;
+    photos: string;
+  };
+}
+
+export interface InvitesReceivedList {
+  id_User: number;
+  UserOwner: {
+    username: string;
+    photos: string;
+  };
 }

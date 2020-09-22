@@ -3,7 +3,10 @@ import React from "react";
 import { Modal, Col, Row, Tab, Nav } from "react-bootstrap";
 import "./ModalFriendStyles.css";
 
-import SideBarPeopleOnline from "../SideBarPeopleOnline";
+import InvitesSended from "./InvitesSended";
+import InvitesReceived from "./InvitesReceived";
+
+// import SideBarPeopleOnline from "../SideBarPeopleOnline";
 
 export interface Props {
   show: boolean;
@@ -16,51 +19,36 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
   return (
     <div>
       <Modal dialogClassName="modal-90w" centered show={show} onHide={onHide}>
-        <Modal.Header></Modal.Header>
+        <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <Tab.Container id="left-tabs-example" defaultActiveKey="Account">
+          <Tab.Container
+            id="left-tabs-example"
+            defaultActiveKey="InvitesSended"
+          >
             <Row>
-              <Col md={2}>
+              <Col md={3}>
                 <Nav
                   variant="pills"
                   className="flex-column"
                   style={{ height: "100%", justifyContent: "space-between" }}
                 >
                   <div>
-                    <Nav.Item>
-                      <Nav.Link
-                        eventKey="Account"
-                        className="MyNavLink"
-                        style={{ marginBottom: "7%" }}
-                      >
-                        Minha Conta
+                    <Nav.Item className="MyNavItem">
+                      <Nav.Link eventKey="InvitesSended" className="MyNavLink">
+                        Solicitações Enviadas
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    <Nav.Item className="MyNavItem">
                       <Nav.Link
-                        eventKey="Password"
+                        eventKey="InvitesReceived"
                         className="MyNavLink"
-                        style={{ marginBottom: "7%" }}
                       >
-                        Atualizar Senha
+                        Solicitações Recebidas
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link
-                        eventKey="Photo"
-                        className="MyNavLink"
-                        style={{ marginBottom: "7%" }}
-                      >
-                        Atualizar Foto
-                      </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link
-                        eventKey="Historic"
-                        className="MyNavLink"
-                        style={{ marginBottom: "7%" }}
-                      >
-                        Meu Histórico
+                    <Nav.Item className="MyNavItem">
+                      <Nav.Link eventKey="SendInvite" className="MyNavLink">
+                        Enviar Solicitação
                       </Nav.Link>
                     </Nav.Item>
                   </div>
@@ -68,23 +56,18 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
               </Col>
               <Col md={8}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="Account">
-                    <h1>Teste</h1>
+                  <Tab.Pane eventKey="InvitesSended">
+                    <InvitesSended />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="Password">
-                    <h1>Teste</h1>
+                  <Tab.Pane eventKey="InvitesReceived">
+                    <InvitesReceived />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="Photo">
+                  <Tab.Pane eventKey="SendInvite">
                     <h1>Teste</h1>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="Historic">
-                    <h1>Teste</h1>
-                  </Tab.Pane>
+                  </Tab.Pane>                  
                 </Tab.Content>
               </Col>
-              <Col md={2}>
-                <SideBarPeopleOnline />
-              </Col>
+              <Col md={1}>{/* <SideBarPeopleOnline /> */}</Col>
             </Row>
           </Tab.Container>
         </Modal.Body>

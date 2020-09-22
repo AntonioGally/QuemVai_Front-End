@@ -1,16 +1,17 @@
-import styled from 'styled-components';
-import {Edit} from "@styled-icons/boxicons-regular/Edit"
+import styled from "styled-components";
+import { Edit } from "@styled-icons/boxicons-regular/Edit";
 
 export const MyTitleForm = styled.h3`
+  margin-top: 2%;
   font-family: "Poppins";
-  color: var(--fontWhite);  
+  color: var(--fontWhite);
   font-size: 40px;
   @media (max-width: 768px) {
     font-size: 20px;
   }
 `;
 
-export const MyForm = styled.div`  
+export const MyForm = styled.div`
   margin-bottom: 5%;
 
   @media (min-width: 1200px) {
@@ -22,8 +23,8 @@ export const MyForm = styled.div`
 export const MyLableText = styled.h5`
   font-family: "Poppins";
   color: var(--fontWhite);
-  font-size:28px;
-  
+  font-size: 28px;
+
   @media (max-width: 768px) {
     font-size: 20px;
   }
@@ -44,9 +45,9 @@ export const MyButton = styled.button`
 `;
 
 export const EditIcon = styled(Edit)`
-  width:28px;
-  height:28px;
-  fill:white;
-  flex-shrink:0;
-  margin-left:20px;
+  width: 28px;
+  height: 28px;
+  fill: white;
+  flex-shrink: 0;
+  margin-left: 20px;
 `;

@@ -16,11 +16,13 @@ const AdminEmail: React.FC = () => {
     <Container fluid style={{ padding: 0 }}>
       <header>
         <MyHeader>
+          <Link to="/">
+            <span>Voltar</span>
+          </Link>
+
           <Link to="/MainAplication">
             <span>Aplicativo</span>
           </Link>
-
-          <h3>Admin</h3>
         </MyHeader>
       </header>
 

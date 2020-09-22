@@ -11,6 +11,7 @@ export const SocialContainer = styled.div`
   align-items: center;
   justify-content: center;
   font-family:"Poppins";
+  border-radius : 30px 0px 0px 30px;
 `;
 export const ErroLogin = styled.div`
   font-size: 15px;
