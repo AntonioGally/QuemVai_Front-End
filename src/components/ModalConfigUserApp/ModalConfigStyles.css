@@ -45,17 +45,16 @@
   width: 80%;
 }
 
-.MyButtonDeleteAccount {
-  background-color: var(--buttonFill);
-  border-radius: 6.5px !important;
-  color: var(--fontWhite);
-  width: 30%;
-  padding: 10px;
+.MyButtonDeleteAccount{
+  color:var(--buttonOutLined);
+  border:1px solid var(--buttonOutLined); 
+  border-radius:6.5px !important;
+  width:50%;
+  padding:10px;
 }
-
-.MyButtonDeleteAccount:hover {
-  background-color: var(--buttonFill);
-  opacity: 0.8;
-  color: var(--fontWhite);
-  transition: all 0.5s ease-in-out;
+.MyButtonDeleteAccount:hover{
+  background-color: var(--buttonOutLined);
+  border:1px solid var(--fontWhite); 
+  color:var(--fontWhite);
+  transition: all .5s ease;
 }

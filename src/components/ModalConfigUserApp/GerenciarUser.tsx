@@ -18,6 +18,7 @@ const ModalConfigUserApp: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<FormConfigUserAltered>();
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
+  const [auxEmail, setAuxEmail] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
 
   const FormSubmitConfigUser = async (data: FormConfigUserAltered) => {
@@ -34,17 +35,19 @@ const ModalConfigUserApp: React.FC = () => {
           return status < 500; // Resolve only if the status code is less than 500
         },
       };
+      var user_email_confirm = auxEmail;
+
       const response = await api.put(
         "/api/user/update/me",
-        { cellPhoneNumber, email, DDD, name, username },
+        { cellPhoneNumber, email, user_email_confirm, DDD, name, username },
         config
       );
-      if (response.data["Updated"]) {
+      if (response.status === 200) {
         alert("Dados atualizados com sucesso!");
         window.location.reload();
       }
-      if (!response.data["Updated"]) {
-        setErros("Houve algum problema na atualização de dados");
+      if (response.status === 406) {
+        setErros("Este Email já existe");
       }
     } catch (err) {
       console.log(err);
@@ -64,6 +67,7 @@ const ModalConfigUserApp: React.FC = () => {
 
       const informations = await PushUserInformation.data;
       setData({ PushInformations: informations });
+      setAuxEmail(informations["info"]["email"])
     });
   }, []);
 
@@ -169,31 +173,31 @@ const ModalConfigUserApp: React.FC = () => {
               <MyForm className="firstColumn">
                 <Form.Group>
                   <InputGroup>
-                    <Col md={2} style={{ padding: 0, marginRight: "1%" }}>                      
-                        <Form.Control
-                          className="MyInputForm"
-                          type="text"
-                          name="userDDD"
-                          id="userDDD"
-                          placeholder="01"
-                          defaultValue={data?.PushInformations.info.DDD}
-                          ref={register({
-                            pattern: {
-                              value: /^[0-9]+$/i,
-                              message: "Insira um número válido",
-                            },
-                            max: {
-                              value: 3,
-                              message: "Insira no máximo 3 números",
-                            },
-                            min: {
-                              value: 2,
-                              message: "Insira no mínimo 2 números",
-                            },
-                            required: true,
-                          })}
-                        />
-                        
+                    <Col md={2} style={{ padding: 0, marginRight: "1%" }}>
+                      <Form.Control
+                        className="MyInputForm"
+                        type="text"
+                        name="userDDD"
+                        id="userDDD"
+                        placeholder="01"
+                        defaultValue={data?.PushInformations.info.DDD}
+                        ref={register({
+                          pattern: {
+                            value: /^[0-9]+$/i,
+                            message: "Insira um número válido",
+                          },
+                          max: {
+                            value: 3,
+                            message: "Insira no máximo 3 números",
+                          },
+                          min: {
+                            value: 2,
+                            message: "Insira no mínimo 2 números",
+                          },
+                          required: true,
+                        })}
+                      />
+
                       {errors.userDDD &&
                         (errors.userDDD as any).type === "pattern" && (
                           <div className="error">
@@ -279,6 +283,20 @@ const ModalConfigUserApp: React.FC = () => {
             <Col md={4}>
               <MyForm>
                 <div style={{ margin: "5%" }}>
+                  <button
+                    type="button"
+                    className="btn MyButtonDeleteAccount"
+                    onClick={() => setModalShow(true)}
+                    style={{ width: "100%" }}
+                  >
+                    Deletar Conta
+                  </button>
+                </div>
+              </MyForm>
+            </Col>
+            <Col md={4}>
+              <MyForm>
+                <div style={{ margin: "5%" }}>
                   <MyButton
                     type="submit"
                     className="btn"
@@ -286,19 +304,6 @@ const ModalConfigUserApp: React.FC = () => {
                   >
                     Editar dados
                   </MyButton>
-                </div>
-              </MyForm>
-            </Col>
-            <Col md={4}>
-              <MyForm>
-                <div style={{ margin: "5%" }}>
-                  <div
-                    className="btn MyButtonDeleteAccount"
-                    onClick={() => setModalShow(true)}
-                    style={{ width: "100%" }}
-                  >
-                    Deletar conta
-                  </div>
                 </div>
               </MyForm>
             </Col>
