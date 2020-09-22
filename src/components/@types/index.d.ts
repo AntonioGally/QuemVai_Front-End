@@ -138,7 +138,7 @@ export interface FormConfigUserAltered {
 
 export interface InvitesSendedList {
   id_Friend: number;
-  UserOwner: {
+  UserFriendOwner: {
     username: string;
     photos: string;
   };
@@ -150,4 +150,16 @@ export interface InvitesReceivedList {
     username: string;
     photos: string;
   };
+}
+
+export interface FriendsList {
+  id: number;
+  id_User: number;
+  id_Friend: number;
+  username: string;
+  name?: string;
+  photos: string;
+  email?: string;
+  DDD?: number;
+  cellPhoneNumber?: number;
 }

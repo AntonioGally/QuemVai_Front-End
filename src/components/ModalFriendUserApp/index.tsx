@@ -5,8 +5,9 @@ import "./ModalFriendStyles.css";
 
 import InvitesSended from "./InvitesSended";
 import InvitesReceived from "./InvitesReceived";
+import SendInvite from "./SendInvite";
 
-// import SideBarPeopleOnline from "../SideBarPeopleOnline";
+import SideBarPeopleOnline from "./SideBarPeopleOnline";
 
 export interface Props {
   show: boolean;
@@ -25,7 +26,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
             id="left-tabs-example"
             defaultActiveKey="InvitesSended"
           >
-            <Row>
+            <Row style={{ margin: 0 }}>
               <Col md={3}>
                 <Nav
                   variant="pills"
@@ -54,7 +55,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                   </div>
                 </Nav>
               </Col>
-              <Col md={8}>
+              <Col md={7}>
                 <Tab.Content>
                   <Tab.Pane eventKey="InvitesSended">
                     <InvitesSended />
@@ -63,11 +64,13 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                     <InvitesReceived />
                   </Tab.Pane>
                   <Tab.Pane eventKey="SendInvite">
-                    <h1>Teste</h1>
-                  </Tab.Pane>                  
+                    <SendInvite />
+                  </Tab.Pane>
                 </Tab.Content>
               </Col>
-              <Col md={1}>{/* <SideBarPeopleOnline /> */}</Col>
+              <Col md={2} className="MyColSideBarPeopleOnline">
+                <SideBarPeopleOnline />
+              </Col>
             </Row>
           </Tab.Container>
         </Modal.Body>

@@ -40,7 +40,7 @@ const Confirmação: React.FC<Props> = ({ id, show, onHide }) => {
     <div>
       <Modal size="sm" centered show={show} onHide={onHide}>
         <Modal.Header closeButton>
-          <Modal.Title>Recusar</Modal.Title>
+          <Modal.Title>Aceitar</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

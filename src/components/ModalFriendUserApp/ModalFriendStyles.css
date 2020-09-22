@@ -1,5 +1,5 @@
 .modal-90w {
-  max-width: 75% !important;
+  max-width: 80% !important;
 }
 .WrapperModalFriends {
   width: 100%;
@@ -7,4 +7,14 @@
   overflow-y: scroll;
   background-color: var(--primary);
   border-radius: 15px;
+}
+.MyColSideBarPeopleOnline {
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+}
+
+.SpanInvitesSended {
+  color: var(--fontWhite);
+  font-family: "Poppins";
+  font-size: 25px;
 }
