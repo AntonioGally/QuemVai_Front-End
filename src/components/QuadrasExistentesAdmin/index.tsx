@@ -6,7 +6,7 @@ import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
 
 
 import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
+import { Token } from "../services/auth";
 import { ListSpaceAdmin } from "../@types";
 
 interface Data {
@@ -23,7 +23,7 @@ const QuadrasExistentesAdmin: React.FC = () => {
   useEffect(() => {
     Promise.all([
       api.get("/api/admin/find/all", {
-        headers: { "x-auth-token": getTokenAdmin() },
+        headers: { "x-auth-token": Token() },
       }),
     ]).then(async (responses) => {
       const [AllSpaces] = responses;

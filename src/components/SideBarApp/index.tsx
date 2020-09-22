@@ -2,23 +2,23 @@ import React, { useEffect } from "react";
 import "./styles.css";
 
 import { NavLink } from "react-router-dom";
-import ModalConfigUserApp from "../ModalConfigUserApp";
 import api from "../services/api";
-import { getToken, getTokenAdmin, logout } from "../services/auth";
+import { getToken, getTokenAdmin, logout, Token } from "../services/auth";
+
+import ModalConfigUserApp from "../ModalConfigUserApp";
+import ModalFriendUserApp from "../ModalFriendUserApp";
 
 const SideBarApp: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState("");
-  const [modalShow, setModalShow] = React.useState(false);
+  const [userName, setUserName] = React.useState("");
+  const [modalConfigShow, setModalConfigShow] = React.useState(false);
+  const [modalFriendShow, setModalFriendShow] = React.useState(false);
   const [isLogged, setIsLogged] = React.useState(Boolean);
-  const [token, setToken] = React.useState("");
 
   useEffect(() => {
-    if (getToken()) {
+    if (getToken() ||getTokenAdmin()) {     
       setIsLogged(true);
-      setToken(getToken() as string);
-    } else if (getTokenAdmin()) {
-      setIsLogged(true);
-      setToken(getTokenAdmin() as string);
+      
     } else {
       setIsLogged(false);
     }
@@ -28,15 +28,16 @@ const SideBarApp: React.FC = () => {
           validateStatus: function (status) {
             return status < 500; // Resolve only if the status code is less than 500
           },
-          headers: { "x-auth-token": token },
+          headers: { "x-auth-token": Token() },
         }),
       ]).then(async (responses) => {
         const [Info] = responses;
         const informations = await Info;
         setUserPhoto(informations.data["info"]["photos"]);
+        setUserName(informations.data["info"]["username"]);
       });
     }
-  }, [isLogged, token]);
+  }, [isLogged]);
 
   return (
     <div className="wrapperApp">
@@ -56,10 +57,10 @@ const SideBarApp: React.FC = () => {
                   borderRadius: "50%",
                   cursor: "pointer",
                 }}
-                onClick={() => setModalShow(true)}
+                onClick={() => setModalConfigShow(true)}
               />
             </div>
-            <div className="row justify-content-center">Antônio Gally</div>
+            <div className="row justify-content-center">{userName}</div>
           </div>
         </div>
 
@@ -78,7 +79,12 @@ const SideBarApp: React.FC = () => {
             </div>
 
             <div className="row MyRowSidebarApp" style={{ margin: "30% 0" }}>
-              <div className="btn  MyButtonSidebarApp">Esportes</div>
+              <div
+                className="btn  MyButtonSidebarApp"
+                onClick={() => setModalFriendShow(true)}
+              >
+                Amigos
+              </div>
             </div>
           </div>
         </div>
@@ -99,10 +105,18 @@ const SideBarApp: React.FC = () => {
           </div>
         </div>
       </nav>
-      {modalShow ? (
+      {modalConfigShow ? (
         <ModalConfigUserApp
-          show={modalShow}
-          onHide={() => setModalShow(false)}
+          show={modalConfigShow}
+          onHide={() => setModalConfigShow(false)}
+        />
+      ) : (
+        ""
+      )}
+      {modalFriendShow ? (
+        <ModalFriendUserApp
+          show={modalFriendShow}
+          onHide={() => setModalFriendShow(false)}
         />
       ) : (
         ""

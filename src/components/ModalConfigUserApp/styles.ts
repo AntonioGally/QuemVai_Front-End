@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import {Edit} from "@styled-icons/boxicons-regular/Edit"
 
 export const MyTitleForm = styled.h3`
   font-family: "Poppins";
-  color: black;  
+  color: var(--fontWhite);  
+  font-size: 40px;
   @media (max-width: 768px) {
     font-size: 20px;
   }
@@ -19,12 +21,9 @@ export const MyForm = styled.div`
 `;
 export const MyLableText = styled.h5`
   font-family: "Poppins";
-  color: black;
-  > span {
-    font-size: 18px;
-    margin-left: 5px;
-    font-weight: 200;
-  }
+  color: var(--fontWhite);
+  font-size:28px;
+  
   @media (max-width: 768px) {
     font-size: 20px;
   }
@@ -44,3 +43,10 @@ export const MyButton = styled.button`
   }
 `;
 
+export const EditIcon = styled(Edit)`
+  width:28px;
+  height:28px;
+  fill:white;
+  flex-shrink:0;
+  margin-left:20px;
+`;

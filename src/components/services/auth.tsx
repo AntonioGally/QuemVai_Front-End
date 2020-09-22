@@ -33,3 +33,11 @@ export const logout = () => {
 };
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const getTokenAdmin = () => localStorage.getItem(TOKEN_KEY_ADMIN);
+
+export function Token() {
+  if (getToken()) {
+    return getToken();
+  } else {
+    return getTokenAdmin();
+  }
+}

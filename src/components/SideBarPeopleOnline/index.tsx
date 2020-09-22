@@ -35,8 +35,7 @@ const SideBarPeopleOnline: React.FC = () => {
       </div>
       <div className="row" style={{margin:'30px 0'}}>
         <UserButton isOnline={true} userName={'Lucas Pissuto'}/>
-      </div>
-      
+      </div>      
     </div>
     </Container>
   );

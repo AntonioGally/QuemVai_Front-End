@@ -9,21 +9,18 @@ import user from "../../img/icones/user.svg";
 import { MyNav } from "./style";
 import "./styles.css";
 import api from "../services/api";
-import { getToken, getTokenAdmin } from "../services/auth";
+import { getToken, getTokenAdmin, Token } from "../services/auth";
 
 const Header: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
   const [isLogged, setIsLogged] = React.useState(Boolean);
-  const [token, setToken] = React.useState("");
 
   useEffect(() => {
     if (getToken()) {
       setIsLogged(true);
-      setToken(getToken() as string);
     } else if (getTokenAdmin()) {
       setIsLogged(true);
-      setToken(getTokenAdmin() as string);
     } else {
       setIsLogged(false);
     }
@@ -33,7 +30,7 @@ const Header: React.FC = () => {
           validateStatus: function (status) {
             return status < 500; // Resolve only if the status code is less than 500
           },
-          headers: { "x-auth-token": token },
+          headers: { "x-auth-token": Token() },
         }),
       ]).then(async (responses) => {
         const [Info] = responses;
@@ -41,7 +38,7 @@ const Header: React.FC = () => {
         setUserPhoto(informations.data["info"]["photos"]);
       });
     }
-  }, [isLogged, token]);
+  }, [isLogged]);
 
   return (
     <div style={{ height: "100%" }}>
@@ -54,9 +51,9 @@ const Header: React.FC = () => {
           <Form inline>
             <Image
               src={userPhoto ? userPhoto : user}
-              width="80px"   
+              width="80px"
               height="80px"
-              roundedCircle      
+              roundedCircle
               style={{ cursor: "pointer" }}
               onClick={() => setModalShow(true)}
             />

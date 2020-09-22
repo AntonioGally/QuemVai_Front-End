@@ -1,19 +1,61 @@
-.WrapperModalConfig{
-    width:100%;
-    height:500px;
-    overflow-y: scroll;
-    background-color:var(--primary);
+.WrapperModalConfig {
+  width: 100%;
+  height: 500px;
+  overflow-y: scroll;
+  background-color: var(--primary);
+  border-radius: 15px;
 }
 
+.navLinkWrapper {
+  margin-top: 15%;
+}
+.MyNavItem {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7%;
+}
 .MyNavLink {
   background-color: var(--buttonFill) !important;
   border-radius: 6.5px !important;
   color: var(--fontWhite) !important;
   padding: 10px;
+  text-align: center;
+  width: 80%;
 }
+
 .MyNavLink:hover {
   background-color: var(--buttonFill) !important;
   opacity: 0.8;
   color: var(--fontWhite) !important;
+  transition: all 0.5s ease-in-out;
+}
+.modal-content {
+  border-radius: 30px !important;
+}
+
+.MyRowForm {
+  margin: 0 !important;
+  align-items: center;
+}
+
+.MyInputForm {
+  height: 45px;
+  border: 1px solid black !important;
+  border-radius: 7px;
+  width: 80%;
+}
+
+.MyButtonDeleteAccount {
+  background-color: var(--buttonFill);
+  border-radius: 6.5px !important;
+  color: var(--fontWhite);
+  width: 30%;
+  padding: 10px;
+}
+
+.MyButtonDeleteAccount:hover {
+  background-color: var(--buttonFill);
+  opacity: 0.8;
+  color: var(--fontWhite);
   transition: all 0.5s ease-in-out;
 }

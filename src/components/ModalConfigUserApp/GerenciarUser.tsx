@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./ModalConfigStyles.css";
 import { Row, Col, Form, Container, InputGroup } from "react-bootstrap";
-import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
+import { MyTitleForm, MyLableText, MyForm, MyButton, EditIcon } from "./styles";
 
 import api from "../services/api";
-import { getToken } from "../services/auth";
+import { Token } from "../services/auth";
 import { FormConfigUser, FormConfigUserAltered } from "../@types";
 
 import ModalConfirmDeleteAcc from "./confirmation/ModalConfirmDeleteAcc";
@@ -29,7 +29,7 @@ const ModalConfigUserApp: React.FC = () => {
 
     try {
       var config = {
-        headers: { "x-auth-token": getToken() },
+        headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
           return status < 500; // Resolve only if the status code is less than 500
         },
@@ -57,7 +57,7 @@ const ModalConfigUserApp: React.FC = () => {
         validateStatus: function (status) {
           return status < 500; // Resolve only if the status code is less than 500
         },
-        headers: { "x-auth-token": getToken() },
+        headers: { "x-auth-token": Token() },
       }),
     ]).then(async (responses) => {
       const [PushUserInformation] = responses;
@@ -76,42 +76,48 @@ const ModalConfigUserApp: React.FC = () => {
         <Form onSubmit={handleSubmit(FormSubmitConfigUser)}>
           <Row style={{ marginBottom: "4%" }}>
             <Col md={6}>
-              <MyLableText> Nome: </MyLableText>
+              <MyLableText> Nome </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="userName"
-                    id="userName"
-                    placeholder="ex.: Robson da Silva"
-                    defaultValue={data?.PushInformations.info.name}
-                    style={{ borderRadius: "10px" }}
-                    ref={register({
-                      required: true,
-                    })}
-                  />
-                  {errors.userName &&
-                    (errors.userName as any).type === "required" && (
-                      <div className="error">O Nome é obrigatório</div>
-                    )}
+                  <Row className="MyRowForm">
+                    <Form.Control
+                      className="MyInputForm"
+                      type="text"
+                      name="userName"
+                      id="userName"
+                      placeholder="ex.: Robson da Silva"
+                      defaultValue={data?.PushInformations.info.name}
+                      ref={register({
+                        required: true,
+                      })}
+                    />
+                    {errors.userName &&
+                      (errors.userName as any).type === "required" && (
+                        <div className="error">O Nome é obrigatório</div>
+                      )}
+                    <EditIcon />
+                  </Row>
                 </Form.Group>
               </MyForm>
             </Col>
             <Col md={6}>
-              <MyLableText> Apelido: </MyLableText>
+              <MyLableText> Apelido </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="userNickName"
-                    id="userNickName"
-                    placeholder="ex.: RobSilva"
-                    defaultValue={data?.PushInformations.info.username}
-                    style={{ borderRadius: "10px" }}
-                    ref={register({
-                      required: true,
-                    })}
-                  />
+                  <Row className="MyRowForm">
+                    <Form.Control
+                      className="MyInputForm"
+                      type="text"
+                      name="userNickName"
+                      id="userNickName"
+                      placeholder="ex.: RobSilva"
+                      defaultValue={data?.PushInformations.info.username}
+                      ref={register({
+                        required: true,
+                      })}
+                    />
+                    <EditIcon />
+                  </Row>
                   {errors.userNickName &&
                     (errors.userNickName as any).type === "required" && (
                       <div className="error">O NickName é obrigatório</div>
@@ -122,24 +128,27 @@ const ModalConfigUserApp: React.FC = () => {
           </Row>
           <Row>
             <Col md={6}>
-              <MyLableText> Email: </MyLableText>
+              <MyLableText> Email </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
-                  <Form.Control
-                    type="email"
-                    name="userEmail"
-                    id="userEmail"
-                    placeholder="ex.: robson@gmail.com"
-                    defaultValue={data?.PushInformations.info.email}
-                    style={{ borderRadius: "10px" }}
-                    ref={register({
-                      required: true,
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                        message: "Insira um email válido",
-                      },
-                    })}
-                  />
+                  <Row className="MyRowForm">
+                    <Form.Control
+                      className="MyInputForm"
+                      type="email"
+                      name="userEmail"
+                      id="userEmail"
+                      placeholder="ex.: robson@gmail.com"
+                      defaultValue={data?.PushInformations.info.email}
+                      ref={register({
+                        required: true,
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "Insira um email válido",
+                        },
+                      })}
+                    />
+                    <EditIcon />
+                  </Row>
                   {errors.userEmail &&
                     (errors.userEmail as any).type === "required" && (
                       <div className="error">O Email é obrigatório</div>
@@ -155,35 +164,36 @@ const ModalConfigUserApp: React.FC = () => {
             </Col>
             <Col md={6}>
               <div className="row" style={{ margin: 0 }}>
-                <MyLableText>Telefone:</MyLableText>
+                <MyLableText>Telefone</MyLableText>
               </div>
               <MyForm className="firstColumn">
                 <Form.Group>
                   <InputGroup>
-                    <Col md={2} style={{ padding: 0, marginRight: "1%" }}>
-                      <Form.Control
-                        type="text"
-                        name="userDDD"
-                        id="userDDD"
-                        placeholder="01"
-                        defaultValue={data?.PushInformations.info.DDD}
-                        style={{ borderRadius: "10px" }}
-                        ref={register({
-                          pattern: {
-                            value: /^[0-9]+$/i,
-                            message: "Insira um número válido",
-                          },
-                          max: {
-                            value: 3,
-                            message: "Insira no máximo 3 números",
-                          },
-                          min: {
-                            value: 2,
-                            message: "Insira no mínimo 2 números",
-                          },
-                          required: true,
-                        })}
-                      />
+                    <Col md={2} style={{ padding: 0, marginRight: "1%" }}>                      
+                        <Form.Control
+                          className="MyInputForm"
+                          type="text"
+                          name="userDDD"
+                          id="userDDD"
+                          placeholder="01"
+                          defaultValue={data?.PushInformations.info.DDD}
+                          ref={register({
+                            pattern: {
+                              value: /^[0-9]+$/i,
+                              message: "Insira um número válido",
+                            },
+                            max: {
+                              value: 3,
+                              message: "Insira no máximo 3 números",
+                            },
+                            min: {
+                              value: 2,
+                              message: "Insira no mínimo 2 números",
+                            },
+                            required: true,
+                          })}
+                        />
+                        
                       {errors.userDDD &&
                         (errors.userDDD as any).type === "pattern" && (
                           <div className="error">
@@ -208,31 +218,34 @@ const ModalConfigUserApp: React.FC = () => {
                         )}
                     </Col>
                     <Col style={{ padding: 0 }}>
-                      <Form.Control
-                        type="text"
-                        name="UserNumber"
-                        id="UserNumber"
-                        placeholder="12345678"
-                        defaultValue={
-                          data?.PushInformations.info.cellPhoneNumber
-                        }
-                        style={{ borderRadius: "10px" }}
-                        ref={register({
-                          pattern: {
-                            value: /^[0-9]+$/i,
-                            message: "Insira um número válido",
-                          },
-                          max: {
-                            value: 10,
-                            message: "Insira no máximo 10 números",
-                          },
-                          min: {
-                            value: 8,
-                            message: "Insira no mínimo 8 números",
-                          },
-                          required: true,
-                        })}
-                      />
+                      <Row className="MyRowForm">
+                        <Form.Control
+                          className="MyInputForm"
+                          type="text"
+                          name="UserNumber"
+                          id="UserNumber"
+                          placeholder="12345678"
+                          defaultValue={
+                            data?.PushInformations.info.cellPhoneNumber
+                          }
+                          ref={register({
+                            pattern: {
+                              value: /^[0-9]+$/i,
+                              message: "Insira um número válido",
+                            },
+                            max: {
+                              value: 10,
+                              message: "Insira no máximo 10 números",
+                            },
+                            min: {
+                              value: 8,
+                              message: "Insira no mínimo 8 números",
+                            },
+                            required: true,
+                          })}
+                        />
+                        <EditIcon />
+                      </Row>
                     </Col>
                     {errors.UserNumber &&
                       (errors.UserNumber as any).type === "pattern" && (
@@ -262,41 +275,35 @@ const ModalConfigUserApp: React.FC = () => {
               <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
           </Row>
-          <Row style={{ justifyContent: "flex-end" }}>
-            <Col md={6}>
+          <Row style={{ justifyContent: "flex-end", marginTop: "7%" }}>
+            <Col md={4}>
               <MyForm>
                 <div style={{ margin: "5%" }}>
-                  <div className="row" style={{ justifyContent: "flex-end" }}>
-                    <MyButton
-                      type="submit"
-                      className="btn"
-                      style={{ width: "40%" }}
-                    >
-                      Alterar dados
-                    </MyButton>
+                  <MyButton
+                    type="submit"
+                    className="btn"
+                    style={{ width: "100%" }}
+                  >
+                    Editar dados
+                  </MyButton>
+                </div>
+              </MyForm>
+            </Col>
+            <Col md={4}>
+              <MyForm>
+                <div style={{ margin: "5%" }}>
+                  <div
+                    className="btn MyButtonDeleteAccount"
+                    onClick={() => setModalShow(true)}
+                    style={{ width: "100%" }}
+                  >
+                    Deletar conta
                   </div>
                 </div>
               </MyForm>
             </Col>
           </Row>
         </Form>
-        <Row style={{ marginTop: "5%", justifyContent: "flex-end" }}>
-          <Col md={6}>
-            <MyForm>
-              <div style={{ margin: "5%" }}>
-                <div className="row" style={{ justifyContent: "flex-end" }}>
-                  <MyButton
-                    className="btn"
-                    onClick={() => setModalShow(true)}
-                    style={{ width: "40%" }}
-                  >
-                    Deletar conta
-                  </MyButton>
-                </div>
-              </div>
-            </MyForm>
-          </Col>
-        </Row>
       </Container>
       {modalShow ? (
         <ModalConfirmDeleteAcc

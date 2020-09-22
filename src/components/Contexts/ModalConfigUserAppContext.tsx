@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-const context = createContext(1);
+const context = createContext({});
 
 function NavBarContext({ childreen }: any) {
   const [gerenciarUser, setGerenciarUser] = useState(true);
@@ -27,3 +27,5 @@ function NavBarContext({ childreen }: any) {
 }
 
 export { context, NavBarContext };
+
+

@@ -1,59 +1,64 @@
 import React from "react";
+
 import { Modal, Col, Row, Tab, Nav } from "react-bootstrap";
-import GerenciarUser from "./GerenciarUser";
-import HistoricUser from "./HistoricUser";
-import PasswordAtualization from "./PasswordAtualization";
-import PhotoAtualization from "./PhotoAtualization";
-import "./ModalConfigStyles.css";
-// import { Container } from './styles';
+import "./ModalFriendStyles.css";
+
+import SideBarPeopleOnline from "../SideBarPeopleOnline";
 
 export interface Props {
   show: boolean;
   onHide: any;
 }
 
-const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
+// import { Container } from './styles';
+
+const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
   return (
     <div>
-      <Modal size="xl" animation={false} centered show={show} onHide={onHide}>        
+      <Modal dialogClassName="modal-90w" centered show={show} onHide={onHide}>
+        <Modal.Header></Modal.Header>
         <Modal.Body>
           <Tab.Container id="left-tabs-example" defaultActiveKey="Account">
             <Row>
-              <Col sm={3}>
+              <Col md={2}>
                 <Nav
                   variant="pills"
                   className="flex-column"
                   style={{ height: "100%", justifyContent: "space-between" }}
                 >
-                  <div className="navLinkWrapper">
-                    <Nav.Item className="MyNavItem">
+                  <div>
+                    <Nav.Item>
                       <Nav.Link
                         eventKey="Account"
-                        className="MyNavLink"                        
+                        className="MyNavLink"
+                        style={{ marginBottom: "7%" }}
                       >
                         Minha Conta
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="MyNavItem">
+                    <Nav.Item>
                       <Nav.Link
                         eventKey="Password"
-                        className="MyNavLink"                        
+                        className="MyNavLink"
+                        style={{ marginBottom: "7%" }}
                       >
                         Atualizar Senha
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="MyNavItem">
+                    <Nav.Item>
                       <Nav.Link
                         eventKey="Photo"
-                        className="MyNavLink"                        
+                        className="MyNavLink"
+                        style={{ marginBottom: "7%" }}
                       >
                         Atualizar Foto
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="MyNavItem">
+                    <Nav.Item>
                       <Nav.Link
                         eventKey="Historic"
-                        className="MyNavLink"                        
+                        className="MyNavLink"
+                        style={{ marginBottom: "7%" }}
                       >
                         Meu Histórico
                       </Nav.Link>
@@ -61,28 +66,32 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                   </div>
                 </Nav>
               </Col>
-              <Col sm={9}>
+              <Col md={8}>
                 <Tab.Content>
                   <Tab.Pane eventKey="Account">
-                    <GerenciarUser />
+                    <h1>Teste</h1>
                   </Tab.Pane>
                   <Tab.Pane eventKey="Password">
-                    <PasswordAtualization />
+                    <h1>Teste</h1>
                   </Tab.Pane>
                   <Tab.Pane eventKey="Photo">
-                    <PhotoAtualization />
+                    <h1>Teste</h1>
                   </Tab.Pane>
                   <Tab.Pane eventKey="Historic">
-                    <HistoricUser />
+                    <h1>Teste</h1>
                   </Tab.Pane>
                 </Tab.Content>
+              </Col>
+              <Col md={2}>
+                <SideBarPeopleOnline />
               </Col>
             </Row>
           </Tab.Container>
         </Modal.Body>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </div>
   );
 };
 
-export default ModalConfigUserApp;
+export default ModalFriendUserApp;

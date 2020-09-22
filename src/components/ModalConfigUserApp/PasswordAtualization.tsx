@@ -7,7 +7,7 @@ import { MyLableText, MyForm, MyButton, MyTitleForm } from "./styles";
 import "./ModalConfigStyles.css";
 
 import api from "../services/api";
-import { getToken, logout, login } from "../services/auth";
+import { Token, logout, login } from "../services/auth";
 
 type Passwords = {
   userPassword: string;
@@ -22,7 +22,7 @@ const ModalConfigUserApp: React.FC = () => {
 
   const SubmitForm = async (data: Passwords) => {
     const userPassword = data.userPassword;
-    const userPasswordConfirm = data.userPasswordConfirm;    
+    const userPasswordConfirm = data.userPasswordConfirm;
 
     if (userPassword === userPasswordConfirm) {
       setSucces(true);
@@ -37,7 +37,7 @@ const ModalConfigUserApp: React.FC = () => {
         var config = {
           headers: {
             "x-new-password": finalPassword,
-            "x-auth-token": getToken(),
+            "x-auth-token": Token(),
           },
           validateStatus: function (status: any) {
             return status < 500; // Resolve only if the status code is less than 500
@@ -63,16 +63,17 @@ const ModalConfigUserApp: React.FC = () => {
   return (
     <div className="WrapperModalConfig">
       <Container fluid>
-        <MyTitleForm style={{ marginBottom: "4%" }}>
+        <MyTitleForm style={{ marginBottom: "8%" }}>
           Altere sua Senha:
         </MyTitleForm>
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row>
             <Col md={6}>
-              <MyLableText> Alterar sua senha: </MyLableText>
+              <MyLableText> Digite a nova senha: </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
                   <Form.Control
+                    className="MyInputForm"
                     type="password"
                     name="userPassword"
                     id="userPassword"
@@ -99,12 +100,12 @@ const ModalConfigUserApp: React.FC = () => {
                 </Form.Group>
               </MyForm>
             </Col>
-          </Row>
-          <Row style={{ alignItems: "center" }}>
             <Col md={6}>
+              <MyLableText> Confirme a nova senha: </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
                   <Form.Control
+                    className="MyInputForm"
                     type="password"
                     name="userPasswordConfirm"
                     id="userPasswordConfirm"
@@ -133,14 +134,12 @@ const ModalConfigUserApp: React.FC = () => {
               </MyForm>
               <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
-            <Col md={6}>
-              <MyButton
-                type="submit"
-                className="btn"
-                style={{ marginTop: "13px", width: "40%" }}
-              >
+          </Row>
+          <Row style={{ justifyContent:"flex-end", marginTop:"10%" }}>
+            <Col md={3} style={{marginRight:"10%"}}>
+              <MyButton type="submit" className="btn" style={{ width: "100%" }}>
                 Alterar senha
-              </MyButton>              
+              </MyButton>
             </Col>
           </Row>
         </Form>

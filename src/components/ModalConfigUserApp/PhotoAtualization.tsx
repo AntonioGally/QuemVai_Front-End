@@ -6,7 +6,7 @@ import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
 import "./ModalConfigStyles.css";
 
 import api from "../services/api";
-import { getToken } from "../services/auth";
+import { Token } from "../services/auth";
 
 type FormPhoto = {
   userPhoto: any;
@@ -61,7 +61,7 @@ const PhotoAtualization: React.FC = () => {
         photos = finalFile;
         try {
           var config = {
-            headers: { "x-auth-token": getToken() },
+            headers: { "x-auth-token": Token() },
             validateStatus: function (status: any) {
               return status < 500; // Resolve only if the status code is less than 500
             },
@@ -92,7 +92,7 @@ const PhotoAtualization: React.FC = () => {
         validateStatus: function (status) {
           return status < 500; // Resolve only if the status code is less than 500
         },
-        headers: { "x-auth-token": getToken() },
+        headers: { "x-auth-token": Token() },
       }),
     ]).then(async (responses) => {
       const [PushUserInformation] = responses;
@@ -106,64 +106,73 @@ const PhotoAtualization: React.FC = () => {
     <div className="WrapperModalConfig">
       <Container fluid>
         <MyTitleForm style={{ marginBottom: "4%" }}>
-          Altere sua Foto:
+          Altere sua foto
         </MyTitleForm>
 
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row style={{ alignItems: "center" }}>
-            <Col md={6} style={{ textAlign: "center" }}>
-              <MyLableText> Foto de perfil: </MyLableText>
-              <MyForm className="firstColumn">
-                <img
-                  src={data?.Photo}
-                  style={{
-                    marginTop: "2%",
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "5%",
-                  }}
-                  alt={"Imagem do usuário"}
-                />
-              </MyForm>
-            </Col>
-            <Col md={6}>
-              <MyLableText style={{ marginBottom: "2% 0" }}>
-                Alterar
-              </MyLableText>
-              <MyForm>
-                <div style={{ margin: "5%" }}>
-                  <div className="mb-3">
-                    <Form.File custom>
-                      <Form.File.Label>Procurar...</Form.File.Label>
-                      <Form.File.Input
-                        name="userPhoto"
-                        id="userPhoto"
-                        ref={register({
-                          required: true,
-                        })}
-                      />
-                      {errors.userPhoto &&
-                        (errors.userPhoto as any).type === "required" && (
-                          <div className="error">A foto é obrigatória</div>
-                        )}
-                    </Form.File>
-                    <div style={{ fontFamily: "Poppins", color: "red" }}>
-                      {erros}
+            <Row style={{margin:"0px 0px 4% 0px", width:"100%"}}>
+              <Col md={6} style={{ textAlign: "center" }}>
+                <MyLableText> Foto de perfil: </MyLableText>
+              </Col>
+              <Col md={6} style={{ textAlign: "center" }}>
+                <MyLableText>Alterar</MyLableText>
+              </Col>
+            </Row>
+
+
+            <Row style={{margin:0, width:"100%"}}>
+              <Col md={6} style={{ textAlign: "center" }}>
+                <MyForm className="firstColumn">
+                  <img
+                    src={data?.Photo}
+                    style={{
+                      marginTop: "2%",
+                      width: "150px",
+                      height: "150px",
+                      borderRadius: "50%",
+                    }}
+                    alt={"Imagem do usuário"}
+                  />
+                </MyForm>
+              </Col>
+              <Col md={6}>
+                <MyForm>
+                  <div style={{ margin: "5%" }}>
+                    <div className="mb-3">
+                      <Form.File custom>
+                        <Form.File.Label>Procurar...</Form.File.Label>
+                        <Form.File.Input
+                          name="userPhoto"
+                          id="userPhoto"
+                          ref={register({
+                            required: true,
+                          })}
+                        />
+
+                        {errors.userPhoto &&
+                          (errors.userPhoto as any).type === "required" && (
+                            <div className="error">A foto é obrigatória</div>
+                          )}
+                      </Form.File>
+                      <div style={{ fontFamily: "Poppins", color: "red" }}>
+                        {erros}
+                      </div>
+                    </div>
+
+                    <div className="row" style={{ justifyContent: "flex-end" }}>
+                      <MyButton
+                        type="submit"
+                        className="btn"
+                        style={{ width: "40%" }}
+                      >
+                        Salvar
+                      </MyButton>
                     </div>
                   </div>
-
-                  <div className="row" style={{ justifyContent: "flex-end" }}>
-                    <MyButton
-                      type="submit"
-                      className="btn"
-                      style={{ width: "40%" }}
-                    >
-                      Salvar
-                    </MyButton>
-                  </div>
-                </div>
-              </MyForm>
-            </Col>
+                </MyForm>
+              </Col>
+            </Row>
           </Row>
         </Form>
       </Container>
