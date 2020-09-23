@@ -22,10 +22,6 @@ const AddQuadrasAdmin: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<FormCadastroAdd>();
 
   const onSubmit = async (data: FormCadastroAdd) => {
-    var config = {
-      headers: { "x-auth-token": getTokenAdmin() },
-    };
-
     try {
       const name = data.NomeQuadraAdd;
 
@@ -35,15 +31,19 @@ const AddQuadrasAdmin: React.FC = () => {
       const longitude = data.LongitudeQuadraAdd;
       const description = data.DescricaoQuadraAdd;
       const UF = data.UfQuadraAdd;
+      var config = {
+        headers: { "x-auth-token": getTokenAdmin() },
+      };
 
       const response = await api.post(
         "/api/admin/cadastrar",
-        { name, address, CEP, latitude, longitude, description, UF },
+        { name, address, CEP, latitude, longitude, UF, description },
         config
       );
 
       if (response.data["User created"]) {
         alert("Quadra criada com sucesso!");
+        window.location.reload();
       }
       if (!response.data["User created"]) {
         alert("Houve algum problema!");

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Modal, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import "./ModalFriendStyles.css";
+
+import DeletarAmigo from "./Confirmação/DeletarAmigo";
 
 import { MyLableText } from "./styles";
 
@@ -28,6 +30,7 @@ const ModalFriendUserApp: React.FC<Props> = ({
   onHide,
 }) => {
   const [trustFriend, setTrustFriend] = React.useState(false);
+  const [modalDeleteFriend, setModalDeleteFriend] = React.useState(false);
   useEffect(() => {
     if (cell) {
       setTrustFriend(true);
@@ -39,9 +42,7 @@ const ModalFriendUserApp: React.FC<Props> = ({
   return (
     <div>
       <Modal size="lg" centered show={show} onHide={onHide}>
-        <Modal.Header closeButton>
-          <Modal.Title>Conta da(o) {userName}</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton></Modal.Header>
 
         <Modal.Body>
           <Form>
@@ -66,71 +67,96 @@ const ModalFriendUserApp: React.FC<Props> = ({
                   <img
                     src={photos}
                     alt={"User"}
-                    style={{ height: "130px", width: "130px", borderRadius:"50%" }}
+                    style={{
+                      height: "130px",
+                      width: "130px",
+                      borderRadius: "50%",
+                    }}
                   />
                 </Col>
               </Row>
               {!trustFriend ? (
-                <Row style={{ marginTop: "4%" }}>
-                  <Col md={3}>
-                    <MyLableText className="userInfo">
-                      Nome do(a) {userName}:
-                    </MyLableText>
-                    <Form.Group>
-                      <Row className="MyRowForm">
-                        <Form.Control
-                          className="MyInputForm"
-                          type="text"
-                          defaultValue={name}
-                        />
-                      </Row>
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
-                    <MyLableText className="userInfo">
-                      Email do(a) {userName}:
-                    </MyLableText>
-                    <Form.Group>
-                      <Row className="MyRowForm">
-                        <Form.Control
-                          className="MyInputForm"
-                          type="text"
-                          defaultValue={email}
-                        />
-                      </Row>
-                    </Form.Group>
-                  </Col>
-                  <Col md={4}>
-                    <MyLableText className="userInfo">
-                      Nome do(a) {userName}:
-                    </MyLableText>
-                    <Form.Group>
-                      <Row className="MyRowForm">
-                        <Form.Control
-                          className="MyInputForm"
-                          type="text"
-                          defaultValue={name}
-                        />
-                      </Row>
-                    </Form.Group>
-                  </Col>
-                </Row>
+                <div>
+                  <Row style={{ marginTop: "4%" }}>
+                    <Col md={6}>
+                      <MyLableText className="userInfo">Nome:</MyLableText>
+                      <Form.Group>
+                        <Row className="MyRowForm">
+                          <Form.Control
+                            className="MyInputForm"
+                            type="text"
+                            defaultValue={name}
+                          />
+                        </Row>
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <MyLableText className="userInfo">Email:</MyLableText>
+                      <Form.Group>
+                        <Row className="MyRowForm">
+                          <Form.Control
+                            className="MyInputForm"
+                            type="text"
+                            defaultValue={email}
+                          />
+                        </Row>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row style={{ marginTop: "4%" }}>
+                    <Col md={8}>
+                      <div className="row" style={{ margin: 0 }}>
+                        <MyLableText className="userInfo">
+                          Telefone:{" "}
+                        </MyLableText>
+                      </div>
+                      <Form.Group>
+                        <InputGroup>
+                          <Col md={2} style={{ padding: 0, marginRight: "1%" }}>
+                            <Form.Control
+                              className="MyInputForm"
+                              type="text"
+                              defaultValue={ddd}
+                            />
+                          </Col>
+                          <Col style={{ padding: 0 }}>
+                            <Form.Control
+                              className="MyInputForm"
+                              type="text"
+                              defaultValue={cell}
+                            />
+                          </Col>
+                        </InputGroup>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                </div>
               ) : (
-                <div>Não é confiável</div>
+                <div></div>
               )}
             </fieldset>
           </Form>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button type="button" variant="danger" onClick={onHide}>
-            Voltar
-          </Button>
-          <Button type="button" variant="success">
-            Aceitar
+          <Button
+            type="button"
+            variant="danger"
+            onClick={() => setModalDeleteFriend(true)}
+          >
+            Excluir
           </Button>
         </Modal.Footer>
       </Modal>
+      {modalDeleteFriend ? (
+        <DeletarAmigo
+          id={idFriend}
+          show={modalDeleteFriend}
+          onHide={() => setModalDeleteFriend(false)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -86,14 +86,14 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
     }
   };
 
-  function handleDelete() {
+  const handleDelete = async () => {
     setDeleteClick(true);
-  }
+  };
 
   useEffect(() => {
     if (deleteClick) {
       Promise.all([
-        api.put(`/api/admin/find/delete/${IdQuadraConfig}`, "", config),
+        api.delete(`/api/admin/find/delete/${IdQuadraConfig}`, config),
       ]).then(async (responses) => {
         const [DeletedInformation] = responses;
         if (DeletedInformation.status === 200 && deleteClick) {

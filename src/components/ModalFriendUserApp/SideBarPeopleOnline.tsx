@@ -60,23 +60,23 @@ const ModalFriendUserApp: React.FC = () => {
             />
           </Row>
           <MyRowPeople>{information.username}</MyRowPeople>
-          {modalShow ? (
-            <ModalFriendInfo
-              idFriend={idFriend}
-              userName={userName}
-              name={name}
-              photos={photos}
-              email={email}
-              ddd={DDD}
-              cell={cellPhoneNumber}
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
-          ) : (
-            ""
-          )}
         </div>
       ))}
+      {modalShow ? (
+        <ModalFriendInfo
+          idFriend={idFriend}
+          userName={userName}
+          name={name}
+          photos={photos}
+          email={email}
+          ddd={DDD}
+          cell={cellPhoneNumber}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      ) : (
+        ""
+      )}
     </Container>
   );
 };

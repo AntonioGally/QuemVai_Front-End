@@ -36,7 +36,6 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
       const response = await api.post(
         `/api/admin/add/sport/${id_esporte}/to/space/${id_quadra}`,
         "",
-
         config
       );
 
@@ -45,11 +44,15 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
       }
       if (response.data === "Sport not found") {
         setErros("O ID do esporte não existe!");
-      }     
+      } 
+
 
       if (response.status === 200) {
         alert("Esporte adicionado com sucesso!");
         window.location.reload();
+      }
+      if(response.status === 400) {
+        setErros("Esse esporte já está cadastrado na quadra")
       }
       if (response.status === 404) {
         alert("Houve algum problema!");
