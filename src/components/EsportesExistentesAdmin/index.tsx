@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Table } from "react-bootstrap";
 import EsportesExistentesData from "../DataList/EsportesExistentesData";
-import { MyContainer } from "./styles";
+import { MyContainer, MyWrapperTable } from "./styles";
 
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
@@ -36,11 +36,11 @@ const EsportesExistentesAdmin: React.FC = () => {
 
   return (
     <div className="row justify-content-center" style={{ margin: "10% 0" }}>
-      <div style={{ width: "70%" }}>
+      <MyWrapperTable>
         <h3 style={{ marginBottom: "3%" }}>Esportes cadastrados</h3>
 
         <MyContainer>
-          <Table striped bordered hover>
+          <Table striped bordered hover variant="light">
             <thead>
               <tr>
                 <th>ID</th>
@@ -60,7 +60,7 @@ const EsportesExistentesAdmin: React.FC = () => {
             </tbody>
           </Table>
         </MyContainer>
-      </div>
+      </MyWrapperTable>
     </div>
   );
 };

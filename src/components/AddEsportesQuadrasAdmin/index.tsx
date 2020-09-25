@@ -61,6 +61,7 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
     } catch (err) {
       console.log(err);
     }
+    
   };
 
   useEffect(() => {
@@ -136,7 +137,7 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
         <Col md={6}>
           <h3>Esportes Existentes</h3>
           <SportsList>
-            <Table striped bordered hover>
+            <Table striped bordered hover variant="light">
               <thead>
                 <tr>
                   <th>ID</th>

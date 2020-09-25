@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Table } from "react-bootstrap";
-import { MyContainer } from "./styles";
+import { MyContainer, MyWrapperTable } from "./styles";
 import EmailRespondedData from "../DataList/EmailRespondedData";
 
 import api from "../services/api";
@@ -28,10 +28,10 @@ const EmailResponded: React.FC = () => {
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
-        <div style={{ width: "70%" }}>
+        <MyWrapperTable>
           <h3 style={{ marginBottom: "3%" }}>Emails Respondidos</h3>
           <MyContainer>
-            <Table striped bordered hover>
+            <Table striped bordered hover variant="light">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -62,7 +62,7 @@ const EmailResponded: React.FC = () => {
               </tbody>
             </Table>
           </MyContainer>
-        </div>
+        </MyWrapperTable>
       </div>
     </div>
   );

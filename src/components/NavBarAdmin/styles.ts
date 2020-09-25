@@ -33,7 +33,7 @@ export const MyLink = styled.div`
       width: calc(100%);
       height: 5px;
       content: "";
-      background-color: #00d446;
+      background-color: var(--buttonFill);
       border-radius: 2.5px;
       left: 1%;
       top: 100%;

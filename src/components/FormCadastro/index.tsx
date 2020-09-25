@@ -390,7 +390,7 @@ const FormCadastro: React.FC = () => {
                         type="submit"
                         className="btn MyButtonSubmitModalLogin float-right"
                       >
-                        Enviar
+                        Cadastrar
                       </MyButton>
                       <div style={{ color: "red", fontSize: "20px" }}>
                         {erros}

@@ -60,11 +60,7 @@ const NavBar: React.FC = () => {
           </Nav.Item>
           <Nav.Item>
             <MyLink>
-              <span
-                className="nav-link"
-                style={{ cursor: "pointer" }}
-                onClick={() => setModalShow(true)}
-              >
+              <span className="nav-link" onClick={() => setModalShow(true)}>
                 Login
               </span>
             </MyLink>

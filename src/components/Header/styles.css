@@ -8,5 +8,10 @@
 }
 
 .InputDesktop input{        
-    border-radius:30px;
+    border-radius:10px;
+    float: left;
+    
+}
+.InputDesktop{
+    position: relative;
 }

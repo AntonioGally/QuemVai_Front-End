@@ -11,6 +11,7 @@ export const SocialContainer = styled.div`
   align-items: center;
   justify-content: center;
   font-family:"Poppins";
+  color:var(--fontWhite);
   border-radius : 30px 0px 0px 30px;
 `;
 export const ErroLogin = styled.div`
@@ -25,6 +26,8 @@ const svgCss = css`
   width: 35px;
   height: 35px;
   flex-shrink: 0;
+  cursor:pointer;
+  fill:var(--fontBlack);
   margin-right: 10px;
 `;
 

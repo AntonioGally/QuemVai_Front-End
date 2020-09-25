@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Modal, Col, Row, Tab, Nav } from "react-bootstrap";
 import { logout } from "../services/auth";
 import GerenciarUser from "./GerenciarUser";
@@ -7,6 +7,7 @@ import HistoricUser from "./HistoricUser";
 import PasswordAtualization from "./PasswordAtualization";
 import PhotoAtualization from "./PhotoAtualization";
 import "./ModalConfigStyles.css";
+
 // import { Container } from './styles';
 
 export interface Props {
@@ -17,7 +18,7 @@ export interface Props {
 const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
   return (
     <div>
-      <Modal size="xl" animation={false} centered show={show} onHide={onHide}>
+      <Modal size="xl" animation={true} centered show={show} onHide={onHide}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <Tab.Container id="left-tabs-example" defaultActiveKey="Account">
@@ -53,12 +54,12 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                   <div>
                     <Nav.Item className="MyNavItem">
                       <NavLink
-                        to="/"                        
+                        to="/"
                         className=" nav-link MyNavLink"
                         onClick={() => logout()}
                       >
                         Sair
-                      </NavLink>                      
+                      </NavLink>
                     </Nav.Item>
                   </div>
                 </Nav>

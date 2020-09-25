@@ -8,7 +8,7 @@ export const MyHeader = styled.div`
   background-color: var(--primary);
   >a > span {
     font-size: 26px;
-    color: var(--fontBlack);
+    color: var(--fontWhite);
     font-family: "Poppins";
     float: right;
     padding: 10px 20px;
@@ -16,7 +16,7 @@ export const MyHeader = styled.div`
   }
   > h3 {
     font-size: 26px;
-    color: var(--fontBlack);
+    color: var(--fontWhite);
     font-family: "Poppins";
     float: right;
     padding: 10px 20px;

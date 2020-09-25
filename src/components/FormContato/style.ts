@@ -2,11 +2,9 @@ import styled from "styled-components";
 
 export const MyContainer = styled.div`
   border-radius: 15px;
-  margin-top: 8%;
   background-color: var(--background);
   padding: 8% 8% 4% 8%;
   margin-bottom: 5%;
-  border-top: 2px solid black;
 `;
 
 export const MyForm = styled.div`
@@ -42,14 +40,13 @@ export const MyTitleForm = styled.h3`
       width: 100%;
       left: 0;
     }
-    height: 3px;
+    height: 2px;
     position: absolute;
     left: -50px;
     top: 100%;
     background-color: var(--primary);
     border-radius: 5px;
-    content: "";
-    box-shadow: 2px 2px 4px #000000;
+    content: "";   
   }
 
   @media (max-width: 768px) {

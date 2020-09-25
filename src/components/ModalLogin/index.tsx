@@ -97,10 +97,26 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                       <Row
                         style={{ marginBottom: "10%", alignItems: "center" }}
                       >
-                        <InstaLogo /> Chume Company
+                        <InstaLogo />{" "}
+                        <a
+                          href="https://www.instagram.com/chume_co/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="MyLinkModalLogin"
+                        >
+                          Chume Company
+                        </a>
                       </Row>
                       <Row style={{ alignItems: "center" }}>
-                        <FacebookLogo /> Chume Company
+                        <FacebookLogo />{" "}
+                        <a
+                          href="https://www.facebook.com/ChumeCompany/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="MyLinkModalLogin"
+                        >
+                          Chume Company{" "}
+                        </a>
                       </Row>
                     </MySocialRow>
                   </SocialContainer>

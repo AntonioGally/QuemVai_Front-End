@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MyNavBar = styled.div`
   @media only screen and (min-width: 1200px) {
-    margin-top: 9.125em;
+    margin-top: 5.125em;
   }
   margin-top: 4em;
 `;
@@ -24,18 +24,25 @@ export const MyLink = styled.div`
     padding: 4px 12px;
     color: black !important;
     cursor: pointer;
-  }
->a{
-  &.active {
-    &::before {
-      position: absolute;
-      width: calc(100%);
-      height: 5px;
-      content: "";
-      background-color: #00d446;
-      border-radius: 2.5px;
-      left: 1%;
-      top: 100%;
+    font-family: "Poppins";
+
+    &.active {
+      &::before {
+        position: absolute;
+        width: calc(100%);
+        height: 5px;
+        content: "";
+        background-color: var(--buttonFill);
+        border-radius: 2.5px;
+        left: 1%;
+        top: 100%;
+      }
     }
-  }}
+  }
+  > span {
+    padding: 4px 12px;
+    color: black !important;
+    cursor: pointer;
+    font-family: "Poppins";
+  }
 `;

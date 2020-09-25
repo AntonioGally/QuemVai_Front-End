@@ -26,10 +26,9 @@
   color: var(--fontWhite) !important;
   transition: all 0.5s ease-in-out;
 }
-.modal-content {
-  border-radius: 30px !important;
+.modal-content{
+  border-radius: 30px;
 }
-
 .MyRowForm {
   margin: 0 !important;
   align-items: center;

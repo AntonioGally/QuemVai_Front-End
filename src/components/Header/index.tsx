@@ -6,7 +6,7 @@ import ModalLogin from "../ModalLogin";
 import banner2 from "../../img/banner/banner2.jpg";
 import user from "../../img/icones/user.svg";
 
-import { MyNav } from "./style";
+import { MyNav, SearchIcon } from "./style";
 import "./styles.css";
 import api from "../services/api";
 import { getToken, getTokenAdmin, Token } from "../services/auth";
@@ -47,12 +47,13 @@ const Header: React.FC = () => {
         <Navbar className="justify-content-between">
           <Form inline className="InputDesktop">
             <FormControl type="text" placeholder="Search for something" />
+            <SearchIcon />
           </Form>
           <Form inline>
             <Image
               src={userPhoto ? userPhoto : user}
-              width="80px"
-              height="80px"
+              width="70px"
+              height="70px"
               roundedCircle
               style={{ cursor: "pointer" }}
               onClick={() => setModalShow(true)}

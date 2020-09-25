@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { MyContainer } from "./styles";
+import { MyContainer, MyWrapper } from "./styles";
 import { Table } from "react-bootstrap";
 import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
 
@@ -36,10 +36,10 @@ const QuadrasExistentesAdmin: React.FC = () => {
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "10% 0" }}>
-        <div style={{ width: "70%" }}>
+        <MyWrapper>
           <h3 style={{ marginBottom: "3%" }}>Quadras existentes</h3>
           <MyContainer>
-            <Table striped bordered hover>
+            <Table striped bordered hover variant="light">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -71,7 +71,7 @@ const QuadrasExistentesAdmin: React.FC = () => {
               </tbody>
             </Table>
           </MyContainer>
-        </div>
+        </MyWrapper >
       </div>
     </div>
   );

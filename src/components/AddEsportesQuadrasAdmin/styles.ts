@@ -17,4 +17,7 @@ export const SportsList = styled.div`
   height: 400px;
   background-color: var(--primary);
   overflow-y: scroll;
+  >Table > thead > tr {
+    background-color:#DCDCDC;
+  }
 `;
