@@ -1,52 +1,151 @@
 .wrapperApp {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
 }
-
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-
 #sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: var(--primary);
-    color: black;
-    transition: all 0.3s;
-    width: 100%;
-    min-height: 100vh;
+  /* don't forget to add all the previously mentioned styles here too */
+  background: var(--primary);
+  color: black;
+  transition: all 0.3s;
+  width: 100%;
+  min-height: 100vh;
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;    
+  padding: 20px;
+  margin-bottom: 10%;
 }
-.MyRowsSidebarApp{
-    float:right;
+.MyRowsSidebarApp {
+  float: right;
 }
-.MyButtonSidebarApp{  
-    margin-right:20px;
-    padding:10px 65px;
-    background-color:var(--buttonFill);
-    color: var(--fontWhite);
-    font-family: 'Poppins';
+.MyButtonSidebarApp {
+  margin-right: 20px;
+  padding: 10px 65px;
+  background-color: var(--buttonFill);
+  color: var(--fontWhite);
+  font-family: "Poppins";
 }
-@media (max-width:1330px){
-    .MyButtonSidebarApp{
-        margin-right:0 !important;
-    }
-    .MyRowsSidebarApp{
-        float:none;
-    }
-    .MyRowSidebarApp{
-        justify-content: center;
-    }
+@media (max-width: 1330px) {
+  .MyButtonSidebarApp {
+    margin-right: 0 !important;
+  }
+  .MyRowsSidebarApp {
+    float: none;
+  }
+  .MyRowSidebarApp {
+    justify-content: center;
+  }
 }
 
-.MyFooterSidebarApp{
-    position: absolute;
-    bottom: 30px;
-    left:0 ;
-    width:100%;
+.MyFooterSidebarApp {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+}
+
+.MyNotificationsContainer {
+  padding: 14px;
+  border-radius: 21px;
+  box-shadow: 0 0 1em black;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin: 0;
+  cursor: pointer;
+  background-color: var(--fontWhite);
+}
+.MyNotificationsContainer span.NumberSpan {
+  font-size: 12pt;
+  font-family: "Poppins";
+  color: var(--fontBlack);
+  font-weight: 600;
+  margin-right: 10px;
+}
+.MyNotificationsContainer span.NotificationsSpan {
+  font-size: 12pt;
+  font-family: "Poppins";
+  color: var(--fontBlack);
+  font-weight: 600;
+}
+.userNameSideBarApp {
+  font-size: 20pt;
+  font-family: "Poppins";
+  color: var(--fontWhite);
+  font-weight: 600;
+}
+
+.myRowLinksSideBarApp {
+  margin: 10% 0 0 0;
+  justify-content: center;
+}
+.myRowLinksSideBarApp div {
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+.myRowLinksSideBarApp span {
+  font-size: 25px;
+  cursor: pointer;
+  font-family: "Poppins";
+  color: var(--fontWhite);
+}
+
+@media (max-width: 1300px) {
+  .MyNotificationsContainer span {
+    font-size: 10pt;
+  }
+  .myRowLinksSideBarApp div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .userNameSideBarApp {
+    font-size: 16pt;
+  }
+}
+@media (max-width: 1299px) {
+  .MyNotificationsContainer span.NotificationsSpan {
+    display: none;
+  }
+}
+@media (max-width: 1150px) {
+  .userNameSideBarApp {
+    font-size: 13pt;
+    text-align: center;
+  }
+}
+@media (max-width: 1000px) {
+  .myRowLinksSideBarApp div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10%;
+  }
+  .myRowLinksSideBarApp span {
+    display: none;
+  }
+  .myRowLinksSideBarApp svg {
+    margin-bottom: 7%;
+    margin-right: 0 !important;
+  }
+}
+
+.SpanInicioSideBar {
+  color:var(--buttonFill) !important;  
+}
+.SpanInicioSideBar::after{
+  width:7px;
+  height:7px;
+
+  margin-left:13px;
+  position: absolute;
+  border-radius: 50%;
+  content:'';
+  background-color: var(--buttonFill);
 }

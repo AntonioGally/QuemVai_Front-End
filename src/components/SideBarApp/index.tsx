@@ -1,7 +1,16 @@
 import React, { useEffect } from "react";
 import "./styles.css";
+import {
+  RingIcon,
+  HomeIcon,
+  SportsIcon,
+  EventsIcon,
+  SpacesIcon,
+  FriendsIcon,
+} from "./styles";
 
 import { NavLink } from "react-router-dom";
+import { Row } from "react-bootstrap";
 import api from "../services/api";
 import { getToken, getTokenAdmin, Token } from "../services/auth";
 
@@ -16,9 +25,8 @@ const SideBarApp: React.FC = () => {
   const [isLogged, setIsLogged] = React.useState(Boolean);
 
   useEffect(() => {
-    if (getToken() ||getTokenAdmin()) {     
+    if (getToken() || getTokenAdmin()) {
       setIsLogged(true);
-      
     } else {
       setIsLogged(false);
     }
@@ -45,48 +53,66 @@ const SideBarApp: React.FC = () => {
         <div className="sidebar-header" style={{ display: "flex" }}>
           <div className="col">
             <div
-              className="row justify-content-center"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "13% 0 13% 0",
+              }}
+            >
+              <Row className="MyNotificationsContainer">
+                <RingIcon />
+                <span className="NumberSpan">3</span>
+                <span className="NotificationsSpan">Notificações</span>
+              </Row>
+            </div>
+            <Row
+              className="justify-content-center"
               style={{ marginBottom: "15px" }}
             >
               <img
                 src={userPhoto}
                 alt="usuario"
                 style={{
-                  width: "100px",
-                  height: "100px",
+                  width: "134px",
+                  height: "134px",
                   borderRadius: "50%",
                   cursor: "pointer",
                 }}
                 onClick={() => setModalConfigShow(true)}
               />
-            </div>
-            <div className="row justify-content-center">{userName}</div>
+            </Row>
+            <Row className="justify-content-center userNameSideBarApp">
+              {userName}
+            </Row>
           </div>
         </div>
 
         <div className="sidebarContent">
-          <div className="MyRowsSidebarApp">
-            <div className="row sMyRowSidebarApp" style={{ margin: "30% 0" }}>
-              <div className="btn  MyButtonSidebarApp">Esportes</div>
+          <Row className="myRowLinksSideBarApp">
+            <div>
+              <HomeIcon className="home" /> <span className="SpanInicioSideBar">Início</span>
             </div>
-
-            <div className="row MyRowSidebarApp" style={{ margin: "30% 0" }}>
-              <div className="btn  MyButtonSidebarApp">Esportes</div>
+          </Row>
+          <Row className="myRowLinksSideBarApp">
+            <div>
+              <SportsIcon /> <span>Esportes</span>
             </div>
-
-            <div className="row MyRowSidebarApp" style={{ margin: "30% 0" }}>
-              <div className="btn  MyButtonSidebarApp">Esportes</div>
+          </Row>
+          <Row className="myRowLinksSideBarApp">
+            <div>
+              <EventsIcon /> <span>Eventos</span>
             </div>
-
-            <div className="row MyRowSidebarApp" style={{ margin: "30% 0" }}>
-              <div
-                className="btn  MyButtonSidebarApp"
-                onClick={() => setModalFriendShow(true)}
-              >
-                Amigos
-              </div>
+          </Row>
+          <Row className="myRowLinksSideBarApp">
+            <div>
+              <SpacesIcon /> <span>Quadras</span>
             </div>
-          </div>
+          </Row>
+          <Row className="myRowLinksSideBarApp">
+            <div>
+              <FriendsIcon /> <span>Amigos</span>
+            </div>
+          </Row>
         </div>
 
         <div className="MyFooterSidebarApp">
@@ -97,7 +123,7 @@ const SideBarApp: React.FC = () => {
             <NavLink
               to="/"
               style={{ width: "80%", padding: "5px 0" }}
-              className="btn MyButtonSidebarApp"              
+              className="btn MyButtonSidebarApp"
             >
               Voltar
             </NavLink>

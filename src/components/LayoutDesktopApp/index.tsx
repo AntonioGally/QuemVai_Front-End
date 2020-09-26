@@ -15,8 +15,11 @@ const LayoutDesktopApp: React.FC = () => {
               <SideBarApp />
             </div>
 
-            <div className="col-10" style={{ padding: "0" }}>
+            <div className="col-9" style={{ padding: "0" }}>
               <GoogleMaps/>
+            </div>
+            <div className="col-1">
+
             </div>
 
             
