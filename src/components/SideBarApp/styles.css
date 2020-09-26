@@ -21,9 +21,7 @@ body {
   padding: 20px;
   margin-bottom: 10%;
 }
-.MyRowsSidebarApp {
-  float: right;
-}
+
 .MyButtonSidebarApp {
   margin-right: 20px;
   padding: 10px 65px;
@@ -35,12 +33,7 @@ body {
   .MyButtonSidebarApp {
     margin-right: 0 !important;
   }
-  .MyRowsSidebarApp {
-    float: none;
-  }
-  .MyRowSidebarApp {
-    justify-content: center;
-  }
+  
 }
 
 .MyFooterSidebarApp {
@@ -122,6 +115,12 @@ body {
   }
 }
 @media (max-width: 1000px) {
+  .MyNotificationsContainer svg {
+    margin-right: 0 !important;
+  }
+  .MyNotificationsContainer span {
+    margin-right: 0 !important;
+  }
   .myRowLinksSideBarApp div {
     display: flex;
     flex-direction: column;
@@ -137,15 +136,15 @@ body {
 }
 
 .SpanInicioSideBar {
-  color:var(--buttonFill) !important;  
+  color: var(--buttonFill) !important;
 }
-.SpanInicioSideBar::after{
-  width:7px;
-  height:7px;
+.SpanInicioSideBar::after {
+  width: 7px;
+  height: 7px;
 
-  margin-left:13px;
+  margin-left: 13px;
   position: absolute;
   border-radius: 50%;
-  content:'';
+  content: "";
   background-color: var(--buttonFill);
 }

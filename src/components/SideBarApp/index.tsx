@@ -56,7 +56,7 @@ const SideBarApp: React.FC = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                margin: "13% 0 13% 0",
+                margin: "13% 0 20% 0",
               }}
             >
               <Row className="MyNotificationsContainer">
@@ -88,7 +88,7 @@ const SideBarApp: React.FC = () => {
         </div>
 
         <div className="sidebarContent">
-          <Row className="myRowLinksSideBarApp">
+          <Row className="myRowLinksSideBarApp">            
             <div>
               <HomeIcon className="home" /> <span className="SpanInicioSideBar">Início</span>
             </div>
@@ -109,7 +109,7 @@ const SideBarApp: React.FC = () => {
             </div>
           </Row>
           <Row className="myRowLinksSideBarApp">
-            <div>
+            <div onClick={() => setModalFriendShow(true)}>
               <FriendsIcon /> <span>Amigos</span>
             </div>
           </Row>

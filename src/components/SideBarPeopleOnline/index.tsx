@@ -29,15 +29,14 @@ const SideBarPeopleOnline: React.FC = () => {
   return (
     <Container>
       {data?.GetFriends.map((information) => (
-        <div key={information.id_Friend} style={{marginTop:"10%"}}>
+        <div key={information.id_Friend} style={{ marginTop: "20%" }}>
           <Row style={{ margin: 0, justifyContent: "center" }}>
             <img
               src={information.photos}
               alt="Friend"
-              style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+              className="teste"              
             />
           </Row>
-
           <MyRowPeople>{information.username}</MyRowPeople>
         </div>
       ))}

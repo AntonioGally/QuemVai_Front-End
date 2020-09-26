@@ -3,7 +3,7 @@ import React from "react";
 // import { Container } from './styles';
 import SideBarApp from "../SideBarApp";
 import GoogleMaps from "../GoogleMaps";
-// import SideBarPeopleOnline from "../SideBarPeopleOnline";
+import SideBarPeopleOnline from "../SideBarPeopleOnline";
 
 const LayoutDesktopApp: React.FC = () => {
   return (
@@ -18,8 +18,8 @@ const LayoutDesktopApp: React.FC = () => {
             <div className="col-9" style={{ padding: "0" }}>
               <GoogleMaps/>
             </div>
-            <div className="col-1">
-
+            <div className="col-1" style={{ padding: "0", backgroundColor:"var(--primary)" }}>
+              <SideBarPeopleOnline />
             </div>
 
             
