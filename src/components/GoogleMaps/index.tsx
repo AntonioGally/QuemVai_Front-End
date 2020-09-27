@@ -1,17 +1,36 @@
 import React from "react";
 import { MySearchInput } from "./styles";
 import "./styles.css";
-const user = "https://scontent.fcgh10-1.fna.fbcdn.net/v/t1.0-9/72617604_1350485845109764_6743003091697664000_o.jpg?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=F8juFgfhcNIAX9Jziok&_nc_ht=scontent.fcgh10-1.fna&oh=955b5925aa8b0916ef14fd4977504314&oe=5F69EEDC"
+const user =
+  "https://scontent.fcgh10-1.fna.fbcdn.net/v/t1.0-9/72617604_1350485845109764_6743003091697664000_o.jpg?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=F8juFgfhcNIAX9Jziok&_nc_ht=scontent.fcgh10-1.fna&oh=955b5925aa8b0916ef14fd4977504314&oe=5F69EEDC";
 
 const GoogleMaps: React.FC = () => {
   return (
-    <div style={{ width: "100%" }}>
-      <div className="row MyRowGoogleMaps" style={{backgroundColor:'transparent', width:'100%'}}>
-        <div className="col sm-8" style={{padding:0, backgroundColor:'transparent'}}>
+    <>
+      <div
+        className="row MyRowGoogleMaps"
+        style={{ backgroundColor: "transparent", width: "100%" }}
+      >
+        <div
+          className="col sm-8"
+          style={{ padding: 0, backgroundColor: "transparent" }}
+        >
           <MySearchInput placeholder="Pesquisar" />
         </div>
-        <div className="col MyColGoogleMaps" style={{display:'none', padding:0, maxWidth:'30%'}}>
-          <img src={user} alt="usuario" style={{width:'50px', height:'50px', borderRadius:'50%', float:'right'}}/>
+        <div
+          className="col MyColGoogleMaps"
+          style={{ display: "none", padding: 0, maxWidth: "30%" }}
+        >
+          <img
+            src={user}
+            alt="usuario"
+            style={{
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+              float: "right",
+            }}
+          />
         </div>
       </div>
 
@@ -20,7 +39,7 @@ const GoogleMaps: React.FC = () => {
         className="MyMap"
         title={"teste"}
       ></iframe>
-    </div>
+    </>
   );
 };
 

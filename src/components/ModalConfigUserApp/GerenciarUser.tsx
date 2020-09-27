@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import "./ModalConfigStyles.css";
 import { Row, Col, Form, Container, InputGroup } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton, EditIcon } from "./styles";
+import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import api from "../services/api";
 import { Token } from "../services/auth";
@@ -67,16 +68,17 @@ const ModalConfigUserApp: React.FC = () => {
 
       const informations = await PushUserInformation.data;
       setData({ PushInformations: informations });
-      setAuxEmail(informations["info"]["email"])
+      setAuxEmail(informations["info"]["email"]);
     });
   }, []);
 
   return (
     <div className="WrapperModalConfig">
-      <Container fluid>
-        <MyTitleForm style={{ marginBottom: "4%" }}>
-          Suas informações:
-        </MyTitleForm>
+      <div className="MySvgGerenciarUserModal">
+        <img src={SvgModalConfigUser} alt="Art Top" />
+      </div>
+      <Container fluid style={{ marginTop: "10%" }}>
+        <MyTitleForm>Suas informações:</MyTitleForm>
         <Form onSubmit={handleSubmit(FormSubmitConfigUser)}>
           <Row style={{ marginBottom: "4%" }}>
             <Col md={6}>
@@ -130,7 +132,7 @@ const ModalConfigUserApp: React.FC = () => {
               </MyForm>
             </Col>
           </Row>
-          <Row>
+          <Row style={{ marginBottom: "4%" }}>
             <Col md={6}>
               <MyLableText> Email </MyLableText>
               <MyForm className="firstColumn">
@@ -279,7 +281,33 @@ const ModalConfigUserApp: React.FC = () => {
               <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
           </Row>
-          <Row style={{ justifyContent: "flex-end", marginTop: "7%" }}>
+          <Row></Row>
+          <Row
+            style={{
+              justifyContent: "flex-end",
+              marginTop: "7%",
+              alignItems: "center",
+            }}
+          >
+            <Col md={4}>
+              <MyForm className="firstColumn">
+                <Form.Group>
+                  <Row className="MyRowForm">
+                    <MyLableText style={{ marginRight: "8%" }}>
+                      {" "}
+                      ID{" "}
+                    </MyLableText>
+                    <Form.Control
+                      className="MyInputFormID"
+                      type="text"
+                      id="userId"
+                      defaultValue={data?.PushInformations.info.id}
+                      readOnly
+                    />
+                  </Row>
+                </Form.Group>
+              </MyForm>
+            </Col>
             <Col md={4}>
               <MyForm>
                 <div style={{ margin: "5%" }}>

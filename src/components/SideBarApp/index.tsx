@@ -108,7 +108,7 @@ const SideBarApp: React.FC = () => {
               <SpacesIcon /> <span>Quadras</span>
             </div>
           </Row>
-          <Row className="myRowLinksSideBarApp">
+          <Row className="myRowLinksSideBarApp" style={{marginBottom:"10%"}}>
             <div onClick={() => setModalFriendShow(true)}>
               <FriendsIcon /> <span>Amigos</span>
             </div>
@@ -122,7 +122,7 @@ const SideBarApp: React.FC = () => {
           >
             <NavLink
               to="/"
-              style={{ width: "80%", padding: "5px 0" }}
+              style={{ width: "80%", padding: "5px 0", marginBottom:"5%" }}
               className="btn MyButtonSidebarApp"
             >
               Voltar

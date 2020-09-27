@@ -15,6 +15,11 @@ export interface Props {
 }
 
 const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
+  const [AccountClick, setAccountClick] = React.useState(true);
+  const [passwordClick, setPasswordClick] = React.useState(Boolean);
+  const [photoClick, setPhotoClick] = React.useState(Boolean);
+  const [historicClick, setHistoricClick] = React.useState(Boolean);
+
   return (
     <div>
       <Modal size="xl" animation={true} centered show={show} onHide={onHide}>
@@ -45,8 +50,20 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                     >
                       <Col>
                         <Nav.Item style={{ width: "100%" }}>
-                          <Nav.Link eventKey="Account" className="MyNavLink">
-                            <AccountIcon /> <span>Minha Conta</span>
+                          <Nav.Link
+                            eventKey="Account"
+                            className={`${
+                              AccountClick ? "activeLinkModalConfigUser" : ""
+                            } MyNavLink`}
+                            onClick={() => {
+                              setAccountClick(true);
+                              setPasswordClick(false);
+                              setPhotoClick(false);
+                              setHistoricClick(false);
+                            }}
+                          >
+                            <AccountIcon />
+                            <span>Minha Conta</span>
                           </Nav.Link>
                         </Nav.Item>
                       </Col>
@@ -57,8 +74,20 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                     >
                       <Col>
                         <Nav.Item style={{ width: "100%" }}>
-                          <Nav.Link eventKey="Password" className="MyNavLink">
-                            <PasswordIcon /> Atualizar Senha
+                          <Nav.Link
+                            eventKey="Password"
+                            className={`${
+                              passwordClick ? "activeLinkModalConfigUser" : ""
+                            } MyNavLink`}
+                            onClick={() => {
+                              setAccountClick(false);
+                              setPasswordClick(true);
+                              setPhotoClick(false);
+                              setHistoricClick(false);
+                            }}
+                          >
+                            <PasswordIcon />
+                            <span>Atualizar Senha</span>
                           </Nav.Link>
                         </Nav.Item>
                       </Col>
@@ -69,8 +98,20 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                     >
                       <Col>
                         <Nav.Item style={{ width: "100%" }}>
-                          <Nav.Link eventKey="Photo" className="MyNavLink">
-                            <PhotoIcon /> Atualizar Foto
+                          <Nav.Link
+                            eventKey="Photo"
+                            className={`${
+                              photoClick ? "activeLinkModalConfigUser" : ""
+                            } MyNavLink`}
+                            onClick={() => {
+                              setAccountClick(false);
+                              setPasswordClick(false);
+                              setPhotoClick(true);
+                              setHistoricClick(false);
+                            }}
+                          >
+                            <PhotoIcon />
+                            <span>Atualizar Foto</span>
                           </Nav.Link>
                         </Nav.Item>
                       </Col>
@@ -79,16 +120,28 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                       className="justify-content-center"
                       style={{ margin: 0 }}
                     >
-                      <div>
+                      <Col>
                         <Nav.Item
                           className="MyNavItem"
                           style={{ width: "100%" }}
                         >
-                          <Nav.Link eventKey="Historic" className="MyNavLink">
-                            <HistoricIcon /> Meu Histórico
+                          <Nav.Link
+                            eventKey="Historic"
+                            className={`${
+                              historicClick ? "activeLinkModalConfigUser" : ""
+                            } MyNavLink`}
+                            onClick={() => {
+                              setAccountClick(false);
+                              setPasswordClick(false);
+                              setPhotoClick(false);
+                              setHistoricClick(true);
+                            }}
+                          >
+                            <HistoricIcon />
+                            <span>Meu Histórico</span>
                           </Nav.Link>
                         </Nav.Item>
-                      </div>
+                      </Col>
                     </Row>
                   </div>
                 </Nav>

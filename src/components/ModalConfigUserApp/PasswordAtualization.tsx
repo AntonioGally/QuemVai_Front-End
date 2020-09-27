@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Form, Row, Col, Container } from "react-bootstrap";
 import { MyLableText, MyForm, MyButton, MyTitleForm } from "./styles";
 import "./ModalConfigStyles.css";
+import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import api from "../services/api";
 import { Token, logout, login } from "../services/auth";
@@ -62,10 +63,11 @@ const ModalConfigUserApp: React.FC = () => {
 
   return (
     <div className="WrapperModalConfig">
-      <Container fluid>
-        <MyTitleForm style={{ marginBottom: "8%" }}>
-          Altere sua Senha:
-        </MyTitleForm>
+      <div className="MySvgGerenciarUserModal">
+        <img src={SvgModalConfigUser} alt="Art Top" />
+      </div>
+      <Container fluid style={{ marginTop: "10%" }}>
+        <MyTitleForm>Altere sua Senha:</MyTitleForm>
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row>
             <Col md={6}>
@@ -100,6 +102,8 @@ const ModalConfigUserApp: React.FC = () => {
                 </Form.Group>
               </MyForm>
             </Col>
+          </Row>
+          <Row style={{marginTop:"5%"}}>
             <Col md={6}>
               <MyLableText> Confirme a nova senha: </MyLableText>
               <MyForm className="firstColumn">
@@ -135,8 +139,8 @@ const ModalConfigUserApp: React.FC = () => {
               <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
           </Row>
-          <Row style={{ justifyContent:"flex-end", marginTop:"10%" }}>
-            <Col md={3} style={{marginRight:"10%"}}>
+          <Row style={{ justifyContent: "flex-end", marginTop: "10%" }}>
+            <Col md={4} style={{ marginRight: "10%" }}>
               <MyButton type="submit" className="btn" style={{ width: "100%" }}>
                 Alterar senha
               </MyButton>

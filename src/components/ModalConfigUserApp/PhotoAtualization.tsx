@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
 import "./ModalConfigStyles.css";
+import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import api from "../services/api";
 import { Token } from "../services/auth";
@@ -104,14 +105,17 @@ const PhotoAtualization: React.FC = () => {
 
   return (
     <div className="WrapperModalConfig">
-      <Container fluid>
+      <div className="MySvgGerenciarUserModal">
+        <img src={SvgModalConfigUser} alt="Art Top" />
+      </div>
+      <Container fluid style={{marginTop:"10%"}}>
         <MyTitleForm style={{ marginBottom: "4%" }}>
           Altere sua foto
         </MyTitleForm>
 
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row style={{ alignItems: "center" }}>
-            <Row style={{margin:"0px 0px 4% 0px", width:"100%"}}>
+            <Row style={{ margin: "0px 0px 4% 0px", width: "100%" }}>
               <Col md={6} style={{ textAlign: "center" }}>
                 <MyLableText> Foto de perfil: </MyLableText>
               </Col>
@@ -120,8 +124,7 @@ const PhotoAtualization: React.FC = () => {
               </Col>
             </Row>
 
-
-            <Row style={{margin:0, width:"100%"}}>
+            <Row style={{ margin: 0, width: "100%" }}>
               <Col md={6} style={{ textAlign: "center" }}>
                 <MyForm className="firstColumn">
                   <img

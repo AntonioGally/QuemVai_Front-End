@@ -1,9 +1,18 @@
 .WrapperModalConfig {
-  width: 100%;
+  margin-left: auto;
+  width: 93%;
   height: 600px;
   overflow-y: scroll;
-  background-color: var(--primary);
   border-radius: 15px;
+  position: relative;
+}
+@media (max-width:1200px){
+  .WrapperModalConfig {
+    width:100%;
+  }
+}
+.WrapperModalConfig::-webkit-scrollbar {
+  display: none;
 }
 
 .MyNavLink {
@@ -11,18 +20,52 @@
   border-radius: 0 !important;
   color: var(--fontWhite) !important;
   font-family: "Poppins";
-  font-size:15pt;
+  font-size: 15pt;
 
   padding: 10px;
   text-align: center;
   width: 100%;
-  margin-top:8%;
+  margin-top: 8%;
 }
-.MyNavLink:focus{
-  outline:0 !important;
+.MyNavLink span {
+  position: relative;
+}
+.activeLinkModalConfigUser span {
+  color: var(--buttonFill);
+}
+.activeLinkModalConfigUser svg {
+  color: var(--buttonFill);
+  fill: var(--buttonFill);
+}
+.activeLinkModalConfigUser::after {
+  width: 9px;
+  height: 9px;
+  background-color: var(--buttonFill);
+  border-radius: 50%;
+  top: 56%;
+  right: 10px;
+  content: "";
+  position: absolute;
+}
+@media (max-width: 1200px) {
+  .MyNavLink span {
+    display: none;
+  }
+}
+.MyNavLink:hover {
+  color: var(--buttonFill) !important;
+  transition: all 0.5s ease-in-out;
+}
+.MyNavLink:hover svg {
+  color: var(--buttonFill) !important;
+  fill: var(--buttonFill) !important;
+  transition: all 0.5s ease-in-out;
+}
+.MyNavLink:focus {
+  outline: 0 !important;
 }
 
-.modal-content{
+.modal-content {
   border-radius: 30px;
 }
 .MyRowForm {
@@ -36,22 +79,45 @@
   border-radius: 7px;
   width: 80%;
 }
-
-.MyButtonDeleteAccount{
-  color:var(--buttonOutLined);
-  border:1px solid var(--buttonOutLined); 
-  border-radius:6.5px !important;
-  width:50%;
-  padding:10px;
+.MyInputFormID {
+  height: 45px;
+  border: 1px solid black !important;
+  border-radius: 7px;
+  width: 30%;
 }
-.MyButtonDeleteAccount:hover{
+@media (max-width: 1200px) {
+  .MyInputFormID {
+    width: 40%;
+  }
+}
+
+.MyButtonDeleteAccount {
+  color: var(--buttonOutLined);
+  border: 1px solid var(--buttonOutLined);
+  border-radius: 6.5px !important;
+  width: 50%;
+  padding: 10px;
+}
+.MyButtonDeleteAccount:hover {
   background-color: var(--buttonOutLined);
-  border:1px solid var(--fontWhite); 
-  color:var(--fontWhite);
-  transition: all .5s ease;
+  border: 1px solid var(--fontWhite);
+  color: var(--fontWhite);
+  transition: all 0.5s ease;
 }
 .MyColTabModalConfigUserApp {
-  background-color:var(--primary);
-  border-radius:20px;
-  padding:10px;
+  background-color: var(--primary);
+  border-radius: 20px;
+  padding: 10px;
+}
+.MySvgGerenciarUserModal {
+  width: 320px;
+  height: 266px;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+}
+@media (max-width: 1200px) {
+  .MySvgGerenciarUserModal {
+    display: none;
+  }
 }

@@ -11,7 +11,6 @@ export const RingIcon = styled(Notifications)`
   height: 24px;
   color: var(--buttonFill);
   flex-shrink: 0;
-  margin-right: 13px;
 `;
 
 var SideBarIcon = css`

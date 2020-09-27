@@ -6,9 +6,10 @@ import { InsertPhoto } from "@styled-icons/material/InsertPhoto";
 import { HistoryEdu } from "@styled-icons/material-outlined/HistoryEdu";
 
 export const MyTitleForm = styled.h3`
-  margin-top: 2%;
+  margin-top: 5%;
+  margin-bottom:8%;
   font-family: "Poppins";
-  color: var(--fontWhite);
+  color: var(--fontBlack);
   font-size: 40px;
   @media (max-width: 768px) {
     font-size: 20px;
@@ -26,7 +27,7 @@ export const MyForm = styled.div`
 `;
 export const MyLableText = styled.h5`
   font-family: "Poppins";
-  color: var(--fontWhite);
+  color: var(--fontBlack);
   font-size: 28px;
 
   @media (max-width: 768px) {
@@ -51,7 +52,7 @@ export const MyButton = styled.button`
 export const EditIcon = styled(Edit)`
   width: 28px;
   height: 28px;
-  fill: white;
+  fill: var(--fontBlack);
   flex-shrink: 0;
   margin-left: 20px;
 `;
