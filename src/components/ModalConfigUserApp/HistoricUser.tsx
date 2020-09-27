@@ -17,7 +17,7 @@ import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 const ModalConfigUserApp: React.FC = () => {
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <div className="WrapperModalConfig" style={{ width: "100%" }}>
+    <div className="WrapperModalConfig HistoricWrapperModalConfig" style={{ width: "100%" }}>
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
