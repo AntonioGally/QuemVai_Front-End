@@ -108,24 +108,16 @@ const PhotoAtualization: React.FC = () => {
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
-      <Container fluid style={{marginTop:"10%"}}>
+      <Container fluid style={{ marginTop: "10%" }}>
         <MyTitleForm style={{ marginBottom: "4%" }}>
           Altere sua foto
         </MyTitleForm>
 
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row style={{ alignItems: "center" }}>
-            <Row style={{ margin: "0px 0px 4% 0px", width: "100%" }}>
-              <Col md={6} style={{ textAlign: "center" }}>
-                <MyLableText> Foto de perfil: </MyLableText>
-              </Col>
-              <Col md={6} style={{ textAlign: "center" }}>
-                <MyLableText>Alterar</MyLableText>
-              </Col>
-            </Row>
-
             <Row style={{ margin: 0, width: "100%" }}>
               <Col md={6} style={{ textAlign: "center" }}>
+                <MyLableText> Sua foto de perfil </MyLableText>
                 <MyForm className="firstColumn">
                   <img
                     src={data?.Photo}
@@ -140,6 +132,7 @@ const PhotoAtualization: React.FC = () => {
                 </MyForm>
               </Col>
               <Col md={6}>
+                <MyLableText>Alterar</MyLableText>
                 <MyForm>
                   <div style={{ margin: "5%" }}>
                     <div className="mb-3">
@@ -162,20 +155,22 @@ const PhotoAtualization: React.FC = () => {
                         {erros}
                       </div>
                     </div>
-
-                    <div className="row" style={{ justifyContent: "flex-end" }}>
-                      <MyButton
-                        type="submit"
-                        className="btn"
-                        style={{ width: "40%" }}
-                      >
-                        Salvar
-                      </MyButton>
-                    </div>
                   </div>
                 </MyForm>
               </Col>
             </Row>
+          </Row>
+          <Row style={{ justifyContent: "flex-end", marginTop:"10%" }}>
+            <Col md={3}>
+              <MyButton type="button" className="btn" style={{ width: "100%" }}>
+                Excluir Foto
+              </MyButton>
+            </Col>
+            <Col md={3}>
+              <MyButton type="submit" className="btn" style={{ width: "100%" }}>
+                Salvar
+              </MyButton>
+            </Col>
           </Row>
         </Form>
       </Container>

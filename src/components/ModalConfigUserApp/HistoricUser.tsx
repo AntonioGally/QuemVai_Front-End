@@ -1,15 +1,63 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
+
+import {
+  MyTitleForm,
+  MyTitleCard,
+  SearchIconCard,
+  PlaceIcon,
+  MyTextCard,
+  SportIconCard,
+} from "./styles";
 import "./ModalConfigStyles.css";
+
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
-// import { Container } from './styles';
 
 const ModalConfigUserApp: React.FC = () => {
+  const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <div className="WrapperModalConfig">
+    <div className="WrapperModalConfig" style={{ width: "100%" }}>
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
-      <h1>Histórico do usuário</h1>
+      <MyTitleForm style={{ marginBottom: 0 }}>Meu histórico</MyTitleForm>
+      <Container fluid>
+        <div className="WrapperCardHistoricUser">
+          {list.map((i) => {
+            return (
+              <div key={i} className="MyCardHistoricUser">
+                <Row className="MyRowCardHistoricUser">
+                  <MyTitleCard>Futebol Foda</MyTitleCard>
+                  <SearchIconCard />
+                </Row>
+
+                <Row className="MyRowCardHistoricUser">
+                  <PlaceIcon /> <MyTextCard>Maddinson Square Garden</MyTextCard>
+                </Row>
+                <Row className="MyRowCardHistoricUser">
+                  <SportIconCard /> <MyTextCard>Basquete</MyTextCard>
+                </Row>
+                <Row className="MyRowCardHistoricUser">
+                  <img
+                    src={QuemVaiLogo2}
+                    alt="User"
+                    className="MyImageCardHistoricUser"
+                  />
+                  <Col>
+                    <Row style={{ margin: 0 }}>
+                      <span className="MySpanCardHistoricUser">por:</span>
+                    </Row>
+                    <Row style={{ margin: 0 }}>
+                      <MyTextCard>Tonhão {i}</MyTextCard>
+                    </Row>
+                  </Col>
+                </Row>
+              </div>
+            );
+          })}
+        </div>
+      </Container>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import HistoricUser from "./HistoricUser";
 import PasswordAtualization from "./PasswordAtualization";
 import PhotoAtualization from "./PhotoAtualization";
 import "./ModalConfigStyles.css";
-import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
+import QuemVaiLogo3 from "../../img/logo/QuemVaiLogo3.png";
 
 import { AccountIcon, PasswordIcon, PhotoIcon, HistoricIcon } from "./styles";
 
@@ -37,7 +37,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                     style={{ marginTop: "10%" }}
                   >
                     <img
-                      src={QuemVaiLogo2}
+                      src={QuemVaiLogo3}
                       alt="Quem Vai"
                       style={{ width: "130px", height: "130px" }}
                     />

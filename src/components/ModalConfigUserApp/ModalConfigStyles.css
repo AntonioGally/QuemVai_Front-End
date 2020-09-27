@@ -6,9 +6,9 @@
   border-radius: 15px;
   position: relative;
 }
-@media (max-width:1200px){
+@media (max-width: 1200px) {
   .WrapperModalConfig {
-    width:100%;
+    width: 100%;
   }
 }
 .WrapperModalConfig::-webkit-scrollbar {
@@ -120,4 +120,49 @@
   .MySvgGerenciarUserModal {
     display: none;
   }
+}
+
+.WrapperCardHistoricUser {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -3%;
+}
+@media (max-width: 1000px) {
+  .WrapperCardHistoricUser {
+    justify-content: center;
+  }
+}
+
+.MyCardHistoricUser {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-top: 5%;
+  margin-left: 3%;
+  z-index: 10;
+  width: 250px;
+  height: 200px;
+  background-color: var(--fontWhite);
+  box-shadow: 0px 0px 26px rgb(0,0,0,0.4);
+  border-radius: 15px;
+  padding: 15px;
+}
+.MyRowCardHistoricUser {
+  margin: 0 0 5%;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.MyImageCardHistoricUser {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+.MySpanCardHistoricUser {
+  font-family: "Poppins";
+  font-size: 9px;
+  color: #aaa7a7;
 }
