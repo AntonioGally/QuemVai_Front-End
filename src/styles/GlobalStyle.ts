@@ -316,6 +316,7 @@ template {
 --footer : #33D7A3;
 --fontWhite : #fff;
 --fontBlack : #000;
+--fontSecundary : #AAA7A7;
 --buttonFill : #ED461D;
 --buttonOutLined: #ED461D;
 --input: #B2FFE7;

@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { Form, Row, Col, Container } from "react-bootstrap";
-import { MyLableText, MyForm, MyButton, MyTitleForm } from "./styles";
+import { MyLableText, MyForm, MyButton, MyTitleForm, EditIcon } from "./styles";
 import "./ModalConfigStyles.css";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
@@ -67,28 +67,31 @@ const ModalConfigUserApp: React.FC = () => {
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
       <Container fluid style={{ marginTop: "10%" }}>
-        <MyTitleForm>Altere sua Senha:</MyTitleForm>
+        <MyTitleForm>Altere sua Senha</MyTitleForm>
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row>
-            <Col md={6}>
+            <Col md={12} lg={6}>
               <MyLableText> Digite a nova senha: </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
-                  <Form.Control
-                    className="MyInputForm"
-                    type="password"
-                    name="userPassword"
-                    id="userPassword"
-                    placeholder="ex.: *******"
-                    style={{ borderRadius: "10px" }}
-                    ref={register({
-                      minLength: {
-                        value: 8,
-                        message: "Insira no mínimo 8 caractéres",
-                      },
-                      required: true,
-                    })}
-                  />
+                  <Row style={{ alignItems: "center" }}>
+                    <Form.Control
+                      className="MyInputForm"
+                      type="password"
+                      name="userPassword"
+                      id="userPassword"
+                      placeholder="ex.: *******"
+                      style={{ borderRadius: "10px" }}
+                      ref={register({
+                        minLength: {
+                          value: 8,
+                          message: "Insira no mínimo 8 caractéres",
+                        },
+                        required: true,
+                      })}
+                    />
+                    <EditIcon />
+                  </Row>
                   {errors.userPassword &&
                     (errors.userPassword as any).type === "required" && (
                       <div className="error">A senha é obrigatória</div>
@@ -103,26 +106,29 @@ const ModalConfigUserApp: React.FC = () => {
               </MyForm>
             </Col>
           </Row>
-          <Row style={{marginTop:"5%"}}>
-            <Col md={6}>
+          <Row style={{ marginTop: "5%" }}>
+            <Col md={12} lg={6}>
               <MyLableText> Confirme a nova senha: </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
-                  <Form.Control
-                    className="MyInputForm"
-                    type="password"
-                    name="userPasswordConfirm"
-                    id="userPasswordConfirm"
-                    placeholder="ex.: *******"
-                    style={{ borderRadius: "10px" }}
-                    ref={register({
-                      minLength: {
-                        value: 8,
-                        message: "Insira no mínimo 8 caractéres",
-                      },
-                      required: true,
-                    })}
-                  />
+                  <Row style={{ alignItems: "center" }}>
+                    <Form.Control
+                      className="MyInputForm"
+                      type="password"
+                      name="userPasswordConfirm"
+                      id="userPasswordConfirm"
+                      placeholder="ex.: *******"
+                      style={{ borderRadius: "10px" }}
+                      ref={register({
+                        minLength: {
+                          value: 8,
+                          message: "Insira no mínimo 8 caractéres",
+                        },
+                        required: true,
+                      })}
+                    />
+                    <EditIcon />
+                  </Row>
                   {errors.userPasswordConfirm &&
                     (errors.userPasswordConfirm as any).type === "required" && (
                       <div className="error">A senha é obrigatória</div>

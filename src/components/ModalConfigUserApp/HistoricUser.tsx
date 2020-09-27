@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
+import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import {
   MyTitleForm,
@@ -12,12 +14,17 @@ import {
 } from "./styles";
 import "./ModalConfigStyles.css";
 
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import ModalHistoricInfo from "./ModalHistoricInfo";
 
 const ModalConfigUserApp: React.FC = () => {
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [modalShow, setModalShow] = React.useState(false);
+  const [idHistoric, setIdHistoric] = React.useState(Number);
   return (
-    <div className="WrapperModalConfig HistoricWrapperModalConfig" style={{ width: "100%" }}>
+    <div
+      className="WrapperModalConfig HistoricWrapperModalConfig"
+      style={{ width: "100%" }}
+    >
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
@@ -29,7 +36,12 @@ const ModalConfigUserApp: React.FC = () => {
               <div key={i} className="MyCardHistoricUser">
                 <Row className="MyRowCardHistoricUser">
                   <MyTitleCard>Futebol Foda</MyTitleCard>
-                  <SearchIconCard />
+                  <SearchIconCard
+                    onClick={() => {
+                      setModalShow(true);
+                      setIdHistoric(i);
+                    }}
+                  />
                 </Row>
 
                 <Row className="MyRowCardHistoricUser">
@@ -58,6 +70,15 @@ const ModalConfigUserApp: React.FC = () => {
           })}
         </div>
       </Container>
+      {modalShow ? (
+        <ModalHistoricInfo
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          idHistoric={idHistoric}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

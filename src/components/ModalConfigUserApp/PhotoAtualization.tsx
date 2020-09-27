@@ -123,8 +123,8 @@ const PhotoAtualization: React.FC = () => {
                     src={data?.Photo}
                     style={{
                       marginTop: "2%",
-                      width: "150px",
-                      height: "150px",
+                      width: "220px",
+                      height: "220px",
                       borderRadius: "50%",
                     }}
                     alt={"Imagem do usuário"}

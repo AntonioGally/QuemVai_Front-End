@@ -9,6 +9,10 @@ import { Search } from "@styled-icons/boxicons-regular/Search";
 import { Map } from "@styled-icons/boxicons-regular/Map";
 import { SportsVolleyball } from "@styled-icons/material-rounded/SportsVolleyball";
 
+import { Compass } from "@styled-icons/boxicons-solid/Compass";
+import { CalendarAlt } from "@styled-icons/boxicons-regular/CalendarAlt";
+import { TimeFive } from "@styled-icons/boxicons-regular/TimeFive";
+
 export const MyTitleForm = styled.h3`
   margin-top: 5%;
   margin-bottom: 8%;
@@ -17,6 +21,9 @@ export const MyTitleForm = styled.h3`
   font-size: 40px;
   @media (max-width: 768px) {
     font-size: 20px;
+  }
+  @media (max-width:1000px){
+    font-size: 35px;
   }
 `;
 
@@ -73,6 +80,10 @@ var HistoricIcons = css`
   height: 25px;
   fill: var(--fontBlack);
   flex-shrink: 0;
+  &.IconModalHistoricInfo {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 export const AccountIcon = styled(AccountBox)`
@@ -95,6 +106,10 @@ export const MyTitleCard = styled.div`
   font-size: 25px;
   color: var(--fontBlack);
   margin-bottom: 10px;
+  max-width: 165.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const MyTextCard = styled.div`
@@ -103,6 +118,9 @@ export const MyTextCard = styled.div`
   font-size: 17px;
   color: var(--fontBlack);
   width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const SearchIconCard = styled(Search)`
@@ -121,4 +139,51 @@ export const PlaceIcon = styled(Map)`
 export const SportIconCard = styled(SportsVolleyball)`
   ${HistoricIcons};
   margin-right: 10px;
+`;
+
+export const CompassIcon = styled(Compass)`
+  ${HistoricIcons};
+  margin-right: 10px;
+`;
+
+export const CalendarIcon = styled(CalendarAlt)`
+  ${HistoricIcons};
+  margin-right: 10px;
+`;
+export const TimeIcon = styled(TimeFive)`
+  ${HistoricIcons};
+  margin-right: 10px;
+`;
+
+export const MyTitleModalHistoric = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45px;
+  color: var(--fontBlack);
+`;
+export const UserNameHistoricInfo = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  color: var(--fontBlack);
+`;
+export const MySpanModalHistoricInfo = styled.span`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--fontSecundary);
+`;
+export const TextInfoHistoricInfo = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  color: var(--fontBlack);
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

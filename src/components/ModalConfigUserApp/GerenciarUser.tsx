@@ -78,10 +78,10 @@ const ModalConfigUserApp: React.FC = () => {
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
       <Container fluid style={{ marginTop: "10%" }}>
-        <MyTitleForm>Suas informações:</MyTitleForm>
+        <MyTitleForm>Suas informações</MyTitleForm>
         <Form onSubmit={handleSubmit(FormSubmitConfigUser)}>
           <Row style={{ marginBottom: "4%" }}>
-            <Col md={6}>
+            <Col md={12} lg={6}>
               <MyLableText> Nome </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
@@ -106,7 +106,7 @@ const ModalConfigUserApp: React.FC = () => {
                 </Form.Group>
               </MyForm>
             </Col>
-            <Col md={6}>
+            <Col md={12} lg={6}>
               <MyLableText> Apelido </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
@@ -133,7 +133,7 @@ const ModalConfigUserApp: React.FC = () => {
             </Col>
           </Row>
           <Row style={{ marginBottom: "4%" }}>
-            <Col md={6}>
+            <Col md={12} lg={6}>
               <MyLableText> Email </MyLableText>
               <MyForm className="firstColumn">
                 <Form.Group>
@@ -168,7 +168,7 @@ const ModalConfigUserApp: React.FC = () => {
                 </Form.Group>
               </MyForm>
             </Col>
-            <Col md={6}>
+            <Col md={12} lg={6}>
               <div className="row" style={{ margin: 0 }}>
                 <MyLableText>Telefone</MyLableText>
               </div>
@@ -280,8 +280,7 @@ const ModalConfigUserApp: React.FC = () => {
               </MyForm>
               <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
-          </Row>
-          <Row></Row>
+          </Row>          
           <Row
             style={{
               justifyContent: "flex-end",
@@ -289,7 +288,7 @@ const ModalConfigUserApp: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <Col md={4}>
+            <Col md={6} lg={4}>
               <MyForm className="firstColumn">
                 <Form.Group>
                   <Row className="MyRowForm">
@@ -308,7 +307,7 @@ const ModalConfigUserApp: React.FC = () => {
                 </Form.Group>
               </MyForm>
             </Col>
-            <Col md={4}>
+            <Col md={6} lg={4}>
               <MyForm>
                 <div style={{ margin: "5%" }}>
                   <button
@@ -322,7 +321,7 @@ const ModalConfigUserApp: React.FC = () => {
                 </div>
               </MyForm>
             </Col>
-            <Col md={4}>
+            <Col md={6} lg={4}>
               <MyForm>
                 <div style={{ margin: "5%" }}>
                   <MyButton
