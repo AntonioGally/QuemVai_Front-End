@@ -156,8 +156,8 @@ export interface FriendsList {
   id: number;
   id_User: number;
   id_Friend: number;
-  username: string;
   name?: string;
+  username: string;
   photos: string;
   email?: string;
   DDD?: number;

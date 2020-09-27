@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { UserMinus } from "@styled-icons/boxicons-regular/UserMinus";
+import { Verified } from "@styled-icons/material/Verified";
+
 export const Container = styled.div`
   overflow-y: scroll;
   ::-webkit-scrollbar {
@@ -24,17 +27,14 @@ export const Container = styled.div`
 `;
 
 export const MyRowPeople = styled.div`
-  margin: 7% 0px 0px 0px;
-  justify-content: center;
-  display: flex;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 90%;
   font-family: "Poppins";
   font-size: 15pt;
   color: var(--fontBlack);
-
+  text-align: center;
   cursor: pointer;
 
   /* &::after {
@@ -45,4 +45,73 @@ export const MyRowPeople = styled.div`
     border-radius: 50%;
     content: "";
   } */
+`;
+export const SpanIdUser = styled.span`
+  font-family: "Poppins";
+  font-size: 23px;
+  color: var(--fontSecundary);
+`;
+
+export const ImgUser = styled.img`
+  border-radius: 50%;
+  width: 190px;
+  height: 190px;
+`;
+
+export const FriendName = styled.div`
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  color: var(--fontBlack);
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10%;
+`;
+export const TitleText = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  color: var(--fontBlack);
+  margin-right: 10px;
+`;
+export const AtributeText = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  width: 65%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const MyButton = styled.button`
+  background-color: var(--buttonOutLined);
+  border-radius: 7px;
+  border: 1px solid var(--fontWhite);
+  color: var(--fontWhite);
+  transition: all 0.5s ease;
+  padding: 10px 0 10px 0;
+  &.WithOutTrustButton {
+    padding: 10px;
+  }
+`;
+
+export const UserIcon = styled(UserMinus)`
+  height: 45px;
+  width: 45px;
+  fill: #33d7a3;
+  flex-shrink: 0;
+  margin-right: 20px;
+`;
+export const VerifiedIcon = styled(Verified)`
+  height: 45px;
+  width: 45px;
+  fill: #3FA3FF;
+  flex-shrink: 0;
+  margin-right: 20px;
 `;

@@ -73,6 +73,11 @@ body {
   font-family: "Poppins";
   color: var(--fontWhite);
   font-weight: 600;
+  width:80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .myRowLinksSideBarApp {

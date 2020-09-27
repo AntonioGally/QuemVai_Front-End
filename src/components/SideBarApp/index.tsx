@@ -81,16 +81,17 @@ const SideBarApp: React.FC = () => {
                 onClick={() => setModalConfigShow(true)}
               />
             </Row>
-            <Row className="justify-content-center userNameSideBarApp">
-              {userName}
+            <Row className="justify-content-center">
+              <div className="userNameSideBarApp">{userName}</div>
             </Row>
           </div>
         </div>
 
         <div className="sidebarContent">
-          <Row className="myRowLinksSideBarApp">            
+          <Row className="myRowLinksSideBarApp">
             <div>
-              <HomeIcon className="home" /> <span className="SpanInicioSideBar">Início</span>
+              <HomeIcon className="home" />{" "}
+              <span className="SpanInicioSideBar">Início</span>
             </div>
           </Row>
           <Row className="myRowLinksSideBarApp">
@@ -108,7 +109,7 @@ const SideBarApp: React.FC = () => {
               <SpacesIcon /> <span>Quadras</span>
             </div>
           </Row>
-          <Row className="myRowLinksSideBarApp" style={{marginBottom:"10%"}}>
+          <Row className="myRowLinksSideBarApp" style={{ marginBottom: "10%" }}>
             <div onClick={() => setModalFriendShow(true)}>
               <FriendsIcon /> <span>Amigos</span>
             </div>
@@ -122,7 +123,7 @@ const SideBarApp: React.FC = () => {
           >
             <NavLink
               to="/"
-              style={{ width: "80%", padding: "5px 0", marginBottom:"5%" }}
+              style={{ width: "80%", padding: "5px 0", marginBottom: "5%" }}
               className="btn MyButtonSidebarApp"
             >
               Voltar
