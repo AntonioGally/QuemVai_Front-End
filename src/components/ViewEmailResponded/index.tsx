@@ -1,5 +1,8 @@
 import React from "react";
 
+// import { parseISO, format } from "date-fns";
+// import { pt } from "date-fns/locale";
+
 import { Form, Col, Row } from "react-bootstrap";
 import { MyLableText, MyForm } from "./styles";
 
@@ -8,6 +11,7 @@ export interface FormEmailResponded {
 }
 
 const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
+
   return (
     <div style={{ margin: "5% 0 0" }}>
       <Form>
@@ -249,7 +253,7 @@ const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
                 </Row>
               </Col>
             </Col>
-            <Row className="justify-content-center" style={{width:"100%"}}>
+            <Row className="justify-content-center" style={{ width: "100%" }}>
               <Col md={3}>
                 <Form.Group>
                   <Form.Label htmlFor="IdEmailResponded">ID</Form.Label>

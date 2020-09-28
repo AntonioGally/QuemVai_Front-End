@@ -1,5 +1,8 @@
 import React from "react";
 
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
+
 import { StatusMessage } from "./styles";
 import "./RespondedData.css";
 
@@ -22,6 +25,11 @@ const EmailRespondedData: React.FC<Props> = ({
   EmailStatus,
   EmailData,
 }) => {
+  const AuxDate = parseISO(String(EmailData));
+
+  const formattedDate = format(AuxDate, "'Dia' dd 'de' MMMM', às ' HH:mm'h'", {
+    locale: pt,
+  });
   return (
     <>
       <tr>
@@ -34,7 +42,7 @@ const EmailRespondedData: React.FC<Props> = ({
           {EmailStatus && <StatusMessage>Respondido</StatusMessage>}
           {!EmailStatus && <StatusMessage>Não Respondido</StatusMessage>}
         </td>
-        <td>{EmailData}</td>
+        <td>{formattedDate}</td>
       </tr>
     </>
   );

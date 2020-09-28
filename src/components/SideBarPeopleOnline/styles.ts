@@ -95,7 +95,7 @@ export const MyButton = styled.button`
   border: 1px solid var(--fontWhite);
   color: var(--fontWhite);
   transition: all 0.5s ease;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 10px 0;  
   &.WithOutTrustButton {
     padding: 10px;
   }

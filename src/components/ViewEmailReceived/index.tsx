@@ -1,5 +1,8 @@
 import React from "react";
 
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
+
 import { Form, Col } from "react-bootstrap";
 import { MyLableText, MyForm } from "./styles";
 
@@ -20,6 +23,11 @@ const ViewEmail: React.FC<FormEmailReceived> = ({
   DateEmailReceived,
   MessageEmailReceived,
 }) => {
+  const AuxDate = parseISO(String(DateEmailReceived));
+
+  const formattedDate = format(AuxDate, "'Dia' dd 'de' MMMM', às ' HH:mm'h'", {
+    locale: pt,
+  });
   return (
     <div style={{ margin: "10% 0" }}>
       <Form>
@@ -75,7 +83,7 @@ const ViewEmail: React.FC<FormEmailReceived> = ({
                     name="DateEmailReceived"
                     id="DateEmailReceived"
                     style={{ borderRadius: "10px" }}
-                    defaultValue={DateEmailReceived}
+                    defaultValue={formattedDate}
                   />
                 </Form.Group>
               </MyForm>

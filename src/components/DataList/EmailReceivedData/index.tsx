@@ -1,5 +1,7 @@
 import React from "react";
 
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
 
 import "./ReceivedData.css";
 
@@ -20,6 +22,11 @@ const EmailReceivedData: React.FC<Props> = ({
   EmailStatus,
   EmailData,
 }) => {
+  const AuxDate = parseISO(String(EmailData));
+
+  const formattedDate = format(AuxDate, "'Dia' dd 'de' MMMM', às ' HH:mm'h'", {
+    locale: pt,
+  });
   return (
     <>
       <tr>
@@ -27,10 +34,8 @@ const EmailReceivedData: React.FC<Props> = ({
         <td>{EmailUsuario}</td>
         <td>{EmailAssunto}</td>
         <td className="MyColReceivedData">{EmailMensagem}</td>
-        <td>
-          {EmailStatus}
-        </td>
-        <td>{EmailData}</td>
+        <td>{EmailStatus}</td>
+        <td>{formattedDate}</td>
       </tr>
     </>
   );
