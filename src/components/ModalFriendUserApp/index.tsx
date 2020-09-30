@@ -51,14 +51,14 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                 <Nav
                   variant="pills"
                   className="flex-column"
-                  style={{ height: "100%", justifyContent: "space-between" }}
+                  style={{ height:"100%" }}
                 >
-                  <div className="MyNavModalFriendUserApp">
+                  <div style={{marginBottom:"10%"}}>
                     <Row
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
-                      <Nav.Item style={{ width: "80%" }}>
+                      <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
                           eventKey="SendInvite"
                           style={{ textAlign: "left" }}
@@ -85,7 +85,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
-                      <Nav.Item style={{ width: "80%" }}>
+                      <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
                           eventKey="InvitesSended"
                           style={{ textAlign: "left" }}
@@ -112,7 +112,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
-                      <Nav.Item style={{ width: "80%" }}>
+                      <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
                           eventKey="InvitesReceived"
                           style={{ textAlign: "left" }}
@@ -139,11 +139,11 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                     </Row>
                   </div>
                   <div>
-                    <Row
+                  <Row
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
-                      <Nav.Item style={{ width: "80%" }}>
+                      <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
                           eventKey="InvitesReceived"
                           style={{ textAlign: "left" }}
@@ -170,7 +170,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
-                      <Nav.Item style={{ width: "80%" }}>
+                      <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
                           eventKey="InvitesReceived"
                           style={{ textAlign: "left" }}
@@ -193,11 +193,12 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                         </Nav.Link>
                       </Nav.Item>
                     </Row>
+
                     <Row
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
-                      <Nav.Item style={{ width: "80%" }}>
+                      <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
                           eventKey="InvitesReceived"
                           style={{ textAlign: "left" }}

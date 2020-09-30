@@ -8,7 +8,12 @@ import { UserShield } from "@styled-icons/fa-solid/UserShield";
 import { UserCheck } from "@styled-icons/boxicons-solid/UserCheck";
 import { PlaylistAddCheck } from "@styled-icons/material/PlaylistAddCheck";
 
-import {Send} from "@styled-icons/ionicons-sharp/Send";
+import { Send } from "@styled-icons/ionicons-sharp/Send";
+
+import { DeleteForever } from "@styled-icons/material/DeleteForever";
+
+import { PersonDelete } from "@styled-icons/evaicons-solid/PersonDelete";
+import { DoneAllOutline } from "@styled-icons/evaicons-outline/DoneAllOutline";
 
 export const MyTitleForm = styled.h3`
   margin-top: 2%;
@@ -26,7 +31,7 @@ export const MyLableText = styled.h5`
   font-family: "Poppins";
   color: var(--fontBlack);
   font-size: 28px;
-  margin-right:20px;
+  margin-right: 20px;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -39,15 +44,15 @@ export const MyLableText = styled.h5`
 
 export const MyButton = styled.button`
   background-color: transparent;
-  border:none;
-  width:40px;
-  height:40px;
-  :focus{
-    outline:none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  :focus {
+    outline: none;
   }
   :hover {
-    opacity:0.6;
-    transition:all .3s ease-in;
+    opacity: 0.6;
+    transition: all 0.3s ease-in;
   }
 `;
 
@@ -70,19 +75,19 @@ export const MyRowPeople = styled.div`
 `;
 
 export const MyCard = styled.div`
-  width:100%;
-  height:400px;
-  background:var(--fontWhite);
+  width: 100%;
+  height: 400px;
+  background: var(--fontWhite);
   box-shadow: 8px 8px 30px rgba(0, 0, 0, 0.3);
-  border-radius:30px; 
-  overflow:hidden;
+  border-radius: 30px;
+  overflow: hidden;
 `;
 export const InviteIcon = styled(Send)`
-  width:40px;
-  height:40px;
-  fill:var(--fontWhite);
+  width: 40px;
+  height: 40px;
+  fill: var(--fontWhite);
   flex-shrink: 0;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 var SideBarIcons = css`
@@ -111,4 +116,56 @@ export const TrustReceiveIcon = styled(UserCheck)`
 `;
 export const TrustSendedIcon = styled(PlaylistAddCheck)`
   ${SideBarIcons}
+`;
+
+export const MyCardInvitesSended = styled.div`
+  background-color: var(--fontWhite);
+  border-radius: 15px;
+  box-shadow: 8.71601px 8.71601px 32.685px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 5%;
+`;
+
+export const ImageUser = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  flex-shrink: 0;
+`;
+export const NameUser = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const CancelIcon = styled(DeleteForever)`
+  height: 55px;
+  width: 55px;
+  fill: #ed461d;
+  color: #ed461d;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+
+export const AcceptIcon = styled(PersonDelete)`
+  height: 55px;
+  width: 55px;
+  fill: #ed461d;
+  color: #ed461d;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+export const RefuseIcon = styled(DoneAllOutline)`
+  height: 55px;
+  width: 55px;
+  fill: var(--primary);
+  color: var(--primary);
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-right: 10px;
 `;

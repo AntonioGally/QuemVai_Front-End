@@ -135,6 +135,9 @@ body {
   .myRowLinksSideBarApp span {
     display: none;
   }
+  .SideBarAppActiveLink::after {
+    right:20px !important;
+  }
   .myRowLinksSideBarApp svg {
     margin-bottom: 7%;
     margin-right: 0 !important;
@@ -151,7 +154,7 @@ body {
   color:var(--buttonFill);
   fill:var(--buttonFill);
 }
-.SideBarAppActiveLink span::after {
+.SideBarAppActiveLink::after {
   width: 7px;
   height: 7px;
 
