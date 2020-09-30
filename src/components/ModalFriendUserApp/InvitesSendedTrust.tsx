@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./ModalFriendStyles.css";
-
-import any_data2 from "../../img/icones/any_data2.svg";
 
 import { Container, Row } from "react-bootstrap";
+import "./ModalFriendStyles.css";
+
 import {
   MyTitleForm,
   MyCardInvitesSended,
@@ -12,25 +11,24 @@ import {
   CancelIcon,
 } from "./styles";
 
-import { InvitesSendedList } from "../@types";
-// import CancelarSolicitacao from "./Confirmação/CancelarSolicitacao";
+import any_data3 from "../../img/icones/any_data3.jpg";
+
+import { InvitesSendedTrustList } from "../@types";
 
 import api from "../services/api";
 import { Token } from "../services/auth";
 
 interface Data {
-  InvitesSended: InvitesSendedList[];
+  InvitesSended: InvitesSendedTrustList[];
 }
 
 const ModalFriendUserApp: React.FC = () => {
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
-  // const [auxID, setAuxID] = useState(Number);
-  // const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     Promise.all([
-      api.get("/api/user/invite/sent", {
+      api.get("/api/user/trust/invite/getInvite", {
         headers: { "x-auth-token": Token() },
       }),
     ]).then(async (responses) => {
@@ -48,12 +46,12 @@ const ModalFriendUserApp: React.FC = () => {
     <div className="WrapperModalFriends">
       <Container fluid>
         <MyTitleForm style={{ marginBottom: "4%" }}>
-          Solicitações enviadas
+          Solicitações de confiança enviadas
         </MyTitleForm>
         {!isSomething ? (
           <div style={{ textAlign: "center" }}>
             <img
-              src={any_data2}
+              src={any_data3}
               alt="Any Data"
               style={{ width: "90%", height: "90%" }}
             />
@@ -79,15 +77,6 @@ const ModalFriendUserApp: React.FC = () => {
           </div>
         )}
       </Container>
-      {/* {modalShow ? (
-        <CancelarSolicitacao
-          id={auxID}
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      ) : (
-        ""
-      )} */}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { AccountBox } from "@styled-icons/material/AccountBox";
 import { Key } from "@styled-icons/boxicons-regular/Key";
 import { InsertPhoto } from "@styled-icons/material/InsertPhoto";
 import { HistoryEdu } from "@styled-icons/material-outlined/HistoryEdu";
+import { UserReceived2 } from "@styled-icons/remix-fill/UserReceived2";
 
 import { Search } from "@styled-icons/boxicons-regular/Search";
 import { Map } from "@styled-icons/boxicons-regular/Map";
@@ -22,7 +23,7 @@ export const MyTitleForm = styled.h3`
   @media (max-width: 768px) {
     font-size: 20px;
   }
-  @media (max-width:1000px){
+  @media (max-width: 1000px) {
     font-size: 35px;
   }
 `;
@@ -97,6 +98,9 @@ export const PhotoIcon = styled(InsertPhoto)`
   ${sideBarIcons};
 `;
 export const HistoricIcon = styled(HistoryEdu)`
+  ${sideBarIcons};
+`;
+export const LogoutIcon = styled(UserReceived2)`
   ${sideBarIcons};
 `;
 

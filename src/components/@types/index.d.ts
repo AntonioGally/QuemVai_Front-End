@@ -143,6 +143,22 @@ export interface InvitesSendedList {
     photos: string;
   };
 }
+export interface InvitesSendedTrustList {
+  something_here: string;
+  but_i_dont_know: string;
+  what: string;
+}
+export interface InvitesReceivedTrustList {
+  id: number;
+  status_friendships: strring;
+  securityFriend: strring;
+  id_User: number;
+  id_Friend: number;
+  UserOwner: {
+    username: strring;
+    photos: strring;
+  };
+}
 
 export interface InvitesReceivedList {
   id_User: number;

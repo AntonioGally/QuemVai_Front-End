@@ -41,8 +41,6 @@ const SideBarPeopleOnline: React.FC<Props> = ({
   useEffect(() => {
     if (cell) {
       setTrustFriend(true);
-    } else {
-      setTrustFriend(false);
     }
   }, [cell]);
   return (

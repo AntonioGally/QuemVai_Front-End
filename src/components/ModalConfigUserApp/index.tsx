@@ -7,7 +7,15 @@ import PhotoAtualization from "./PhotoAtualization";
 import "./ModalConfigStyles.css";
 import QuemVaiLogo3 from "../../img/logo/QuemVaiLogo3.png";
 
-import { AccountIcon, PasswordIcon, PhotoIcon, HistoricIcon } from "./styles";
+import { logout } from "../services/auth";
+
+import {
+  AccountIcon,
+  PasswordIcon,
+  PhotoIcon,
+  HistoricIcon,
+  LogoutIcon,
+} from "./styles";
 
 export interface Props {
   show: boolean;
@@ -139,6 +147,26 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                           >
                             <HistoricIcon />
                             <span>Meu Histórico</span>
+                          </Nav.Link>
+                        </Nav.Item>
+                      </Col>
+                    </Row>
+                    <Row
+                      className="justify-content-center"
+                      style={{ margin: 0 }}
+                    >
+                      <Col>
+                        <Nav.Item style={{ width: "100%" }}>
+                          <Nav.Link
+                            eventKey="Account"
+                            className="MyNavLink"
+                            onClick={() => {
+                              logout();
+                              window.location.reload();
+                            }}
+                          >
+                            <LogoutIcon />
+                            <span>Sair</span>
                           </Nav.Link>
                         </Nav.Item>
                       </Col>

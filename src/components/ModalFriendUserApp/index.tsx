@@ -7,7 +7,6 @@ import {
   SendInviteIcon,
   InvitesSendedIcon,
   InvitesReceivedIcon,
-  TrustAddIcon,
   TrustReceiveIcon,
   TrustSendedIcon,
 } from "./styles";
@@ -15,6 +14,9 @@ import {
 import InvitesSended from "./InvitesSended";
 import InvitesReceived from "./InvitesReceived";
 import SendInvite from "./SendInvite";
+
+import InvitesSendedTrust from "./InvitesSendedTrust";
+import InvitesReceivedTrust from "./InvitesReceivedTrust";
 
 export interface Props {
   show: boolean;
@@ -34,9 +36,6 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
     setSolicitacoesRecebidasClick,
   ] = React.useState(false);
 
-  const [adicionarConfiancaClick, setAdicionarConfiancaClick] = React.useState(
-    false
-  );
   const [enviosConfiancaClick, setEnviosConfiancaClick] = React.useState(false);
   const [recibosConfiancaClick, setRecibosConfiancaClick] = React.useState(
     false
@@ -51,9 +50,9 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                 <Nav
                   variant="pills"
                   className="flex-column"
-                  style={{ height:"100%" }}
+                  style={{ height: "100%" }}
                 >
-                  <div style={{marginBottom:"10%"}}>
+                  <div style={{ marginBottom: "10%" }}>
                     <Row
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
@@ -71,7 +70,6 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                             setAdicionarUsuarioClick(true);
                             setSolicitacoesEnviadasClick(false);
                             setSolicitacoesRecebidasClick(false);
-                            setAdicionarConfiancaClick(false);
                             setEnviosConfiancaClick(false);
                             setRecibosConfiancaClick(false);
                           }}
@@ -98,7 +96,6 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                             setAdicionarUsuarioClick(false);
                             setSolicitacoesEnviadasClick(true);
                             setSolicitacoesRecebidasClick(false);
-                            setAdicionarConfiancaClick(false);
                             setEnviosConfiancaClick(false);
                             setRecibosConfiancaClick(false);
                           }}
@@ -125,7 +122,6 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                             setAdicionarUsuarioClick(false);
                             setSolicitacoesEnviadasClick(false);
                             setSolicitacoesRecebidasClick(true);
-                            setAdicionarConfiancaClick(false);
                             setEnviosConfiancaClick(false);
                             setRecibosConfiancaClick(false);
                           }}
@@ -139,40 +135,13 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                     </Row>
                   </div>
                   <div>
-                  <Row
-                      className="justify-content-center"
-                      style={{ margin: 0, alignItems: "center" }}
-                    >
-                      <Nav.Item style={{ width: "90%" }}>
-                        <Nav.Link
-                          eventKey="InvitesReceived"
-                          style={{ textAlign: "left" }}
-                          className={`${
-                            adicionarConfiancaClick
-                              ? "activeLinkModalFriendUserApp"
-                              : ""
-                          } MyNavLinkModalFriendUserApp`}
-                          onClick={() => {
-                            setAdicionarUsuarioClick(false);
-                            setSolicitacoesEnviadasClick(false);
-                            setSolicitacoesRecebidasClick(false);
-                            setAdicionarConfiancaClick(true);
-                            setEnviosConfiancaClick(false);
-                            setRecibosConfiancaClick(false);
-                          }}
-                        >
-                          <TrustAddIcon />
-                          <span>Adicionar confiança</span>
-                        </Nav.Link>
-                      </Nav.Item>
-                    </Row>
                     <Row
                       className="justify-content-center"
                       style={{ margin: 0, alignItems: "center" }}
                     >
                       <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
-                          eventKey="InvitesReceived"
+                          eventKey="InvitesSendedTrust"
                           style={{ textAlign: "left" }}
                           className={`${
                             enviosConfiancaClick
@@ -183,7 +152,6 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                             setAdicionarUsuarioClick(false);
                             setSolicitacoesEnviadasClick(false);
                             setSolicitacoesRecebidasClick(false);
-                            setAdicionarConfiancaClick(false);
                             setEnviosConfiancaClick(true);
                             setRecibosConfiancaClick(false);
                           }}
@@ -200,7 +168,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                     >
                       <Nav.Item style={{ width: "90%" }}>
                         <Nav.Link
-                          eventKey="InvitesReceived"
+                          eventKey="InvitesReceivedTrust"
                           style={{ textAlign: "left" }}
                           className={`${
                             recibosConfiancaClick
@@ -211,7 +179,6 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                             setAdicionarUsuarioClick(false);
                             setSolicitacoesEnviadasClick(false);
                             setSolicitacoesRecebidasClick(false);
-                            setAdicionarConfiancaClick(false);
                             setEnviosConfiancaClick(false);
                             setRecibosConfiancaClick(true);
                           }}
@@ -235,6 +202,12 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                   </Tab.Pane>
                   <Tab.Pane eventKey="SendInvite">
                     <SendInvite />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="InvitesSendedTrust">
+                    <InvitesSendedTrust />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="InvitesReceivedTrust">
+                    <InvitesReceivedTrust />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>
