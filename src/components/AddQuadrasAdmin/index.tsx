@@ -20,6 +20,7 @@ type FormCadastroAdd = {
 
 const AddQuadrasAdmin: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<FormCadastroAdd>();
+  const [erros, setErros] = React.useState("");
 
   const onSubmit = async (data: FormCadastroAdd) => {
     try {
@@ -33,6 +34,9 @@ const AddQuadrasAdmin: React.FC = () => {
       const UF = data.UfQuadraAdd;
       var config = {
         headers: { "x-auth-token": getTokenAdmin() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
       };
 
       const response = await api.post(
@@ -45,8 +49,11 @@ const AddQuadrasAdmin: React.FC = () => {
         alert("Quadra criada com sucesso!");
         window.location.reload();
       }
-      if (!response.data["User created"]) {
-        alert("Houve algum problema!");
+      if (
+        response.status === 404 ||
+        response.data["This dont exist, sorry dude"] === true
+      ) {
+        setErros("Esse lugar não existe");
       }
     } catch (err) {
       console.log(err);
@@ -221,6 +228,9 @@ const AddQuadrasAdmin: React.FC = () => {
                       )}
                   </Form.Group>
                 </Col>
+                <div className="text-danger" style={{ fontSize: "20px" }}>
+                  {erros}
+                </div>
               </Form.Row>
               <Form.Row style={{ justifyContent: "flex-end", marginTop: "2%" }}>
                 <Button

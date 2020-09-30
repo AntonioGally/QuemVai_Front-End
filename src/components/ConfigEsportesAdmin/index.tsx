@@ -1,9 +1,12 @@
 import React from "react";
 
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import { MyContainer, ErrorMessage } from "./styles";
+
+import api from "../services/api";
+import { getTokenAdmin } from "../services/auth";
 
 export interface FormEsporteConfig {
   NomeEsporteConfig: any;
@@ -17,10 +20,36 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
   IdEsporteConfig,
 }) => {
   const { register, handleSubmit, errors } = useForm<FormEsporteConfig>();
+  const [erros, setErros] = React.useState("");
 
-  function onSubmitForm(data: FormEsporteConfig) {
-    console.log(data);
-  }
+  const onSubmitForm = async (data: FormEsporteConfig) => {
+    var config = {
+      headers: { "x-auth-token": getTokenAdmin() },
+      validateStatus: function (status: any) {
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+    };
+
+    try {
+      var name = data.NomeEsporteConfig;
+      var description = data.DescricaoEsporteConfig;
+      const response = await api.put(
+        `/api/admin/sport/update/${IdEsporteConfig}`,
+        { name, description },
+        config
+      );
+
+      if (response.data["Sport updated"] === true && response.status === 200) {
+        alert("Esporte atualizado com sucesso!");
+        window.location.reload();
+      }
+      if (response.status === 204) {
+        setErros("O ID do esporte não existe");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -33,7 +62,6 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                   <Form.Group>
                     <Form.Label htmlFor="NomeEsporteConfig">Nome</Form.Label>
                     <Form.Control
-                      readOnly
                       name="NomeEsporteConfig"
                       id="NomeEsporteConfig"
                       defaultValue={NomeEsporteConfig}
@@ -55,7 +83,6 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                       Descrição
                     </Form.Label>
                     <Form.Control
-                      readOnly
                       name="DescricaoEsporteConfig"
                       id="DescricaoEsporteConfig"
                       defaultValue={DescricaoEsporteConfig}
@@ -83,6 +110,18 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                     />
                   </Form.Group>
                 </Col>
+                <Col md={3}>
+                  <Button
+                    variant="success"
+                    type="submit"
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Alterar
+                  </Button>
+                </Col>
+                <div className="text-danger" style={{ fontSize: "20px" }}>
+                  {erros}
+                </div>
               </Form.Row>
             </fieldset>
           </Form>

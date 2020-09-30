@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MyNavBar = styled.div`
   @media only screen and (min-width: 1200px) {
-    margin-top: 9.125em;
+    margin-top: 7.125em;
   }
   margin-top: 4em;
 `;
@@ -17,13 +17,15 @@ export const MyLink = styled.div`
     margin-left: 8.125em;
   }
 
-  font-family: "Roboto Light";
+  font-family: "Poppins";
   font-size: 1em;
   position: relative;
   > a {
     padding: 4px 12px;
     color: black !important;
     cursor: pointer;
+    font-family: "Poppins";
+
   }
   
 >a{

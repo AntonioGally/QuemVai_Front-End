@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-// import { parseISO, format } from "date-fns";
-// import { pt } from "date-fns/locale";
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
 
 import { Form, Col, Row } from "react-bootstrap";
 import { MyLableText, MyForm } from "./styles";
@@ -11,6 +11,37 @@ export interface FormEmailResponded {
 }
 
 const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
+  const [createAt, setCreateAt] = useState(String);
+  const [updateAt, setUpdateAt] = useState(String);
+  useEffect(() => {
+    var DateInicialCreated: Date = Informations.map((i: any) => {
+      return i.createdAt;
+    });
+
+    const AuxDateCreated = parseISO(String(DateInicialCreated));
+    const formattedDateCreated = format(
+      AuxDateCreated,
+      "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+      {
+        locale: pt,
+      }
+    );
+
+    setCreateAt(formattedDateCreated);
+
+    var DateInicialUpdated: Date = Informations.map((i: any) => {
+      return i.updatedAt;
+    });
+    const AuxDate = parseISO(String(DateInicialUpdated));
+    const formattedDateUpdated = format(
+      AuxDate,
+      "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+      {
+        locale: pt,
+      }
+    );
+    setUpdateAt(formattedDateUpdated);
+  }, [Informations]);
   return (
     <div style={{ margin: "5% 0 0" }}>
       <Form>
@@ -97,9 +128,7 @@ const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
                         name="DateEmailResponded"
                         id="DateEmailResponded"
                         style={{ borderRadius: "10px" }}
-                        defaultValue={Informations.map((i: any) => {
-                          return i.createdAt;
-                        })}
+                        defaultValue={createAt}
                       />
                     </Form.Group>
                   </MyForm>
@@ -216,9 +245,7 @@ const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
                         name="DateEmailResponded"
                         id="DateEmailResponded"
                         style={{ borderRadius: "10px" }}
-                        defaultValue={Informations.map((i: any) => {
-                          return i.updatedAt;
-                        })}
+                        defaultValue={updateAt}
                       />
                     </Form.Group>
                   </MyForm>

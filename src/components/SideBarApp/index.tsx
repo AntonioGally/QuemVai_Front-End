@@ -23,6 +23,7 @@ const SideBarApp: React.FC = () => {
   const [modalConfigShow, setModalConfigShow] = React.useState(false);
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
   const [isLogged, setIsLogged] = React.useState(Boolean);
+  const [isAdmin, setIsAdmin] = React.useState(false);
 
   const [inicioClick, setInicioClick] = React.useState(true);
   const [esportesClick, setEsportesClick] = React.useState(false);
@@ -31,6 +32,9 @@ const SideBarApp: React.FC = () => {
   const [amigosClick, setAmigosClick] = React.useState(false);
 
   useEffect(() => {
+    if (getTokenAdmin()) {
+      setIsAdmin(true);
+    }
     if (getToken() || getTokenAdmin()) {
       setIsLogged(true);
     } else {
@@ -173,13 +177,23 @@ const SideBarApp: React.FC = () => {
             className="row justify-content-center"
             style={{ margin: 0, width: "100%" }}
           >
-            <NavLink
-              to="/"
-              style={{ width: "80%", padding: "5px 0", marginBottom: "5%" }}
-              className="btn MyButtonSidebarApp"
-            >
-              Voltar
-            </NavLink>
+            {isAdmin ? (
+              <NavLink
+                to="/AdminQuadras"
+                style={{ width: "80%", padding: "5px 0", marginBottom: "5%" }}
+                className="btn MyButtonSidebarApp"
+              >
+                Voltar
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/"
+                style={{ width: "80%", padding: "5px 0", marginBottom: "5%" }}
+                className="btn MyButtonSidebarApp"
+              >
+                Voltar
+              </NavLink>
+            )}
           </div>
         </div>
       </nav>

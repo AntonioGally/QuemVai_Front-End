@@ -27,6 +27,7 @@ const EmailViewRespondedIdForm: React.FC = () => {
   const [didSubmit, setDidSubmit] = React.useState(false);
   const [data, setData] = useState<Data>();
 
+
   function onSubmitId(data: EmailRespondedIdForm) {
     const NewId = Number(data.IdEmailResponded);
     setId(NewId);
@@ -52,7 +53,7 @@ const EmailViewRespondedIdForm: React.FC = () => {
       }
 
       const emails = await ViewEmailResponded.data;
-      setData({ InformationEmailResponded: emails });
+      setData({ InformationEmailResponded: emails });  
 
       if (ViewEmailResponded.status === 200 && didSubmit) {
         setErros("");
@@ -61,7 +62,7 @@ const EmailViewRespondedIdForm: React.FC = () => {
     });
   }, [id, didSubmit]);
 
-  if (existingId) {    
+  if (existingId) {
     return (
       <ViewEmailResponded Informations={data?.InformationEmailResponded} />
     );
