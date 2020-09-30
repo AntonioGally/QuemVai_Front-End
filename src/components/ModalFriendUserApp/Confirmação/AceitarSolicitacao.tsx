@@ -16,14 +16,14 @@ export interface Props {
 const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => {
   const [erros, setErros] = React.useState("");
 
-  const handleClickTrust = async () => {    
-    try {      
+  const handleClickTrust = async () => {
+    try {
       var config = {
         headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
           return status < 500; // Resolve only if the status code is less than 500
         },
-      };      
+      };
       const response = await api.put(
         `/api/user/trust/invite/accept/${id}`,
         {},
@@ -38,10 +38,10 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
     } catch (err) {
       console.log(err);
     }
-  }
-  
+  };
+
   const handleClick = async () => {
-    try {
+    try {      
       var config = {
         headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
@@ -50,12 +50,15 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
       };
 
       const response = await api.put(
-        `/api/user/trust/invite/accept/${id}`,
+        `/api/user/invite/accept/${id}`,
         {},
         config
       );
-      if (response.status === 200) {
+      if (response.status === 200 && response.data["Request accepted"]) {
         window.location.reload();
+      }
+      if (response.status === 204) {
+        setErros("Essa solicitação não existe");
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao aceitar a solicitação");
@@ -95,7 +98,10 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
               </div>
             </Col>
             <Col lg={6} md={12} style={{ padding: 0 }}>
-              <div onClick={!isTrust ? handleClick : handleClickTrust} className="AddButtonConfirmation">
+              <div
+                onClick={!isTrust ? handleClick : handleClickTrust}
+                className="AddButtonConfirmation"
+              >
                 Adicionar
               </div>
             </Col>

@@ -25,7 +25,8 @@ interface Data {
 const ModalFriendUserApp: React.FC = () => {
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
-  // const [auxID, setAuxID] = useState(Number);
+  const [auxID, setAuxID] = useState();
+  const [erros, setErros] = React.useState("");
   // const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
@@ -40,10 +41,47 @@ const ModalFriendUserApp: React.FC = () => {
       if (invites != "") {
         setIsSomething(true);
       }
+
       setData({ InvitesSended: invites });
     });
   }, []);
-  console.log(data);
+
+  useEffect(() => {
+    var auxData = data?.InvitesSended.map((i) => {
+      return i.id_Friend;
+    });
+    setAuxID(auxData as any);
+  }, [data]);
+
+  const handleClick = async () => {
+    try {
+      console.log(auxID);
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+
+      const response = await api.put(
+        `/api/user/invite/cancel/${auxID}`,
+        {},
+        config
+      );
+      if (response.status === 200 && response.data["Request canceled"]) {
+        window.location.reload();
+      }
+      if (response.status === 204) {
+        setErros("Essa solicitação não existe");
+      }
+      if (response.status === 400) {
+        setErros("Houve algum problema ao aceitar a solicitação");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="WrapperModalFriends">
       <Container fluid>
@@ -60,22 +98,27 @@ const ModalFriendUserApp: React.FC = () => {
           </div>
         ) : (
           <div>
-            <MyCardInvitesSended>
-              <Row
-                style={{
-                  margin: 0,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <ImageUser
-                  src="https://quemvai.blob.core.windows.net/fotos/d72b2887-9471-7edd-20d8-12e0ea73394f.jpg"
-                  alt="UserPhoto"
-                />
-                <NameUser>Tony3</NameUser>
-                <CancelIcon />
-              </Row>
-            </MyCardInvitesSended>
+            {data?.InvitesSended.map((information) => (
+              <MyCardInvitesSended key={information.id_Friend}>
+                <Row
+                  style={{
+                    margin: 0,
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <ImageUser
+                    src={information.UserFriendOwner.photos}
+                    alt="UserPhoto"
+                  />
+                  <NameUser>{information.UserFriendOwner.username}</NameUser>
+                  <CancelIcon onClick={handleClick} />
+                </Row>
+                <div className="text-danger" style={{ fontSize: "20px" }}>
+                  {erros}
+                </div>
+              </MyCardInvitesSended>
+            ))}
           </div>
         )}
       </Container>

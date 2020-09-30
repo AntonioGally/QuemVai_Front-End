@@ -53,13 +53,12 @@ const ModalFriendUserApp: React.FC = () => {
       };
       const response = await api.post(`/api/user/invite/${id}`, {}, config);
       if (response.status === 406 && response.data["Request already sended"]) {
-        setErros(
-          "Parece que a solicitação já foi enviada, cheque se o usuário já lhe enviou uma solicitação, ou se vocês já são amigos :D"
-        );
+        setErros("Parece que a solicitação já foi enviada");
+        console.log("ASLDKASDONASD");
       }
       if (response.status === 422 && response.data["Equals id's"]) {
         setErros("Este é o seu ID");
-      }
+      }      
       if (response.status === 204) {
         setErros("Esse usuário não existe");
       }
@@ -133,6 +132,9 @@ const ModalFriendUserApp: React.FC = () => {
                               {(errors.idUser as any).message}
                             </div>
                           )}
+                        <div style={{ fontFamily: "Poppins", color: "red" }}>
+                          {erros}
+                        </div>
                       </Row>
                     </Form.Group>
                   </Col>
@@ -144,8 +146,6 @@ const ModalFriendUserApp: React.FC = () => {
                 </MyButton>
               </Col>
             </Row>
-
-            <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
           </Form>
         </MyCard>
       </Container>

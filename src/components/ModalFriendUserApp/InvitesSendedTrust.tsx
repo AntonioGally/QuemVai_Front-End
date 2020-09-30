@@ -41,7 +41,7 @@ const ModalFriendUserApp: React.FC = () => {
       setData({ InvitesSended: invites });
     });
   }, []);
-  console.log(data);
+
   return (
     <div className="WrapperModalFriends">
       <Container fluid>
@@ -58,22 +58,24 @@ const ModalFriendUserApp: React.FC = () => {
           </div>
         ) : (
           <div>
-            <MyCardInvitesSended>
-              <Row
-                style={{
-                  margin: 0,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <ImageUser
-                  src="https://quemvai.blob.core.windows.net/fotos/d72b2887-9471-7edd-20d8-12e0ea73394f.jpg"
-                  alt="UserPhoto"
-                />
-                <NameUser>Tony3</NameUser>
-                <CancelIcon />
-              </Row>
-            </MyCardInvitesSended>
+            {data?.InvitesSended.map((information) => (
+              <MyCardInvitesSended>
+                <Row
+                  style={{
+                    margin: 0,
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <ImageUser
+                    src="https://quemvai.blob.core.windows.net/fotos/d72b2887-9471-7edd-20d8-12e0ea73394f.jpg"
+                    alt="UserPhoto"
+                  />
+                  <NameUser>Tony3</NameUser>
+                  <CancelIcon />
+                </Row>
+              </MyCardInvitesSended>
+            ))}
           </div>
         )}
       </Container>
