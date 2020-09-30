@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Modal, Row, Col } from "react-bootstrap";
 import "./SideBarPeopleOnline.css";
 
+import ModalConfirmacao from "./Confirmation/ModalConfirmacao";
+
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 import {
   SpanIdUser,
@@ -38,6 +40,10 @@ const SideBarPeopleOnline: React.FC<Props> = ({
   onHide,
 }) => {
   const [trustFriend, setTrustFriend] = React.useState(false);
+  const [removeTrust, setRemoveTrust] = React.useState(false);
+  const [removeFriend, setRemoveFriend] = React.useState(false);
+  const [addTrust, setAddTrust] = React.useState(false);
+
   useEffect(() => {
     if (cell) {
       setTrustFriend(true);
@@ -89,20 +95,30 @@ const SideBarPeopleOnline: React.FC<Props> = ({
                   </AtributeText>
                 </Row>
                 <Row style={{ marginTop: "10%" }}>
-                  <Col>
+                  <Col lg={6} md={12}>
                     <MyButton
                       type="button"
                       className="btn RemoveTrust"
                       style={{ width: "100%" }}
+                      onClick={() => {
+                        setRemoveTrust(true);
+                        setRemoveFriend(false);
+                        setAddTrust(false);
+                      }}
                     >
                       Remover confiança
                     </MyButton>
                   </Col>
-                  <Col>
+                  <Col lg={6} md={12}>
                     <MyButton
                       type="submit"
                       className="btn RemoveFriend"
                       style={{ width: "100%" }}
+                      onClick={() => {
+                        setRemoveTrust(false);
+                        setRemoveFriend(true);
+                        setAddTrust(false);
+                      }}
                     >
                       Remover Amizade
                     </MyButton>
@@ -113,13 +129,27 @@ const SideBarPeopleOnline: React.FC<Props> = ({
               <div className="WrapperNonTrustedInformation">
                 <Row style={{ justifyContent: "center", margin: "5% 0" }}>
                   <UserIcon />{" "}
-                  <MyButton className="WithOutTrustButton">
+                  <MyButton
+                    className="WithOutTrustButton"
+                    onClick={() => {
+                      setRemoveTrust(false);
+                      setRemoveFriend(true);
+                      setAddTrust(false);
+                    }}
+                  >
                     Remover Amizade
                   </MyButton>
                 </Row>
                 <Row style={{ justifyContent: "center", margin: "5% 0" }}>
                   <VerifiedIcon />{" "}
-                  <MyButton className="WithOutTrustButton">
+                  <MyButton
+                    className="WithOutTrustButton"
+                    onClick={() => {
+                      setRemoveTrust(false);
+                      setRemoveFriend(false);
+                      setAddTrust(true);
+                    }}
+                  >
                     Adicionar Confiança
                   </MyButton>
                 </Row>
@@ -128,6 +158,39 @@ const SideBarPeopleOnline: React.FC<Props> = ({
           </Modal.Body>
         </div>
       </Modal>
+      {removeTrust ? (
+        <ModalConfirmacao
+          id={idFriend}
+          name={userName}
+          typeModal="removeTrust"
+          show={removeTrust}
+          onHide={() => setRemoveTrust(false)}
+        />
+      ) : (
+        ""
+      )}
+      {addTrust ? (
+        <ModalConfirmacao
+          id={idFriend}
+          name={userName}
+          typeModal="addTrust"
+          show={addTrust}
+          onHide={() => setAddTrust(false)}
+        />
+      ) : (
+        ""
+      )}
+      {removeFriend ? (
+        <ModalConfirmacao
+          id={idFriend}
+          name={userName}
+          typeModal="removeFriend"
+          show={removeFriend}
+          onHide={() => setRemoveFriend(false)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

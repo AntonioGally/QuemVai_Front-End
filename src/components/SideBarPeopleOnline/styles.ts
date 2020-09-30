@@ -84,7 +84,7 @@ export const AtributeText = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 21px;
-  width: 65%;
+  width: 70%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -95,7 +95,10 @@ export const MyButton = styled.button`
   border: 1px solid var(--fontWhite);
   color: var(--fontWhite);
   transition: all 0.5s ease;
-  padding: 10px 0 10px 0;  
+  padding: 10px 0 10px 0;
+  @media(max-width:1000px){
+    margin-top:5%;
+  }  
   &.WithOutTrustButton {
     padding: 10px;
   }
