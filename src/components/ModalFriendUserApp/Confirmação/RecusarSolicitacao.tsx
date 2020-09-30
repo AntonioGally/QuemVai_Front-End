@@ -1,16 +1,17 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Row, Col } from "react-bootstrap";
 
 import api from "../../services/api";
 import { Token } from "../../services/auth";
 
 export interface Props {
   id: number;
+  name: string;
   show: boolean;
   onHide: any;
 }
 
-const Confirmação: React.FC<Props> = ({ id, show, onHide }) => {
+const Confirmação: React.FC<Props> = ({ id, name, show, onHide }) => {
   const [erros, setErros] = React.useState("");
   const handleClick = async () => {
     try {
@@ -39,26 +40,26 @@ const Confirmação: React.FC<Props> = ({ id, show, onHide }) => {
   return (
     <div>
       <Modal size="sm" centered show={show} onHide={onHide}>
-        <Modal.Header closeButton>
-          <Modal.Title>Recusar</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>
-            Certeza que você deseja recusar a solicitação de amizade do usuário{" "}
-            <b className="text-danger">{id} ?</b>
+        <Modal.Body style={{ padding: 0, overflow: "hidden" }}>
+          <p style={{ padding: 20 }}>
+            Você deseja <b className="text-danger">EXCLUIR</b> o usuário{" "}
+            <b className="text-danger">{name}</b> de id{" "}
+            <b className="text-danger">{id}</b>{" "}?
           </p>
           <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
+          <Row style={{ width: "100%", margin: 0 }}>
+            <Col lg={6} md={12} style={{ padding: 0 }}>
+              <div onClick={onHide} className="BackButtonConfirmation">
+                Cancelar
+              </div>
+            </Col>
+            <Col lg={6} md={12} style={{ padding: 0 }}>
+              <div onClick={handleClick} className="AddButtonConfirmation">
+                Excluir
+              </div>
+            </Col>
+          </Row>
         </Modal.Body>
-
-        <Modal.Footer>
-          <Button type="button" variant="success" onClick={onHide}>
-            Voltar
-          </Button>
-          <Button type="button" variant="danger" onClick={handleClick}>
-            Recusar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

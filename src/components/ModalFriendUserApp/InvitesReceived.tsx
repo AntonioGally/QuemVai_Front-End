@@ -12,8 +12,8 @@ import {
 } from "./styles";
 
 import { InvitesReceivedList } from "../@types";
-// import RecusarSolicitacao from "./Confirmação/RecusarSolicitacao";
-// import AceitarSolicitacao from "./Confirmação/AceitarSolicitacao";
+import RecusarSolicitacao from "./Confirmação/RecusarSolicitacao";
+import AceitarSolicitacao from "./Confirmação/AceitarSolicitacao";
 
 import api from "../services/api";
 import { Token } from "../services/auth";
@@ -24,9 +24,10 @@ interface Data {
 
 const ModalFriendUserApp: React.FC = () => {
   const [data, setData] = useState<Data>();
-  // const [auxID, setAuxID] = useState(Number);
-  // const [modalShowRefuse, setModalShowRefuse] = useState(false);
-  // const [modalShowAccept, setModalShowAccept] = useState(false);
+  const [auxID, setAuxID] = useState(Number);
+  const [auxName, setAuxName] = useState("");
+  const [modalShowRefuse, setModalShowRefuse] = useState(false);
+  const [modalShowAccept, setModalShowAccept] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -56,36 +57,47 @@ const ModalFriendUserApp: React.FC = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <ImageUser
-                  src={information.UserOwner.photos}
-                  alt="UserPhoto"
-                />
+                <ImageUser src={information.UserOwner.photos} alt="UserPhoto" />
                 <NameUser>{information.UserOwner.username}</NameUser>
-                <AcceptIcon />
-                <RefuseIcon />
+                <RefuseIcon
+                  onClick={() => {
+                    setAuxID(information.id_User);
+                    setAuxName(information.UserOwner.username);
+                    setModalShowRefuse(true);
+                  }}
+                />
+                <AcceptIcon
+                  onClick={() => {
+                    setAuxID(information.id_User);
+                    setAuxName(information.UserOwner.username);
+                    setModalShowAccept(true);
+                  }}
+                />
               </Row>
             </MyCardInvitesSended>
           ))}
         </div>
       </Container>
-      {/* {modalShowRefuse ? (
-            <RecusarSolicitacao
-              id={auxID}
-              show={modalShowRefuse}
-              onHide={() => setModalShowRefuse(false)}
-            />
-          ) : (
-            ""
-          )}
-          {modalShowAccept ? (
-            <AceitarSolicitacao
-              id={auxID}
-              show={modalShowAccept}
-              onHide={() => setModalShowAccept(false)}
-            />
-          ) : (
-            ""
-          )} */}
+      {modalShowRefuse ? (
+        <RecusarSolicitacao
+          id={auxID}
+          name={auxName}
+          show={modalShowRefuse}
+          onHide={() => setModalShowRefuse(false)}
+        />
+      ) : (
+        ""
+      )}
+      {modalShowAccept ? (
+        <AceitarSolicitacao
+          id={auxID}
+          name={auxName}
+          show={modalShowAccept}
+          onHide={() => setModalShowAccept(false)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -152,19 +152,19 @@ export const CancelIcon = styled(DeleteForever)`
   cursor: pointer;
 `;
 
-export const AcceptIcon = styled(PersonDelete)`
-  height: 55px;
-  width: 55px;
-  fill: #ed461d;
-  color: #ed461d;
-  flex-shrink: 0;
-  cursor: pointer;
-`;
-export const RefuseIcon = styled(DoneAllOutline)`
+export const AcceptIcon = styled(DoneAllOutline)`
   height: 55px;
   width: 55px;
   fill: var(--primary);
   color: var(--primary);
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+export const RefuseIcon = styled(PersonDelete)`
+  height: 55px;
+  width: 55px;
+  fill: #ed461d;
+  color: #ed461d;
   flex-shrink: 0;
   cursor: pointer;
   margin-right: 10px;
