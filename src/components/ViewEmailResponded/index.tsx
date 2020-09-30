@@ -11,7 +11,6 @@ export interface FormEmailResponded {
 }
 
 const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
-
   return (
     <div style={{ margin: "5% 0 0" }}>
       <Form>

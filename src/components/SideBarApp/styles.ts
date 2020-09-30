@@ -24,9 +24,6 @@ var SideBarIcon = css`
 `;
 export const HomeIcon = styled(HomeAlt)`
   ${SideBarIcon};
-  &.home {
-    fill: var(--buttonFill);
-  }
 `;
 export const SportsIcon = styled(VolleyballBall)`
   ${SideBarIcon};

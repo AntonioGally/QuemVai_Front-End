@@ -141,16 +141,22 @@ body {
   }
 }
 
-.SpanInicioSideBar {
-  color: var(--buttonFill) !important;
+.SideBarAppActiveLink {  
   position:relative;
 }
-.SpanInicioSideBar::after {
+.SideBarAppActiveLink span {
+  color:var(--buttonFill);
+}
+.SideBarAppActiveLink svg {
+  color:var(--buttonFill);
+  fill:var(--buttonFill);
+}
+.SideBarAppActiveLink span::after {
   width: 7px;
   height: 7px;
 
-  margin-left: 18px;
-  margin-top:27%;
+  top:calc(50% - 2px);
+  right:0px;
   position: absolute;
   border-radius: 50%;
   content: "";

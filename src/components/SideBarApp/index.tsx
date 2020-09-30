@@ -24,6 +24,12 @@ const SideBarApp: React.FC = () => {
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
   const [isLogged, setIsLogged] = React.useState(Boolean);
 
+  const [inicioClick, setInicioClick] = React.useState(true);
+  const [esportesClick, setEsportesClick] = React.useState(false);
+  const [eventosClick, setEventosClick] = React.useState(false);
+  const [quadrasClick, setQuadrasClick] = React.useState(false);
+  const [amigosClick, setAmigosClick] = React.useState(false);
+
   useEffect(() => {
     if (getToken() || getTokenAdmin()) {
       setIsLogged(true);
@@ -89,28 +95,74 @@ const SideBarApp: React.FC = () => {
 
         <div className="sidebarContent">
           <Row className="myRowLinksSideBarApp">
-            <div>
-              <HomeIcon className="home" />{" "}
-              <span className="SpanInicioSideBar">Início</span>
+            <div
+              onClick={() => {
+                setInicioClick(true);
+                setEsportesClick(false);
+                setEventosClick(false);
+                setQuadrasClick(false);
+                setAmigosClick(false);
+              }}
+              className={`${inicioClick ? "SideBarAppActiveLink" : ""}`}
+            >
+              <HomeIcon />
+              <span>Início</span>
             </div>
           </Row>
           <Row className="myRowLinksSideBarApp">
-            <div>
+            <div
+              onClick={() => {
+                setInicioClick(false);
+                setEsportesClick(true);
+                setEventosClick(false);
+                setQuadrasClick(false);
+                setAmigosClick(false);
+              }}
+              className={`${esportesClick ? "SideBarAppActiveLink" : ""}`}
+            >
               <SportsIcon /> <span>Esportes</span>
             </div>
           </Row>
           <Row className="myRowLinksSideBarApp">
-            <div>
+            <div
+              onClick={() => {
+                setInicioClick(false);
+                setEsportesClick(false);
+                setEventosClick(true);
+                setQuadrasClick(false);
+                setAmigosClick(false);
+              }}
+              className={`${eventosClick ? "SideBarAppActiveLink" : ""}`}
+            >
               <EventsIcon /> <span>Eventos</span>
             </div>
           </Row>
           <Row className="myRowLinksSideBarApp">
-            <div>
+            <div
+              onClick={() => {
+                setInicioClick(false);
+                setEsportesClick(false);
+                setEventosClick(false);
+                setQuadrasClick(true);
+                setAmigosClick(false);
+              }}
+              className={`${quadrasClick ? "SideBarAppActiveLink" : ""}`}
+            >
               <SpacesIcon /> <span>Quadras</span>
             </div>
           </Row>
           <Row className="myRowLinksSideBarApp" style={{ marginBottom: "10%" }}>
-            <div onClick={() => setModalFriendShow(true)}>
+            <div
+              onClick={() => {
+                setModalFriendShow(true);
+                setInicioClick(false);
+                setEsportesClick(false);
+                setEventosClick(false);
+                setQuadrasClick(false);
+                setAmigosClick(true);
+              }}
+              className={`${amigosClick ? "SideBarAppActiveLink" : ""}`}
+            >
               <FriendsIcon /> <span>Amigos</span>
             </div>
           </Row>
@@ -142,7 +194,11 @@ const SideBarApp: React.FC = () => {
       {modalFriendShow ? (
         <ModalFriendUserApp
           show={modalFriendShow}
-          onHide={() => setModalFriendShow(false)}
+          onHide={() => {
+            setModalFriendShow(false);
+            setAmigosClick(false);
+            setInicioClick(true);
+          }}
         />
       ) : (
         ""

@@ -1,12 +1,12 @@
-.modal-90w {
-  max-width: 80% !important;
-}
 .WrapperModalFriends {
   width: 100%;
-  height: 500px;
+  height: 650px;
   overflow-y: scroll;
-  background-color: var(--primary);
   border-radius: 15px;
+  padding: 20px;
+}
+.WrapperModalFriends::-webkit-scrollbar {
+  display: none;
 }
 .MyColSideBarPeopleOnline {
   border: 2px solid var(--primary);
@@ -17,4 +17,80 @@
   color: var(--fontWhite);
   font-family: "Poppins";
   font-size: 25px;
+}
+.MyColTabModalFriendUserApp {
+  background-color: var(--primary);
+  border-radius: 20px;
+  padding: 10px;
+}
+.MyNavModalFriendUserApp {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+}
+.MyNavLinkModalFriendUserApp {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  color: var(--fontWhite) !important;
+  fill: var(--fontWhite) !important;
+  font-family: "Poppins";
+  font-size: 15pt;
+
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  margin-top: 8%;
+  position: relative;
+}
+
+.InvitesReceivedText {
+  font-size: 18px;
+}
+@media (max-width: 1200px) {
+  .MyNavLinkModalFriendUserApp span {
+    display: none;
+  }
+}
+.MyNavLinkModalFriendUserApp:hover {
+  color: var(--buttonFill) !important;
+  transition: all 0.5s ease-in-out;
+}
+.MyNavLinkModalFriendUserApp:hover svg {
+  color: var(--buttonFill) !important;
+  fill: var(--buttonFill) !important;
+  transition: all 0.5s ease-in-out;
+}
+.MyNavLinkModalFriendUserApp:focus {
+  outline: 0 !important;
+}
+
+.activeLinkModalFriendUserApp span {
+  color: var(--buttonFill);
+}
+.activeLinkModalFriendUserApp svg {
+  color: var(--buttonFill);
+  fill: var(--buttonFill);
+}
+.activeLinkModalFriendUserApp::after {
+  width: 9px;
+  height: 9px;
+  background-color: var(--buttonFill);
+  border-radius: 50%;
+  top: 45%;
+  right: 0px;
+  content: "";
+  position: absolute;
+}
+.ColSendInviteModalFriend {
+  background-color: var(--primary);
+  height: 100%;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1000px) {
+  .ColSendInviteModalFriend {
+    height: 60%;
+  }
 }

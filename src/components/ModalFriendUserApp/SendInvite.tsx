@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./ModalFriendStyles.css";
 
-import { MyTitleForm, MyLableText, MyButton } from "./styles";
+import {
+  MyTitleForm,
+  MyLableText,
+  MyButton,
+  InviteIcon,
+  MyCard,
+} from "./styles";
 import { Container, Form, Row, Col } from "react-bootstrap";
 
 import api from "../services/api";
@@ -11,10 +17,30 @@ import { Token } from "../services/auth";
 type idSubmitForm = {
   idUser: number;
 };
+interface Data {
+  Photo: any;
+}
 
 const ModalFriendUserApp: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<idSubmitForm>();
+  const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/user/bring/me", {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [PushUserInformation] = responses;
+
+      const informations = await PushUserInformation.data;
+      setData({ Photo: informations["info"]["photos"] });
+    });
+  }, []);
 
   const SubmitIdForm = async (data: idSubmitForm) => {
     const id = Number(data.idUser);
@@ -37,9 +63,9 @@ const ModalFriendUserApp: React.FC = () => {
       if (response.status === 204) {
         setErros("Esse usuário não existe");
       }
-      if (response.status === 200 && response.data["Request sent"]){
-          alert("A solicitação foi enviada")
-          window.location.reload();
+      if (response.status === 200 && response.data["Request sent"]) {
+        alert("A solicitação foi enviada");
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);
@@ -48,54 +74,80 @@ const ModalFriendUserApp: React.FC = () => {
   return (
     <div className="WrapperModalFriends">
       <Container fluid>
-        <MyTitleForm style={{ marginBottom: "4%" }}>
-          Enviar uma solicitação
-        </MyTitleForm>
-        <Form onSubmit={handleSubmit(SubmitIdForm)}>
-          <Row style={{ alignItems: "center", margin: "7% 0 0" }}>
-            <Col md={6}>
-              <MyLableText> Id do usuário: </MyLableText>
-              <Form.Group>
-                <Row className="MyRowForm">
-                  <Form.Control
-                    className="MyInputForm"
-                    type="text"
-                    name="idUser"
-                    id="idUser"
-                    ref={register({
-                      pattern: {
-                        value: /^[0-9]+$/i,
-                        message: "Insira um id válido",
-                      },
-                      required: {
-                        value: true,
-                        message: "Preencha o campo de ID",
-                      },
-                    })}
-                  />
-                  {errors.idUser &&
-                    (errors.idUser as any).type === "pattern" && (
-                      <div className="error">
-                        {(errors.idUser as any).message}
-                      </div>
-                    )}
-                  {errors.idUser &&
-                    (errors.idUser as any).type === "required" && (
-                      <div className="error">
-                        {(errors.idUser as any).message}
-                      </div>
-                    )}
+        <Row
+          style={{
+            margin: "5% 0",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <MyTitleForm style={{ marginBottom: "4%" }}>
+            Enviar solicitações
+          </MyTitleForm>
+          <img
+            src={data?.Photo}
+            alt="User"
+            style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+          />
+        </Row>
+
+        <MyCard>
+          <Form
+            onSubmit={handleSubmit(SubmitIdForm)}
+            style={{ height: "100%" }}
+          >
+            <Row style={{ height: "100%", alignItems: "center" }}>
+              <Col lg={10} md={12}>
+                <Row style={{ margin: 0 }}>
+                  <Col className="text-center" lg={6} md={12}>
+                    <MyLableText>Id do usuário:</MyLableText>
+                  </Col>
+                  <Col lg={6} md={12}>
+                    <Form.Group>
+                      <Row style={{ margin: 0, justifyContent: "center" }}>
+                        <Form.Control
+                          className="MyInputForm"
+                          type="text"
+                          name="idUser"
+                          id="idUser"
+                          ref={register({
+                            pattern: {
+                              value: /^[0-9]+$/i,
+                              message: "Insira um id válido",
+                            },
+                            required: {
+                              value: true,
+                              message: "Preencha o campo de ID",
+                            },
+                          })}
+                        />
+                        {errors.idUser &&
+                          (errors.idUser as any).type === "pattern" && (
+                            <div className="error">
+                              {(errors.idUser as any).message}
+                            </div>
+                          )}
+                        {errors.idUser &&
+                          (errors.idUser as any).type === "required" && (
+                            <div className="error">
+                              {(errors.idUser as any).message}
+                            </div>
+                          )}
+                      </Row>
+                    </Form.Group>
+                  </Col>
                 </Row>
-              </Form.Group>
-            </Col>
-            <Col md={4} style={{ marginTop: "4%" }}>
-              <MyButton type="submit" className="btn" style={{ width: "100%" }}>
-                Procurar e Enviar
-              </MyButton>
-            </Col>
-          </Row>
-          <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
-        </Form>
+              </Col>
+              <Col lg={2} md={12} className="ColSendInviteModalFriend">
+                <MyButton type="submit">
+                  <InviteIcon />
+                </MyButton>
+              </Col>
+            </Row>
+
+            <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
+          </Form>
+        </MyCard>
       </Container>
     </div>
   );
