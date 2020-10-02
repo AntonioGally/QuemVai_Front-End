@@ -74,21 +74,21 @@ const ModalFriendUserApp: React.FC = () => {
                   }}
                 >
                   <ImageUser
-                    src={information.UserOwner.photos}
+                    src={information.photos}
                     alt="UserPhoto"
                   />
-                  <NameUser>{information.UserOwner.username}</NameUser>
+                  <NameUser>{information.username}</NameUser>
                   <RefuseIcon
                     onClick={() => {
                       setAuxID(information.id_User);
-                      setAuxName(information.UserOwner.username);
+                      setAuxName(information.username);
                       setModalShowRefuse(true);
                     }}
                   />
                   <AcceptIcon
                     onClick={() => {
                       setAuxID(information.id_User);
-                      setAuxName(information.UserOwner.username);
+                      setAuxName(information.username);
                       setModalShowAccept(true);
                     }}
                   />

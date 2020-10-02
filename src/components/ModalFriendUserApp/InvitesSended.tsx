@@ -108,10 +108,10 @@ const ModalFriendUserApp: React.FC = () => {
                   }}
                 >
                   <ImageUser
-                    src={information.UserFriendOwner.photos}
+                    src={information.photos}
                     alt="UserPhoto"
                   />
-                  <NameUser>{information.UserFriendOwner.username}</NameUser>
+                  <NameUser>{information.username}</NameUser>
                   <CancelIcon onClick={handleClick} />
                 </Row>
                 <div className="text-danger" style={{ fontSize: "20px" }}>

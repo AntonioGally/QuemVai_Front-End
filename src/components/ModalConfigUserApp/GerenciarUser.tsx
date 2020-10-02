@@ -116,6 +116,7 @@ const ModalConfigUserApp: React.FC = () => {
                       type="text"
                       name="userNickName"
                       id="userNickName"
+                      readOnly={true}
                       placeholder="ex.: RobSilva"
                       defaultValue={data?.PushInformations.info.username}
                       ref={register({
@@ -175,7 +176,7 @@ const ModalConfigUserApp: React.FC = () => {
               <MyForm className="firstColumn">
                 <Form.Group>
                   <InputGroup>
-                    <Col md={2} style={{ padding: 0, marginRight: "1%" }}>
+                    <Col md={2} style={{ padding: 0}}>
                       <Form.Control
                         className="MyInputForm"
                         type="text"
@@ -223,7 +224,7 @@ const ModalConfigUserApp: React.FC = () => {
                           <div className="error">O DDD é obrigatório</div>
                         )}
                     </Col>
-                    <Col style={{ padding: 0 }}>
+                    <Col style={{ padding: 0 }} md={10}>
                       <Row className="MyRowForm">
                         <Form.Control
                           className="MyInputForm"
@@ -231,6 +232,7 @@ const ModalConfigUserApp: React.FC = () => {
                           name="UserNumber"
                           id="UserNumber"
                           placeholder="12345678"
+                          style={{width:"76%"}}
                           defaultValue={
                             data?.PushInformations.info.cellPhoneNumber
                           }

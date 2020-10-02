@@ -21,6 +21,7 @@ const FormCadastro: React.FC = () => {
   const [erros, setErros] = React.useState("");
   const [modalShow, setModalShow] = React.useState(true);
   const [succesPassword, setSuccesPassword] = React.useState(false);
+  const [senhaFinal, setSenhaFinal] = React.useState("");
 
   const SubmitForm = async (data: FormCadastroUser) => {
     const name = data.userName;
@@ -32,13 +33,20 @@ const FormCadastro: React.FC = () => {
     const userConfirmaSenha = data.userConfirmPassword;
 
     var photos = "";
-    var senhaFinal = "";
+
+    if (userSenha === userConfirmaSenha) {
+      setSenhaFinal(userSenha);
+      setSuccesPassword(true);
+    } else {
+      setErros("As senhas não estão iguais :(");
+      setSuccesPassword(false);
+    }
 
     var file = data.userPhoto[0];
     var fileType = file.type;
     var reader = new FileReader();
     reader.onloadend = () => {
-      var image : any = new Image();
+      var image: any = new Image();
       (image.src as any) = reader.result;
 
       image.onload = async function () {
@@ -69,15 +77,7 @@ const FormCadastro: React.FC = () => {
 
         var finalFile = canvas.toDataURL(fileType);
         photos = finalFile;
-
-        if (userSenha === userConfirmaSenha) {
-          senhaFinal = userSenha;
-          setSuccesPassword(true);
-        } else {
-          setErros("As senhas não estão iguais :(");
-          setSuccesPassword(false);
-        }
-
+        
         try {
           if (succesPassword) {
             var config = {

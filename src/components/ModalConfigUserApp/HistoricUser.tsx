@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
+import any_data4 from "../../img/icones/any_data4.jpg";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import {
@@ -20,6 +21,7 @@ const ModalConfigUserApp: React.FC = () => {
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [modalShow, setModalShow] = React.useState(false);
   const [idHistoric, setIdHistoric] = React.useState(Number);
+  
   return (
     <div
       className="WrapperModalConfig HistoricWrapperModalConfig"

@@ -137,11 +137,13 @@ export interface FormConfigUserAltered {
 }
 
 export interface InvitesSendedList {
+  id: number;
+  id_User: number;
   id_Friend: number;
-  UserFriendOwner: {
-    username: string;
-    photos: string;
-  };
+  status_friendships: string;
+  securityFriend: string;
+  username: string;
+  photos: string;
 }
 export interface InvitesSendedTrustList {
   something_here: string;
@@ -149,23 +151,27 @@ export interface InvitesSendedTrustList {
   what: string;
 }
 export interface InvitesReceivedTrustList {
-  id: number;
-  status_friendships: strring;
-  securityFriend: strring;
-  id_User: number;
-  id_Friend: number;
-  UserOwner: {
-    username: strring;
-    photos: strring;
-  };
+  teste: [
+    {
+      id: number;
+      status_friendships: string;
+      securityFriend: string;
+      id_User: number;
+      id_Friend: number;
+      username: string;
+      photos: string;
+    }
+  ];
 }
 
 export interface InvitesReceivedList {
+  id: number;
   id_User: number;
-  UserOwner: {
-    username: string;
-    photos: string;
-  };
+  id_Friend: number;
+  status_friendships: string;
+  securityFriend: boolean;
+  username: string;
+  photos: string;
 }
 
 export interface FriendsList {
