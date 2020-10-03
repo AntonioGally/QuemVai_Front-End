@@ -175,4 +175,4 @@ Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://git
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/antônio-gally-089bab180/
-[product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png
+[product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/blob/AplicationWeb/src/img/print.png
