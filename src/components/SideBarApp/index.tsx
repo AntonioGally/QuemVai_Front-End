@@ -69,6 +69,7 @@ const SideBarApp: React.FC = () => {
                 margin: "13% 0 20% 0",
               }}
             >
+              
               <Row className="MyNotificationsContainer">
                 <RingIcon />
                 <span className="NumberSpan">3</span>

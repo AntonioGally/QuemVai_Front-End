@@ -1,44 +1,179 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Available Scripts
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/AntonioGally/QuemVai_Front-End">
+    <img src="src/img/logo/QuemVaiLogo2.png" alt="Logo" width="80" height="80">
+  </a>
 
-In the project directory, you can run:
+  <h3 align="center">Quem Vai</h3>
 
-### `yarn start`
+  <p align="center">
+    Um aplicativo de encontros em áreas de lazer públicabr   <br/> A meeting app in public leisure areas
+    <br />
+    <a href="https://github.com/AntonioGally/QuemVai_Front-End"><strong> Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/AntonioGally/QuemVai_Front-End">View Demo</a>
+    ·
+    <a href="https://github.com/AntonioGally/QuemVai_Front-End/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/AntonioGally/QuemVai_Front-End/issues">Request Feature</a>
+  </p>
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Table of Contents
 
-### `yarn test`
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- ABOUT THE PROJECT -->
 
-### `yarn build`
+## About The Project
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
+Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
+não nos informa com especificidade todas as áreas de lazer dispníveis nas regiões próximas, e suas características.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O porquê de você usar Quem Vai:
 
-### `yarn eject`
+- Praticidade de encontrar praças públicas, quadras públicas, pistas de skate, entre outros
+- Você tem o direito de usar e usufruir de todos os locais públicos que lhe convém, se informe :smile:
+- Totalmente gratuito e em todas as plataformas digitais
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Nossa plataforma ainda está em desenvolvimento, contando com atualizações diárias, vale lembrar que o aplicativo
+Quem vai é fruto de um trabalho de conclusão de curso do ensino técnico de informática, na instituição <a href="http://etechoracio.com.br/etec/">ETEC Professor Horácio Augusto da Silveira</a>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Aqui está uma lista dos Frameworks que nós utilizamos na maior parte do projeto
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [React](https://pt-br.reactjs.org)
+- [React-Bootstrap](https://react-bootstrap.github.io)
+- [Bootstrap](https://getbootstrap.com)
+- [React-Hook-Form](https://react-hook-form.com)
+- [Axios](https://github.com/axios/axios)
+- [Date-Fns](https://date-fns.org/v2.16.1/docs/Locale)
 
-## Learn More
+<!-- GETTING STARTED -->
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para executar o aplicativo localmente na sua máquina, é recomendável o uso do software VS Code, o mesmo usado
+no desenvolvimento. Aqui está uma lista de procedimentos passo a passo para baixar, instalar e executar o aplicativo:
+
+### Prerequisites
+
+Mínimo:
+
+- Core2Duo
+- 4GB_Ram
+
+Recomendável:
+
+- Pentium_G5400
+- 8GB_Ram
+
+- É <b>NECESSÁRIO</b> ter o <a href="https://git-scm.com/downloads">Git Bash</a> instalado em sua máquina
+- É <b>NECESSÁRIO</b> ter o <a href="https://nodejs.org/en/download/">Node js</a> instalado em sua máquina
+
+### Installation
+
+1. Clone o Repositório
+
+```sh
+git clone https://github.com/AntonioGally/QuemVai_Front-End.git
+```
+
+2. Abra a pasta clonada no Vs Code
+
+```sh
+cd QuemVai_Front-End
+```
+
+```sh
+code .
+```
+
+3. Instale as dependências do projeto
+
+```sh
+yarn install
+```
+
+4. Inicialize o projeto
+
+```sh
+yarn start
+```
+
+<!-- ROADMAP -->
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+As contribuições são o que torna a comunidade de código aberto um lugar incrível para aprender, inspirar e criar. Quaisquer contribuições que você fizer serão ** muito apreciadas **.
+
+1. Fork o projeto
+2. Crie sua branch com uma nova funcionalidade (`git checkout -b feature/MinhaFuncionalidade`)
+3. Commit suas mudanças (`git commit -m 'adicionando alguma funcionalidade'`)
+4. Faça upload para sua branch (`git push origin feature/MinhaFuncionalidade`)
+5. Abra um Pull Request
+
+
+<!-- CONTACT -->
+
+## Contact
+
+Antônio Lima Gally Neto  - antonio.gally@gmail.com
+
+Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://github.com/AntonioGally/QuemVai_Front-End)
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## Acknowledgements
+
+- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+- [Img Shields](https://shields.io)
+- [Choose an Open Source License](https://choosealicense.com)
+- [GitHub Pages](https://pages.github.com)
+- [Animate.css](https://daneden.github.io/animate.css)
+- [Loaders.css](https://connoratherton.com/loaders)
+- [Slick Carousel](https://kenwheeler.github.io/slick)
+- [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
+- [Sticky Kit](http://leafo.net/sticky-kit)
+- [JVectorMap](http://jvectormap.com)
+- [Font Awesome](https://fontawesome.com)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png
