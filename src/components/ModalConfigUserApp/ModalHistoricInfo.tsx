@@ -6,6 +6,8 @@ import "./ModalConfigStyles.css";
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
+import ModalConfirmHistoricDelete from "./confirmation/ModalConfirmHistoricDelete";
+
 import { parseISO, format } from "date-fns";
 import { pt } from "date-fns/locale";
 
@@ -27,6 +29,7 @@ export interface Props {
   nameEvent: string;
   nameUser: string;
   idUser: number;
+  idHistoric: number;
   nameSpace: string;
   endereco: string;
   nameSport: string;
@@ -40,12 +43,14 @@ const ModalConfigUserApp: React.FC<Props> = ({
   nameEvent,
   nameUser,
   idUser,
+  idHistoric,
   nameSpace,
   endereco,
   nameSport,
   createdAt,
   finishedAt,
 }) => {
+  const [modalShow, setModalShow] = React.useState(false);
   const AuxDateCreated = parseISO(String(createdAt));
 
   const formattedDateCreated = format(
@@ -171,7 +176,9 @@ const ModalConfigUserApp: React.FC<Props> = ({
                   </MySpanModalHistoricInfo>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoHistoricInfo>{formattedDateFineshed}</TextInfoHistoricInfo>
+                  <TextInfoHistoricInfo>
+                    {formattedDateFineshed}
+                  </TextInfoHistoricInfo>
                 </Row>
               </Col>
             </Row>
@@ -179,11 +186,25 @@ const ModalConfigUserApp: React.FC<Props> = ({
               className="MyRowModalHistoricInfo"
               style={{ justifyContent: "flex-end" }}
             >
-              <div className="ButtonDeletarHistoricInfo">Deletar</div>
+              <div
+                className="ButtonDeletarHistoricInfo"
+                onClick={() => setModalShow(true)}
+              >
+                Deletar
+              </div>
             </Row>
           </Modal.Body>
         </div>
       </Modal>
+      {modalShow ? (
+        <ModalConfirmHistoricDelete
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          idHistoric={idHistoric}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

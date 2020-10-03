@@ -11,6 +11,7 @@ export interface Props {
 
 const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [erros, setErros] = React.useState("");
+
   const DeleteAccount = async () => {
     try {
       var config = {
@@ -32,6 +33,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
       console.log(err);
     }
   };
+  
   return (
     <div>
       <Modal size="sm" centered show={show} onHide={onHide}>

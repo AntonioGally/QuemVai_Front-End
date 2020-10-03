@@ -31,6 +31,7 @@ const ModalConfigUserApp: React.FC = () => {
 
   const [nameEvent, setNameEvent] = React.useState(String);
   const [idUser, setIdUser] = React.useState(Number);
+  const [idHistoric, setIdHistoric] = React.useState(Number);
   const [nameUser, setNameUser] = React.useState(String);
   const [nameSpace, setNameSpace] = React.useState(String);
   const [endereco, setEndereco] = React.useState(String);
@@ -71,7 +72,7 @@ const ModalConfigUserApp: React.FC = () => {
           <img
             src={any_data4}
             alt="Any Data"
-            style={{ width: "90%", height: "90%" }}
+            style={{ width: "60%", height: "60%" }}
           />
         </div>
       ) : (
@@ -86,7 +87,8 @@ const ModalConfigUserApp: React.FC = () => {
                       onClick={() => {
                         setModalShow(true);
                         setNameEvent(information.name_event);
-                        setIdUser(information.id);
+                        setIdUser(information.AuthorID);
+                        setIdHistoric(information.id);
                         setNameUser(information.author);
                         setNameSpace(information.SpaceName);
                         setEndereco(information.address);
@@ -134,14 +136,15 @@ const ModalConfigUserApp: React.FC = () => {
         <ModalHistoricInfo
           show={modalShow}
           onHide={() => setModalShow(false)}
-          nameEvent = {nameEvent}
-          nameUser = {nameUser}
-          idUser = {idUser}
-          nameSpace = {nameSpace}
-          endereco = {endereco}
-          nameSport = {nameSport}
-          createdAt = {createdAt}
-          finishedAt = {finishedAt}
+          nameEvent={nameEvent}
+          nameUser={nameUser}
+          idUser={idUser}
+          idHistoric={idHistoric}
+          nameSpace={nameSpace}
+          endereco={endereco}
+          nameSport={nameSport}
+          createdAt={createdAt}
+          finishedAt={finishedAt}
         />
       ) : (
         ""
