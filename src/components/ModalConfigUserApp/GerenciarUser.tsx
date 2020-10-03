@@ -22,6 +22,11 @@ const ModalConfigUserApp: React.FC = () => {
   const [auxEmail, setAuxEmail] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
 
+  const [editName, setEditName] = React.useState(true);
+  const [editUsername, setEditUsername] = React.useState(true);
+  const [editEmail, setEditEmail] = React.useState(true);
+  const [editNumber, setEditNumber] = React.useState(true);
+
   const FormSubmitConfigUser = async (data: FormConfigUserAltered) => {
     const name = data.userName;
     const username = data.userNickName;
@@ -87,6 +92,7 @@ const ModalConfigUserApp: React.FC = () => {
                 <Form.Group>
                   <Row className="MyRowForm">
                     <Form.Control
+                      readOnly={editName}
                       className="MyInputForm"
                       type="text"
                       name="userName"
@@ -101,7 +107,7 @@ const ModalConfigUserApp: React.FC = () => {
                       (errors.userName as any).type === "required" && (
                         <div className="error">O Nome é obrigatório</div>
                       )}
-                    <EditIcon />
+                    <EditIcon onClick={() => setEditName(!editName)} />
                   </Row>
                 </Form.Group>
               </MyForm>
@@ -112,18 +118,18 @@ const ModalConfigUserApp: React.FC = () => {
                 <Form.Group>
                   <Row className="MyRowForm">
                     <Form.Control
+                      readOnly={editUsername}
                       className="MyInputForm"
                       type="text"
                       name="userNickName"
                       id="userNickName"
-                      readOnly={true}
                       placeholder="ex.: RobSilva"
                       defaultValue={data?.PushInformations.info.username}
                       ref={register({
                         required: true,
                       })}
                     />
-                    <EditIcon />
+                    <EditIcon onClick={() => setEditUsername(!editUsername)} />
                   </Row>
                   {errors.userNickName &&
                     (errors.userNickName as any).type === "required" && (
@@ -140,6 +146,7 @@ const ModalConfigUserApp: React.FC = () => {
                 <Form.Group>
                   <Row className="MyRowForm">
                     <Form.Control
+                      readOnly={editEmail}
                       className="MyInputForm"
                       type="email"
                       name="userEmail"
@@ -154,7 +161,7 @@ const ModalConfigUserApp: React.FC = () => {
                         },
                       })}
                     />
-                    <EditIcon />
+                    <EditIcon onClick={() => setEditEmail(!editEmail)} />
                   </Row>
                   {errors.userEmail &&
                     (errors.userEmail as any).type === "required" && (
@@ -176,8 +183,9 @@ const ModalConfigUserApp: React.FC = () => {
               <MyForm className="firstColumn">
                 <Form.Group>
                   <InputGroup>
-                    <Col md={2} style={{ padding: 0}}>
+                    <Col md={2} style={{ padding: 0 }}>
                       <Form.Control
+                        readOnly={editNumber}
                         className="MyInputForm"
                         type="text"
                         name="userDDD"
@@ -227,12 +235,13 @@ const ModalConfigUserApp: React.FC = () => {
                     <Col style={{ padding: 0 }} md={10}>
                       <Row className="MyRowForm">
                         <Form.Control
+                          readOnly={editNumber}
                           className="MyInputForm"
                           type="text"
                           name="UserNumber"
                           id="UserNumber"
                           placeholder="12345678"
-                          style={{width:"76%"}}
+                          style={{ width: "76%" }}
                           defaultValue={
                             data?.PushInformations.info.cellPhoneNumber
                           }
@@ -252,7 +261,7 @@ const ModalConfigUserApp: React.FC = () => {
                             required: true,
                           })}
                         />
-                        <EditIcon />
+                        <EditIcon onClick={() => setEditNumber(!editNumber)} />
                       </Row>
                     </Col>
                     {errors.UserNumber &&
@@ -282,7 +291,7 @@ const ModalConfigUserApp: React.FC = () => {
               </MyForm>
               <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
             </Col>
-          </Row>          
+          </Row>
           <Row
             style={{
               justifyContent: "flex-end",

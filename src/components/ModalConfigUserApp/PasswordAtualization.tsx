@@ -21,6 +21,9 @@ const ModalConfigUserApp: React.FC = () => {
   const [succes, setSucces] = React.useState(false);
   const [finalPassword, setFinalPassword] = React.useState("");
 
+  const [editPassword, setEditPassword] = React.useState(true);
+  const [editConfirmPassword, setEditConfirmPassword] = React.useState(true);
+
   const SubmitForm = async (data: Passwords) => {
     const userPassword = data.userPassword;
     const userPasswordConfirm = data.userPasswordConfirm;
@@ -76,6 +79,7 @@ const ModalConfigUserApp: React.FC = () => {
                 <Form.Group>
                   <Row style={{ alignItems: "center" }}>
                     <Form.Control
+                      readOnly={editPassword}
                       className="MyInputForm"
                       type="password"
                       name="userPassword"
@@ -90,7 +94,7 @@ const ModalConfigUserApp: React.FC = () => {
                         required: true,
                       })}
                     />
-                    <EditIcon />
+                    <EditIcon onClick={() => setEditPassword(!editPassword)} />
                   </Row>
                   {errors.userPassword &&
                     (errors.userPassword as any).type === "required" && (
@@ -113,6 +117,7 @@ const ModalConfigUserApp: React.FC = () => {
                 <Form.Group>
                   <Row style={{ alignItems: "center" }}>
                     <Form.Control
+                      readOnly={editConfirmPassword}
                       className="MyInputForm"
                       type="password"
                       name="userPasswordConfirm"
@@ -127,7 +132,11 @@ const ModalConfigUserApp: React.FC = () => {
                         required: true,
                       })}
                     />
-                    <EditIcon />
+                    <EditIcon
+                      onClick={() =>
+                        setEditConfirmPassword(!editConfirmPassword)
+                      }
+                    />
                   </Row>
                   {errors.userPasswordConfirm &&
                     (errors.userPasswordConfirm as any).type === "required" && (

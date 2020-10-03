@@ -116,7 +116,7 @@ const PhotoAtualization: React.FC = () => {
         <Form onSubmit={handleSubmit(SubmitForm)}>
           <Row style={{ alignItems: "center" }}>
             <Row style={{ margin: 0, width: "100%" }}>
-              <Col md={6} style={{ textAlign: "center" }}>
+              <Col md={12} lg={6} style={{ textAlign: "center" }}>
                 <MyLableText> Sua foto de perfil </MyLableText>
                 <MyForm className="firstColumn">
                   <img
@@ -131,7 +131,7 @@ const PhotoAtualization: React.FC = () => {
                   />
                 </MyForm>
               </Col>
-              <Col md={6}>
+              <Col md={12} lg={6}>
                 <MyLableText>Alterar</MyLableText>
                 <MyForm>
                   <div style={{ margin: "5%" }}>
@@ -160,13 +160,13 @@ const PhotoAtualization: React.FC = () => {
               </Col>
             </Row>
           </Row>
-          <Row style={{ justifyContent: "flex-end", marginTop:"10%" }}>
-            <Col md={3}>
+          <Row style={{ justifyContent: "flex-end", marginTop: "10%" }}>
+            <Col md={6} lg={3}>
               <MyButton type="button" className="btn" style={{ width: "100%" }}>
                 Excluir Foto
               </MyButton>
             </Col>
-            <Col md={3}>
+            <Col md={6} lg={3}>
               <MyButton type="submit" className="btn" style={{ width: "100%" }}>
                 Salvar
               </MyButton>

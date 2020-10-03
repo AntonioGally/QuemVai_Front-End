@@ -5,6 +5,10 @@ import "./ModalConfigStyles.css";
 
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
+
 import {
   MyTitleModalHistoric,
   UserNameHistoricInfo,
@@ -20,10 +24,46 @@ import {
 export interface Props {
   show: boolean;
   onHide: any;
-  idHistoric: number;
+  nameEvent: string;
+  nameUser: string;
+  idUser: number;
+  nameSpace: string;
+  endereco: string;
+  nameSport: string;
+  createdAt: String;
+  finishedAt: String;
 }
 
-const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
+const ModalConfigUserApp: React.FC<Props> = ({
+  show,
+  onHide,
+  nameEvent,
+  nameUser,
+  idUser,
+  nameSpace,
+  endereco,
+  nameSport,
+  createdAt,
+  finishedAt,
+}) => {
+  const AuxDateCreated = parseISO(String(createdAt));
+
+  const formattedDateCreated = format(
+    AuxDateCreated,
+    " dd'/'MM'/'yyyy', às ' HH:mm'h'",
+    {
+      locale: pt,
+    }
+  );
+  const AuxDateFineshed = parseISO(String(finishedAt));
+
+  const formattedDateFineshed = format(
+    AuxDateFineshed,
+    " dd'/'MM'/'yyyy', às ' HH:mm'h'",
+    {
+      locale: pt,
+    }
+  );
   return (
     <div>
       <Modal
@@ -49,7 +89,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                 alignItems: "center",
               }}
             >
-              <MyTitleModalHistoric>Futebol Foda</MyTitleModalHistoric>
+              <MyTitleModalHistoric>{nameEvent}</MyTitleModalHistoric>
 
               <div style={{ display: "flex" }}>
                 <img
@@ -63,7 +103,8 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                   </Row>
                   <Row style={{ margin: 0 }}>
                     <UserNameHistoricInfo>
-                      Tonhão {idHistoric}
+                      {nameUser}{" "}
+                      <span className="UserSpanHistoricInfo">#{idUser}</span>
                     </UserNameHistoricInfo>
                   </Row>
                 </Col>
@@ -78,9 +119,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                   </MySpanModalHistoricInfo>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoHistoricInfo>
-                    Maddison Square Garden
-                  </TextInfoHistoricInfo>
+                  <TextInfoHistoricInfo>{nameSpace}</TextInfoHistoricInfo>
                 </Row>
               </Col>
             </Row>
@@ -92,9 +131,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                   <MySpanModalHistoricInfo>Endereço</MySpanModalHistoricInfo>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoHistoricInfo>
-                    Rua do Obelisco, São Paulo
-                  </TextInfoHistoricInfo>
+                  <TextInfoHistoricInfo>{endereco}</TextInfoHistoricInfo>
                 </Row>
               </Col>
             </Row>
@@ -106,7 +143,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                   <MySpanModalHistoricInfo>Esporte</MySpanModalHistoricInfo>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoHistoricInfo>Basquete</TextInfoHistoricInfo>
+                  <TextInfoHistoricInfo>{nameSport}</TextInfoHistoricInfo>
                 </Row>
               </Col>
             </Row>
@@ -118,7 +155,9 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                   <MySpanModalHistoricInfo>Criado em</MySpanModalHistoricInfo>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoHistoricInfo>01/07/2020</TextInfoHistoricInfo>
+                  <TextInfoHistoricInfo>
+                    {formattedDateCreated}
+                  </TextInfoHistoricInfo>
                 </Row>
               </Col>
             </Row>
@@ -132,11 +171,14 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, idHistoric }) => {
                   </MySpanModalHistoricInfo>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoHistoricInfo>01/07/2020</TextInfoHistoricInfo>
+                  <TextInfoHistoricInfo>{formattedDateFineshed}</TextInfoHistoricInfo>
                 </Row>
               </Col>
             </Row>
-            <Row className="MyRowModalHistoricInfo" style={{justifyContent:"flex-end"}}>
+            <Row
+              className="MyRowModalHistoricInfo"
+              style={{ justifyContent: "flex-end" }}
+            >
               <div className="ButtonDeletarHistoricInfo">Deletar</div>
             </Row>
           </Modal.Body>

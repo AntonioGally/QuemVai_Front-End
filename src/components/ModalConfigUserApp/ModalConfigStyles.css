@@ -17,7 +17,8 @@
 }
 .HistoricWrapperModalConfig::-webkit-scrollbar {
   width: 8px;
-  display: unset !important;
+  display: none !important;
+  /* era pora mostrar esse scrol, mas buga o svg */
 }
 .HistoricWrapperModalConfig::-webkit-scrollbar-thumb {
   background-color: gray;
@@ -85,14 +86,14 @@
 }
 
 .MyInputForm {
-  height: 45px;
-  border: 1px solid black !important;
+  height: 45px;  
+  box-shadow: 8.71601px 8.71601px 32.685px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
   width: 80%;
 }
 .MyInputFormID {
   height: 45px;
-  border: 1px solid black !important;
+  box-shadow: 8.71601px 8.71601px 32.685px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
   width: 30%;
 }
@@ -179,19 +180,19 @@
   max-width: 33% !important;  
 }
 .WrapperModalHistoricInfo {
-  height: 650px;
+  height: 100%;
 }
 @media(max-width:1700px) {
   .MyModalHistoricInfo {
     max-width: 60% !important;
   }
   .WrapperModalHistoricInfo{
-    height: 750px;
+    height: 100%;
   }
 }
 @media(max-width:1300px){
   .WrapperModalHistoricInfo{
-    height: 700px;
+    height: 100%;
   }
 }
 

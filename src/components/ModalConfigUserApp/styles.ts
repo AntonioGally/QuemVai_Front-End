@@ -67,6 +67,7 @@ export const EditIcon = styled(Edit)`
   fill: var(--fontBlack);
   flex-shrink: 0;
   margin-left: 20px;
+  cursor:pointer;
 `;
 
 var sideBarIcons = css`

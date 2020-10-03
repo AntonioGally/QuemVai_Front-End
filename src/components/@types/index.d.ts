@@ -136,6 +136,23 @@ export interface FormConfigUserAltered {
   UserNumber: number;
 }
 
+export interface HistoricUserList {
+  id: number;
+  AuthorID: number;
+  author: string;
+  photos: string;
+  name_event: string;
+  created_at: string;
+  finished_at: string;
+  SpaceName: string;
+  address: string;
+  CEP: number;
+  UF: string;
+  SpaceDescription: string;
+  SportsName: string;
+  SportsDescription: string;
+}
+
 export interface InvitesSendedList {
   id: number;
   id_User: number;
