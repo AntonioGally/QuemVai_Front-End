@@ -45,7 +45,7 @@
 ## About The Project
 
 [![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png)<br/>
-[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print2.png)
+[![Quem Vai About Page][product-screenshot2]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print2.png)
 
 Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
 Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
@@ -178,3 +178,4 @@ Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://git
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/antônio-gally-089bab180/
 [product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/blob/AplicationWeb/src/img/print.png
+[product-screenshot2]: https://github.com/AntonioGally/QuemVai_Front-End/blob/AplicationWeb/src/img/print2.png
