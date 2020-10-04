@@ -83,7 +83,7 @@ const Confirmation: React.FC<Props> = ({
         window.location.reload();
       }
       if (response.status === 400) {
-        setErros("Houve algum problema ao remover a confiança");
+        setErros("Parece que uma solicitação já foi enviada");
       }
     } catch (err) {
       console.log(err);
@@ -106,7 +106,7 @@ const Confirmation: React.FC<Props> = ({
         window.location.reload();
       }
       if (response.status === 400) {
-        setErros("Houve algum problema ao remover a confiança");
+        setErros("Houve algum problema ao remover a amizade");
       }
     } catch (err) {
       console.log(err);
@@ -156,7 +156,16 @@ const Confirmation: React.FC<Props> = ({
           ) : (
             ""
           )}
-          <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
+          <div
+            style={{
+              fontFamily: "Poppins",
+              color: "red",
+              textAlign: "justify",
+              padding: "10px",
+            }}
+          >
+            {erros}
+          </div>
           <Row style={{ width: "100%", margin: 0 }}>
             <Col lg={6} md={12} style={{ padding: 0 }}>
               <div onClick={onHide} className="BackButtonConfirmation">

@@ -203,13 +203,11 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                   <Tab.Pane eventKey="SendInvite">
                     <SendInvite />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="InvitesSendedTrust">
-                    <h1>Resolver API</h1>
-                    {/* <InvitesSendedTrust /> */}
+                  <Tab.Pane eventKey="InvitesSendedTrust">                    
+                    <InvitesSendedTrust />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="InvitesReceivedTrust">
-                    <h1>Resolver API</h1> 
-                    {/* <InvitesReceivedTrust /> */}
+                  <Tab.Pane eventKey="InvitesReceivedTrust">                     
+                    <InvitesReceivedTrust />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

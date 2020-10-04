@@ -163,22 +163,22 @@ export interface InvitesSendedList {
   photos: string;
 }
 export interface InvitesSendedTrustList {
-  something_here: string;
-  but_i_dont_know: string;
-  what: string;
+  id: number;
+  status_friendships: string;
+  securityFriend: string;
+  id_User: number;
+  id_Friend: number;
+  username: string;
+  photos: string;
 }
 export interface InvitesReceivedTrustList {
-  teste: [
-    {
-      id: number;
-      status_friendships: string;
-      securityFriend: string;
-      id_User: number;
-      id_Friend: number;
-      username: string;
-      photos: string;
-    }
-  ];
+  id: number;
+  status_friendships: string;
+  securityFriend: string;
+  id_User: number;
+  id_Friend: number;
+  username: string;
+  photos: string;
 }
 
 export interface InvitesReceivedList {

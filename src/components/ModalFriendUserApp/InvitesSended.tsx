@@ -54,8 +54,7 @@ const ModalFriendUserApp: React.FC = () => {
   }, [data]);
 
   const handleClick = async () => {
-    try {
-      console.log(auxID);
+    try {      
       var config = {
         headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
@@ -107,10 +106,7 @@ const ModalFriendUserApp: React.FC = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <ImageUser
-                    src={information.photos}
-                    alt="UserPhoto"
-                  />
+                  <ImageUser src={information.photos} alt="UserPhoto" />
                   <NameUser>{information.username}</NameUser>
                   <CancelIcon onClick={handleClick} />
                 </Row>

@@ -65,7 +65,7 @@ const ModalFriendUserApp: React.FC = () => {
           </div>
         ) : (
           <div>
-            {/* {data?.InvitesReceived.map((information) => (
+            {data?.InvitesReceived.map((information) => (
               <MyCardInvitesSended >
                 <Row
                   style={{
@@ -75,7 +75,7 @@ const ModalFriendUserApp: React.FC = () => {
                   }}
                 >
                   <ImageUser
-                    src={information.teste.map((i) => {return i.photos})}
+                    src={information.photos}
                     alt="UserPhoto"
                   />
                   <NameUser>{information.username}</NameUser>
@@ -84,7 +84,7 @@ const ModalFriendUserApp: React.FC = () => {
                       setAuxID(information.id_User);
                       setAuxName(information.username);
                       setModalShowRefuse(true);
-                    }}
+                    }}                    
                   />
                   <AcceptIcon
                     onClick={() => {
@@ -95,7 +95,7 @@ const ModalFriendUserApp: React.FC = () => {
                   />
                 </Row>
               </MyCardInvitesSended>
-            ))} */}
+            ))}
           </div>
         )}
       </Container>
