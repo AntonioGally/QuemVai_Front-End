@@ -5,6 +5,7 @@ import ConfigQuadraIdForm from "../IdSearchForm/ConfigQuadraIdForm";
 import AddQuadrasAdmin from "../AddQuadrasAdmin";
 import AddEsportesQuadrasAdmin from "../AddEsportesQuadrasAdmin";
 
+
 import { MyContainer, MyWrapperTable } from "./styles";
 
 const QuadrasConfigAddLayout: React.FC = () => {
@@ -16,14 +17,14 @@ const QuadrasConfigAddLayout: React.FC = () => {
           <MyContainer>
             <Tabs defaultActiveKey="ConfigQuadras">
               <Tab eventKey="ConfigQuadras" title="Configurações das Quadras">
-                <ConfigQuadraIdForm />
+              <ConfigQuadraIdForm />
               </Tab>
               <Tab eventKey="AddQuadras" title="Adicionar Quadras">
                 <AddQuadrasAdmin />
               </Tab>
               <Tab eventKey="AddEsportes" title="Adicionar Esportes">
                 <AddEsportesQuadrasAdmin />
-              </Tab>
+              </Tab>            
             </Tabs>
           </MyContainer>
         </MyWrapperTable>

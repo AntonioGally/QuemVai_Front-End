@@ -18,7 +18,7 @@ export interface Props {
   TextContent5: string;
 }
 
-const Square: React.FC<Props> = ({
+const Square: React.FC<Props> = ({  
   TitleContent1,
   TitleContent2,
   TitleContent3,

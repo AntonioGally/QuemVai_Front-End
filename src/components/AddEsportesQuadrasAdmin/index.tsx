@@ -18,6 +18,7 @@ interface Data {
 
 const AddEsportesQuadrasAdmin: React.FC = () => {
   const [erros, setErros] = React.useState("");
+  const [sucesso, setSucesso] = React.useState("");
   const { register, handleSubmit, errors } = useForm<FormAddEsporte>();
   const [data, setData] = useState<Data>();
 
@@ -44,24 +45,20 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
       }
       if (response.data === "Sport not found") {
         setErros("O ID do esporte não existe!");
-      } 
-
+      }
 
       if (response.status === 200) {
-        alert("Esporte adicionado com sucesso!");
-        window.location.reload();
+        setSucesso("O esporte foi adicionado à quadra :)");       
       }
-      if(response.status === 400) {
-        setErros("Esse esporte já está cadastrado na quadra")
+      if (response.status === 400) {
+        setErros("Esse esporte já está cadastrado na quadra");
       }
       if (response.status === 404) {
-        alert("Houve algum problema!");
-        window.location.reload();
+        setErros("Houve algum erro :c");
       }
     } catch (err) {
       console.log(err);
     }
-    
   };
 
   useEffect(() => {
@@ -94,7 +91,7 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
                   <Form.Label htmlFor="id_quadra">ID da Quadra</Form.Label>
                   <Form.Control
                     name="id_quadra"
-                    id="id_quadra"
+                    id="id_quadra"                    
                     ref={register({
                       required: true,
                     })}
@@ -131,6 +128,15 @@ const AddEsportesQuadrasAdmin: React.FC = () => {
                 </Button>
               </Form.Row>
               <ErrorMessage>{erros}</ErrorMessage>
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  fontFamily: "Poppins",
+                }}
+              >
+                {sucesso}
+              </div>
             </fieldset>
           </Form>
         </Col>

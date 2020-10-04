@@ -3,9 +3,10 @@ import React from "react";
 import { parseISO, format } from "date-fns";
 import { pt } from "date-fns/locale";
 
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import { MyLableText, MyForm } from "./styles";
-
+import EmailViewReceivedIdForm from "../IdSearchForm/EmailViewReceivedIdForm";
+ 
 export interface FormEmailReceived {
   IdEmailReceived: any;
   UserEmailReceived: any;
@@ -23,14 +24,19 @@ const ViewEmail: React.FC<FormEmailReceived> = ({
   DateEmailReceived,
   MessageEmailReceived,
 }) => {
+  const [voltar, setVoltar] = React.useState(false);
   const AuxDate = parseISO(String(DateEmailReceived));
 
   const formattedDate = format(AuxDate, "'Dia' dd 'de' MMMM', às ' HH:mm'h'", {
     locale: pt,
   });
+  if (voltar) {
+    return <EmailViewReceivedIdForm />
+  }
   return (
     <div style={{ margin: "10% 0" }}>
       <Form>
+        <Button onClick={() => setVoltar(true)}>Voltar</Button>
         <fieldset disabled>
           <Form.Row>
             <Col sm={12} md={6}>

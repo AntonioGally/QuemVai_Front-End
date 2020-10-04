@@ -7,6 +7,7 @@ import { MyContainer, ErrorMessage } from "./styles";
 
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
+import ConfigEsportesIdForm from "../IdSearchForm/ConfigEsportesIdForm";
 
 export interface FormEsporteConfig {
   NomeEsporteConfig: any;
@@ -21,6 +22,7 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
 }) => {
   const { register, handleSubmit, errors } = useForm<FormEsporteConfig>();
   const [erros, setErros] = React.useState("");
+  const [voltar, setVoltar] = React.useState(false);
 
   const onSubmitForm = async (data: FormEsporteConfig) => {
     var config = {
@@ -50,17 +52,20 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
       console.log(err);
     }
   };
-
+  if (voltar) {
+    return <ConfigEsportesIdForm />;
+  }
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "5% 0" }}>
         <MyContainer>
           <Form onSubmit={handleSubmit(onSubmitForm)}>
             <fieldset>
-              <Form.Row style={{ marginTop: "5%" }}>
+              <Button onClick={() => setVoltar(true)}>Voltar</Button>
+              <Form.Row style={{ marginTop: "5%", alignItems: "center" }}>
                 <Col md={3}>
                   <Form.Group>
-                    <Form.Label htmlFor="NomeEsporteConfig">Nome</Form.Label>
+                    <Form.Label htmlFor="NomeEsporteConfig">Nome *</Form.Label>
                     <Form.Control
                       name="NomeEsporteConfig"
                       id="NomeEsporteConfig"
@@ -80,7 +85,7 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                 <Col md={3}>
                   <Form.Group>
                     <Form.Label htmlFor="DescricaoEsporteConfig">
-                      Descrição
+                      Descrição *
                     </Form.Label>
                     <Form.Control
                       name="DescricaoEsporteConfig"
@@ -110,11 +115,11 @@ const ConfigEsportesAdmin: React.FC<FormEsporteConfig> = ({
                     />
                   </Form.Group>
                 </Col>
-                <Col md={3}>
+                <Col md={3} style={{textAlign:"center"}}>
                   <Button
-                    variant="success"
+                    variant="primary"
                     type="submit"
-                    style={{ marginLeft: "10px" }}
+                    style={{ marginTop: "15px" }}
                   >
                     Alterar
                   </Button>

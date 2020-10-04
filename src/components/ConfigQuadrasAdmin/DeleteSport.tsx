@@ -29,6 +29,7 @@ const ConfigQuadrasAdmin: React.FC<IdFormDeleteSport> = ({ id_quadra }) => {
         `/api/admin/delete/sport/${idSport}/in/space/${id_quadra}`,
         config
       );
+      console.log("entrou no try")
       if (response.data === "Not found") {
         setErros("Não foi possível localizar");
       }

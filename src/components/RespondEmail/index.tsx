@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import { MyLableText, MyForm, MyButton } from "./styles";
 
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
+import EmailRespondIdForm from "../IdSearchForm/EmailRespondIdForm";
 
 export interface IdEmailResponded {
   IdEmailResponded: any;
@@ -18,6 +19,7 @@ type FormEmailResponded = {
 };
 const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
   const { register, handleSubmit, errors } = useForm<FormEmailResponded>();
+  const [voltar, setVoltar] = React.useState(false);
 
   const onSubmit = async (data: FormEmailResponded) => {
     const subject = data.TitleEmailResponded;
@@ -25,7 +27,7 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
 
     var config = {
       headers: { "x-auth-token": getTokenAdmin() },
-      validateStatus: function (status:any) {
+      validateStatus: function (status: any) {
         return status < 500; // Resolve only if the status code is less than 500
       },
     };
@@ -49,11 +51,15 @@ const RespondEmail: React.FC<IdEmailResponded> = ({ IdEmailResponded }) => {
       console.log(err);
     }
   };
+  if (voltar) {
+    return <EmailRespondIdForm />;
+  }
 
   return (
     <div style={{ margin: "2% 0" }}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
+          <Button onClick={() => setVoltar(true)}>Voltar</Button>
           <Form.Row>
             <Col sm={12} md={6}>
               <MyLableText> Nome da Empresa </MyLableText>

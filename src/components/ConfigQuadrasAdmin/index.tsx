@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Form, Col, Button, Table } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
@@ -8,6 +8,8 @@ import DeleteSport from "./DeleteSport";
 import "./ConfigQuadrasAdmin.css";
 import api from "../services/api";
 import { getTokenAdmin } from "../services/auth";
+import ConfigQuadraIdForm from "../IdSearchForm/ConfigQuadraIdForm";
+import ConfirmDeleteSpace from "./ConfirmDeleteSpace";
 
 export interface FormQuadraConfig {
   IdQuadraConfig: any;
@@ -22,26 +24,6 @@ export interface FormQuadraConfig {
   Sports: any;
 }
 
-// function ModalConfig(props: any, id: number) {
-//   return (
-//     <Modal {...props} centered>
-//       <Modal.Header closeButton />
-
-//       <Modal.Body>
-//         <p>Tem certeza que deseja deletar a quadra {id} ?</p>
-//       </Modal.Body>
-
-//       <Modal.Footer>
-//         <Button variant="danger" onClick={() => setModalShow(false)}>
-//           Não
-//         </Button>
-//         <Button variant="success" onClick={() => setDeleteClick(true)}>
-//           Sim
-//         </Button>
-//       </Modal.Footer>
-//     </Modal>
-//   );
-// }
 const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   IdQuadraConfig,
   NomeQuadraConfig,
@@ -55,8 +37,8 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
   Sports,
 }) => {
   const { register, handleSubmit, errors } = useForm<FormQuadraConfig>();
-  const [deleteClick, setDeleteClick] = React.useState(false);
-  // const [modalShow, setModalShow] = React.useState(false);
+  const [voltar, setVoltar] = React.useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
 
   var config = {
     headers: { "x-auth-token": getTokenAdmin() },
@@ -86,32 +68,16 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
     }
   };
 
-  const handleDelete = async () => {
-    setDeleteClick(true);
-  };
-
-  useEffect(() => {
-    if (deleteClick) {
-      Promise.all([
-        api.delete(`/api/admin/find/delete/${IdQuadraConfig}`, config),
-      ]).then(async (responses) => {
-        const [DeletedInformation] = responses;
-        if (DeletedInformation.status === 200 && deleteClick) {
-          alert("Quadra deletada com sucesso");
-          window.location.reload();
-        }
-        if (DeletedInformation.status === 404 && deleteClick) {
-          alert("Esse Id não existe");
-        }
-      });
-    }
-  }, [IdQuadraConfig, deleteClick, config]);
-
   var AuxStatus = "";
+
+  if (voltar) {
+    return <ConfigQuadraIdForm />;
+  }
   return (
     <div>
       <div className="row justify-content-center" style={{ margin: "2% 0 5%" }}>
         <MyContainer>
+          <Button onClick={() => setVoltar(true)}>Voltar</Button>
           <Form onSubmit={handleSubmit(onSubmitForm)}>
             <fieldset>
               <Form.Row style={{ marginTop: "5%" }}>
@@ -336,15 +302,10 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
                   <Button
                     variant="outline-danger"
                     style={{ marginLeft: "10px" }}
-                    onClick={() => handleDelete()}
+                    onClick={() => setModalShow(true)}
                   >
                     Excluir
                   </Button>
-                  {/* <ModalConfig
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    id={IdQuadraConfig}
-                  /> */}
                   <Button
                     variant="success"
                     type="submit"
@@ -385,6 +346,16 @@ const ConfigQuadrasAdmin: React.FC<FormQuadraConfig> = ({
             </Col>
           </Form.Row>
         </MyContainer>
+        {modalShow ? (
+          <ConfirmDeleteSpace
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            id_space={IdQuadraConfig}
+            name_space={NomeQuadraConfig}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

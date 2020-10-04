@@ -3,14 +3,16 @@ import React, { useEffect, useState } from "react";
 import { parseISO, format } from "date-fns";
 import { pt } from "date-fns/locale";
 
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row, Button } from "react-bootstrap";
 import { MyLableText, MyForm } from "./styles";
+import EmailViewRespondedIdForm from "../IdSearchForm/EmailViewRespondedIdForm";
 
 export interface FormEmailResponded {
   Informations: any;
 }
 
 const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
+  const [voltar, setVoltar] = React.useState(false);
   const [createAt, setCreateAt] = useState(String);
   const [updateAt, setUpdateAt] = useState(String);
   useEffect(() => {
@@ -42,8 +44,12 @@ const ViewEmailResponded: React.FC<FormEmailResponded> = ({ Informations }) => {
     );
     setUpdateAt(formattedDateUpdated);
   }, [Informations]);
+  if (voltar) {
+    return <EmailViewRespondedIdForm />;
+  }
   return (
     <div style={{ margin: "5% 0 0" }}>
+      <Button onClick={() => setVoltar(true)}>Voltar</Button>
       <Form>
         <fieldset disabled>
           <Row>

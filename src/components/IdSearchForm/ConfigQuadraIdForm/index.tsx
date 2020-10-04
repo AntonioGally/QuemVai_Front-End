@@ -54,7 +54,7 @@ const ConfigQuadraIdForm: React.FC = () => {
     });
   }, [id, didSubmit]);
 
-  if (existingId) {
+  if (existingId) {   
     return (
       <ConfigQuadrasAdmin
         IdQuadraConfig={data?.InformationQuadras.id}
