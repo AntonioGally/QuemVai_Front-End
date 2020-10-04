@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, Col, Row, Tab, Nav } from "react-bootstrap";
 import GerenciarUser from "./GerenciarUser";
 import HistoricUser from "./HistoricUser";
+import Favorites from "./Favorites";
 import PasswordAtualization from "./PasswordAtualization";
 import PhotoAtualization from "./PhotoAtualization";
 import "./ModalConfigStyles.css";
@@ -14,6 +15,7 @@ import {
   PasswordIcon,
   PhotoIcon,
   HistoricIcon,
+  FavoriteIcon,
   LogoutIcon,
 } from "./styles";
 
@@ -27,6 +29,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [passwordClick, setPasswordClick] = React.useState(Boolean);
   const [photoClick, setPhotoClick] = React.useState(Boolean);
   const [historicClick, setHistoricClick] = React.useState(Boolean);
+  const [favoritClick, setFavoritClick] = React.useState(Boolean);
 
   return (
     <div>
@@ -35,14 +38,10 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
           <Tab.Container id="left-tabs-example" defaultActiveKey="Account">
             <Row>
               <Col sm={3} className="MyColTabModalConfigUserApp">
-                <Nav
-                  variant="pills"
-                  className="flex-column"
-                  style={{ height: "100%" }}
-                >
+                <Nav variant="pills" style={{ height: "100%" }}>
                   <Row
                     className="justify-content-center"
-                    style={{ marginTop: "10%" }}
+                    style={{ margin: "10% 0px", width: "100%" }}
                   >
                     <img
                       src={QuemVaiLogo3}
@@ -51,7 +50,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                     />
                   </Row>
 
-                  <div style={{ marginTop: "15%" }}>
+                  <div>
                     <Row
                       className="justify-content-center"
                       style={{ margin: 0 }}
@@ -68,6 +67,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                               setPasswordClick(false);
                               setPhotoClick(false);
                               setHistoricClick(false);
+                              setFavoritClick(false);
                             }}
                           >
                             <AccountIcon />
@@ -92,6 +92,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                               setPasswordClick(true);
                               setPhotoClick(false);
                               setHistoricClick(false);
+                              setFavoritClick(false);
                             }}
                           >
                             <PasswordIcon />
@@ -116,6 +117,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                               setPasswordClick(false);
                               setPhotoClick(true);
                               setHistoricClick(false);
+                              setFavoritClick(false);
                             }}
                           >
                             <PhotoIcon />
@@ -143,10 +145,36 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                               setPasswordClick(false);
                               setPhotoClick(false);
                               setHistoricClick(true);
+                              setFavoritClick(false);
                             }}
                           >
                             <HistoricIcon />
                             <span>Meu Histórico</span>
+                          </Nav.Link>
+                        </Nav.Item>
+                      </Col>
+                    </Row>
+                    <Row
+                      className="justify-content-center"
+                      style={{ margin: 0 }}
+                    >
+                      <Col>
+                        <Nav.Item style={{ width: "100%" }}>
+                          <Nav.Link
+                            eventKey="Favorites"
+                            className={`${
+                              favoritClick ? "activeLinkModalConfigUser" : ""
+                            } MyNavLink`}
+                            onClick={() => {
+                              setAccountClick(false);
+                              setPasswordClick(false);
+                              setPhotoClick(false);
+                              setHistoricClick(false);
+                              setFavoritClick(true);
+                            }}
+                          >
+                            <FavoriteIcon />
+                            <span>Favoritos</span>
                           </Nav.Link>
                         </Nav.Item>
                       </Col>
@@ -188,6 +216,9 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                   </Tab.Pane>
                   <Tab.Pane eventKey="Historic">
                     <HistoricUser />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="Favorites">
+                    <Favorites />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

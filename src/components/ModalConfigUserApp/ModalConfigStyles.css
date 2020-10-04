@@ -120,6 +120,11 @@
   background-color: var(--primary);
   border-radius: 20px;
   padding: 10px;
+  overflow-y: scroll;
+  max-height: 600px;
+}
+.MyColTabModalConfigUserApp::-webkit-scrollbar {
+  display: none;
 }
 .MySvgGerenciarUserModal {
   width: 320px;

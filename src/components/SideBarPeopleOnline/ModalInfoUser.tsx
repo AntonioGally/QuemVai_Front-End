@@ -81,7 +81,9 @@ const SideBarPeopleOnline: React.FC<Props> = ({
                 <Row>
                   <TitleText>Email:</TitleText>
                   <AtributeText style={{ textDecorationLine: "underline" }}>
-                    {email}
+                    <a href={`mailto:${email}?Subject=Olá%20${name}`}>
+                      {email}
+                    </a>
                   </AtributeText>
                 </Row>
                 <Row>

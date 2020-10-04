@@ -4,11 +4,13 @@ import { UserMinus } from "@styled-icons/boxicons-regular/UserMinus";
 import { Verified } from "@styled-icons/material/Verified";
 
 export const Container = styled.div`
+  background: linear-gradient(241.73deg, #3edaa8 0%, #4cd964 100%);
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
   width: 100%;
+  height:100vh;
   max-height: 100vh;
   padding: 0;
   /* > div {
@@ -96,9 +98,9 @@ export const MyButton = styled.button`
   color: var(--fontWhite);
   transition: all 0.5s ease;
   padding: 10px 0 10px 0;
-  @media(max-width:1000px){
-    margin-top:5%;
-  }  
+  @media (max-width: 1000px) {
+    margin-top: 5%;
+  }
   &.WithOutTrustButton {
     padding: 10px;
   }
@@ -114,7 +116,7 @@ export const UserIcon = styled(UserMinus)`
 export const VerifiedIcon = styled(Verified)`
   height: 45px;
   width: 45px;
-  fill: #3FA3FF;
+  fill: #3fa3ff;
   flex-shrink: 0;
   margin-right: 20px;
 `;

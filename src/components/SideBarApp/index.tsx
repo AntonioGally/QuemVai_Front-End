@@ -16,6 +16,7 @@ import { getToken, getTokenAdmin, Token } from "../services/auth";
 
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";
+import ModalEvents from "./ModalEvents";
 
 const SideBarApp: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState("");
@@ -30,6 +31,8 @@ const SideBarApp: React.FC = () => {
   const [eventosClick, setEventosClick] = React.useState(false);
   const [quadrasClick, setQuadrasClick] = React.useState(false);
   const [amigosClick, setAmigosClick] = React.useState(false);
+
+  const [modalEventsShow, setModalEventsShow] = React.useState(false);
 
   useEffect(() => {
     if (getTokenAdmin()) {
@@ -69,7 +72,6 @@ const SideBarApp: React.FC = () => {
                 margin: "13% 0 20% 0",
               }}
             >
-              
               <Row className="MyNotificationsContainer">
                 <RingIcon />
                 <span className="NumberSpan">3</span>
@@ -136,6 +138,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(true);
                 setQuadrasClick(false);
                 setAmigosClick(false);
+                setModalEventsShow(true)
               }}
               className={`${eventosClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -212,6 +215,18 @@ const SideBarApp: React.FC = () => {
           onHide={() => {
             setModalFriendShow(false);
             setAmigosClick(false);
+            setInicioClick(true);
+          }}
+        />
+      ) : (
+        ""
+      )}
+      {modalEventsShow ? (
+        <ModalEvents
+          show={modalEventsShow}
+          onHide={() => {
+            setModalEventsShow(false);
+            setEventosClick(false);
             setInicioClick(true);
           }}
         />

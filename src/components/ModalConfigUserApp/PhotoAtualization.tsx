@@ -87,6 +87,32 @@ const PhotoAtualization: React.FC = () => {
     reader.readAsDataURL(file);
   };
 
+
+  const handleDeletePhoto = async () => {
+    try {
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+      const response = await api.put(
+        "/api/user/delete/me/photo",
+        { },
+        config
+      );
+      if (response.status === 200 && response.data["Photo deleted"]) {
+        alert("Foto deletada com sucesso!");
+        window.location.reload();
+      }
+      if (!response.data["Photo deleted"]) {
+        setErros("Houve algum problema no processo :(");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     Promise.all([
       api.get("/api/user/bring/me", {
@@ -162,7 +188,7 @@ const PhotoAtualization: React.FC = () => {
           </Row>
           <Row style={{ justifyContent: "flex-end", marginTop: "10%" }}>
             <Col md={6} lg={3}>
-              <MyButton type="button" className="btn" style={{ width: "100%" }}>
+              <MyButton type="button" className="btn" style={{ width: "100%" }} onClick={handleDeletePhoto}>
                 Excluir Foto
               </MyButton>
             </Col>

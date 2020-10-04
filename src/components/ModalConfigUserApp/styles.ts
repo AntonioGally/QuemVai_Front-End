@@ -4,6 +4,7 @@ import { AccountBox } from "@styled-icons/material/AccountBox";
 import { Key } from "@styled-icons/boxicons-regular/Key";
 import { InsertPhoto } from "@styled-icons/material/InsertPhoto";
 import { HistoryEdu } from "@styled-icons/material-outlined/HistoryEdu";
+import { Favorite } from "@styled-icons/material-outlined/Favorite";
 import { UserReceived2 } from "@styled-icons/remix-fill/UserReceived2";
 
 import { Search } from "@styled-icons/boxicons-regular/Search";
@@ -67,7 +68,7 @@ export const EditIcon = styled(Edit)`
   fill: var(--fontBlack);
   flex-shrink: 0;
   margin-left: 20px;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 var sideBarIcons = css`
@@ -99,6 +100,9 @@ export const PhotoIcon = styled(InsertPhoto)`
   ${sideBarIcons};
 `;
 export const HistoricIcon = styled(HistoryEdu)`
+  ${sideBarIcons};
+`;
+export const FavoriteIcon = styled(Favorite)`
   ${sideBarIcons};
 `;
 export const LogoutIcon = styled(UserReceived2)`
