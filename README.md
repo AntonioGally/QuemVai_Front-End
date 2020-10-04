@@ -38,12 +38,14 @@
   - [Installation](#installation)
 - [Contributing](#contributing)
 - [Contact](#contact)
+- [Acknowledgements](#Acknowledgements) 
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png)
+[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png)<br/>
+[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print2.png)
 
 Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
 Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
@@ -163,16 +165,16 @@ Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://git
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/AntonioGally/QuemVai_Front-End.svg?style=flat-square
 [contributors-url]: https://github.com/AntonioGally/QuemVai_Front-End/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/AntonioGally/QuemVai_Front-End.svg?style=flat-square
 [forks-url]: https://github.com/AntonioGally/QuemVai_Front-End/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/AntonioGally/QuemVai_Front-End.svg?style=flat-square
 [stars-url]: https://github.com/AntonioGally/QuemVai_Front-End/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/AntonioGally/QuemVai_Front-End.svg?style=flat-square
 [issues-url]: https://github.com/AntonioGally/QuemVai_Front-End/issues
-<!-- [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt -->
+<!-- [license-shield]: https://img.shields.io/github/license/AntonioGally/QuemVai_Front-End.svg?style=flat-square
+[license-url]: https://github.com/AntonioGally/QuemVai_Front-End/blob/master/LICENSE.txt -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/antônio-gally-089bab180/
 [product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/blob/AplicationWeb/src/img/print.png
