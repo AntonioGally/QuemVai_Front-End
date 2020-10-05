@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import ModalLogin from "../ModalLogin";
+import "./FormCadastro.css";
 import { Container, Col, Row, Form, InputGroup } from "react-bootstrap";
 import facebook from "../../img/icones/facebook.svg";
 import instagram from "../../img/icones/instagram.svg";
@@ -136,7 +137,7 @@ const FormCadastro: React.FC = () => {
                         name="userName"
                         id="userName"
                         placeholder="ex.: Robson da Silva"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           required: true,
                         })}
@@ -156,7 +157,7 @@ const FormCadastro: React.FC = () => {
                         name="userNickName"
                         id="userNickName"
                         placeholder="ex.: RobSilva"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           required: true,
                         })}
@@ -176,7 +177,7 @@ const FormCadastro: React.FC = () => {
                         name="userEmail"
                         id="userEmail"
                         placeholder="ex.: robson@gmail.com"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           required: true,
                           pattern: {
@@ -210,7 +211,7 @@ const FormCadastro: React.FC = () => {
                             name="userDDD"
                             id="userDDD"
                             placeholder="01"
-                            style={{ borderRadius: "10px" }}
+                            className="MyInputFormCadastro"
                             ref={register({
                               pattern: {
                                 value: /^[0-9]+$/i,
@@ -256,7 +257,7 @@ const FormCadastro: React.FC = () => {
                             name="UserNumber"
                             id="UserNumber"
                             placeholder="12345678"
-                            style={{ borderRadius: "10px" }}
+                            className="MyInputFormCadastro"
                             ref={register({
                               pattern: {
                                 value: /^[0-9]+$/i,
@@ -310,7 +311,7 @@ const FormCadastro: React.FC = () => {
                         name="userPassword"
                         id="userPassword"
                         placeholder="ex.: *******"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           minLength: {
                             value: 8,
@@ -339,7 +340,7 @@ const FormCadastro: React.FC = () => {
                         name="userConfirmPassword"
                         id="userConfirmPassword"
                         placeholder="ex.: *******"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           minLength: {
                             value: 8,

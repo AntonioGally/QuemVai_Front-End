@@ -167,18 +167,3 @@ body {
   background-color: var(--buttonFill);
 }
 
-.MyModalEventsQuestion {
-  width:30%;
-}
-.WrapperModalCreateEvent {
-  margin-left: auto;
-  width: 100%;
-  height: 400px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border-radius: 15px;
-  position: relative;
-}
-.WrapperModalCreateEvent::-webkit-scrollbar {
-  display: none;
-}

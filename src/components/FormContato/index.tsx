@@ -79,7 +79,7 @@ const FormContato: React.FC = () => {
                         name="userName"
                         id="userName"
                         placeholder="ex.: Robson da Silva"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           required: true,
                         })}
@@ -100,7 +100,7 @@ const FormContato: React.FC = () => {
                         name="userEmail"
                         id="userEmail"
                         placeholder="ex.: robson@gmail.com"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           required: true,
                           pattern: {
@@ -134,7 +134,7 @@ const FormContato: React.FC = () => {
                         name="userSubject"
                         id="userSubject"
                         placeholder="ex.: Dúvida sobre as amizades"
-                        style={{ borderRadius: "10px" }}
+                        className="MyInputFormCadastro"
                         ref={register({
                           required: {
                             value:true,
@@ -165,7 +165,7 @@ const FormContato: React.FC = () => {
                           name="userMessage"
                           id="userMessage"
                           rows={10}
-                          style={{ borderRadius: "10px" }}
+                          className="MyInputFormCadastro"
                           ref={register({
                             required: true,
                           })}

@@ -16,7 +16,7 @@ import { getToken, getTokenAdmin, Token } from "../services/auth";
 
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";
-import ModalEvents from "./ModalEvents";
+import ModalEvents from "../ModalEventsUserApp";
 
 const SideBarApp: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState("");

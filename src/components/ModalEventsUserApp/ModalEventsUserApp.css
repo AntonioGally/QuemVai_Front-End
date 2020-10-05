@@ -1,0 +1,25 @@
+.MyModalEventsQuestion {
+  max-width: 30%;
+}
+.WrapperModalCreateEvent {
+  margin-left: auto;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 15px;
+  position: relative;
+}
+.MyModalCreateEventDialog {
+  max-width:51%;  
+}
+.WrapperModalCreateEvent::-webkit-scrollbar {
+  display: none;
+}
+.InputModalCreateEvent {
+  width:40%;
+  position: relative;
+}
+.InputModalCreateEvent > input{
+  border-radius: 10px;  
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);
+}

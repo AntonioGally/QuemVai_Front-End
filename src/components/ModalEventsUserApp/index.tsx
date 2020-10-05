@@ -1,15 +1,15 @@
 import React from "react";
 
 import { Modal, Row, Col } from "react-bootstrap";
-
 import ModalCreateEvent from "./ModalCreateEvent";
+import "./ModalEventsUserApp.css";
 
 export interface Props {
   show: boolean;
   onHide: any;
 }
 
-const SideBarApp: React.FC<Props> = ({ show, onHide }) => {
+const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [modalCreateEvent, setModalCreateEvent] = React.useState(false);
   if (modalCreateEvent) {
     return (
@@ -59,4 +59,4 @@ const SideBarApp: React.FC<Props> = ({ show, onHide }) => {
   );
 };
 
-export default SideBarApp;
+export default ModalEventsUserApp;
