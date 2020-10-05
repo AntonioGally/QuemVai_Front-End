@@ -3,14 +3,22 @@ import styled from "styled-components";
 import { UserMinus } from "@styled-icons/boxicons-regular/UserMinus";
 import { Verified } from "@styled-icons/material/Verified";
 
-export const Container = styled.div`
-  background: linear-gradient(241.73deg, #3edaa8 0%, #4cd964 100%);
-  overflow-y: scroll;
+export const Container = styled.div`  
+  overflow-y: auto;
+  scrollbar-width: thin;
   ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track {
     display: none;
   }
+
   width: 100%;
-  height:100vh;
+  height: 100vh;
   max-height: 100vh;
   padding: 0;
   /* > div {

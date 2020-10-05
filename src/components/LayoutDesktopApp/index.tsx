@@ -18,7 +18,7 @@ const LayoutDesktopApp: React.FC = () => {
             <div className="col-9" style={{ padding: "0" }}>
               <GoogleMaps/>
             </div>
-            <div className="col-1" style={{ padding: "0" }}>
+            <div className="col-1" style={{ padding: "0", background: "linear-gradient(241.73deg, #3edaa8 0%, #4cd964 100%)" }}>
               <SideBarPeopleOnline />
             </div>
 

@@ -2,7 +2,8 @@
   margin-left: auto;
   width: 93%;
   height: 600px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin;
   overflow-x: hidden;
   border-radius: 15px;
   position: relative;
@@ -120,10 +121,18 @@
   background-color: var(--primary);
   border-radius: 20px;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin;
   max-height: 600px;
 }
 .MyColTabModalConfigUserApp::-webkit-scrollbar {
+  width: 7px;
+}
+.MyColTabModalConfigUserApp::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
+}
+.MyColTabModalConfigUserApp::-webkit-scrollbar-track {
   display: none;
 }
 .MySvgGerenciarUserModal {

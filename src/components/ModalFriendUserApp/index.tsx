@@ -50,7 +50,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                 <Nav
                   variant="pills"
                   className="flex-column"
-                  style={{ height: "100%" }}
+                  style={{ height: "100%", flexWrap:"unset" }}
                 >
                   <div style={{ marginBottom: "10%" }}>
                     <Row
