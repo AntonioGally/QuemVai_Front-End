@@ -72,7 +72,14 @@ const SideBarApp: React.FC = () => {
                 margin: "13% 0 20% 0",
               }}
             >
-              <Row className="MyNotificationsContainer">
+              <Row
+                className="MyNotificationsContainer"
+                onClick={() => {
+                  navigator.geolocation.getCurrentPosition((location) => {
+                    console.log(location);
+                  });
+                }}
+              >
                 <RingIcon />
                 <span className="NumberSpan">3</span>
                 <span className="NotificationsSpan">Notificações</span>
@@ -138,7 +145,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(true);
                 setQuadrasClick(false);
                 setAmigosClick(false);
-                setModalEventsShow(true)
+                setModalEventsShow(true);
               }}
               className={`${eventosClick ? "SideBarAppActiveLink" : ""}`}
             >

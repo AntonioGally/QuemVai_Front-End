@@ -66,7 +66,7 @@ const ModalConfigUserApp: React.FC = () => {
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
-      <MyTitleForm style={{ marginBottom: "2%" }}>Meu histórico</MyTitleForm>
+      <MyTitleForm style={{ margin:"10% 0 2% 9%" }}>Meu histórico</MyTitleForm>
       {!isSomething ? (
         <div style={{ textAlign: "center" }}>
           <img

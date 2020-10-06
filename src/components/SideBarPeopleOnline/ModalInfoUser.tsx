@@ -79,24 +79,36 @@ const SideBarPeopleOnline: React.FC<Props> = ({
             {trustFriend ? (
               <div className="WrapperTrustedInformation">
                 <Row>
-                  <TitleText>Email:</TitleText>
-                  <AtributeText style={{ textDecorationLine: "underline" }}>
-                    <a href={`mailto:${email}?Subject=Olá%20${name}`}>
-                      {email}
-                    </a>
-                  </AtributeText>
+                  <Col lg={3} md={12}>
+                    <TitleText>Email:</TitleText>
+                  </Col>
+                  <Col lg={9} md={12}>
+                    <AtributeText style={{ textDecorationLine: "underline" }}>
+                      <a href={`mailto:${email}?Subject=Olá%20${name}`}>
+                        {email}
+                      </a>
+                    </AtributeText>
+                  </Col>
                 </Row>
                 <Row>
-                  <TitleText>Nome:</TitleText>
-                  <AtributeText>{name}</AtributeText>
+                  <Col lg={3} md={12}>
+                    <TitleText>Nome:</TitleText>
+                  </Col>
+                  <Col lg={9} md={12}>
+                    <AtributeText>{name}</AtributeText>
+                  </Col>
                 </Row>
                 <Row>
-                  <TitleText>Celular:</TitleText>
-                  <AtributeText>
-                    ({ddd}) {cell}
-                  </AtributeText>
+                  <Col lg={3} md={12}>
+                    <TitleText>Celular:</TitleText>
+                  </Col>
+                  <Col lg={9} md={12}>
+                    <AtributeText>
+                      ({ddd}) {cell}
+                    </AtributeText>
+                  </Col>
                 </Row>
-                <Row style={{ marginTop: "10%" }}>
+                <Row style={{ padding: "15px" }}>
                   <Col lg={6} md={12}>
                     <MyButton
                       type="button"

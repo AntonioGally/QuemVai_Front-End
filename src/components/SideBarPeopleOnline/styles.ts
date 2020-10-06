@@ -94,7 +94,7 @@ export const AtributeText = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 21px;
-  width: 70%;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

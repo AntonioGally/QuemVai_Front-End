@@ -41,22 +41,29 @@ export const CompassIcon = styled(Compass)`
   flex-shrink: 0;
 `;
 export const ExitIcon = styled(Exit)`
-  width: 50%;
-  height: 50%;
+  width: 48%;
+  height: 48%;
   color: var(--primary);
   fill: var(--primary);
   flex-shrink: 0;
   cursor: pointer;
 `;
-export const SearchIcon = styled(SearchAlt)`
-  width:35px;
-  height:35px;
+export const SearchSpaceIcon = styled(SearchAlt)`
+  width: 48%;
+  height: 48%;
+  color: var(--fontBlack);
   fill: var(--fontBlack);
-  flex-shrink:0;
-  position:absolute;
-  left:calc(100% - 40px);
+  flex-shrink: 0;
   cursor: pointer;
-
+`;
+export const SearchIcon = styled(SearchAlt)`
+  width: 35px;
+  height: 35px;
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+  position: absolute;
+  left: calc(100% - 40px);
+  cursor: pointer;
 `;
 export const TextContent = styled.div`
   > span {
@@ -75,4 +82,44 @@ export const TextContent = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const MyTileSpaceInfo = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+`;
+export const MyTextContentSpaceInfo = styled.div`
+  margin-left: 4%;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const MyTextAreaSpaceInfo = styled.div`
+  margin-left: 4%;
+  > div > textarea {
+    border: 1px solid black;
+  }
+`;
+export const WrapperSports = styled.div`
+  margin-left: 4%;
+  height: 200px;
+  width: 100%;
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
 `;

@@ -10,7 +10,7 @@ body {
 
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
-  background: linear-gradient(241.73deg, #3EDAA8 0%, #4CD964 100%);
+  background: linear-gradient(241.73deg, #3edaa8 0%, #4cd964 100%);
   color: black;
   transition: all 0.3s;
   width: 100%;
@@ -19,7 +19,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-
 
 #sidebar .sidebar-header {
   padding: 20px;
@@ -74,7 +73,7 @@ body {
   font-family: "Poppins";
   color: var(--fontWhite);
   font-weight: 600;
-  width:80%;
+  width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -101,13 +100,23 @@ body {
   .MyNotificationsContainer span {
     font-size: 10pt;
   }
+  .userNameSideBarApp {
+    font-size: 16pt;
+  }
+}
+@media (max-width: 1500px) {
   .myRowLinksSideBarApp div {
     width: 100%;
     display: flex;
     justify-content: center;
-  }  
-  .userNameSideBarApp {
-    font-size: 16pt;
+  }
+  .SideBarAppActiveLink::after {
+    right: 10px !important;
+  }
+}
+@media (max-width:1200px) {
+  .SideBarAppActiveLink::after {
+    right: 0px !important;
   }
 }
 @media (max-width: 1299px) {
@@ -136,34 +145,29 @@ body {
   .myRowLinksSideBarApp span {
     display: none;
   }
-  .SideBarAppActiveLink::after {
-    right:20px !important;
-  }
   .myRowLinksSideBarApp svg {
     margin-bottom: 7%;
     margin-right: 0 !important;
   }
 }
-
-.SideBarAppActiveLink {  
-  position:relative;
+.SideBarAppActiveLink {
+  position: relative;
 }
 .SideBarAppActiveLink span {
-  color:var(--buttonFill);
+  color: var(--buttonFill);
 }
 .SideBarAppActiveLink svg {
-  color:var(--buttonFill);
-  fill:var(--buttonFill);
+  color: var(--buttonFill);
+  fill: var(--buttonFill);
 }
 .SideBarAppActiveLink::after {
   width: 7px;
   height: 7px;
 
-  top:calc(50% - 2px);
-  right:0px;
+  top: calc(50% - 2px);
+  right: 0px;
   position: absolute;
   border-radius: 50%;
   content: "";
   background-color: var(--buttonFill);
 }
-

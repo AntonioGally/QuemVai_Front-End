@@ -4,22 +4,35 @@
 .WrapperModalCreateEvent {
   margin-left: auto;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   border-radius: 15px;
   position: relative;
 }
+.WrapperModalSpaceInfo {
+  width: 100%;
+  border-radius: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
 .MyModalCreateEventDialog {
-  max-width:51%;  
+  max-width: 51%;
 }
 .WrapperModalCreateEvent::-webkit-scrollbar {
   display: none;
 }
 .InputModalCreateEvent {
-  width:40%;
+  width: 40%;
   position: relative;
 }
-.InputModalCreateEvent > input{
-  border-radius: 10px;  
+.InputModalCreateEvent > input {
+  border-radius: 10px;
   box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);
+}
+.SportDescriptionModalSpaceInfo {
+  width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

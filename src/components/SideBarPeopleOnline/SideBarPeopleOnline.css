@@ -1,13 +1,13 @@
 .WrapperModalInfoUser {
   height: 600px;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .WrapperModalInfoUser {
-    height: 700px;
+    height: 720px;
   }
 }
 .MyModalInfoUser {
-  width: 24%;
+  width: 35%;
 }
 .WrapperTrustedInformation {
   margin: 5%;
