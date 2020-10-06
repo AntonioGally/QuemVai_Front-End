@@ -4,7 +4,6 @@ import {
   Modal,
   Row,
   Col,
-  Button,
   Form,
   FormControl,
   OverlayTrigger,
@@ -21,10 +20,12 @@ import {
   ExitIcon,
   SearchIcon,
   SearchSpaceIcon,
+  MyButton,
 } from "./styles";
 
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 import ModalSpaceInfo from "./ModalSpaceInfo";
+import ModalCreateEvents from "./ModalCreateEvents";
 
 export interface Props {
   show: boolean;
@@ -32,6 +33,7 @@ export interface Props {
 }
 const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
+  const [modalCreateEvents, setModalCreateEvents] = React.useState(false);
   const [auxID, setAuxID] = React.useState(Number);
   var list = [1, 2, 3, 4, 5, 6, 7, 8];
   const renderTooltipSpaceSelection = (props: any) => (
@@ -50,6 +52,15 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
         show={modalSpaceInfo}
         onHide={() => setModalSpaceInfo(false)}
         id={auxID}
+      />
+    );
+  }
+  if (modalCreateEvents) {
+    return (
+      <ModalCreateEvents
+        show={modalCreateEvents}
+        onHide={() => setModalCreateEvents(false)}
+        id_space={auxID}
       />
     );
   }
@@ -125,7 +136,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
                         delay={{ show: 250, hide: 250 }}
                         overlay={renderTooltipSpaceSelection}
                       >
-                        <ExitIcon />
+                        <ExitIcon onClick={() => setModalCreateEvents(true)} />
                       </OverlayTrigger>
                     </Col>
                   </Row>
@@ -135,7 +146,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
           </Modal.Body>
           <Modal.Footer>
             <Row>
-              <Button onClick={onHide}>Voltar</Button>
+              <MyButton onClick={onHide}>Voltar</MyButton>
             </Row>
           </Modal.Footer>
         </div>

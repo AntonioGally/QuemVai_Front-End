@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Compass } from "@styled-icons/fa-solid/Compass";
 import { Exit } from "@styled-icons/boxicons-regular/Exit";
 import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
+import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
+import { Star } from "@styled-icons/entypo/Star";
 export const MyTitle = styled.h3`
   font-family: "Poppins";
   font-style: normal;
@@ -83,12 +85,19 @@ export const TextContent = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-
+export const ArrowBackIcon = styled(ArrowBack)`
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  fill: var(--fontBlack);
+  cursor: pointer;
+`;
 export const MyTileSpaceInfo = styled.div`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
+  margin-bottom: 1%;
 `;
 export const MyTextContentSpaceInfo = styled.div`
   margin-left: 4%;
@@ -104,7 +113,12 @@ export const MyTextContentSpaceInfo = styled.div`
 export const MyTextAreaSpaceInfo = styled.div`
   margin-left: 4%;
   > div > textarea {
-    border: 1px solid black;
+    box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px !important;
+    font-family: "Poppins";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
   }
 `;
 export const WrapperSports = styled.div`
@@ -121,5 +135,70 @@ export const WrapperSports = styled.div`
   }
   ::-webkit-scrollbar-track {
     display: none;
+  }
+`;
+export const MyButton = styled.button`
+  outline: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: var(--buttonFill);
+  color: var(--fontWhite);
+  font-family: "Poppins";
+  cursor: pointer;
+`;
+export const MyTitleModalCreateEvents = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  width: 55%;
+  @media (max-width: 1000px) {
+    width: 80%;
+  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const StarIcon = styled(Star)`
+  height: 35px;
+  width: 35px;
+  flex-shrink: 0;
+  cursor: pointer;
+  > path {
+    stroke: var(--fontBlack);
+    stroke-width: 1px;
+  }
+`;
+export const MySubTitleModalCreateEvents = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+`;
+
+export const MyTextContentModalCreateEvents = styled.div`
+  font-family: "Poppins";
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const MyTextAreaModalCreateEvents = styled.div`
+  @media (min-width: 1000px) {
+    margin-left: 10%;
+  }
+  > div > textarea {
+    box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px !important;
+    font-family: "Poppins";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
   }
 `;

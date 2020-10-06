@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Modal, Row, Col } from "react-bootstrap";
-import ModalCreateEvent from "./ModalCreateEvent";
+import ModalListSpace from "./ModalListSpace";
 import "./ModalEventsUserApp.css";
 
 export interface Props {
@@ -10,12 +10,12 @@ export interface Props {
 }
 
 const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
-  const [modalCreateEvent, setModalCreateEvent] = React.useState(false);
-  if (modalCreateEvent) {
+  const [modalListSpace, setModalListSpace] = React.useState(false);
+  if (modalListSpace) {
     return (
-      <ModalCreateEvent
-        show={modalCreateEvent}
-        onHide={() => setModalCreateEvent(false)}
+      <ModalListSpace
+        show={modalListSpace}
+        onHide={() => setModalListSpace(false)}
       />
     );
   }
@@ -47,7 +47,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
               <div
                 className="AddButtonConfirmation"
                 style={{ fontSize: "20px" }}
-                onClick={() => setModalCreateEvent(true)}
+                onClick={() => setModalListSpace(true)}
               >
                 Criar
               </div>

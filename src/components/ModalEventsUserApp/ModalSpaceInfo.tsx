@@ -1,11 +1,13 @@
 import React from "react";
 
-import { Modal, Row, Col, Form, Button, Table } from "react-bootstrap";
+import { Modal, Row, Col, Form, Table } from "react-bootstrap";
 import {
+  ArrowBackIcon,
   MyTileSpaceInfo,
   MyTextContentSpaceInfo,
   MyTextAreaSpaceInfo,
   WrapperSports,
+  MyButton,
 } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
@@ -28,6 +30,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
               width="100%"
               style={{ borderTopLeftRadius: "30px" }}
             />
+          </div>
+          <div style={{ margin: "3% 0 0 3%" }}>
+            <ArrowBackIcon onClick={onHide} />
           </div>
           <Modal.Body style={{ padding: "30px" }}>
             <div style={{ marginBottom: "4%" }}>
@@ -71,7 +76,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
                         as="textarea"
                         name="userMessage"
                         id="userMessage"
-                        rows={10}
+                        rows={4}
                       />
                     </Form.Group>
                   </MyTextAreaSpaceInfo>
@@ -107,7 +112,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={onHide}>Voltar</Button>
+            <MyButton onClick={onHide}>Voltar</MyButton>
           </Modal.Footer>
         </div>
       </Modal>
