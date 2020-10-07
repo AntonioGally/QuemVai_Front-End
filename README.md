@@ -14,7 +14,7 @@
   <h3 align="center">Quem Vai</h3>
 
   <p align="center">
-    Um aplicativo de encontros em áreas de lazer públicabr   <br/> A meeting app in public leisure areas
+    Um aplicativo de encontros em áreas de lazer pública   <br/> A meeting app in public leisure areas
     <br />
     <a href="https://github.com/AntonioGally/QuemVai_Front-End"><strong> Explore the docs »</strong></a>
     <br />
@@ -38,14 +38,13 @@
   - [Installation](#installation)
 - [Contributing](#contributing)
 - [Contact](#contact)
-- [Acknowledgements](#Acknowledgements) 
+- [Acknowledgements](#Acknowledgements)
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print.png)<br/>
-[![Quem Vai About Page][product-screenshot2]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/print2.png)
+[![Quem Vai About Page][product-screenshot]](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/AppPresentation.gif)<br/>
 
 Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
 Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
@@ -90,8 +89,10 @@ Recomendável:
 - Pentium_G5400
 - 8GB_Ram
 
-- É <b>NECESSÁRIO</b> ter o <a href="https://git-scm.com/downloads">Git Bash</a> instalado em sua máquina
-- É <b>NECESSÁRIO</b> ter o <a href="https://nodejs.org/en/download/">Node js</a> instalado em sua máquina
+Necessário:
+
+- <a href="https://git-scm.com/downloads">Git Bash</a>
+- <a href="https://nodejs.org/en/download/">Node js</a>
 
 ### Installation
 
@@ -104,11 +105,7 @@ git clone https://github.com/AntonioGally/QuemVai_Front-End.git
 2. Abra a pasta clonada no Vs Code
 
 ```sh
-cd QuemVai_Front-End
-```
-
-```sh
-code .
+code ./QuemVai_Front-End
 ```
 
 3. Instale as dependências do projeto
@@ -137,12 +134,11 @@ As contribuições são o que torna a comunidade de código aberto um lugar incr
 4. Faça upload para sua branch (`git push origin feature/MinhaFuncionalidade`)
 5. Abra um Pull Request
 
-
 <!-- CONTACT -->
 
 ## Contact
 
-Antônio Lima Gally Neto  - antonio.gally@gmail.com
+Antônio Lima Gally Neto - antonio.gally@gmail.com
 
 Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://github.com/AntonioGally/QuemVai_Front-End)
 
@@ -173,9 +169,10 @@ Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://git
 [stars-url]: https://github.com/AntonioGally/QuemVai_Front-End/stargazers
 [issues-shield]: https://img.shields.io/github/issues/AntonioGally/QuemVai_Front-End.svg?style=flat-square
 [issues-url]: https://github.com/AntonioGally/QuemVai_Front-End/issues
+
 <!-- [license-shield]: https://img.shields.io/github/license/AntonioGally/QuemVai_Front-End.svg?style=flat-square
 [license-url]: https://github.com/AntonioGally/QuemVai_Front-End/blob/master/LICENSE.txt -->
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/antônio-gally-089bab180/
-[product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/blob/AplicationWeb/src/img/print.png
-[product-screenshot2]: https://github.com/AntonioGally/QuemVai_Front-End/blob/AplicationWeb/src/img/print2.png
+[product-screenshot]: https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/AppPresentation.gif

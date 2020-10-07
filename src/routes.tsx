@@ -16,25 +16,6 @@ import {
   isAuthenticatedAdmin,
   isAuthenticated,
 } from "./components/services/auth";
-// import api from "./components/services/api";
-
-// useEffect(() => {
-
-//   Promise.all([
-//     api.get("/api/user/bring/me", {
-//       headers: { "x-auth-token": token },
-//     }),
-//   ]).then(async (responses) => {
-//     const [AllEmailsReceived] = responses;
-//     const emails = await AllEmailsReceived.data;
-//     if (emails.data["auth"] === false){
-//       setValid(false);
-//     }
-//     if (emails.data["auth"] === true){
-//       setValid(true);
-//     }
-//   });
-// }, []);
 const src: React.FC = () => {
   const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
     return (
