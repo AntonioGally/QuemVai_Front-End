@@ -8,7 +8,7 @@ export var isAuthenticatedAdmin = () =>
 
 export const login = async (token: string) => {
   try {
-    var adminAuth = false;
+    var adminAuth;
     const response = await api.get("/api/user/bring/me", {
       headers: { "x-auth-token": token },
     });

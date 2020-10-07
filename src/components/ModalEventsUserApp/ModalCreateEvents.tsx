@@ -15,6 +15,7 @@ import {
   MyTextContentModalCreateEvents,
   MyTextAreaModalCreateEvents,
   MyButton,
+  ArrowBackIcon,
 } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
@@ -46,6 +47,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
                 width="100%"
                 style={{ borderTopLeftRadius: "30px" }}
               />
+            </div>
+            <div style={{ margin: "3% 0 0 3%" }}>
+              <ArrowBackIcon onClick={onHide} />
             </div>
             <Modal.Body style={{ padding: "30px" }}>
               <Row style={{ margin: 0, alignItems: "center" }}>
