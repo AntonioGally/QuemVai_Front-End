@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Modal, Row, Col, Form, Table } from "react-bootstrap";
 import {
@@ -11,14 +11,38 @@ import {
 } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
+import api from "../services/api";
+import { Token } from "../services/auth";
+import { SpaceInformationByID } from "../@types";
+
 export interface Props {
   show: boolean;
   onHide: any;
   id: number;
 }
 
+interface Data {
+  SpaceInfo: SpaceInformationByID;
+}
+
 const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
-  var auxList = [1, 2, 3, 4, 5, 6];
+  const [data, setData] = useState<Data>();
+
+  useEffect(() => {
+    Promise.all([
+      api.get(`/api/search/space/${id}`, {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [SpaceInfo] = responses;
+      // eslint-disable-next-line
+      const informations = await SpaceInfo.data;
+      setData({ SpaceInfo: informations });
+    });
+  }, [id]);
   return (
     <div>
       <Modal size="lg" show={show} centered onHide={onHide}>
@@ -41,7 +65,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
               </Row>
               <Row style={{ margin: 0 }}>
                 <MyTextContentSpaceInfo>
-                  Antônio Lima Gally Neto
+                  {data?.SpaceInfo.name}
                 </MyTextContentSpaceInfo>
               </Row>
             </div>
@@ -51,7 +75,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
               </Row>
               <Row style={{ margin: 0 }}>
                 <MyTextContentSpaceInfo>
-                  Antônio Lima Gally Neto
+                  {data?.SpaceInfo.address}
                 </MyTextContentSpaceInfo>
               </Row>
             </div>
@@ -60,7 +84,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
                 <MyTileSpaceInfo>CEP</MyTileSpaceInfo>
               </Row>
               <Row style={{ margin: 0 }}>
-                <MyTextContentSpaceInfo>23456789</MyTextContentSpaceInfo>
+                <MyTextContentSpaceInfo>
+                  {data?.SpaceInfo.CEP}
+                </MyTextContentSpaceInfo>
               </Row>
             </div>
             <div style={{ marginBottom: "8%" }}>
@@ -76,6 +102,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
                         as="textarea"
                         name="userMessage"
                         id="userMessage"
+                        value={data?.SpaceInfo.description}
                         rows={4}
                       />
                     </Form.Group>
@@ -97,11 +124,11 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {auxList.map((i) => (
-                        <tr key={i}>
-                          <td>Futebol {i}</td>
+                      {data?.SpaceInfo.space.map((information) => (
+                        <tr key={information.id}>
+                          <td>{information.name}</td>
                           <td className="SportDescriptionModalSpaceInfo">
-                            Muito massa {i}
+                            {information.description}
                           </td>
                         </tr>
                       ))}

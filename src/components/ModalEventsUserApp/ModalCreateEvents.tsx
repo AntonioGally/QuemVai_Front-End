@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   Modal,
   Row,
@@ -7,6 +7,7 @@ import {
   OverlayTrigger,
   Tooltip,
   Form,
+  Spinner,
 } from "react-bootstrap";
 import {
   MyTitleModalCreateEvents,
@@ -19,14 +20,99 @@ import {
 } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
+import api from "../services/api";
+import { Token } from "../services/auth";
+import { SpaceInformationEventeCreate } from "../@types";
+
 export interface Props {
   show: boolean;
   onHide: any;
-  id_space: number;
+  id: number;
 }
-
-const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
+type IFormInput = {
+  description: string;
+  id_sport: number;
+};
+interface Data {
+  SpaceInfo: SpaceInformationEventeCreate;
+}
+const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
   const [colorStar, setColorStar] = React.useState(Boolean);
+  const [data, setData] = useState<Data>();
+
+  const { register, handleSubmit, errors } = useForm<IFormInput>();
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState("");
+  const [erros, setErros] = React.useState("");
+  const [lenghtDescription, setLenghtDescription] = React.useState(Number);
+  const [inputValue, setInputValue] = React.useState("");
+  const [isMax, setIsMax] = React.useState(Boolean);
+
+  const onSubmit = async (data: IFormInput) => {
+    var name_Event = data.description;
+    var id_space = id;
+    var id_sport = data.id_sport;
+
+    var config = {
+      headers: { "x-auth-token": Token() },
+      validateStatus: function (status: any) {
+        return status < 500; // Resolve only if the status code is less than 500
+      },
+    };
+
+    try {
+      setLoading(true);
+      const response = await api.post(
+        "/api/event/create",
+        { name_Event, id_space, id_sport },
+        config
+      );
+      if (response.data["Event created"] && response.status === 200) {
+        setSuccess("Evento criado com sucesso!");
+        setLoading(false);
+      }
+
+      if (!response.data["Event created"] || response.status === 204) {
+        setErros("Algo de errado ocorreu ;(");
+        setLoading(false);
+      }
+      if (response.data["Court in use"] || response.status === 406) {
+        setErros("Você já criou um evento relacionado à essa quadra ");
+        setLoading(false);
+      }
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    Promise.all([
+      api.get(`/api/search/space/${id}`, {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [SpaceInfo] = responses;
+      // eslint-disable-next-line
+      const informations = await SpaceInfo.data;
+      setData({ SpaceInfo: informations });
+    });
+  }, [id]);
+
+  useEffect(() => {
+    setLenghtDescription(inputValue.length);
+    if (inputValue.length >= 50) {
+      setLenghtDescription(50);
+      setIsMax(true);
+    } else {
+      setLenghtDescription(inputValue.length);
+      setIsMax(false);
+    }
+  }, [inputValue]);
+
   const renderTooltipStar = (props: any) => (
     <Tooltip id="star-icon" {...props}>
       Favoritar o local
@@ -35,10 +121,11 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
   const StarClick = async () => {
     setColorStar(!colorStar);
   };
+
   return (
     <div>
       <Modal size="lg" centered show={show} onHide={onHide}>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="WrapperModalCreateEvent">
             <div className="MySvgGerenciarUserModal">
               <img
@@ -54,7 +141,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
             <Modal.Body style={{ padding: "30px" }}>
               <Row style={{ margin: 0, alignItems: "center" }}>
                 <MyTitleModalCreateEvents>
-                  Quadra do Ibirapuera
+                  {data?.SpaceInfo.name}
                 </MyTitleModalCreateEvents>
                 <OverlayTrigger
                   placement="top"
@@ -76,7 +163,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
                   </Col>
                   <Col lg={10} md={12}>
                     <MyTextContentModalCreateEvents>
-                      Parque do Ibirapuera perto de n sei oq
+                      {data?.SpaceInfo.address}
                     </MyTextContentModalCreateEvents>
                   </Col>
                 </Row>
@@ -90,7 +177,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
                   </Col>
                   <Col lg={10} md={12}>
                     <MyTextContentModalCreateEvents>
-                      123456789
+                      {data?.SpaceInfo.CEP}
                     </MyTextContentModalCreateEvents>
                   </Col>
                 </Row>
@@ -103,11 +190,18 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
                     </MySubTitleModalCreateEvents>
                   </Col>
                   <Col lg={8} md={12}>
-                    <Form.Group controlId="SelectSports" style={{ margin: 0 }}>
-                      <Form.Control as="select">
-                        <option>Futebol</option>
-                        <option>Voley</option>
-                        <option>Skate</option>
+                    <Form.Group style={{ margin: 0 }}>
+                      <Form.Control
+                        as="select"
+                        id="id_sport"
+                        name="id_sport"
+                        ref={register}
+                      >
+                        {data?.SpaceInfo.space.map((information) => (
+                          <option key={information.id} value={information.id}>
+                            {information.name}
+                          </option>
+                        ))}
                       </Form.Control>
                     </Form.Group>
                   </Col>
@@ -127,14 +221,55 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id_space }) => {
                       <Form.Group>
                         <Form.Control
                           as="textarea"
-                          name="userMessage"
-                          id="userMessage"
+                          name="description"
+                          id="description"
+                          onChange={(e) => setInputValue(e.target.value)}
                           rows={4}
+                          ref={register({
+                            maxLength: {
+                              value: 50,
+                              message: "Insira no máximo 50 caractéres",
+                            },
+                            required: {
+                              value: true,
+                              message: "Insira uma descrição",
+                            },
+                          })}
                         />
+                        {errors.description &&
+                          (errors.description as any).type === "maxLength" && (
+                            <div className="error">
+                              {(errors.description as any).message}
+                            </div>
+                          )}
+                        {errors.description &&
+                          (errors.description as any).type === "required" && (
+                            <div className="error">
+                              {(errors.description as any).message}
+                            </div>
+                          )}
                       </Form.Group>
                     </MyTextAreaModalCreateEvents>
+                    <span
+                      className={`${isMax ? "text-danger" : "text-success"}`}
+                    >
+                      {lenghtDescription} / 50
+                    </span>
                   </Col>
                 </Row>
+                {loading ? <Spinner animation="border" /> : ""}
+                <div
+                  className="text-success"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
+                  {success}
+                </div>
+                <div
+                  className="text-danger"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
+                  {erros}
+                </div>
               </div>
             </Modal.Body>
             <Modal.Footer>

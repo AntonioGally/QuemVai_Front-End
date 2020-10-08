@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import loadingGif from "../../img/icones/loading.gif";
-import { Container, Col, Row, Form } from "react-bootstrap";
+import { Container, Col, Row, Form, Spinner } from "react-bootstrap";
 
 import {
   MyForm,
@@ -27,6 +26,7 @@ type IFormInput = {
 const FormContato: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<IFormInput>();
   const [loading, setLoading] = React.useState(false);
+  const [succees, setSuccess] = React.useState("");
   const onSubmit = async (data: IFormInput) => {
     setLoading(true);
     const destinatario = data.userEmail;
@@ -46,8 +46,24 @@ const FormContato: React.FC = () => {
       );
       if (response.status === 200) {
         setLoading(false);
-        alert("Email Enviado com sucesso!");
-        window.location.reload();
+        setSuccess("Email enviado com sucesso!");
+        setTimeout(() => {
+          setSuccess("");
+        }, 5000);
+        var userName = document.getElementById("userName") as HTMLInputElement;
+        userName.value = "";
+        var userEmail = document.getElementById(
+          "userEmail"
+        ) as HTMLInputElement;
+        userEmail.value = "";
+        var userSubject = document.getElementById(
+          "userSubject"
+        ) as HTMLInputElement;
+        userSubject.value = "";
+        var userMessage = document.getElementById(
+          "userMessage"
+        ) as HTMLInputElement;
+        userMessage.value = "";
       }
 
       if (response.status === 404) {
@@ -61,7 +77,7 @@ const FormContato: React.FC = () => {
   return (
     <div>
       <MyContainer>
-        <Container fluid style={{width:'80%'}}>
+        <Container fluid style={{ width: "80%" }}>
           <Row className="d-flex justify-content-center fluid">
             <MyTitleForm>
               Dê o seu feedback para podermos melhorar cada vez mais
@@ -90,7 +106,6 @@ const FormContato: React.FC = () => {
                         )}
                     </Form.Group>
                   </MyForm>
-                  
 
                   <MyLableText> E o seu E-mail? </MyLableText>
                   <MyForm className="firstColumn">
@@ -123,9 +138,7 @@ const FormContato: React.FC = () => {
                   </MyForm>
 
                   <div className="row" style={{ margin: 0 }}>
-                    <MyLableText>
-                      Assunto
-                    </MyLableText>
+                    <MyLableText>Assunto</MyLableText>
                   </div>
                   <MyForm className="firstColumn">
                     <Form.Group>
@@ -137,9 +150,9 @@ const FormContato: React.FC = () => {
                         className="MyInputFormCadastro"
                         ref={register({
                           required: {
-                            value:true,
-                            message:"O assunto é obrigatório"
-                          }
+                            value: true,
+                            message: "O assunto é obrigatório",
+                          },
                         })}
                       />
                       {errors.userSubject &&
@@ -150,7 +163,19 @@ const FormContato: React.FC = () => {
                         )}
                     </Form.Group>
                   </MyForm>
-                  {loading ? <div><img src={loadingGif} alt="Loading"/></div> : ""}
+                  {loading ? (
+                    <div>
+                      <Spinner animation="border" />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <div
+                    className="text-success"
+                    style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                  >
+                    {succees}
+                  </div>
                 </Col>
 
                 <Col sm={12} md={6}>

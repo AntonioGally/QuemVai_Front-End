@@ -202,3 +202,49 @@ export interface FriendsList {
   DDD?: number;
   cellPhoneNumber?: number;
 }
+
+export interface ListSpaceByUF {
+  id: number;
+  name: string;
+  address: string;
+  CEP: number;
+  description: string;
+  status: false;
+  space: [
+    {
+      id: number;
+      name: string;
+      description: string;
+    }
+  ];
+}
+export interface SpaceInformationByID {
+  id: number;
+  name: string;
+  address: string;
+  CEP: number;
+  description: string;
+  status: false;
+  space: [
+    {
+      id: number;
+      name: string;
+      description: string;
+    }
+  ];
+}
+export interface SpaceInformationEventeCreate {
+  id: number;
+  name: string;
+  address: string;
+  CEP: number;
+  description: string;
+  status: false;
+  space: [
+    {
+      id: number;
+      name: string;
+      description: string;
+    }
+  ];
+}

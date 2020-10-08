@@ -170,6 +170,10 @@ export const MyTitleModalHistoric = styled.div`
   font-weight: bold;
   font-size: 45px;
   color: var(--fontBlack);
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const UserNameHistoricInfo = styled.div`
   font-family: "Poppins";

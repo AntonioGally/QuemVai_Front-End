@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Modal,
@@ -21,21 +21,47 @@ import {
   SearchIcon,
   SearchSpaceIcon,
   MyButton,
+  ArrowBackIcon,
 } from "./styles";
 
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 import ModalSpaceInfo from "./ModalSpaceInfo";
 import ModalCreateEvents from "./ModalCreateEvents";
 
+import api from "../services/api";
+import { Token } from "../services/auth";
+import { ListSpaceByUF } from "../@types";
+
 export interface Props {
   show: boolean;
   onHide: any;
 }
+
+interface Data {
+  SpaceList: ListSpaceByUF[];
+}
 const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
   const [modalCreateEvents, setModalCreateEvents] = React.useState(false);
+  const [data, setData] = useState<Data>();
   const [auxID, setAuxID] = React.useState(Number);
-  var list = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/search/uf/space/SP", {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [PushSpacesList] = responses;
+      // eslint-disable-next-line
+      const informations = await PushSpacesList.data;
+      setData({ SpaceList: informations });
+    });
+  }, []);
+
   const renderTooltipSpaceSelection = (props: any) => (
     <Tooltip id="button-tooltip_spaceSelection" {...props}>
       Selecionar espaço
@@ -60,7 +86,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
       <ModalCreateEvents
         show={modalCreateEvents}
         onHide={() => setModalCreateEvents(false)}
-        id_space={auxID}
+        id={auxID}
       />
     );
   }
@@ -80,7 +106,10 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
               style={{ borderTopLeftRadius: "30px" }}
             />
           </div>
-          <Modal.Body style={{ padding: 50 }}>
+          <div style={{ margin: "3% 0 0 3%" }}>
+            <ArrowBackIcon onClick={onHide} />
+          </div>
+          <Modal.Body style={{ padding: 30 }}>
             <Row>
               <MyTitle>Quadras</MyTitle>
               <Form inline className="InputModalCreateEvent">
@@ -93,8 +122,8 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
               </Form>
             </Row>
             <MyWrapperCards>
-              {list.map((i) => (
-                <MyCards key={i}>
+              {data?.SpaceList.map((information) => (
+                <MyCards key={information.id}>
                   <Row
                     style={{ alignItems: "center", justifyContent: "center" }}
                   >
@@ -104,17 +133,17 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
                     <Col lg={8} md={12}>
                       <Row style={{ margin: 0 }}>
                         <TextContent>
-                          <span>Nome:</span> Roberto Dinamite
+                          <span>Nome:</span> {information.name}
                         </TextContent>
                       </Row>
                       <Row style={{ margin: 0 }}>
                         <TextContent>
-                          <span>Endereço:</span> Rua Sergio Leite de Camargo
+                          <span>Endereço:</span> {information.address}
                         </TextContent>
                       </Row>
                       <Row style={{ margin: 0 }}>
                         <TextContent>
-                          <span>CEP:</span> 02141-001
+                          <span>CEP:</span> {information.CEP}
                         </TextContent>
                       </Row>
                     </Col>
@@ -127,7 +156,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
                         <SearchSpaceIcon
                           onClick={() => {
                             setModalSpaceInfo(true);
-                            setAuxID(i);
+                            setAuxID(information.id);
                           }}
                         />
                       </OverlayTrigger>
@@ -136,7 +165,12 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
                         delay={{ show: 250, hide: 250 }}
                         overlay={renderTooltipSpaceSelection}
                       >
-                        <ExitIcon onClick={() => setModalCreateEvents(true)} />
+                        <ExitIcon
+                          onClick={() => {
+                            setModalCreateEvents(true);
+                            setAuxID(information.id);
+                          }}
+                        />
                       </OverlayTrigger>
                     </Col>
                   </Row>

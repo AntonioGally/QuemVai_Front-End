@@ -41,17 +41,19 @@ const PhotoAtualization: React.FC = () => {
           imageWidth = image.width,
           imageHeight = image.height;
 
-        if (imageWidth > imageHeight) {
-          if (imageWidth > maxWidth) {
-            imageHeight *= maxWidth / imageWidth;
-            imageWidth = maxWidth;
-          }
-        } else {
-          if (imageHeight > maxHeight) {
-            imageWidth *= maxHeight / imageHeight;
-            imageHeight = maxHeight;
-          }
-        }
+        // if (imageWidth > imageHeight) {
+        //   if (imageWidth > maxWidth) {
+        //     imageHeight *= maxWidth / imageWidth;
+        //     imageWidth = maxWidth;
+        //   }
+        // } else {
+        //   if (imageHeight > maxHeight) {
+        //     imageWidth *= maxHeight / imageHeight;
+        //     imageHeight = maxHeight;
+        //   }
+        // }
+        imageWidth = maxWidth;
+        imageHeight = maxHeight;
 
         var canvas = document.createElement("canvas");
         canvas.width = imageWidth;

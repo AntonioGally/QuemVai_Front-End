@@ -15,7 +15,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
     return (
       <ModalListSpace
         show={modalListSpace}
-        onHide={() => setModalListSpace(false)}
+        onHide={() => {
+          setModalListSpace(false);
+        }}
       />
     );
   }
