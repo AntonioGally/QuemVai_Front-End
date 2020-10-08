@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./ModalConfigStyles.css";
-import { Row, Col, Form, Container, InputGroup } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Form,
+  Container,
+  InputGroup,
+  Spinner,
+} from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton, EditIcon } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
@@ -19,6 +26,8 @@ const ModalConfigUserApp: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<FormConfigUserAltered>();
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
+  const [sucesso, setSucesso] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   const [auxEmail, setAuxEmail] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -35,6 +44,7 @@ const ModalConfigUserApp: React.FC = () => {
     const DDD = data.userDDD;
 
     try {
+      setLoading(true);
       var config = {
         headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
@@ -49,13 +59,23 @@ const ModalConfigUserApp: React.FC = () => {
         config
       );
       if (response.status === 200) {
-        alert("Dados atualizados com sucesso!");
-        window.location.reload();
+        setSucesso("Dados atualizados com sucesso!");
+        setLoading(false);
+        setEditName(true);
+        setEditUsername(true);
+        setEditEmail(true);
+        setEditNumber(true);
+
+        setTimeout(function () {
+          setSucesso("");
+        }, 5000);
       }
       if (response.status === 406) {
         setErros("Este Email já existe");
+        setLoading(false);
       }
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   };
@@ -289,7 +309,22 @@ const ModalConfigUserApp: React.FC = () => {
                   </InputGroup>
                 </Form.Group>
               </MyForm>
-              <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
+              <Row>
+                {loading ? <Spinner animation="border" /> : ""}
+
+                <div
+                  className="text-danger"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
+                  {erros}
+                </div>
+                <div
+                  className="text-success"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
+                  {sucesso}
+                </div>
+              </Row>
             </Col>
           </Row>
           <Row

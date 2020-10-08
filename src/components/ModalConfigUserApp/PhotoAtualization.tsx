@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Container, Form, Row, Col } from "react-bootstrap";
+import { Container, Form, Row, Col, Spinner } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
 import "./ModalConfigStyles.css";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
@@ -21,8 +21,11 @@ const PhotoAtualization: React.FC = () => {
   const { errors, register, handleSubmit } = useForm<FormPhoto>();
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
+  const [sucesso, setSucesso] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const SubmitForm = async (data: FormPhoto) => {
+    setLoading(true);
     var photos = "";
 
     var file = data.userPhoto[0];
@@ -73,45 +76,51 @@ const PhotoAtualization: React.FC = () => {
             config
           );
           if (response.data["Photo updated"]) {
-            alert("Foto atualizada com sucesso!");
-            window.location.reload();
+            setSucesso("Foto atualizada com suceso!");
+            setTimeout(function () {
+              setSucesso("");
+            }, 5000);
+            setLoading(false);
           }
           if (!response.data["Photo updated"]) {
             setErros("Houve algum problema na atualização de dados");
+            setLoading(false);
           }
         } catch (err) {
           console.log(err);
+          setLoading(false);
         }
       };
     };
     reader.readAsDataURL(file);
   };
 
-
   const handleDeletePhoto = async () => {
     try {
+      setLoading(true);
       var config = {
         headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
           return status < 500; // Resolve only if the status code is less than 500
         },
       };
-      const response = await api.put(
-        "/api/user/delete/me/photo",
-        { },
-        config
-      );
+      const response = await api.put("/api/user/delete/me/photo", {}, config);
       if (response.status === 200 && response.data["Photo deleted"]) {
-        alert("Foto deletada com sucesso!");
-        window.location.reload();
+        setSucesso("Foto deletada com suceso!");
+        setTimeout(function () {
+          setSucesso("");
+        }, 5000);
+        setLoading(false);
       }
       if (!response.data["Photo deleted"]) {
         setErros("Houve algum problema no processo :(");
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     Promise.all([
@@ -127,7 +136,7 @@ const PhotoAtualization: React.FC = () => {
       const informations = await PushUserInformation.data;
       setData({ Photo: informations["info"]["photos"] });
     });
-  }, []);
+  }, [loading]);
 
   return (
     <div className="WrapperModalConfig">
@@ -177,9 +186,22 @@ const PhotoAtualization: React.FC = () => {
                             <div className="error">A foto é obrigatória</div>
                           )}
                       </Form.File>
-                      <div style={{ fontFamily: "Poppins", color: "red" }}>
-                        {erros}
-                      </div>
+                      <Row>
+                        {loading ? <Spinner animation="border" /> : ""}
+
+                        <div
+                          className="text-danger"
+                          style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                        >
+                          {erros}
+                        </div>
+                        <div
+                          className="text-success"
+                          style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                        >
+                          {sucesso}
+                        </div>
+                      </Row>
                     </div>
                   </div>
                 </MyForm>
@@ -188,7 +210,12 @@ const PhotoAtualization: React.FC = () => {
           </Row>
           <Row style={{ justifyContent: "flex-end", marginTop: "10%" }}>
             <Col md={6} lg={3}>
-              <MyButton type="button" className="btn" style={{ width: "100%" }} onClick={handleDeletePhoto}>
+              <MyButton
+                type="button"
+                className="btn"
+                style={{ width: "100%" }}
+                onClick={handleDeletePhoto}
+              >
                 Excluir Foto
               </MyButton>
             </Col>

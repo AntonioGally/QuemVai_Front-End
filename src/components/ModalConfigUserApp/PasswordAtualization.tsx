@@ -2,7 +2,7 @@ import React from "react";
 
 import { useForm } from "react-hook-form";
 
-import { Form, Row, Col, Container } from "react-bootstrap";
+import { Form, Row, Col, Container, Spinner } from "react-bootstrap";
 import { MyLableText, MyForm, MyButton, MyTitleForm, EditIcon } from "./styles";
 import "./ModalConfigStyles.css";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
@@ -18,7 +18,9 @@ type Passwords = {
 const ModalConfigUserApp: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<Passwords>();
   const [erros, setErros] = React.useState("");
-  const [succes, setSucces] = React.useState(false);
+  const [sucesso, setSucesso] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [succesPassword, setSuccesPassword] = React.useState(false);
   const [finalPassword, setFinalPassword] = React.useState("");
 
   const [editPassword, setEditPassword] = React.useState(true);
@@ -29,15 +31,16 @@ const ModalConfigUserApp: React.FC = () => {
     const userPasswordConfirm = data.userPasswordConfirm;
 
     if (userPassword === userPasswordConfirm) {
-      setSucces(true);
+      setSuccesPassword(true);
       setFinalPassword(userPassword);
     } else {
-      setSucces(false);
-      setErros("As senhas não são iguais :c");
+      setSuccesPassword(false);
+      setErros("As senhas não são iguais");
     }
 
-    if (succes) {
+    if (succesPassword) {
       try {
+        setLoading(true);
         var config = {
           headers: {
             "x-new-password": finalPassword,
@@ -52,14 +55,33 @@ const ModalConfigUserApp: React.FC = () => {
           logout();
           var newToken = response.data[" New token"];
           login(newToken);
-          alert("Sua senha foi alterada com sucesso!");
-          window.location.reload();
+          setSucesso("Senha atualizada com sucesso!");
+
+          var userPasswordInput = document.getElementById(
+            "userPassword"
+          ) as HTMLInputElement;
+          userPasswordInput.value = "";
+
+          var userPasswordConfirmInput = document.getElementById(
+            "userPasswordConfirm"
+          ) as HTMLInputElement;
+          userPasswordConfirmInput.value = "";
+
+          setEditPassword(true);
+          setEditConfirmPassword(true);
+          setLoading(false);
+
+          setTimeout(function () {
+            setSucesso("");
+          }, 5000);
         }
         if (!response.data["Updated"]) {
           setErros("Houve algum problema na atualização de dados");
+          setLoading(false);
         }
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     }
   };
@@ -71,7 +93,7 @@ const ModalConfigUserApp: React.FC = () => {
       </div>
       <Container fluid style={{ marginTop: "10%" }}>
         <MyTitleForm>Altere sua Senha</MyTitleForm>
-        <Form onSubmit={handleSubmit(SubmitForm)}>
+        <Form onSubmit={handleSubmit(SubmitForm)} id="formPassword">
           <Row>
             <Col md={12} lg={6}>
               <MyLableText> Digite a nova senha: </MyLableText>
@@ -151,7 +173,22 @@ const ModalConfigUserApp: React.FC = () => {
                     )}
                 </Form.Group>
               </MyForm>
-              <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
+              <Row>
+                {loading ? <Spinner animation="border" /> : ""}
+
+                <div
+                  className="text-danger"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
+                  {erros}
+                </div>
+                <div
+                  className="text-success"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
+                  {sucesso}
+                </div>
+              </Row>
             </Col>
           </Row>
           <Row style={{ justifyContent: "flex-end", marginTop: "10%" }}>
