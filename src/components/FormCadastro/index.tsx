@@ -2,7 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import ModalLogin from "../ModalLogin";
 import "./FormCadastro.css";
-import { Container, Col, Row, Form, InputGroup } from "react-bootstrap";
+import {
+  Container,
+  Col,
+  Row,
+  Form,
+  InputGroup,
+  Spinner,
+} from "react-bootstrap";
 import facebook from "../../img/icones/facebook.svg";
 import instagram from "../../img/icones/instagram.svg";
 import { FormCadastroUser } from "../@types";
@@ -18,6 +25,7 @@ import {
 
 const FormCadastro: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<FormCadastroUser>();
+  const [loading, setLoading] = React.useState(false);
   const [succes, setSucces] = React.useState(false);
   const [erros, setErros] = React.useState("");
   const [modalShow, setModalShow] = React.useState(true);
@@ -45,73 +53,89 @@ const FormCadastro: React.FC = () => {
 
     var file = data.userPhoto[0];
     var fileType = file.type;
-    var reader = new FileReader();
-    reader.onloadend = () => {
-      var image: any = new Image();
-      (image.src as any) = reader.result;
+    if (
+      fileType === "image/jpeg" ||
+      fileType === "image/png" ||
+      fileType === "image/jpg"
+    ) {
+      var reader = new FileReader();
+      reader.onloadend = () => {
+        var image: any = new Image();
+        (image.src as any) = reader.result;
 
-      image.onload = async function () {
-        var maxWidth = 500,
-          maxHeight = 500,
-          imageWidth = image.width,
-          imageHeight = image.height;
+        image.onload = async function () {
+          var maxWidth = 500,
+            maxHeight = 500,
+            imageWidth = image.width,
+            imageHeight = image.height;
 
-        if (imageWidth > imageHeight) {
-          if (imageWidth > maxWidth) {
-            imageHeight *= maxWidth / imageWidth;
-            imageWidth = maxWidth;
-          }
-        } else {
-          if (imageHeight > maxHeight) {
-            imageWidth *= maxHeight / imageHeight;
-            imageHeight = maxHeight;
-          }
-        }
+          // if (imageWidth > imageHeight) {
+          //   if (imageWidth > maxWidth) {
+          //     imageHeight *= maxWidth / imageWidth;
+          //     imageWidth = maxWidth;
+          //   }
+          // } else {
+          //   if (imageHeight > maxHeight) {
+          //     imageWidth *= maxHeight / imageHeight;
+          //     imageHeight = maxHeight;
+          //   }
+          // }
 
-        var canvas = document.createElement("canvas");
-        canvas.width = imageWidth;
-        canvas.height = imageHeight;
+          imageWidth = maxWidth;
+          imageHeight = maxHeight;
+          var canvas = document.createElement("canvas");
+          canvas.width = imageWidth;
+          canvas.height = imageHeight;
 
-        var ctx = canvas.getContext("2d");
+          var ctx = canvas.getContext("2d");
 
-        ctx?.drawImage(image, 0, 0, imageWidth, imageHeight);
+          ctx?.drawImage(image, 0, 0, imageWidth, imageHeight);
 
-        var finalFile = canvas.toDataURL(fileType);
-        photos = finalFile;
-        
-        try {
-          if (succesPassword) {
-            var config = {
-              headers: { "x-password": senhaFinal },
-              validateStatus: function (status: any) {
-                return status < 500; // Resolve only if the status code is less than 500
-              },
-            };
+          var finalFile = canvas.toDataURL(fileType);
+          photos = finalFile;
 
-            const response = await api.post(
-              "/api/login/signup/user",
-              { cellPhoneNumber, email, DDD, name, username, photos },
-              config
-            );
+          try {
+            setLoading(true);
+            if (succesPassword) {
+              var config = {
+                headers: { "x-password": senhaFinal },
+                validateStatus: function (status: any) {
+                  return status < 500; // Resolve only if the status code is less than 500
+                },
+              };
 
-            if (response.status === 200 && response.data["User registered"]) {
-              alert("Você foi cadastrado com sucesso!");
-              setSucces(true);
+              const response = await api.post(
+                "/api/login/signup/user",
+                { cellPhoneNumber, email, DDD, name, username, photos },
+                config
+              );
+
+              if (response.status === 200 && response.data["User registered"]) {
+                alert("Você foi cadastrado com sucesso!");
+                setLoading(false);
+                setSucces(true);
+              }
+              if (response.status === 406) {
+                setErros("Esse Email já foi registrado");
+                setLoading(false);
+              }
+
+              if (response.status === 404) {
+                alert("Houve algum problema!");
+                setLoading(false);
+              }
             }
-            if (response.status === 406) {
-              setErros("Esse Email já foi registrado");
-            }
-
-            if (response.status === 404) {
-              alert("Houve algum problema!");
-            }
+          } catch (err) {
+            console.log(err);
+            setLoading(false);
           }
-        } catch (err) {
-          console.log(err);
-        }
+        };
       };
-    };
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    } else {
+      setErros("Insiria uma imagem válida");
+      setLoading(false);
+    }
   };
 
   if (succes) {
@@ -393,6 +417,7 @@ const FormCadastro: React.FC = () => {
                       >
                         Cadastrar
                       </MyButton>
+                      {loading ? <Spinner animation="border" /> : ""}
                       <div style={{ color: "red", fontSize: "20px" }}>
                         {erros}
                       </div>

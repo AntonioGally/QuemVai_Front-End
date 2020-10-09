@@ -30,71 +30,80 @@ const PhotoAtualization: React.FC = () => {
 
     var file = data.userPhoto[0];
     var fileType = file.type;
-    var reader = new FileReader();
-    reader.onloadend = () => {
-      const image: any = new Image();
-      (image.src as any) = reader.result;
+    if (
+      fileType === "image/jpeg" ||
+      fileType === "image/png" ||
+      fileType === "image/jpg"
+    ) {
+      var reader = new FileReader();
+      reader.onloadend = () => {
+        const image: any = new Image();
+        (image.src as any) = reader.result;
 
-      image.onload = async function () {
-        var maxWidth = 500,
-          maxHeight = 500,
-          imageWidth = image.width,
-          imageHeight = image.height;
+        image.onload = async function () {
+          var maxWidth = 500,
+            maxHeight = 500,
+            imageWidth = image.width,
+            imageHeight = image.height;
 
-        // if (imageWidth > imageHeight) {
-        //   if (imageWidth > maxWidth) {
-        //     imageHeight *= maxWidth / imageWidth;
-        //     imageWidth = maxWidth;
-        //   }
-        // } else {
-        //   if (imageHeight > maxHeight) {
-        //     imageWidth *= maxHeight / imageHeight;
-        //     imageHeight = maxHeight;
-        //   }
-        // }
-        imageWidth = maxWidth;
-        imageHeight = maxHeight;
+          // if (imageWidth > imageHeight) {
+          //   if (imageWidth > maxWidth) {
+          //     imageHeight *= maxWidth / imageWidth;
+          //     imageWidth = maxWidth;
+          //   }
+          // } else {
+          //   if (imageHeight > maxHeight) {
+          //     imageWidth *= maxHeight / imageHeight;
+          //     imageHeight = maxHeight;
+          //   }
+          // }
+          imageWidth = maxWidth;
+          imageHeight = maxHeight;
 
-        var canvas = document.createElement("canvas");
-        canvas.width = imageWidth;
-        canvas.height = imageHeight;
+          var canvas = document.createElement("canvas");
+          canvas.width = imageWidth;
+          canvas.height = imageHeight;
 
-        var ctx = canvas.getContext("2d");
+          var ctx = canvas.getContext("2d");
 
-        ctx?.drawImage(image, 0, 0, imageWidth, imageHeight);
+          ctx?.drawImage(image, 0, 0, imageWidth, imageHeight);
 
-        var finalFile = canvas.toDataURL(fileType);
-        photos = finalFile;
-        try {
-          var config = {
-            headers: { "x-auth-token": Token() },
-            validateStatus: function (status: any) {
-              return status < 500; // Resolve only if the status code is less than 500
-            },
-          };
-          const response = await api.put(
-            "/api/user/update/me/photo",
-            { photos },
-            config
-          );
-          if (response.data["Photo updated"]) {
-            setSucesso("Foto atualizada com suceso!");
-            setTimeout(function () {
-              setSucesso("");
-            }, 5000);
+          var finalFile = canvas.toDataURL(fileType);
+          photos = finalFile;
+          try {
+            var config = {
+              headers: { "x-auth-token": Token() },
+              validateStatus: function (status: any) {
+                return status < 500; // Resolve only if the status code is less than 500
+              },
+            };
+            const response = await api.put(
+              "/api/user/update/me/photo",
+              { photos },
+              config
+            );
+            if (response.data["Photo updated"]) {
+              setSucesso("Foto atualizada com suceso!");
+              setTimeout(function () {
+                setSucesso("");
+              }, 5000);
+              setLoading(false);
+            }
+            if (!response.data["Photo updated"]) {
+              setErros("Houve algum problema na atualização de dados");
+              setLoading(false);
+            }
+          } catch (err) {
+            console.log(err);
             setLoading(false);
           }
-          if (!response.data["Photo updated"]) {
-            setErros("Houve algum problema na atualização de dados");
-            setLoading(false);
-          }
-        } catch (err) {
-          console.log(err);
-          setLoading(false);
-        }
+        };
       };
-    };
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    } else {
+      setLoading(false);
+      setErros("Insiria uma imagem válida");
+    }
   };
 
   const handleDeletePhoto = async () => {

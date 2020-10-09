@@ -63,7 +63,6 @@ const ModalConfigUserApp: React.FC = () => {
         setLoading(false);
         setEditName(true);
         setEditUsername(true);
-        setEditEmail(true);
         setEditNumber(true);
 
         setTimeout(function () {
