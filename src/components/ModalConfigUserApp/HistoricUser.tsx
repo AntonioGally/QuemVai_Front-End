@@ -20,15 +20,15 @@ import {
 import "./ModalConfigStyles.css";
 
 import ModalHistoricInfo from "./ModalHistoricInfo";
-
+import ModalConfirmHistoricDelete from "./confirmation/ModalConfirmHistoricDelete";
 interface Data {
   HistoricList: HistoricUserList[];
 }
 
 const ModalConfigUserApp: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
   const [reload, setReload] = React.useState(false);
-  const [erros, setErros] = React.useState("");
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
 
@@ -61,32 +61,6 @@ const ModalConfigUserApp: React.FC = () => {
     });
   }, [reload]);
 
-  const DeleteClick = async (id: number) => {
-    try {
-      var config = {
-        headers: { "x-auth-token": Token() },
-        validateStatus: function (status: any) {
-          return status < 500; // Resolve only if the status code is less than 500
-        },
-      };
-
-      const response = await api.put(`/api/historic/delete/${id}`, {}, config);
-      // eslint-disable-next-line
-      if (response.status === 200 && response.data != "") {
-        setReload(true);
-        setErros("");
-      }
-      if (response.status === 204) {
-        setErros("Esse histórico não existe não existe");
-      }
-      if (response.status === 400) {
-        setErros("Houve algum problema ao deletar o histórico");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div
       className="WrapperModalConfig HistoricWrapperModalConfig"
@@ -107,20 +81,13 @@ const ModalConfigUserApp: React.FC = () => {
       ) : (
         <Container fluid>
           <div className="WrapperCardHistoricUser">
-            <div
-              className="text-danger"
-              style={{
-                fontFamily: "Poppins",
-                fontSize: "20px",
-                padding: "10px",
-              }}
-            >
-              {erros}
-            </div>
             {data?.HistoricList.map((information) => {
               return (
                 <div key={information.id} className="MyCardHistoricUser">
-                  <Row className="MyRowCardHistoricUser">
+                  <Row
+                    className="MyRowCardHistoricUser"
+                    style={{ justifyContent: "space-between" }}
+                  >
                     <MyTitleCard>{information.name_event}</MyTitleCard>
                     <SearchIconCard
                       onClick={() => {
@@ -165,7 +132,8 @@ const ModalConfigUserApp: React.FC = () => {
                     <Col md={2}>
                       <TrashIcon
                         onClick={() => {
-                          DeleteClick(information.id);
+                          setModalConfirmShow(true);
+                          setIdHistoric(information.id);
                         }}
                       />
                     </Col>
@@ -190,6 +158,18 @@ const ModalConfigUserApp: React.FC = () => {
           nameSport={nameSport}
           createdAt={createdAt}
           finishedAt={finishedAt}
+        />
+      ) : (
+        ""
+      )}
+      {modalConfirmShow ? (
+        <ModalConfirmHistoricDelete
+          show={modalConfirmShow}
+          onHide={() => {
+            setModalConfirmShow(false);
+            setReload(true);
+          }}
+          idHistoric={idHistoric}
         />
       ) : (
         ""

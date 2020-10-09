@@ -26,10 +26,9 @@ const confirmation: React.FC<Props> = ({ show, onHide, idHistoric }) => {
         {},
         config
       );
-      console.log(idHistoric);
       // eslint-disable-next-line
       if (response.status === 200 && response.data != "") {
-        window.location.reload();
+        onHide()
       }
       if (response.status === 204) {
         //setErros("Esse histórico não existe não existe");

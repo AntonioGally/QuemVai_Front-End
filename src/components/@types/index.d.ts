@@ -248,3 +248,16 @@ export interface SpaceInformationEventeCreate {
     }
   ];
 }
+
+export interface FavoriteSpaceList {
+  Space_id: number;
+  nome: string;
+  address: string;
+  CEP: number;
+  UF: string;
+  latitude: string;
+  longitude: string;
+  description: string;
+  status: number;
+  isStatus: number;
+}

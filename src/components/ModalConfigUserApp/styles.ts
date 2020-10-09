@@ -133,6 +133,14 @@ export const MyTextCard = styled.div`
   text-overflow: ellipsis;
 `;
 
+export const SubtitleFavorites = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color:var(--fontSecundary);
+`;
+
 export const SearchIconCard = styled(Search)`
   width: 20px;
   height: 20px;
@@ -147,7 +155,6 @@ export const TrashIcon = styled(Trash)`
   height: 20px;
   fill: red;
   flex-shrink: 0;
-  margin-left: -20px;
   cursor: pointer;
 `;
 export const PlaceIcon = styled(Map)`

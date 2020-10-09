@@ -138,13 +138,6 @@ const FormCadastro: React.FC = () => {
     }
   };
 
-  if (succes) {
-    return (
-      <>
-        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
-      </>
-    );
-  }
   return (
     <div>
       <MyContainer>
@@ -456,6 +449,11 @@ const FormCadastro: React.FC = () => {
           </Social>
         </Container>
       </MyContainer>
+      {succes ? (
+        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
