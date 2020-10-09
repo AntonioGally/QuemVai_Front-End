@@ -8,6 +8,7 @@ import { Favorite } from "@styled-icons/material-outlined/Favorite";
 import { UserReceived2 } from "@styled-icons/remix-fill/UserReceived2";
 
 import { Search } from "@styled-icons/boxicons-regular/Search";
+import { Trash } from "@styled-icons/boxicons-regular/Trash";
 import { Map } from "@styled-icons/boxicons-regular/Map";
 import { SportsVolleyball } from "@styled-icons/material-rounded/SportsVolleyball";
 
@@ -139,6 +140,14 @@ export const SearchIconCard = styled(Search)`
   flex-shrink: 0;
   margin-left: 15px;
   margin-top: -5px;
+  cursor: pointer;
+`;
+export const TrashIcon = styled(Trash)`
+  width: 20px;
+  height: 20px;
+  fill: red;
+  flex-shrink: 0;
+  margin-left: -20px;
   cursor: pointer;
 `;
 export const PlaceIcon = styled(Map)`

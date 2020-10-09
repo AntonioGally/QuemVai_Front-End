@@ -15,6 +15,7 @@ import {
   PlaceIcon,
   MyTextCard,
   SportIconCard,
+  TrashIcon,
 } from "./styles";
 import "./ModalConfigStyles.css";
 
@@ -26,6 +27,8 @@ interface Data {
 
 const ModalConfigUserApp: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [reload, setReload] = React.useState(false);
+  const [erros, setErros] = React.useState("");
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
 
@@ -56,7 +59,33 @@ const ModalConfigUserApp: React.FC = () => {
       const informations = await PushHistoricList.data;
       setData({ HistoricList: informations });
     });
-  }, []);
+  }, [reload]);
+
+  const DeleteClick = async (id: number) => {
+    try {
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+
+      const response = await api.put(`/api/historic/delete/${id}`, {}, config);
+      // eslint-disable-next-line
+      if (response.status === 200 && response.data != "") {
+        setReload(true);
+        setErros("");
+      }
+      if (response.status === 204) {
+        setErros("Esse histórico não existe não existe");
+      }
+      if (response.status === 400) {
+        setErros("Houve algum problema ao deletar o histórico");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div
@@ -66,7 +95,7 @@ const ModalConfigUserApp: React.FC = () => {
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
-      <MyTitleForm style={{ margin:"10% 0 2% 9%" }}>Meu histórico</MyTitleForm>
+      <MyTitleForm style={{ margin: "10% 0 2% 9%" }}>Meu histórico</MyTitleForm>
       {!isSomething ? (
         <div style={{ textAlign: "center" }}>
           <img
@@ -78,6 +107,16 @@ const ModalConfigUserApp: React.FC = () => {
       ) : (
         <Container fluid>
           <div className="WrapperCardHistoricUser">
+            <div
+              className="text-danger"
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "20px",
+                padding: "10px",
+              }}
+            >
+              {erros}
+            </div>
             {data?.HistoricList.map((information) => {
               return (
                 <div key={information.id} className="MyCardHistoricUser">
@@ -98,7 +137,6 @@ const ModalConfigUserApp: React.FC = () => {
                       }}
                     />
                   </Row>
-
                   <Row className="MyRowCardHistoricUser">
                     <PlaceIcon />{" "}
                     <MyTextCard>{information.SpaceName}</MyTextCard>
@@ -116,13 +154,20 @@ const ModalConfigUserApp: React.FC = () => {
                       />
                     </Col>
 
-                    <Col md={10} style={{ padding: 0 }}>
+                    <Col md={8} style={{ padding: 0 }}>
                       <Row style={{ margin: 0 }}>
                         <span className="MySpanCardHistoricUser">por:</span>
                       </Row>
                       <Row style={{ margin: 0 }}>
                         <MyTextCard>{information.author}</MyTextCard>
                       </Row>
+                    </Col>
+                    <Col md={2}>
+                      <TrashIcon
+                        onClick={() => {
+                          DeleteClick(information.id);
+                        }}
+                      />
                     </Col>
                   </Row>
                 </div>

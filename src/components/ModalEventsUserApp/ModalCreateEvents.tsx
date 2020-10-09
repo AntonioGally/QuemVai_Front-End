@@ -48,17 +48,16 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
   const [inputValue, setInputValue] = React.useState("");
   const [isMax, setIsMax] = React.useState(Boolean);
 
+  var config = {
+    headers: { "x-auth-token": Token() },
+    validateStatus: function (status: any) {
+      return status < 500; // Resolve only if the status code is less than 500
+    },
+  };
   const onSubmit = async (data: IFormInput) => {
     var name_Event = data.description;
     var id_space = id;
     var id_sport = data.id_sport;
-
-    var config = {
-      headers: { "x-auth-token": Token() },
-      validateStatus: function (status: any) {
-        return status < 500; // Resolve only if the status code is less than 500
-      },
-    };
 
     try {
       setLoading(true);
@@ -118,8 +117,62 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
       Favoritar o local
     </Tooltip>
   );
+  useEffect(() => {
+    Promise.all([
+      api.get(`/api/favorites/get/place`, {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [FavoriteSpace] = responses;
+      // eslint-disable-next-line
+      const informations = await FavoriteSpace.data;
+
+      for (var i = 0; i < informations.length; i++) {
+        if (informations[i].Space_id === id) {
+          setColorStar(true);
+        }
+      }
+    });
+  }, [id]);
   const StarClick = async () => {
     setColorStar(!colorStar);
+    try {
+      setLoading(true);
+      if (!colorStar) {
+        const response = await api.post(
+          `/api/favorites/add/place/${id}`,
+          {},
+          config
+        );
+        if (response.data["Favorite Place added"] && response.status === 200) {
+          setSuccess("Espaço favoritado com sucesso!");
+          setLoading(false);
+        }
+        if (response.status === 206) {
+          setErros("Esse espaço não existe");
+          setLoading(false);
+        }
+      } else {
+        const response = await api.delete(
+          `/api/favorites/remove/place/${id}`,
+          config
+        );
+        if (response.data["Favorite Place added"] && response.status === 200) {
+          setSuccess("Espaço favoritado com sucesso!");
+          setLoading(false);
+        }
+        if (response.status === 206) {
+          setErros("Esse espaço não existe");
+          setLoading(false);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   };
 
   return (
