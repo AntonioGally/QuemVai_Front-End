@@ -5,10 +5,16 @@ import {
   MyTitleCard,
   SubtitleFavorites,
   MyTextCard,
+  TrashIcon,
+  SearchIconCard,
+  PlusIcon,
 } from "./styles";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import any_data from "../../img/icones/any_data.svg";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+
+import ConfirmDeleteFavorite from "./confirmation/ConfirmDeleteFavorite";
+import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";
 
 import api from "../services/api";
 import { Token } from "../services/auth";
@@ -20,6 +26,9 @@ interface Data {
 
 const ModalConfigUserApp: React.FC = () => {
   const [reload, setReload] = React.useState(false);
+  const [modalDeleteShow, setModalDeleteShow] = React.useState(false);
+  const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
+  const [auxID, setAuxID] = React.useState(Number);
   const [isSomething, setIsSomething] = useState(false);
   const [data, setData] = useState<Data>();
 
@@ -40,6 +49,27 @@ const ModalConfigUserApp: React.FC = () => {
     });
   }, [reload]);
 
+  const renderTooltipTrash = (props: any) => (
+    <Tooltip id="trash-icon" {...props}>
+      Excluir o local
+    </Tooltip>
+  );
+  const renderTooltipSearch = (props: any) => (
+    <Tooltip id="search-icon" {...props}>
+      Informações sobre o local
+    </Tooltip>
+  );
+
+  if (modalSpaceInfo) {
+    return (
+      <ModalSpaceInfo
+        show={modalSpaceInfo}
+        onHide={() => setModalSpaceInfo(false)}
+        id={auxID}
+      />
+    );
+  }
+
   return (
     <div
       className="WrapperModalConfig HistoricWrapperModalConfig"
@@ -48,9 +78,10 @@ const ModalConfigUserApp: React.FC = () => {
       <div className="MySvgGerenciarUserModal">
         <img src={SvgModalConfigUser} alt="Art Top" />
       </div>
-      <MyTitleForm style={{ margin: "10% 0 2% 9%" }}>
-        Lugares favoritos
-      </MyTitleForm>  
+      <Row className="MyRowFavorites">
+        <MyTitleForm style={{ margin: 0 }}>Lugares favoritos</MyTitleForm>
+        <PlusIcon />
+      </Row>
 
       {!isSomething ? (
         <div style={{ textAlign: "center" }}>
@@ -98,12 +129,57 @@ const ModalConfigUserApp: React.FC = () => {
                         <MyTextCard>{information.CEP}</MyTextCard>
                       </Row>
                     </Col>
+                    <Row
+                      style={{
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                      }}
+                    >
+                      <OverlayTrigger
+                        placement="top"
+                        delay={{ show: 250, hide: 250 }}
+                        overlay={renderTooltipTrash}
+                      >
+                        <TrashIcon
+                          style={{ marginRight: "20px" }}
+                          onClick={() => {
+                            setModalDeleteShow(true);
+                            setAuxID(information.Space_id);
+                          }}
+                        />
+                      </OverlayTrigger>
+                      <OverlayTrigger
+                        placement="top"
+                        delay={{ show: 250, hide: 250 }}
+                        overlay={renderTooltipSearch}
+                      >
+                        <SearchIconCard
+                          style={{ margin: 0, marginRight: "10px" }}
+                          onClick={() => {
+                            setModalSpaceInfo(true);
+                            setAuxID(information.Space_id);
+                          }}
+                        />
+                      </OverlayTrigger>
+                    </Row>
                   </div>
                 </div>
               );
             })}
           </div>
         </Container>
+      )}
+      {modalDeleteShow ? (
+        <ConfirmDeleteFavorite
+          show={modalDeleteShow}
+          onHide={() => {
+            setModalDeleteShow(false);
+            setReload(true);
+          }}
+          idSpace={auxID}
+        />
+      ) : (
+        ""
       )}
     </div>
   );

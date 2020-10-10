@@ -16,6 +16,8 @@ import { Compass } from "@styled-icons/boxicons-solid/Compass";
 import { CalendarAlt } from "@styled-icons/boxicons-regular/CalendarAlt";
 import { TimeFive } from "@styled-icons/boxicons-regular/TimeFive";
 
+import { PlusSquare } from "@styled-icons/boxicons-solid/PlusSquare";
+
 export const MyTitleForm = styled.h3`
   margin-top: 5%;
   margin-bottom: 8%;
@@ -138,7 +140,7 @@ export const SubtitleFavorites = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
-  color:var(--fontSecundary);
+  color: var(--fontSecundary);
 `;
 
 export const SearchIconCard = styled(Search)`
@@ -190,6 +192,18 @@ export const MyTitleModalHistoric = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+export const PlusIcon = styled(PlusSquare)`
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  fill: var(--fontBlack);
+  color: var(--fontBlack);
+  cursor: pointer;
+  margin-left: 10%;
+  @media (max-width: 1000px) {
+    margin-left: 0 !important;
+  }
 `;
 export const UserNameHistoricInfo = styled.div`
   font-family: "Poppins";

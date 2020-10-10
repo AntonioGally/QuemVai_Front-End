@@ -199,7 +199,10 @@ const ModalConfigUserApp: React.FC<Props> = ({
       {modalShow ? (
         <ModalConfirmHistoricDelete
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={() => {
+            setModalShow(false);
+            onHide();
+          }}
           idHistoric={idHistoric}
         />
       ) : (

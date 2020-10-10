@@ -148,7 +148,10 @@ const ModalConfigUserApp: React.FC = () => {
       {modalShow ? (
         <ModalHistoricInfo
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={() => {
+            setModalShow(false);
+            setReload(true);
+          }}
           nameEvent={nameEvent}
           nameUser={nameUser}
           idUser={idUser}

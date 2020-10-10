@@ -149,6 +149,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
         );
         if (response.data["Favorite Place added"] && response.status === 200) {
           setSuccess("Espaço favoritado com sucesso!");
+          setTimeout(() => {
+            setSuccess("");
+          }, 3000);
           setLoading(false);
         }
         if (response.status === 206) {
@@ -160,8 +163,11 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
           `/api/favorites/remove/place/${id}`,
           config
         );
-        if (response.data["Favorite Place added"] && response.status === 200) {
-          setSuccess("Espaço favoritado com sucesso!");
+        if (response.data["Removed favorites"] && response.status === 200) {
+          setSuccess("Espaço deletado com sucesso!");
+          setTimeout(() => {
+            setSuccess("");
+          }, 3000);
           setLoading(false);
         }
         if (response.status === 206) {
@@ -169,6 +175,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
           setLoading(false);
         }
       }
+      setLoading(false);
     } catch (err) {
       console.log(err);
       setLoading(false);
