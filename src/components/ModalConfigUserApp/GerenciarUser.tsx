@@ -71,7 +71,7 @@ const ModalConfigUserApp: React.FC = () => {
         setTimeout(function () {
           setSucesso("");
         }, 5000);
-        setReload(reload + 1)
+        setReload(reload + 1);
       }
       if (response.status === 406) {
         setErros("Este Email já existe");
@@ -376,7 +376,7 @@ const ModalConfigUserApp: React.FC = () => {
                   <MyButton
                     type="submit"
                     className="btn"
-                    style={{ width: "100%" }}                    
+                    style={{ width: "100%" }}
                   >
                     Editar dados
                   </MyButton>

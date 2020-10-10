@@ -18,13 +18,18 @@ import { getToken, getTokenAdmin, Token } from "../services/auth";
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";
 import ModalEvents from "../ModalEventsUserApp";
+import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
 
 const SideBarApp: React.FC = () => {
-  const { reload }  = useSideBarContext();
- 
+  const { reload } = useSideBarContext();
+
   const [userPhoto, setUserPhoto] = React.useState("");
   const [userName, setUserName] = React.useState("");
+  const [userId, setUserId] = React.useState(Number);
+  const [eventId, setEventId] = React.useState(Number);
   const [modalConfigShow, setModalConfigShow] = React.useState(false);
+  const [modalEventsShow, setModalEventsShow] = React.useState(false);
+  const [modalViewEvents, setModalViewEvents] = React.useState(false);
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
   const [isLogged, setIsLogged] = React.useState(Boolean);
   const [isAdmin, setIsAdmin] = React.useState(false);
@@ -34,8 +39,6 @@ const SideBarApp: React.FC = () => {
   const [eventosClick, setEventosClick] = React.useState(false);
   const [quadrasClick, setQuadrasClick] = React.useState(false);
   const [amigosClick, setAmigosClick] = React.useState(false);
-
-  const [modalEventsShow, setModalEventsShow] = React.useState(false);
 
   useEffect(() => {
     if (getTokenAdmin()) {
@@ -59,9 +62,34 @@ const SideBarApp: React.FC = () => {
         const informations = await Info;
         setUserPhoto(informations.data["info"]["photos"]);
         setUserName(informations.data["info"]["username"]);
+        setUserId(informations.data["info"]["id"]);
       });
     }
   }, [isLogged, reload]);
+
+  const handleEventsClick = async () => {
+    try {
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+      const response = await api.get("/api/event/get/all", config);
+      var auxList = response.data
+
+      for (var i = 0; i < auxList.length; i++) {
+        if (auxList[i].AuthorID === userId) {
+          setModalViewEvents(true);
+          setEventId(response.data["Id_Event"])
+        } else {
+          setModalEventsShow(true);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="wrapperApp">
@@ -148,7 +176,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(true);
                 setQuadrasClick(false);
                 setAmigosClick(false);
-                setModalEventsShow(true);
+                handleEventsClick();
               }}
               className={`${eventosClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -239,6 +267,19 @@ const SideBarApp: React.FC = () => {
             setEventosClick(false);
             setInicioClick(true);
           }}
+        />
+      ) : (
+        ""
+      )}
+      {modalViewEvents ? (
+        <ModalViewEvents
+          show={modalViewEvents}
+          onHide={() => {
+            setModalViewEvents(false);
+            setEventosClick(false);
+            setInicioClick(true);
+          }}
+          idEvent={eventId}
         />
       ) : (
         ""

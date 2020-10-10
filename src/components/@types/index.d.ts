@@ -261,3 +261,20 @@ export interface FavoriteSpaceList {
   status: number;
   isStatus: number;
 }
+
+export interface EventsInfoByUf {
+  Id_Event: number;
+  id_space: number;
+  AuthorID: number;
+  author: string;
+  photos: string;
+  name_event: string;
+  created_at: any;
+  SpaceName: string;
+  address: string;
+  CEP: number;
+  UF: string;
+  SpaceDescription: string;
+  SportsName: string;
+  SportsDescription: string;
+}

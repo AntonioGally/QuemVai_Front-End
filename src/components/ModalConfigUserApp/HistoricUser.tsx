@@ -41,6 +41,7 @@ const ModalConfigUserApp: React.FC = () => {
   const [nameSport, setNameSport] = React.useState(String);
   const [createdAt, setCreatedAt] = React.useState(Date);
   const [finishedAt, setFineshedAt] = React.useState(Date);
+  const [photos, setPhotos] = React.useState("");
 
   useEffect(() => {
     Promise.all([
@@ -101,6 +102,7 @@ const ModalConfigUserApp: React.FC = () => {
                         setNameSport(information.SportsName);
                         setCreatedAt(information.created_at);
                         setFineshedAt(information.finished_at);
+                        setPhotos(information.photos);
                       }}
                     />
                   </Row>
@@ -161,6 +163,7 @@ const ModalConfigUserApp: React.FC = () => {
           nameSport={nameSport}
           createdAt={createdAt}
           finishedAt={finishedAt}
+          photos={photos}
         />
       ) : (
         ""

@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Compass } from "@styled-icons/fa-solid/Compass";
 import { Exit } from "@styled-icons/boxicons-regular/Exit";
 import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 import { Star } from "@styled-icons/entypo/Star";
+
+import { CalendarAlt } from "@styled-icons/boxicons-regular/CalendarAlt";
+import { Map } from "@styled-icons/boxicons-regular/Map";
+import { SportsVolleyball } from "@styled-icons/material-rounded/SportsVolleyball";
+
 export const MyTitle = styled.h3`
   font-family: "Poppins";
   font-style: normal;
@@ -201,4 +206,79 @@ export const MyTextAreaModalCreateEvents = styled.div`
     font-style: normal;
     font-weight: 500;
   }
+`;
+
+var EventsIcon = css`
+  width: 25px;
+  height: 25px;
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+  &.IconModalHistoricInfo {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+export const MyTitleViewEvents = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45px;
+  color: var(--fontBlack);
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const PlaceIcon = styled(Map)`
+  ${EventsIcon};
+  margin-right: 10px;
+`;
+export const SportIconCard = styled(SportsVolleyball)`
+  ${EventsIcon};
+  margin-right: 10px;
+`;
+export const CalendarIcon = styled(CalendarAlt)`
+  ${EventsIcon};
+  margin-right: 10px;
+`;
+export const CompassIconViewEvents = styled(Compass)`
+  ${EventsIcon};
+  margin-right: 10px;
+`;
+export const MySpanModalViewEvent = styled.span`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--fontSecundary);
+`;
+export const TextInfoModalViewEvents = styled.div`
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  color: var(--fontBlack);
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const MyTextCard = styled.div`
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--fontBlack);
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const MyButtonFinishEvent = styled.button`
+  border: 0;
+  outline: 0;
+  background: linear-gradient(169.88deg, #e83a3a 13.07%, #e86a6a 78.14%);
+  border-radius: 7px;
+  padding: 10px 46px;
+  color: var(--fontWhite);
 `;

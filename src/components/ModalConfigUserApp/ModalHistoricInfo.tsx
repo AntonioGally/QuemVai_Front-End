@@ -3,7 +3,6 @@ import React from "react";
 import { Modal, Row, Col } from "react-bootstrap";
 import "./ModalConfigStyles.css";
 
-import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import ModalConfirmHistoricDelete from "./confirmation/ModalConfirmHistoricDelete";
@@ -35,6 +34,7 @@ export interface Props {
   nameSport: string;
   createdAt: String;
   finishedAt: String;
+  photos: string;
 }
 
 const ModalConfigUserApp: React.FC<Props> = ({
@@ -49,9 +49,11 @@ const ModalConfigUserApp: React.FC<Props> = ({
   nameSport,
   createdAt,
   finishedAt,
+  photos,
 }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const AuxDateCreated = parseISO(String(createdAt));
+  console.log(AuxDateCreated)
 
   const formattedDateCreated = format(
     AuxDateCreated,
@@ -98,7 +100,7 @@ const ModalConfigUserApp: React.FC<Props> = ({
 
               <div style={{ display: "flex" }}>
                 <img
-                  src={QuemVaiLogo2}
+                  src={photos}
                   alt="User"
                   className="UserImageModalHistoricInfo"
                 />
