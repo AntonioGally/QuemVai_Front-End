@@ -29,11 +29,11 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [passwordClick, setPasswordClick] = React.useState(Boolean);
   const [photoClick, setPhotoClick] = React.useState(Boolean);
   const [historicClick, setHistoricClick] = React.useState(Boolean);
-  const [favoritClick, setFavoritClick] = React.useState(Boolean);
+  const [favoritClick, setFavoritClick] = React.useState(Boolean);;
 
   return (
     <div>
-      <Modal size="xl" animation={true} centered show={show} onHide={onHide}>
+      <Modal size="xl" animation={true} centered show={show} onHide={onHide} >
         <Modal.Body style={{ padding: 0 }}>
           <Tab.Container id="left-tabs-example" defaultActiveKey="Account">
             <Row>
@@ -206,7 +206,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
               <Col sm={9}>
                 <Tab.Content>
                   <Tab.Pane eventKey="Account">
-                    <GerenciarUser />
+                    <GerenciarUser/>
                   </Tab.Pane>
                   <Tab.Pane eventKey="Password">
                     <PasswordAtualization />

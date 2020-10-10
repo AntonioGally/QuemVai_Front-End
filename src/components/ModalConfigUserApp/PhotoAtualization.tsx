@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSideBarContext } from "../../Context/ReloadSideBar";
 
 import { Container, Form, Row, Col, Spinner } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
@@ -18,6 +19,8 @@ interface Data {
 }
 
 const PhotoAtualization: React.FC = () => {
+  const { reload, setReload } = useSideBarContext();
+
   const { errors, register, handleSubmit } = useForm<FormPhoto>();
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
@@ -87,7 +90,10 @@ const PhotoAtualization: React.FC = () => {
               setTimeout(function () {
                 setSucesso("");
               }, 5000);
-              setLoading(false);
+              setTimeout(() => {
+                setLoading(false);
+                setReload(reload + 1);
+              }, 2000);
             }
             if (!response.data["Photo updated"]) {
               setErros("Houve algum problema na atualização de dados");
@@ -121,7 +127,10 @@ const PhotoAtualization: React.FC = () => {
         setTimeout(function () {
           setSucesso("");
         }, 5000);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+          setReload(reload + 1);
+        }, 2000);
       }
       if (!response.data["Photo deleted"]) {
         setErros("Houve algum problema no processo :(");

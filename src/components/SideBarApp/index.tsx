@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSideBarContext } from "../../Context/ReloadSideBar";
 import "./styles.css";
 import {
   RingIcon,
@@ -19,6 +20,8 @@ import ModalFriendUserApp from "../ModalFriendUserApp";
 import ModalEvents from "../ModalEventsUserApp";
 
 const SideBarApp: React.FC = () => {
+  const { reload }  = useSideBarContext();
+ 
   const [userPhoto, setUserPhoto] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [modalConfigShow, setModalConfigShow] = React.useState(false);
@@ -58,7 +61,7 @@ const SideBarApp: React.FC = () => {
         setUserName(informations.data["info"]["username"]);
       });
     }
-  }, [isLogged]);
+  }, [isLogged, reload]);
 
   return (
     <div className="wrapperApp">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSideBarContext } from "../../Context/ReloadSideBar";
 import "./ModalConfigStyles.css";
 import {
   Row,
@@ -23,6 +24,8 @@ interface Data {
 }
 
 const ModalConfigUserApp: React.FC = () => {
+  const { reload, setReload } = useSideBarContext();
+
   const { register, handleSubmit, errors } = useForm<FormConfigUserAltered>();
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
@@ -68,6 +71,7 @@ const ModalConfigUserApp: React.FC = () => {
         setTimeout(function () {
           setSucesso("");
         }, 5000);
+        setReload(reload + 1)
       }
       if (response.status === 406) {
         setErros("Este Email já existe");
@@ -372,7 +376,7 @@ const ModalConfigUserApp: React.FC = () => {
                   <MyButton
                     type="submit"
                     className="btn"
-                    style={{ width: "100%" }}
+                    style={{ width: "100%" }}                    
                   >
                     Editar dados
                   </MyButton>

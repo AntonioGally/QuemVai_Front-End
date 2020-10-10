@@ -25,7 +25,7 @@ interface Data {
 }
 
 const ModalConfigUserApp: React.FC = () => {
-  const [reload, setReload] = React.useState(false);
+  const [reload, setReload] = React.useState(Boolean);
   const [modalDeleteShow, setModalDeleteShow] = React.useState(false);
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
   const [auxID, setAuxID] = React.useState(Number);
