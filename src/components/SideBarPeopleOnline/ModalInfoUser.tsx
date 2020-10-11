@@ -190,6 +190,10 @@ const SideBarPeopleOnline: React.FC<Props> = ({
           typeModal="addTrust"
           show={addTrust}
           onHide={() => setAddTrust(false)}
+          onAddTrust={() => {
+            setAddTrust(false);
+            onHide();
+          }}
         />
       ) : (
         ""

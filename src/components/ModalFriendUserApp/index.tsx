@@ -40,6 +40,8 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [recibosConfiancaClick, setRecibosConfiancaClick] = React.useState(
     false
   );
+
+  const [callTab, setCallTab] = React.useState(0);
   return (
     <div>
       <Modal size="xl" centered show={show} onHide={onHide}>
@@ -50,7 +52,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
                 <Nav
                   variant="pills"
                   className="flex-column"
-                  style={{ height: "100%", flexWrap:"unset" }}
+                  style={{ height: "100%", flexWrap: "unset" }}
                 >
                   <div style={{ marginBottom: "10%" }}>
                     <Row
@@ -194,20 +196,25 @@ const ModalFriendUserApp: React.FC<Props> = ({ show, onHide }) => {
 
               <Col md={8}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="InvitesSended">
-                    <InvitesSended />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="InvitesReceived">
-                    <InvitesReceived />
-                  </Tab.Pane>
                   <Tab.Pane eventKey="SendInvite">
                     <SendInvite />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="InvitesSendedTrust">                    
-                    <InvitesSendedTrust />
+                  <Tab.Pane eventKey="InvitesSended">
+                    <InvitesSended called={() => setCallTab(callTab + 1)} />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="InvitesReceivedTrust">                     
-                    <InvitesReceivedTrust />
+                  <Tab.Pane eventKey="InvitesReceived">
+                    <InvitesReceived called={() => setCallTab(callTab + 1)} />
+                  </Tab.Pane>
+
+                  <Tab.Pane eventKey="InvitesSendedTrust">
+                    <InvitesSendedTrust
+                      called={() => setCallTab(callTab + 1)}
+                    />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="InvitesReceivedTrust">
+                    <InvitesReceivedTrust
+                      called={() => setCallTab(callTab + 1)}
+                    />
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

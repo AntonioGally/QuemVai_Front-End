@@ -23,14 +23,18 @@ import { Token } from "../services/auth";
 interface Data {
   InvitesReceived: InvitesReceivedList[];
 }
+export interface Props {
+  called: any;
+}
 
-const ModalFriendUserApp: React.FC = () => {
+const ModalFriendUserApp: React.FC<Props> = ({called}) => {
   const [data, setData] = useState<Data>();
   const [auxID, setAuxID] = useState(Number);
   const [auxName, setAuxName] = useState("");
   const [modalShowRefuse, setModalShowRefuse] = useState(false);
   const [modalShowAccept, setModalShowAccept] = useState(false);
   const [isSomething, setIsSomething] = useState(false);
+  const [reload, setReload] = useState(0);
 
   useEffect(() => {
     Promise.all([
@@ -40,13 +44,14 @@ const ModalFriendUserApp: React.FC = () => {
     ]).then(async (responses) => {
       const [AllInvitesReceived] = responses;
       const invites = await AllInvitesReceived.data;
-      // eslint-disable-next-line
-      if (invites != "") {
+      if (invites.length > 0) {
         setIsSomething(true);
+      } else {
+        setIsSomething(false);
       }
       setData({ InvitesReceived: invites });
     });
-  }, []);
+  }, [reload,called]);
 
   return (
     <div className="WrapperModalFriends">
@@ -73,10 +78,7 @@ const ModalFriendUserApp: React.FC = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <ImageUser
-                    src={information.photos}
-                    alt="UserPhoto"
-                  />
+                  <ImageUser src={information.photos} alt="UserPhoto" />
                   <NameUser>{information.username}</NameUser>
                   <RefuseIcon
                     onClick={() => {
@@ -104,7 +106,10 @@ const ModalFriendUserApp: React.FC = () => {
           isTrust={false}
           name={auxName}
           show={modalShowRefuse}
-          onHide={() => setModalShowRefuse(false)}
+          onHide={() => {
+            setModalShowRefuse(false);
+            setReload(reload + 1);
+          }}
         />
       ) : (
         ""
@@ -115,7 +120,10 @@ const ModalFriendUserApp: React.FC = () => {
           name={auxName}
           isTrust={false}
           show={modalShowAccept}
-          onHide={() => setModalShowAccept(false)}
+          onHide={() => {
+            setModalShowAccept(false);
+            setReload(reload + 1);
+          }}
         />
       ) : (
         ""

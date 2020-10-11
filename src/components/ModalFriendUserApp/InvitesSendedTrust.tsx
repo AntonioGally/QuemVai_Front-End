@@ -21,12 +21,14 @@ import { Token } from "../services/auth";
 interface Data {
   InvitesSended: InvitesSendedTrustList[];
 }
-
-const ModalFriendUserApp: React.FC = () => {
+export interface Props {
+  called: any;
+}
+const ModalFriendUserApp: React.FC<Props> = ({ called }) => {
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
-  const [auxID, setAuxID] = React.useState(Number);
   const [erros, setErros] = React.useState("");
+  const [reload, setReload] = React.useState(0);
 
   useEffect(() => {
     Promise.all([
@@ -36,22 +38,16 @@ const ModalFriendUserApp: React.FC = () => {
     ]).then(async (responses) => {
       const [AllInvitesSended] = responses;
       const invites = await AllInvitesSended.data;
-      // eslint-disable-next-line
-      if (invites != "") {
+      if (invites.length > 0) {
         setIsSomething(true);
+      } else {
+        setIsSomething(false);
       }
       setData({ InvitesSended: invites });
     });
-  }, []);
+  }, [called, reload]);
 
-  useEffect(() => {
-    var auxData = data?.InvitesSended.map((i) => {
-      return i.id_Friend;
-    });
-    setAuxID(auxData as any);
-  }, [data]);
-
-  const handleClick = async () => {
+  const handleClick = async (id: number) => {
     try {
       var config = {
         headers: { "x-auth-token": Token() },
@@ -61,12 +57,12 @@ const ModalFriendUserApp: React.FC = () => {
       };
 
       const response = await api.put(
-        `/api/user/trust/invite/cancel/${auxID}`,
+        `/api/user/trust/invite/cancel/${id}`,
         {},
         config
       );
       if (response.status === 200 && response.data["TrustDenied"]) {
-        window.location.reload();
+        setReload(reload + 1);
       }
       if (response.status === 204) {
         setErros("Essa solicitação não existe");
@@ -106,7 +102,9 @@ const ModalFriendUserApp: React.FC = () => {
                 >
                   <ImageUser src={information.photos} alt="UserPhoto" />
                   <NameUser>{information.username}</NameUser>
-                  <CancelIcon onClick={handleClick} />
+                  <CancelIcon
+                    onClick={() => handleClick(information.id_Friend)}
+                  />
                 </Row>
                 <div className="text-danger" style={{ fontSize: "20px" }}>
                   {erros}

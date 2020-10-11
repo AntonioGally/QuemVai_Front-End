@@ -25,13 +25,19 @@ interface Data {
   InvitesReceived: InvitesReceivedTrustList[];
 }
 
-const ModalFriendUserApp: React.FC = () => {
+export interface Props {
+  called: any;
+}
+
+const ModalFriendUserApp: React.FC<Props> = ({ called }) => {
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
   const [auxID, setAuxID] = useState(Number);
   const [auxName, setAuxName] = useState("");
   const [modalShowRefuse, setModalShowRefuse] = useState(false);
   const [modalShowAccept, setModalShowAccept] = useState(false);
+
+  const [reload, setReload] = React.useState(0);
 
   useEffect(() => {
     Promise.all([
@@ -41,13 +47,14 @@ const ModalFriendUserApp: React.FC = () => {
     ]).then(async (responses) => {
       const [AllInvitesReceived] = responses;
       const invites = await AllInvitesReceived.data;
-      // eslint-disable-next-line
-      if (invites != "") {
+      if (invites.length > 0) {
         setIsSomething(true);
+      } else {
+        setIsSomething(false);
       }
       setData({ InvitesReceived: invites });
     });
-  }, []);
+  }, [called, reload]);
 
   return (
     <div className="WrapperModalFriends">
@@ -66,7 +73,7 @@ const ModalFriendUserApp: React.FC = () => {
         ) : (
           <div>
             {data?.InvitesReceived.map((information) => (
-              <MyCardInvitesSended >
+              <MyCardInvitesSended>
                 <Row
                   style={{
                     margin: 0,
@@ -74,17 +81,14 @@ const ModalFriendUserApp: React.FC = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <ImageUser
-                    src={information.photos}
-                    alt="UserPhoto"
-                  />
+                  <ImageUser src={information.photos} alt="UserPhoto" />
                   <NameUser>{information.username}</NameUser>
                   <RefuseIcon
                     onClick={() => {
                       setAuxID(information.id_User);
                       setAuxName(information.username);
                       setModalShowRefuse(true);
-                    }}                    
+                    }}
                   />
                   <AcceptIcon
                     onClick={() => {
@@ -105,7 +109,10 @@ const ModalFriendUserApp: React.FC = () => {
           name={auxName}
           isTrust={true}
           show={modalShowRefuse}
-          onHide={() => setModalShowRefuse(false)}
+          onHide={() => {
+            setModalShowRefuse(false);
+            setReload(reload + 1);
+          }}
         />
       ) : (
         ""
@@ -116,7 +123,10 @@ const ModalFriendUserApp: React.FC = () => {
           name={auxName}
           isTrust={true}
           show={modalShowAccept}
-          onHide={() => setModalShowAccept(false)}
+          onHide={() => {
+            setModalShowAccept(false);
+            setReload(reload + 1);
+          }}
         />
       ) : (
         ""

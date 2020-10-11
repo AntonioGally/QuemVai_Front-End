@@ -25,7 +25,7 @@ interface Data {
 }
 
 const ModalConfigUserApp: React.FC = () => {
-  const [reload, setReload] = React.useState(Boolean);
+  const [reload, setReload] = React.useState(0);
   const [modalDeleteShow, setModalDeleteShow] = React.useState(false);
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
   const [auxID, setAuxID] = React.useState(Number);
@@ -174,7 +174,7 @@ const ModalConfigUserApp: React.FC = () => {
           show={modalDeleteShow}
           onHide={() => {
             setModalDeleteShow(false);
-            setReload(true);
+            setReload(reload + 1);
           }}
           idSpace={auxID}
         />

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Modal, Col, Row } from "react-bootstrap";
+import { Modal, Col, Row, Button } from "react-bootstrap";
 
 import api from "../../services/api";
 import { Token } from "../../services/auth";
@@ -11,6 +11,7 @@ export interface Props {
   typeModal: string;
   show: boolean;
   onHide: any;
+  onAddTrust?: any;
 }
 
 const Confirmation: React.FC<Props> = ({
@@ -19,8 +20,10 @@ const Confirmation: React.FC<Props> = ({
   typeModal,
   show,
   onHide,
+  onAddTrust,
 }) => {
   const [erros, setErros] = React.useState("");
+  const [sucesso, setSucesso] = React.useState("");
   const [removeTrust, setRemoveTrust] = React.useState(false);
   const [removeFriend, setRemoveFriend] = React.useState(false);
   const [addTrust, setAddTrust] = React.useState(false);
@@ -80,7 +83,8 @@ const Confirmation: React.FC<Props> = ({
         response.status === 200 &&
         response.data["Send soliciatation"] === true
       ) {
-        window.location.reload();
+        setSucesso("Solicitação enviada :)");
+        setErros("");
       }
       if (response.status === 400) {
         setErros("Parece que uma solicitação já foi enviada");
@@ -166,6 +170,22 @@ const Confirmation: React.FC<Props> = ({
           >
             {erros}
           </div>
+          {sucesso !== "" ? (
+            <div
+              style={{
+                fontFamily: "Poppins",
+                textAlign: "justify",
+                padding: "10px",
+              }}
+            >
+              <span className="text-success" style={{ marginRight: "10px" }}>
+                {sucesso}
+              </span>
+              <Button onClick={onAddTrust}>Sair</Button>
+            </div>
+          ) : (
+            ""
+          )}
           <Row style={{ width: "100%", margin: 0 }}>
             <Col lg={6} md={12} style={{ padding: 0 }}>
               <div onClick={onHide} className="BackButtonConfirmation">

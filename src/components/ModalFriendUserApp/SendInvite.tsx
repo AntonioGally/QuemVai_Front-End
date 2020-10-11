@@ -25,6 +25,7 @@ const ModalFriendUserApp: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<idSubmitForm>();
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
+  const [sucesso, setSucesso] = React.useState("");
 
   useEffect(() => {
     Promise.all([
@@ -54,17 +55,21 @@ const ModalFriendUserApp: React.FC = () => {
       const response = await api.post(`/api/user/invite/${id}`, {}, config);
       if (response.status === 406 && response.data["Request already sended"]) {
         setErros("Parece que a solicitação já foi enviada");
-        console.log("ASLDKASDONASD");
       }
       if (response.status === 422 && response.data["Equals id's"]) {
         setErros("Este é o seu ID");
-      }      
+      }
       if (response.status === 204) {
         setErros("Esse usuário não existe");
       }
       if (response.status === 200 && response.data["Request sent"]) {
-        alert("A solicitação foi enviada");
-        window.location.reload();
+        setSucesso("Solicitação enviada com sucesso!");
+        setErros("");
+        var inputIdUser = document.getElementById("idUser") as HTMLInputElement;
+        inputIdUser.value = "";
+        setTimeout(() => {
+          setSucesso("");
+        }, 5000);
       }
     } catch (err) {
       console.log(err);
@@ -132,8 +137,17 @@ const ModalFriendUserApp: React.FC = () => {
                               {(errors.idUser as any).message}
                             </div>
                           )}
-                        <div style={{ fontFamily: "Poppins", color: "red" }}>
+                        <div
+                          className="text-danger"
+                          style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                        >
                           {erros}
+                        </div>
+                        <div
+                          className="text-success"
+                          style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                        >
+                          {sucesso}
                         </div>
                       </Row>
                     </Form.Group>

@@ -75,13 +75,11 @@ const SideBarApp: React.FC = () => {
       const response = await api.get("/api/event/get/all", config);
       var auxList = response.data;
 
-      for (var i = 0; i < auxList.length; i++) {
-        if (auxList[i].AuthorID === userId) {
-          setModalViewEvents(true);
-          setEventId(auxList[i].Id_Event);
-
-          var created_at = auxList[i].created_at;
-
+      var count = 0;
+      while (count < auxList.length) {
+        if (auxList[count].AuthorID === userId) {
+          setEventId(auxList[count].Id_Event);
+          var created_at = auxList[count].created_at;
           const AuxDateCreated = parseISO(String(created_at));
           const formattedDate = format(
             AuxDateCreated,
@@ -92,8 +90,13 @@ const SideBarApp: React.FC = () => {
           );
           setCreatedAt(formattedDate);
           setModalEventsShow(false);
+          setModalViewEvents(true);
+          console.log(auxList[count].AuthorID === userId);
+          count = auxList.length + 1;
         } else {
+          count += 1;
           setModalEventsShow(true);
+          setModalViewEvents(false);
         }
       }
     } catch (err) {

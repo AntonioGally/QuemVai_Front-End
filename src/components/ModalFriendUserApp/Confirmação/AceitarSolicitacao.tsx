@@ -30,7 +30,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         config
       );
       if (response.status === 200) {
-        window.location.reload();
+        onHide();
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao aceitar a solicitação");
@@ -41,7 +41,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
   };
 
   const handleClick = async () => {
-    try {      
+    try {
       var config = {
         headers: { "x-auth-token": Token() },
         validateStatus: function (status: any) {
@@ -55,7 +55,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         config
       );
       if (response.status === 200 && response.data["Request accepted"]) {
-        window.location.reload();
+        onHide();
       }
       if (response.status === 204) {
         setErros("Essa solicitação não existe");

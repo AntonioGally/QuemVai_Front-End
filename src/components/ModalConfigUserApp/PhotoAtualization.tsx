@@ -87,16 +87,17 @@ const PhotoAtualization: React.FC = () => {
             );
             if (response.data["Photo updated"]) {
               setSucesso("Foto atualizada com suceso!");
+              setErros("");
               setTimeout(function () {
                 setSucesso("");
               }, 5000);
               setTimeout(() => {
                 setLoading(false);
                 setReload(reload + 1);
-              }, 2000);
+              }, 1000);
             }
             if (!response.data["Photo updated"]) {
-              setErros("Houve algum problema na atualização de dados");
+              setErros("Houve algum problema na atualização da foto");
               setLoading(false);
             }
           } catch (err) {

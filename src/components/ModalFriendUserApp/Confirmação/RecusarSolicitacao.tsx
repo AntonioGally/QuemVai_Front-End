@@ -29,7 +29,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         config
       );
       if (response.status === 200) {
-        window.location.reload();
+        onHide();
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao recusar a solicitação");
@@ -53,7 +53,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         config
       );
       if (response.status === 200) {
-        window.location.reload();
+        onHide();
       }
       if (response.status === 204) {
         setErros("Essa solicitação não existe");

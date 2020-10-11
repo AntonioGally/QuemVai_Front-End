@@ -28,7 +28,7 @@ interface Data {
 const ModalConfigUserApp: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
-  const [reload, setReload] = React.useState(false);
+  const [reload, setReload] = React.useState(0);
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
 
@@ -152,7 +152,7 @@ const ModalConfigUserApp: React.FC = () => {
           show={modalShow}
           onHide={() => {
             setModalShow(false);
-            setReload(true);
+            setReload(reload + 1);
           }}
           nameEvent={nameEvent}
           nameUser={nameUser}
@@ -173,7 +173,7 @@ const ModalConfigUserApp: React.FC = () => {
           show={modalConfirmShow}
           onHide={() => {
             setModalConfirmShow(false);
-            setReload(true);
+            setReload(reload + 1);
           }}
           idHistoric={idHistoric}
         />
