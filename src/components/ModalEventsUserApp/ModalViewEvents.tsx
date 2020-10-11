@@ -16,24 +16,28 @@ import { EventsInfoByUf } from "../@types";
 import api from "../services/api";
 import { Token } from "../services/auth";
 
-import { parseISO, format } from "date-fns";
-import { pt } from "date-fns/locale";
-
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 export interface Props {
   show: boolean;
   onHide: any;
   idEvent: Number;
+  createdAt: string;
 }
 
 interface Data {
   EventsInfo: EventsInfoByUf[];
 }
 
-const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
+const ModalEventsUserApp: React.FC<Props> = ({
+  show,
+  onHide,
+  idEvent,
+  createdAt,
+}) => {
   const [data, setData] = useState<Data>();
-  const [finalDate, setFinalDate] = React.useState("");
+  const [erros, setErros] = useState("");
+  const [auxPhotos, setAuxPhotos] = useState("");
   useEffect(() => {
     Promise.all([
       api.get(`/api/event/get/find/${idEvent}`, {
@@ -46,26 +50,14 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
       const [PushEventsInfo] = responses;
 
       const informations = await PushEventsInfo.data;
+
       setData({ EventsInfo: informations });
+      var photos = PushEventsInfo.data.map((i: any) => {
+        return i.photos;
+      });
+      setAuxPhotos(photos);
     });
   }, [idEvent]);
-
-  useEffect(() => {
-    // var createdAt = data?.EventsInfo.map((i) => {
-    //   return i.created_at;
-    // });
-    // const AuxDateCreated = parseISO(String(createdAt));
-    // console.log(AuxDateCreated);
-
-    // const formattedDate = format(
-    //   AuxDateCreated,
-    //   " dd'/'MM'/'yyyy', às ' HH:mm'h'",
-    //   {
-    //     locale: pt,
-    //   }
-    // );
-    setFinalDate("formattedDate");
-  }, [data]);
 
   const handleDelete = async () => {
     var idSpace = data?.EventsInfo.map((i) => {
@@ -86,13 +78,10 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
       );
       // eslint-disable-next-line
       if (response.status === 200 && response.data != "") {
-        onHide();
-      }
-      if (response.status === 204) {
-        //setErros("Esse histórico não existe não existe");
+        window.location.reload();
       }
       if (response.status === 400) {
-        //setErros("Houve algum problema ao deletar o histórico");
+        setErros("Houve algum problema ao finalizar o evento");
       }
     } catch (err) {
       console.log(err);
@@ -120,9 +109,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
               }}
             >
               <MyTitleViewEvents>
-                {/* {data?.EventsInfo.map((i) => {
+                {data?.EventsInfo.map((i) => {
                   return i.name_event;
-                })} */} Nome do evento aqui
+                })}
               </MyTitleViewEvents>
             </Row>
             <Row className="MyRowModalHistoricInfo">
@@ -133,9 +122,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {/* {data?.EventsInfo.map((i) => {
+                    {data?.EventsInfo.map((i) => {
                       return i.SpaceName;
-                    })} */} Nome da quadra aqui
+                    })}
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
@@ -150,9 +139,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {/* {data?.EventsInfo.map((i) => {
+                    {data?.EventsInfo.map((i) => {
                       return i.address;
-                    })} */} Endereço aqui
+                    })}
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
@@ -167,9 +156,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {/* {data?.EventsInfo.map((i) => {
+                    {data?.EventsInfo.map((i) => {
                       return i.SportsName;
-                    })} */} Esporte aqui
+                    })}
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
@@ -183,13 +172,17 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                   <MySpanModalViewEvent>Criado em</MySpanModalViewEvent>
                 </Row>
                 <Row style={{ margin: 0 }}>
-                  <TextInfoModalViewEvents>{finalDate}</TextInfoModalViewEvents>
+                  <TextInfoModalViewEvents>{createdAt}</TextInfoModalViewEvents>
                 </Row>
               </Col>
             </Row>
 
             <Row className="MyRowModalHistoricInfo">
-              <CalendarIcon className="IconModalHistoricInfo" />
+              <img
+                src={auxPhotos}
+                alt="User"
+                style={{ width: "45px", height: "45px", borderRadius: "50%" }}
+              />
 
               <Col style={{ width: "80%" }}>
                 <Row style={{ margin: 0 }}>
@@ -197,13 +190,23 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {/* {data?.EventsInfo.map((i) => {
+                    {data?.EventsInfo.map((i) => {
                       return i.author;
-                    })} */} Nome do autor aqui
+                    })}
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
             </Row>
+            <div
+              className="text-danger"
+              style={{
+                padding: "10px",
+                fontFamily: "Poppins",
+                fontSize: "18xp",
+              }}
+            >
+              {erros}
+            </div>
 
             <Row
               style={{ margin: "10% 0 0 0", justifyContent: "space-between" }}

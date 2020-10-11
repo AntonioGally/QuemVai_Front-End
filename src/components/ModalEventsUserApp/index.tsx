@@ -35,7 +35,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
             Você deseja <span style={{ color: "var(--primary)" }}>criar</span>{" "}
             um evento
             <br /> ou <br /> quer{" "}
-            <span style={{ color: "var(--buttonFill)" }}>econtrar</span> um?
+            <span style={{ color: "var(--buttonFill)" }}>encontrar</span> um?
           </p>
           <Row style={{ width: "100%", margin: 0 }}>
             <Col lg={6} md={12} style={{ padding: 0 }}>

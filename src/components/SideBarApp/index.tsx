@@ -13,12 +13,15 @@ import {
 import { NavLink } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import api from "../services/api";
-import { getToken, getTokenAdmin, Token } from "../services/auth";
+import { getTokenAdmin, Token } from "../services/auth";
 
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";
 import ModalEvents from "../ModalEventsUserApp";
 import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
+
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
 
 const SideBarApp: React.FC = () => {
   const { reload } = useSideBarContext();
@@ -27,11 +30,11 @@ const SideBarApp: React.FC = () => {
   const [userName, setUserName] = React.useState("");
   const [userId, setUserId] = React.useState(Number);
   const [eventId, setEventId] = React.useState(Number);
+  const [createdAt, setCreatedAt] = React.useState(Date);
   const [modalConfigShow, setModalConfigShow] = React.useState(false);
   const [modalEventsShow, setModalEventsShow] = React.useState(false);
   const [modalViewEvents, setModalViewEvents] = React.useState(false);
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
-  const [isLogged, setIsLogged] = React.useState(Boolean);
   const [isAdmin, setIsAdmin] = React.useState(false);
 
   const [inicioClick, setInicioClick] = React.useState(true);
@@ -44,28 +47,22 @@ const SideBarApp: React.FC = () => {
     if (getTokenAdmin()) {
       setIsAdmin(true);
     }
-    if (getToken() || getTokenAdmin()) {
-      setIsLogged(true);
-    } else {
-      setIsLogged(false);
-    }
-    if (isLogged) {
-      Promise.all([
-        api.get("/api/user/bring/me", {
-          validateStatus: function (status) {
-            return status < 500; // Resolve only if the status code is less than 500
-          },
-          headers: { "x-auth-token": Token() },
-        }),
-      ]).then(async (responses) => {
-        const [Info] = responses;
-        const informations = await Info;
-        setUserPhoto(informations.data["info"]["photos"]);
-        setUserName(informations.data["info"]["username"]);
-        setUserId(informations.data["info"]["id"]);
-      });
-    }
-  }, [isLogged, reload]);
+
+    Promise.all([
+      api.get("/api/user/bring/me", {
+        validateStatus: function (status) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [Info] = responses;
+      const informations = await Info;
+      setUserPhoto(informations.data["info"]["photos"]);
+      setUserName(informations.data["info"]["username"]);
+      setUserId(informations.data["info"]["id"]);
+    });
+  }, [reload]);
 
   const handleEventsClick = async () => {
     try {
@@ -76,12 +73,25 @@ const SideBarApp: React.FC = () => {
         },
       };
       const response = await api.get("/api/event/get/all", config);
-      var auxList = response.data
+      var auxList = response.data;
 
       for (var i = 0; i < auxList.length; i++) {
         if (auxList[i].AuthorID === userId) {
           setModalViewEvents(true);
-          setEventId(response.data["Id_Event"])
+          setEventId(auxList[i].Id_Event);
+
+          var created_at = auxList[i].created_at;
+
+          const AuxDateCreated = parseISO(String(created_at));
+          const formattedDate = format(
+            AuxDateCreated,
+            " dd'/'MM'/'yyyy', às ' HH:mm'h'",
+            {
+              locale: pt,
+            }
+          );
+          setCreatedAt(formattedDate);
+          setModalEventsShow(false);
         } else {
           setModalEventsShow(true);
         }
@@ -280,6 +290,7 @@ const SideBarApp: React.FC = () => {
             setInicioClick(true);
           }}
           idEvent={eventId}
+          createdAt={createdAt}
         />
       ) : (
         ""

@@ -269,7 +269,7 @@ export interface EventsInfoByUf {
   author: string;
   photos: string;
   name_event: string;
-  created_at: any;
+  created_at: string;
   SpaceName: string;
   address: string;
   CEP: number;
