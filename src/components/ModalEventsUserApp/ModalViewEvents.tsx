@@ -120,9 +120,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
               }}
             >
               <MyTitleViewEvents>
-                {data?.EventsInfo.map((i) => {
+                {/* {data?.EventsInfo.map((i) => {
                   return i.name_event;
-                })}
+                })} */} Nome do evento aqui
               </MyTitleViewEvents>
             </Row>
             <Row className="MyRowModalHistoricInfo">
@@ -133,9 +133,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {data?.EventsInfo.map((i) => {
+                    {/* {data?.EventsInfo.map((i) => {
                       return i.SpaceName;
-                    })}
+                    })} */} Nome da quadra aqui
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
@@ -150,9 +150,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {data?.EventsInfo.map((i) => {
+                    {/* {data?.EventsInfo.map((i) => {
                       return i.address;
-                    })}
+                    })} */} Endereço aqui
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
@@ -167,9 +167,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {data?.EventsInfo.map((i) => {
+                    {/* {data?.EventsInfo.map((i) => {
                       return i.SportsName;
-                    })}
+                    })} */} Esporte aqui
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
@@ -197,9 +197,9 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, idEvent }) => {
                 </Row>
                 <Row style={{ margin: 0 }}>
                   <TextInfoModalViewEvents>
-                    {data?.EventsInfo.map((i) => {
+                    {/* {data?.EventsInfo.map((i) => {
                       return i.author;
-                    })}
+                    })} */} Nome do autor aqui
                   </TextInfoModalViewEvents>
                 </Row>
               </Col>
