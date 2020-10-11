@@ -1,4 +1,5 @@
 import React from "react";
+import { useSideBarPeopleContext } from "../../../Context/ReloadSideBar";
 import { Modal, Col, Row } from "react-bootstrap";
 import "../ModalFriendStyles.css";
 
@@ -14,6 +15,8 @@ export interface Props {
 }
 
 const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => {
+  const { reloadPeople, setReloadPeople } = useSideBarPeopleContext();
+
   const [erros, setErros] = React.useState("");
 
   const handleClickTrust = async () => {
@@ -30,6 +33,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         config
       );
       if (response.status === 200) {
+        setReloadPeople(reloadPeople + 1);
         onHide();
       }
       if (response.status === 400) {
@@ -55,6 +59,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         config
       );
       if (response.status === 200 && response.data["Request accepted"]) {
+        setReloadPeople(reloadPeople + 1);
         onHide();
       }
       if (response.status === 204) {

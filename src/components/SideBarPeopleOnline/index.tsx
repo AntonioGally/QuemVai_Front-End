@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSideBarPeopleContext } from "../../Context/ReloadSideBar";
 import { Row } from "react-bootstrap";
 import { Container, MyRowPeople } from "./styles";
 
@@ -14,6 +15,10 @@ interface Data {
 }
 
 const SideBarPeopleOnline: React.FC = () => {
+
+
+  const { reloadPeople } = useSideBarPeopleContext();
+
   const [data, setData] = useState<Data>();
   const [modalShow, setModalShow] = useState(false);
   const [idFriend, setIdFriend] = useState(Number);
@@ -34,7 +39,7 @@ const SideBarPeopleOnline: React.FC = () => {
       const friends = await AllFriends.data;
       setData({ GetFriends: friends });
     });
-  }, []);
+  }, [reloadPeople]);
 
   return (
     <div>

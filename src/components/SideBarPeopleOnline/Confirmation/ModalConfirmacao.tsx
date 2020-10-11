@@ -12,6 +12,7 @@ export interface Props {
   show: boolean;
   onHide: any;
   onAddTrust?: any;
+  onRefuseTrust? : any;
 }
 
 const Confirmation: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const Confirmation: React.FC<Props> = ({
   show,
   onHide,
   onAddTrust,
+  onRefuseTrust
 }) => {
   const [erros, setErros] = React.useState("");
   const [sucesso, setSucesso] = React.useState("");
@@ -57,7 +59,7 @@ const Confirmation: React.FC<Props> = ({
         config
       );
       if (response.status === 200 && response.data["Deleted"] === true) {
-        window.location.reload();
+        onRefuseTrust()
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao remover a confiança");
@@ -181,7 +183,7 @@ const Confirmation: React.FC<Props> = ({
               <span className="text-success" style={{ marginRight: "10px" }}>
                 {sucesso}
               </span>
-              <Button onClick={onAddTrust}>Sair</Button>
+              <Button onClick={onAddTrust}>Fechar</Button>
             </div>
           ) : (
             ""

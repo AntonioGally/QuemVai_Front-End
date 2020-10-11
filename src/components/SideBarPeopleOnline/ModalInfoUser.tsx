@@ -179,6 +179,10 @@ const SideBarPeopleOnline: React.FC<Props> = ({
           typeModal="removeTrust"
           show={removeTrust}
           onHide={() => setRemoveTrust(false)}
+          onRefuseTrust={() => {
+            setRemoveTrust(false);
+            onHide();
+          }}
         />
       ) : (
         ""
