@@ -20,6 +20,8 @@ import ModalFriendUserApp from "../ModalFriendUserApp";
 import ModalEvents from "../ModalEventsUserApp";
 import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
 
+import ModalDevelopment from "../ModalDevelopment";
+
 import { parseISO, format } from "date-fns";
 import { pt } from "date-fns/locale";
 
@@ -35,6 +37,7 @@ const SideBarApp: React.FC = () => {
   const [modalEventsShow, setModalEventsShow] = React.useState(false);
   const [modalViewEvents, setModalViewEvents] = React.useState(false);
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
+  const [modalDevelopmentShow, setModalDevelopmentShow] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
 
   const [inicioClick, setInicioClick] = React.useState(true);
@@ -76,27 +79,32 @@ const SideBarApp: React.FC = () => {
       var auxList = response.data;
 
       var count = 0;
-      while (count < auxList.length) {
-        if (auxList[count].AuthorID === userId) {
-          setEventId(auxList[count].Id_Event);
-          var created_at = auxList[count].created_at;
-          const AuxDateCreated = parseISO(String(created_at));
-          const formattedDate = format(
-            AuxDateCreated,
-            " dd'/'MM'/'yyyy', às ' HH:mm'h'",
-            {
-              locale: pt,
-            }
-          );
-          setCreatedAt(formattedDate);
-          setModalEventsShow(false);
-          setModalViewEvents(true);
-          console.log(auxList[count].AuthorID === userId);
-          count = auxList.length + 1;
-        } else {
-          count += 1;
-          setModalEventsShow(true);
-          setModalViewEvents(false);
+      if (auxList.length === 0) {
+        setModalEventsShow(true);
+        setModalViewEvents(false);
+      } else {
+        while (count <= auxList.length) {
+          if (auxList[count].AuthorID === userId) {
+            setEventId(auxList[count].Id_Event);
+            var created_at = auxList[count].created_at;
+            const AuxDateCreated = parseISO(String(created_at));
+            const formattedDate = format(
+              AuxDateCreated,
+              " dd'/'MM'/'yyyy', às ' HH:mm'h'",
+              {
+                locale: pt,
+              }
+            );
+            setCreatedAt(formattedDate);
+            setModalEventsShow(false);
+            setModalViewEvents(true);
+            console.log(auxList[count].AuthorID === userId);
+            count = auxList.length + 1;
+          } else {
+            count += 1;
+            setModalEventsShow(true);
+            setModalViewEvents(false);
+          }
         }
       }
     } catch (err) {
@@ -175,6 +183,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(false);
                 setQuadrasClick(false);
                 setAmigosClick(false);
+                setModalDevelopmentShow(true);
               }}
               className={`${esportesClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -204,6 +213,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(false);
                 setQuadrasClick(true);
                 setAmigosClick(false);
+                setModalDevelopmentShow(true);
               }}
               className={`${quadrasClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -294,6 +304,19 @@ const SideBarApp: React.FC = () => {
           }}
           idEvent={eventId}
           createdAt={createdAt}
+        />
+      ) : (
+        ""
+      )}
+      {modalDevelopmentShow ? (
+        <ModalDevelopment
+          show={modalDevelopmentShow}
+          onHide={() => {
+            setModalDevelopmentShow(false);
+            setEsportesClick(false);
+            setQuadrasClick(false);
+            setInicioClick(true);
+          }}
         />
       ) : (
         ""

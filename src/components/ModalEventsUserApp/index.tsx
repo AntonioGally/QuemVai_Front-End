@@ -3,6 +3,7 @@ import React from "react";
 import { Modal, Row, Col } from "react-bootstrap";
 import ModalListSpace from "./ModalListSpace";
 import "./ModalEventsUserApp.css";
+import ModalDevelopment from "../ModalDevelopment";
 
 export interface Props {
   show: boolean;
@@ -11,13 +12,24 @@ export interface Props {
 
 const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [modalListSpace, setModalListSpace] = React.useState(false);
+  const [modalDevelopment, setModalDevelopment] = React.useState(false);
   if (modalListSpace) {
     return (
       <ModalListSpace
         show={modalListSpace}
         onHide={() => {
           setModalListSpace(false);
-          onHide()
+          onHide();
+        }}
+      />
+    );
+  }
+  if (modalDevelopment) {
+    return (
+      <ModalDevelopment
+        show={modalDevelopment}
+        onHide={() => {
+          setModalDevelopment(false);
         }}
       />
     );
@@ -42,6 +54,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
               <div
                 className="BackButtonConfirmation"
                 style={{ fontSize: "20px" }}
+                onClick={() => setModalDevelopment(true)}
               >
                 Encontrar
               </div>

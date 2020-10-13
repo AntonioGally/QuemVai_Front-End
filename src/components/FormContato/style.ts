@@ -46,7 +46,7 @@ export const MyTitleForm = styled.h3`
     top: 100%;
     background-color: var(--primary);
     border-radius: 5px;
-    content: "";   
+    content: "";
   }
 
   @media (max-width: 768px) {
@@ -68,7 +68,7 @@ export const MyLableText = styled.h3`
     margin-left: 5px;
     font-weight: 200;
   }
-  @media (max-width:768px){
+  @media (max-width: 768px) {
     font-size: 20px;
   }
 `;
@@ -78,6 +78,9 @@ export const MyButton = styled.button`
   color: var(--fontWhite);
   width: 30%;
   padding: 10px;
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 
   &:hover {
     background-color: var(--buttonFill);

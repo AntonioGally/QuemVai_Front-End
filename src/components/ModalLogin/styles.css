@@ -5,10 +5,9 @@
   .Desktop {
     display: unset;
   }
-  .MyRowModalLogin{
+  .MyRowModalLogin {
     height: 720px;
   }
-
 }
 @media (max-width: 768px) {
   .CellPhone {
@@ -37,48 +36,53 @@
   justify-content: center;
 }
 
-.MyTextModalLogin1{
-  font-family: 'Poppins';
-  font-size:24pt;
+.MyTextModalLogin1 {
+  font-family: "Poppins";
+  font-size: 24pt;
   font-weight: 600;
-  color:black;
+  color: black;
+}
+@media (max-width: 1000px) {
+  .MyTextModalLogin1 {
+    text-align: center;
+  }
 }
 
-.MyInputModalLogin{
+.MyInputModalLogin {
   border: 1px solid var(--borderInput);
   border-radius: 8px !important;
 }
 
-.MyButtonSubmitModalLogin{
+.MyButtonSubmitModalLogin {
   background-color: var(--buttonFill);
-  border-radius:6.5px !important;
-  color:var(--fontWhite);
-  width:50%;
-  padding:10px;
+  border-radius: 6.5px !important;
+  color: var(--fontWhite);
+  width: 50%;
+  padding: 10px;
 }
-.MyButtonSubmitModalLogin:hover{
+.MyButtonSubmitModalLogin:hover {
   background-color: var(--buttonFill);
-  opacity: .8;
-  color:var(--fontWhite);
-  transition: all .5s ease-in-out;
+  opacity: 0.8;
+  color: var(--fontWhite);
+  transition: all 0.5s ease-in-out;
 }
-.MyButtonRegistertModalLogin{
-  color:var(--buttonOutLined);
-  border:1px solid var(--buttonOutLined); 
-  border-radius:6.5px !important;
-  width:50%;
-  padding:10px;
+.MyButtonRegistertModalLogin {
+  color: var(--buttonOutLined);
+  border: 1px solid var(--buttonOutLined);
+  border-radius: 6.5px !important;
+  width: 50%;
+  padding: 10px;
 }
-.MyButtonRegistertModalLogin:hover{
+.MyButtonRegistertModalLogin:hover {
   background-color: var(--buttonOutLined);
-  border:1px solid var(--fontWhite); 
-  color:var(--fontWhite);
-  transition: all .5s ease;
+  border: 1px solid var(--fontWhite);
+  color: var(--fontWhite);
+  transition: all 0.5s ease;
 }
-.error{
-  color:red;
+.error {
+  color: red;
 }
 
 .MyLinkModalLogin {
-  color:white;
+  color: white;
 }

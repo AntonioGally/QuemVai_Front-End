@@ -1,18 +1,25 @@
 @media (min-width: 1201px) {
-    .CellPhoneInformation {
-      display: none;
-      
-    }
-    .DesktopInformation {
-      display: unset;
-    }
-  
+  .CellPhoneInformation {
+    display: none;
   }
-  @media (max-width: 1200px) {
-    .CellPhoneInformation {
-      display: unset;
-    }
-    .DesktopInformation {
-      display: none;
-    }
+  .DesktopInformation {
+    display: block;    
   }
+}
+@media (max-width: 1200px) {
+  .CellPhoneInformation {
+    display: block;
+  }
+  .DesktopInformation {
+    display: none;
+  }
+}
+
+.DesktopInformation {
+  margin-top: 5%;
+  margin-bottom:5%;
+}
+.CellPhoneInformation {  
+  margin-top: 5%;
+  margin-bottom:5%;
+}

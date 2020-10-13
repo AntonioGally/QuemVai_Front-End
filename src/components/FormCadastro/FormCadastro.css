@@ -1,4 +1,12 @@
 .MyInputFormCadastro {
-    border-radius:10px;
-    border:1px solid var(--fontBlack);
+  border-radius: 10px;
+  border: 1px solid var(--fontBlack);
+}
+
+.ButtonSubmitFormCadastro {
+  background-color: var(--buttonFill);
+  border-radius: 6.5px !important;
+  color: var(--fontWhite);
+  width: 50%;
+  padding: 10px;
 }

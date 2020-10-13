@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Container, Col, Row, Form } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
 import loadingGif from "../../img/icones/loading.gif";
 
 import {
@@ -26,7 +25,7 @@ type IFormInput = {
 const ForgotPasswordForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<IFormInput>();
   const [erros, setErros] = React.useState("");
-  const [succes, setSucces] = React.useState(false);
+  const [success, setSuccess] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const onSubmit = async (data: IFormInput) => {
     setLoading(true);
@@ -47,26 +46,21 @@ const ForgotPasswordForm: React.FC = () => {
 
       if (response.status === 200) {
         setLoading(false);
-        alert("Email Enviado com sucesso! Cheque sua caixa de Emails :D");
-        setSucces(true);
+        setSuccess("Email enviado com sucesso!");
+        setErros("");
       }
       if (response.status === 204) {
         setErros("Esse email não existe");
-        setSucces(false);
         setLoading(false);
       }
 
       if (response.status === 404) {
-        alert("Houve algum problema!");
-        setSucces(false);
+        setErros("Esse email não existe");
       }
     } catch (err) {
       console.log(err);
     }
   };
-  if (succes) {
-    return <Redirect to="/" />;
-  }
   return (
     <div>
       <MyContainer>
@@ -108,7 +102,18 @@ const ForgotPasswordForm: React.FC = () => {
                             {(errors.userEmail as any).message}
                           </div>
                         )}
-                      <div className="error">{erros}</div>
+                      <div
+                        className="text-danger"
+                        style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                      >
+                        {erros}
+                      </div>
+                      <div
+                        className="text-success"
+                        style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                      >
+                        {success}
+                      </div>
                     </Form.Group>
                   </MyForm>
                 </Col>

@@ -13,7 +13,10 @@ const Information: React.FC = () => {
   return (
     <Container fluid style={{ padding: 0 }}>
       <MyRow style={{ margin: "5% 0 0 0" }}>
-        <Row className="d-flex justify-content-center" style={{ margin: 0, padding:'45px 0'}}>
+        <Row
+          className="d-flex justify-content-center"
+          style={{ margin: 0, padding: "45px 0" }}
+        >
           <MyCol>
             <Col>
               <Image src={img1Sobre} fluid />
@@ -21,7 +24,7 @@ const Information: React.FC = () => {
           </MyCol>
 
           <MyCol className="text WithoutMarginT">
-            <Col style={{color:'var(--fontWhite)'}}>
+            <Col style={{ color: "var(--fontWhite)" }}>
               <TitleContent>Quem Vai?</TitleContent>
 
               <TextContent>
@@ -38,7 +41,10 @@ const Information: React.FC = () => {
       </MyRow>
 
       <MyRow className="WithoutBG">
-        <Row className="d-flex justify-content-center" style={{ margin: 0, padding:'45px 0'}}>
+        <Row
+          className="d-flex justify-content-center"
+          style={{ margin: 0, padding: "45px 0" }}
+        >
           <MyCol className="text">
             <Col>
               <TitleContent>Convide seus amigos </TitleContent>
@@ -49,7 +55,6 @@ const Information: React.FC = () => {
                 usuário, para ter acesso a mais informações pessoais. Faça novos
                 amigos e junte a galera.
               </TextContent>
-             
             </Col>
           </MyCol>
 
@@ -62,7 +67,10 @@ const Information: React.FC = () => {
       </MyRow>
 
       <MyRow style={{ margin: "0 0 0 0" }}>
-        <Row className="d-flex justify-content-center" style={{ margin: 0, padding:'45px 0'}}>
+        <Row
+          className="d-flex justify-content-center"
+          style={{ margin: 0, padding: "45px 0" }}
+        >
           <MyCol>
             <Col>
               <Image src={img3Sobre} fluid />
@@ -70,7 +78,7 @@ const Information: React.FC = () => {
           </MyCol>
 
           <MyCol className="text WithoutMarginT">
-            <Col style={{color:'var(--fontWhite)'}}>
+            <Col style={{ color: "var(--fontWhite)" }}>
               <TitleContent>Melhores áreas de lazer</TitleContent>
 
               <TextContent>
@@ -112,16 +120,10 @@ const Information: React.FC = () => {
                     className=" justify-content-center"
                     style={{ padding: "0 10%" }}
                   >
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                    Nosso aplicativo versão IOS conta com toda a fluidez que o
+                    sistema operacional IOS nos disponibiliza, fazendo com que a
+                    experiência do usuário seja muito mais confortável em
+                    relação ao uso do aplicativo
                   </Row>
                 </MyRow>
               </Col>
@@ -150,16 +152,11 @@ const Information: React.FC = () => {
                     className=" justify-content-center"
                     style={{ padding: "0 10%" }}
                   >
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                    Assim como os sistemas embarcados baseados em Android, o
+                    aplicativo Quem Vai é de fácil instalação e não exige altas
+                    configurações do aparelho do usuário. Nosso aplicativo
+                    Android também conta com verão Light para conexões à
+                    internet limitadas.
                   </Row>
                 </MyRow>
               </Col>
@@ -188,16 +185,11 @@ const Information: React.FC = () => {
                     className="justify-content-center"
                     style={{ padding: "0 10%" }}
                   >
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                    Nosso sistema Web conta com as mais avançadas tecnologias de
+                    desenvolvimento, para fazer da experiência do usuário, uma
+                    experiência melhor. Temos um leque de configurações de
+                    resolução para maior acessibilidade em diversos tamanhos de
+                    tela diferentes
                   </Row>
                 </MyRow>
               </Col>
@@ -214,6 +206,8 @@ const Information: React.FC = () => {
               id="carouselExampleControls"
               className="carousel slide"
               data-ride="carousel"
+              data-interval="2500"
+              data-pause="false"              
             >
               <div className="carousel-inner">
                 <div className="carousel-item active">
@@ -240,18 +234,10 @@ const Information: React.FC = () => {
                           className=" justify-content-center"
                           style={{ padding: "0 10%" }}
                         >
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s,
-                          when an unknown printer took a galley of type and
-                          scrambled it to make a type specimen book. It has
-                          survived not only five centuries, but also the leap
-                          into electronic typesetting, remaining essentially
-                          unchanged. It was popularised in the 1960s with the
-                          release of Letraset sheets containing Lorem Ipsum
-                          passages, and more recently with desktop publishing
-                          software like Aldus PageMaker including versions of
-                          Lorem Ipsum.
+                          Nosso aplicativo versão IOS conta com toda a fluidez
+                          que o sistema operacional IOS nos disponibiliza,
+                          fazendo com que a experiência do usuário seja muito
+                          mais confortável em relação ao uso do aplicativo.
                         </Row>
                       </MyRow>
                     </Col>
@@ -282,18 +268,11 @@ const Information: React.FC = () => {
                           className=" justify-content-center"
                           style={{ padding: "0 10%" }}
                         >
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s,
-                          when an unknown printer took a galley of type and
-                          scrambled it to make a type specimen book. It has
-                          survived not only five centuries, but also the leap
-                          into electronic typesetting, remaining essentially
-                          unchanged. It was popularised in the 1960s with the
-                          release of Letraset sheets containing Lorem Ipsum
-                          passages, and more recently with desktop publishing
-                          software like Aldus PageMaker including versions of
-                          Lorem Ipsum.
+                          Assim como os sistemas embarcados baseados em Android,
+                          o aplicativo Quem Vai é de fácil instalação e não
+                          exige altas configurações do aparelho do usuário.
+                          Nosso aplicativo Android também conta com verão Light
+                          para conexões à internet limitadas.
                         </Row>
                       </MyRow>
                     </Col>
@@ -324,18 +303,12 @@ const Information: React.FC = () => {
                           className="justify-content-center"
                           style={{ padding: "0 10%" }}
                         >
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s,
-                          when an unknown printer took a galley of type and
-                          scrambled it to make a type specimen book. It has
-                          survived not only five centuries, but also the leap
-                          into electronic typesetting, remaining essentially
-                          unchanged. It was popularised in the 1960s with the
-                          release of Letraset sheets containing Lorem Ipsum
-                          passages, and more recently with desktop publishing
-                          software like Aldus PageMaker including versions of
-                          Lorem Ipsum.
+                          Nosso sistema Web conta com as mais avançadas
+                          tecnologias de desenvolvimento, para fazer da
+                          experiência do usuário, uma experiência melhor. Temos
+                          um leque de configurações de resolução para maior
+                          acessibilidade em diversos tamanhos de tela
+                          diferentes.
                         </Row>
                       </MyRow>
                     </Col>

@@ -29,8 +29,7 @@ const FormCadastro: React.FC = () => {
   const [succes, setSucces] = React.useState(false);
   const [erros, setErros] = React.useState("");
   const [modalShow, setModalShow] = React.useState(true);
-  const [succesPassword, setSuccesPassword] = React.useState(false);
-  const [senhaFinal, setSenhaFinal] = React.useState("");
+  const [auxEmail, setAuxEmail] = React.useState("");
 
   const SubmitForm = async (data: FormCadastroUser) => {
     const name = data.userName;
@@ -42,15 +41,6 @@ const FormCadastro: React.FC = () => {
     const userConfirmaSenha = data.userConfirmPassword;
 
     var photos = "";
-
-    if (userSenha === userConfirmaSenha) {
-      setSenhaFinal(userSenha);
-      setSuccesPassword(true);
-    } else {
-      setErros("As senhas não estão iguais :(");
-      setSuccesPassword(false);
-    }
-
     var file = data.userPhoto[0];
     var fileType = file.type;
     if (
@@ -96,9 +86,9 @@ const FormCadastro: React.FC = () => {
 
           try {
             setLoading(true);
-            if (succesPassword) {
+            if (userSenha === userConfirmaSenha) {
               var config = {
-                headers: { "x-password": senhaFinal },
+                headers: { "x-password": userSenha },
                 validateStatus: function (status: any) {
                   return status < 500; // Resolve only if the status code is less than 500
                 },
@@ -111,7 +101,7 @@ const FormCadastro: React.FC = () => {
               );
 
               if (response.status === 200 && response.data["User registered"]) {
-                alert("Você foi cadastrado com sucesso!");
+                setAuxEmail(email);
                 setLoading(false);
                 setSucces(true);
               }
@@ -124,6 +114,9 @@ const FormCadastro: React.FC = () => {
                 alert("Houve algum problema!");
                 setLoading(false);
               }
+            } else {
+              setErros("As senhas não estão iguais");
+              setLoading(false);
             }
           } catch (err) {
             console.log(err);
@@ -221,8 +214,8 @@ const FormCadastro: React.FC = () => {
                   </div>
                   <MyForm className="firstColumn">
                     <Form.Group>
-                      <InputGroup>
-                        <Col md={2} style={{ padding: 0, marginRight: "1%" }}>
+                      <InputGroup>                
+                        <Col md={2} sm={2}style={{ padding: 0, marginRight:"1%"}}>
                           <Form.Control
                             type="text"
                             name="userDDD"
@@ -406,14 +399,27 @@ const FormCadastro: React.FC = () => {
 
                       <MyButton
                         type="submit"
-                        className="btn MyButtonSubmitModalLogin float-right"
+                        className="btn ButtonSubmitFormCadastro float-right"
                       >
                         Cadastrar
                       </MyButton>
                       {loading ? <Spinner animation="border" /> : ""}
-                      <div style={{ color: "red", fontSize: "20px" }}>
+                      <div
+                        className="text-danger"
+                        style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                      >
                         {erros}
                       </div>
+                      {succes ? (
+                        <div
+                          className="text-success"
+                          style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                        >
+                          Conta cadastrada com sucesso
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </MyForm>
                 </Col>
@@ -450,7 +456,11 @@ const FormCadastro: React.FC = () => {
         </Container>
       </MyContainer>
       {succes ? (
-        <ModalLogin show={modalShow} onHide={() => setModalShow(false)} />
+        <ModalLogin
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          emailCadastro={auxEmail}
+        />
       ) : (
         ""
       )}

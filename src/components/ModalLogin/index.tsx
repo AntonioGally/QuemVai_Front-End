@@ -19,6 +19,7 @@ import { login, isAuthenticated, isAuthenticatedAdmin } from "../services/auth";
 export interface Props {
   show: boolean;
   onHide: any;
+  emailCadastro?: string;
 }
 
 type IFormInput = {
@@ -27,7 +28,7 @@ type IFormInput = {
   error?: string;
 };
 
-const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
+const ModalLogin: React.FC<Props> = ({ show, onHide, emailCadastro }) => {
   const [redirectAdmin, SetRedirectAdmin] = React.useState(false);
   const [redirectUser, SetRedirectUser] = React.useState(false);
   const [erroLogin, SetErroLogin] = React.useState(false);
@@ -86,8 +87,6 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
     <div className="MyModal">
       <Modal size="xl" centered show={show} onHide={onHide}>
         <div>
-          <Modal.Header closeButton className="CellPhone"></Modal.Header>
-
           <Modal.Body style={{ padding: 0 }}>
             <Container fluid style={{ padding: 0 }}>
               <Row style={{ margin: 0 }} className="MyRowModalLogin">
@@ -154,6 +153,9 @@ const ModalLogin: React.FC<Props> = ({ show, onHide }) => {
                           type="email"
                           name="email"
                           id="email"
+                          defaultValue={
+                            emailCadastro !== "" ? emailCadastro : ""
+                          }
                           className="MyInputModalLogin"
                           ref={register({
                             required: true,

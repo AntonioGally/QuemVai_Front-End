@@ -27,6 +27,7 @@ const FormContato: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<IFormInput>();
   const [loading, setLoading] = React.useState(false);
   const [succees, setSuccess] = React.useState("");
+  const [erros, setErros] = React.useState("");
   const onSubmit = async (data: IFormInput) => {
     setLoading(true);
     const destinatario = data.userEmail;
@@ -47,6 +48,7 @@ const FormContato: React.FC = () => {
       if (response.status === 200) {
         setLoading(false);
         setSuccess("Email enviado com sucesso!");
+        setErros("");
         setTimeout(() => {
           setSuccess("");
         }, 5000);
@@ -67,10 +69,11 @@ const FormContato: React.FC = () => {
       }
 
       if (response.status === 404) {
-        alert("Houve algum problema!");
         setLoading(false);
+        setErros("Houve algum problema");
       }
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   };
@@ -170,6 +173,12 @@ const FormContato: React.FC = () => {
                   ) : (
                     ""
                   )}
+                  <div
+                    className="text-danger"
+                    style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                  >
+                    {erros}
+                  </div>
                   <div
                     className="text-success"
                     style={{ fontFamily: "Poppins", fontSize: "20px" }}

@@ -107,8 +107,7 @@ body {
 @media (max-width: 1500px) {
   .myRowLinksSideBarApp div {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    padding-left:10%;
   }
   .SideBarAppActiveLink::after {
     right: 10px !important;
