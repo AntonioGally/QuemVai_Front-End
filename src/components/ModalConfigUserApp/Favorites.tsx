@@ -182,7 +182,6 @@ const ModalConfigUserApp: React.FC = () => {
       ) : (
         ""
       )}
-F
       {modalDevelopment ? (
         <ModalDevelopment show={modalDevelopment} onHide={() => setModalDevelopment(false)}/>
       ) : ("")}

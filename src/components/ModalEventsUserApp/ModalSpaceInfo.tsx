@@ -30,7 +30,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
 
   useEffect(() => {
     Promise.all([
-      api.get(`/api/search/space/${id}`, {
+      api.get(`/api/favorites/get/place/${id}`, {
         validateStatus: function (status) {
           return status < 500; // Resolve only if the status code is less than 500
         },
@@ -38,7 +38,6 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
       }),
     ]).then(async (responses) => {
       const [SpaceInfo] = responses;
-      // eslint-disable-next-line
       const informations = await SpaceInfo.data;
       setData({ SpaceInfo: informations });
     });

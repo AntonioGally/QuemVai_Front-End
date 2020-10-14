@@ -68,9 +68,7 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
       );
       if (response.data["Event created"] && response.status === 200) {
         setSuccess("Evento criado com sucesso!");
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        
         setLoading(false);
       }
 
