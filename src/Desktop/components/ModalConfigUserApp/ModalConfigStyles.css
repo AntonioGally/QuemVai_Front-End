@@ -8,6 +8,14 @@
   border-radius: 15px;
   position: relative;
 }
+.WrapperModalAddFavorite {
+  margin-left: auto;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 15px;
+  position: relative;
+}
 @media (max-width: 1200px) {
   .WrapperModalConfig {
     width: 100%;
@@ -242,7 +250,7 @@
 }
 @media (max-width: 1000px) {
   .MyRowFavorites {
-    margin-left:0 !important;   
+    margin-left: 0 !important;
     justify-content: center;
   }
 }

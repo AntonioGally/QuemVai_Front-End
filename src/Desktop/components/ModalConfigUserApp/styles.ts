@@ -18,6 +18,10 @@ import { TimeFive } from "@styled-icons/boxicons-regular/TimeFive";
 
 import { PlusSquare } from "@styled-icons/boxicons-solid/PlusSquare";
 
+import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
+
+import { Star } from "@styled-icons/entypo/Star";
+
 export const MyTitleForm = styled.h3`
   margin-top: 5%;
   margin-bottom: 8%;
@@ -229,4 +233,95 @@ export const TextInfoHistoricInfo = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const ArrowBackIcon = styled(ArrowBack)`
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  fill: var(--fontBlack);
+  cursor: pointer;
+`;
+export const WrapperCardAddFavorite = styled.div`
+  height: 600px;
+  padding: 15px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+`;
+
+var iconsAddFavorite = css`
+  width: 48%;
+  height: 48%;
+  color: var(--fontBlack);
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+
+export const CompassIconFavorite = styled(Compass)`
+  width: 100%;
+  height: 100%;
+  color: var(--fontBlack);
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+`;
+export const SearchSpaceIconFavorite = styled(Search)`
+  ${iconsAddFavorite}
+`;
+export const StarSpaceIconFavorie = styled(Star)`
+  width: 48%;
+  height: 48%;
+  flex-shrink: 0;
+  color: transparent;
+  cursor: pointer;
+  > path {
+    stroke: var(--fontBlack);
+    stroke-width: 1px;
+  }
+`;
+export const CardsAddFavorite = styled.div`
+  background-color: var(--fontWhite);
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  margin-bottom: 5%;
+  padding: 20px;
+  width: 100%;
+`;
+export const TextContentFavorite = styled.div`
+  > span {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: 10px;
+  }
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const MyButtonAddFavorite = styled.button`
+  outline: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: var(--buttonFill);
+  color: var(--fontWhite);
+  font-family: "Poppins";
+  cursor: pointer;
 `;
