@@ -37,6 +37,7 @@ const ModalEventsUserApp: React.FC<Props> = ({
 }) => {
   const [data, setData] = useState<Data>();
   const [erros, setErros] = useState("");
+  const [success, setSuccess] = useState("");
   const [auxPhotos, setAuxPhotos] = useState("");
   useEffect(() => {
     Promise.all([
@@ -78,7 +79,8 @@ const ModalEventsUserApp: React.FC<Props> = ({
       );
       // eslint-disable-next-line
       if (response.status === 200 && response.data != "") {
-        window.location.reload();
+        setSuccess("Evento finalizado com sucesso!");
+        setErros("");
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao finalizar o evento");
@@ -207,6 +209,26 @@ const ModalEventsUserApp: React.FC<Props> = ({
             >
               {erros}
             </div>
+            <div
+              className="text-success"
+              style={{
+                padding: "10px",
+                fontFamily: "Poppins",
+                fontSize: "18xp",
+              }}
+            >
+              {success}
+            </div>
+            {success === "Evento finalizado com sucesso!" ? (
+              <MyButtonFinishEvent
+                style={{ marginTop: "20px" }}
+                onClick={onHide}
+              >
+                Fechar
+              </MyButtonFinishEvent>
+            ) : (
+              ""
+            )}
 
             <Row
               style={{ margin: "10% 0 0 0", justifyContent: "space-between" }}

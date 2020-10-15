@@ -86,6 +86,10 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
       <ModalCreateEvents
         show={modalCreateEvents}
         onHide={() => setModalCreateEvents(false)}
+        onCreateEvent={() => {
+          setModalCreateEvents(false);
+          onHide();
+        }}
         id={auxID}
       />
     );

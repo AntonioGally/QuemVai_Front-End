@@ -15,7 +15,7 @@ import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
 import ConfirmDeleteFavorite from "./confirmation/ConfirmDeleteFavorite";
 import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";
-import ModalDevelopment from "../ModalDevelopment";
+import ModalAddFavorite from "./ModalAddFavorite";
 import api from "../services/api";
 import { Token } from "../services/auth";
 import { FavoriteSpaceList } from "../@types";
@@ -28,7 +28,7 @@ const ModalConfigUserApp: React.FC = () => {
   const [reload, setReload] = React.useState(0);
   const [modalDeleteShow, setModalDeleteShow] = React.useState(false);
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
-  const [modalDevelopment, setModalDevelopment] = React.useState(false);
+  const [modalAddFavorite, setModalAddFavorite] = React.useState(false);
   const [auxID, setAuxID] = React.useState(Number);
   const [isSomething, setIsSomething] = useState(false);
   const [data, setData] = useState<Data>();
@@ -67,6 +67,7 @@ const ModalConfigUserApp: React.FC = () => {
         show={modalSpaceInfo}
         onHide={() => setModalSpaceInfo(false)}
         id={auxID}
+        fromFavorites={true}
       />
     );
   }
@@ -81,7 +82,7 @@ const ModalConfigUserApp: React.FC = () => {
       </div>
       <Row className="MyRowFavorites">
         <MyTitleForm style={{ margin: 0 }}>Lugares favoritos</MyTitleForm>
-        <PlusIcon onClick={() => setModalDevelopment(true)}/>
+        <PlusIcon onClick={() => setModalAddFavorite(true)} />
       </Row>
 
       {!isSomething ? (
@@ -182,9 +183,14 @@ const ModalConfigUserApp: React.FC = () => {
       ) : (
         ""
       )}
-      {modalDevelopment ? (
-        <ModalDevelopment show={modalDevelopment} onHide={() => setModalDevelopment(false)}/>
-      ) : ("")}
+      {modalAddFavorite ? (
+        <ModalAddFavorite
+          show={modalAddFavorite}
+          onHide={() => setModalAddFavorite(false)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

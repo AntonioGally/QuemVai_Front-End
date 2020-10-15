@@ -27,6 +27,7 @@ import { SpaceInformationEventeCreate } from "../@types";
 export interface Props {
   show: boolean;
   onHide: any;
+  onCreateEvent?: any;
   id: number;
 }
 type IFormInput = {
@@ -36,7 +37,12 @@ type IFormInput = {
 interface Data {
   SpaceInfo: SpaceInformationEventeCreate;
 }
-const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
+const ModalEventsUserApp: React.FC<Props> = ({
+  show,
+  onHide,
+  id,
+  onCreateEvent,
+}) => {
   const [colorStar, setColorStar] = React.useState(Boolean);
   const [data, setData] = useState<Data>();
 
@@ -68,7 +74,6 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
       );
       if (response.data["Event created"] && response.status === 200) {
         setSuccess("Evento criado com sucesso!");
-        
         setLoading(false);
       }
 
@@ -325,6 +330,13 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
                 >
                   {success}
                 </div>
+                {success === "Evento criado com sucesso!" ? (
+                  <MyButton onClick={onCreateEvent} type="button" style={{marginTop:"20px"}}>
+                    Fechar
+                  </MyButton>
+                ) : (
+                  ""
+                )}
                 <div
                   className="text-danger"
                   style={{ fontFamily: "Poppins", fontSize: "20px" }}

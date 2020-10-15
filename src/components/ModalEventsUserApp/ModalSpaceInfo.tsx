@@ -19,29 +19,42 @@ export interface Props {
   show: boolean;
   onHide: any;
   id: number;
+  fromFavorites?: boolean;
 }
 
 interface Data {
   SpaceInfo: SpaceInformationByID;
 }
 
-const ModalEventsUserApp: React.FC<Props> = ({ show, onHide, id }) => {
+const ModalEventsUserApp: React.FC<Props> = ({
+  show,
+  onHide,
+  id,
+  fromFavorites,
+}) => {
   const [data, setData] = useState<Data>();
 
   useEffect(() => {
     Promise.all([
-      api.get(`/api/favorites/get/place/${id}`, {
-        validateStatus: function (status) {
-          return status < 500; // Resolve only if the status code is less than 500
-        },
-        headers: { "x-auth-token": Token() },
-      }),
+      api.get(
+        `${
+          fromFavorites
+            ? `/api/favorites/get/place/${id}`
+            : `/api/search/space/${id}`
+        }`,
+        {
+          validateStatus: function (status) {
+            return status < 500; // Resolve only if the status code is less than 500
+          },
+          headers: { "x-auth-token": Token() },
+        }
+      ),
     ]).then(async (responses) => {
       const [SpaceInfo] = responses;
       const informations = await SpaceInfo.data;
       setData({ SpaceInfo: informations });
     });
-  }, [id]);
+  }, [id, fromFavorites]);
   return (
     <div>
       <Modal size="lg" show={show} centered onHide={onHide}>
