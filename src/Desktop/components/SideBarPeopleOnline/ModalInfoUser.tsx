@@ -4,7 +4,7 @@ import "./SideBarPeopleOnline.css";
 
 import ModalConfirmacao from "./Confirmation/ModalConfirmacao";
 
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 import {
   SpanIdUser,
   ImgUser,

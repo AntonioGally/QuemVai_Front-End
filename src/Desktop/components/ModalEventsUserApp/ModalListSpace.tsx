@@ -24,7 +24,7 @@ import {
   ArrowBackIcon,
 } from "./styles";
 
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 import ModalSpaceInfo from "./ModalSpaceInfo";
 import ModalCreateEvents from "./ModalCreateEvents";
 

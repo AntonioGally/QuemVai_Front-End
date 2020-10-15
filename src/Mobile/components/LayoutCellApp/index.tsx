@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom";
 
 import { logout } from "../../../services/auth";
 
-import Development2 from "../../img/materiais/Development2.svg";
+import Development2 from "../../../img/materiais/Development2.svg";
 
 const LayoutCellApp: React.FC = () => {
   const [redirection, setRedirection] = React.useState(false);

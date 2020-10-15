@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ModalFriendStyles.css";
 
-import any_data2 from "../../img/icones/any_data2.svg";
+import any_data2 from "../../../img/icones/any_data2.svg";
 
 import { Container, Row } from "react-bootstrap";
 import {

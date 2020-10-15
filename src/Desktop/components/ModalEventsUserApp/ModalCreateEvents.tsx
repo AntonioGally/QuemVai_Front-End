@@ -18,7 +18,7 @@ import {
   MyButton,
   ArrowBackIcon,
 } from "./styles";
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";

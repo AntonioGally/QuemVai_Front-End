@@ -6,7 +6,7 @@ import Favorites from "./Favorites";
 import PasswordAtualization from "./PasswordAtualization";
 import PhotoAtualization from "./PhotoAtualization";
 import "./ModalConfigStyles.css";
-import QuemVaiLogo3 from "../../img/logo/QuemVaiLogo3.png";
+import QuemVaiLogo3 from "../../../img/logo/QuemVaiLogo3.png";
 
 import { logout } from "../../../services/auth";
 

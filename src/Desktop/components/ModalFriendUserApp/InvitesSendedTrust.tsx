@@ -11,7 +11,7 @@ import {
   CancelIcon,
 } from "./styles";
 
-import any_data3 from "../../img/icones/any_data3.jpg";
+import any_data3 from "../../../img/icones/any_data3.jpg";
 
 import { InvitesSendedTrustList } from "../../../@types";
 

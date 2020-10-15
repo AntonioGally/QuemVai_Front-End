@@ -5,7 +5,7 @@ import { useSideBarContext } from "../../../Context/ReloadSideBar";
 import { Container, Form, Row, Col, Spinner } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
 import "./ModalConfigStyles.css";
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";

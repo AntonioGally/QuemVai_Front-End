@@ -10,8 +10,8 @@ import {
   PlusIcon,
 } from "./styles";
 import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
-import any_data from "../../img/icones/any_data.svg";
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import any_data from "../../../img/icones/any_data.svg";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 import ConfirmDeleteFavorite from "./confirmation/ConfirmDeleteFavorite";
 import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";

@@ -3,7 +3,7 @@ import React from "react";
 import { Modal, Row, Col } from "react-bootstrap";
 import "./ModalConfigStyles.css";
 
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 import ModalConfirmHistoricDelete from "./confirmation/ModalConfirmHistoricDelete";
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Modal } from "react-bootstrap";
-import Development2 from "../../img/materiais/Development2.svg";
+import Development2 from "../../../img/materiais/Development2.svg";
 
 
 

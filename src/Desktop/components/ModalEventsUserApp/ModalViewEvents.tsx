@@ -16,7 +16,7 @@ import { EventsInfoByUf } from "../../../@types";
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";
 
-import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
+import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 export interface Props {
   show: boolean;

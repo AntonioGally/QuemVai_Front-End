@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ModalFriendStyles.css";
 
-import any_data4 from "../../img/icones/any_data4.jpg";
+import any_data4 from "../../../img/icones/any_data4.jpg";
 
 import { Container, Row } from "react-bootstrap";
 import {
@@ -15,8 +15,8 @@ import {
 
 import { InvitesReceivedTrustList } from "../../../@types";
 
-import RecusarSolicitacao from "./Confirmação/RecusarSolicitacao";
-import AceitarSolicitacao from "./Confirmação/AceitarSolicitacao";
+import RecusarSolicitacao from "./Confirmacao/RecusarSolicitacao";
+import AceitarSolicitacao from "./Confirmacao/AceitarSolicitacao";
 
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";
