@@ -16,7 +16,7 @@ import {
 
 import facebook from "../../img/icones/facebook.svg";
 import instagram from "../../img/icones/instagram.svg";
-import api from "../services/api";
+import api from "../../services/api";
 
 type IFormInput = {
   userEmail: string;

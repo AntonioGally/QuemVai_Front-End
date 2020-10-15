@@ -7,8 +7,8 @@ import { MyTitleForm, MyLableText, MyForm, MyButton } from "./styles";
 import "./ModalConfigStyles.css";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
 
 type FormPhoto = {
   userPhoto: any;

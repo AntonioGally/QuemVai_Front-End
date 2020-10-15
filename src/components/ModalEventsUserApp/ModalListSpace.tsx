@@ -28,9 +28,9 @@ import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 import ModalSpaceInfo from "./ModalSpaceInfo";
 import ModalCreateEvents from "./ModalCreateEvents";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
-import { ListSpaceByUF } from "../@types";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
+import { ListSpaceByUF } from "../../@types";
 
 export interface Props {
   show: boolean;

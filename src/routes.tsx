@@ -15,7 +15,7 @@ import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 import {
   isAuthenticatedAdmin,
   isAuthenticated,
-} from "./components/services/auth";
+} from "./services/auth";
 const src: React.FC = () => {
   const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
     return (

@@ -1,9 +1,9 @@
 import React from "react";
 
-import Header from "../../components/Header";
-import NavBar from "../../components/NavBar";
-import ForgotPasswordForm from "../../components/ForgotPasswordForm";
-import Footer from "../../components/Footer";
+import Header from "../../FrontPage/Header";
+import NavBar from "../../FrontPage/NavBar";
+import ForgotPasswordForm from "../../FrontPage/ForgotPasswordForm";
+import Footer from "../../FrontPage/Footer";
 
 const ForgotPassword: React.FC = () => {
   return (

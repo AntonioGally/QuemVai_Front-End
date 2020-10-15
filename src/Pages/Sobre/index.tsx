@@ -1,10 +1,10 @@
 import React from "react";
 
-import Header from "../../components/Header";
-import Square from "../../components/Square";
-import NavBar from "../../components/NavBar";
-import Information from "../../components/Information";
-import Footer from "../../components/Footer";
+import Header from "../../FrontPage/Header";
+import Square from "../../FrontPage/Square";
+import NavBar from "../../FrontPage/NavBar";
+import Information from "../../FrontPage/Information";
+import Footer from "../../FrontPage/Footer";
 
 const TitleContent1 = "O Aplicativo";
 const TitleContent2 = "A Empresa";

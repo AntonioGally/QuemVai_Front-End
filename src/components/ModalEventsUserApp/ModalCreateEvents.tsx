@@ -20,9 +20,9 @@ import {
 } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
-import { SpaceInformationEventeCreate } from "../@types";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
+import { SpaceInformationEventeCreate } from "../../@types";
 
 export interface Props {
   show: boolean;

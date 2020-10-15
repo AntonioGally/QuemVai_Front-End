@@ -5,9 +5,9 @@ import { Table } from "react-bootstrap";
 import { MyContainer, MyWrapperTable } from "./styles";
 import EmailReceivedData from "../DataList/EmailReceivedData";
 
-import api from "../services/api";
-import {ListEmailReceivedAdmin} from "../@types";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import {ListEmailReceivedAdmin} from "../../@types";
+import { getTokenAdmin } from "../../services/auth";
 
 interface Data {
   EmailsReceived: ListEmailReceivedAdmin [];

@@ -7,10 +7,10 @@ import { MyHeader } from "./styles";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import EsportesExistentesAdmin from "../../components/EsportesExistentesAdmin";
 import EsportesConfigAddLauout from "../../components/EsportesConfigAddLayout";
-import Footer from "../../components/Footer";
+import Footer from "../../FrontPage/Footer";
 
-import api from "../../components/services/api";
-import { Token, logout } from "../../components/services/auth";
+import api from "../../services/api";
+import { Token, logout } from "../../services/auth";
 
 const AdminEsportes: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);

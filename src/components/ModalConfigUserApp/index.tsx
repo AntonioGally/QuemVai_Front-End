@@ -8,7 +8,7 @@ import PhotoAtualization from "./PhotoAtualization";
 import "./ModalConfigStyles.css";
 import QuemVaiLogo3 from "../../img/logo/QuemVaiLogo3.png";
 
-import { logout } from "../services/auth";
+import { logout } from "../../services/auth";
 
 import {
   AccountIcon,

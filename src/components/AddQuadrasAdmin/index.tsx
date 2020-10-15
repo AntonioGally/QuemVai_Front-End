@@ -3,8 +3,8 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { MyContainer, ErrorMessage } from "./styles";
 
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
 // import { Container } from './styles';
 
 type FormCadastroAdd = {

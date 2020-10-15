@@ -12,8 +12,8 @@ import {
 } from "react-bootstrap";
 import facebook from "../../img/icones/facebook.svg";
 import instagram from "../../img/icones/instagram.svg";
-import { FormCadastroUser } from "../@types";
-import api from "../services/api";
+import { FormCadastroUser } from "../../@types";
+import api from "../../services/api";
 import {
   MyContainer,
   MyRow,

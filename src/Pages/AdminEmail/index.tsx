@@ -7,10 +7,10 @@ import NavBarAdmin from "../../components/NavBarAdmin";
 import EmailReceived from "../../components/EmailReceived";
 import EmailResponded from "../../components/EmailResponded";
 import EmailViewRespondLayout from "../../components/EmailViewRespondLayout";
-import Footer from "../../components/Footer";
+import Footer from "../../FrontPage/Footer";
 
-import api from "../../components/services/api";
-import { Token, logout } from "../../components/services/auth";
+import api from "../../services/api";
+import { Token, logout } from "../../services/auth";
 
 // import { Container } from './styles';
 

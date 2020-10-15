@@ -8,8 +8,8 @@ import user from "../../img/icones/user.svg";
 
 import { MyNav, SearchIcon } from "./style";
 import "./styles.css";
-import api from "../services/api";
-import { getToken, getTokenAdmin, Token } from "../services/auth";
+import api from "../../services/api";
+import { getToken, getTokenAdmin, Token } from "../../services/auth";
 
 const Header: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState("");

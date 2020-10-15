@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal, Row, Col } from "react-bootstrap";
 
-import api from "../../services/api";
-import { Token } from "../../services/auth";
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
 
 export interface Props {
   id: number;

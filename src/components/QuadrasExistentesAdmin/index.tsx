@@ -5,9 +5,9 @@ import { Table } from "react-bootstrap";
 import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
 
 
-import api from "../services/api";
-import { Token } from "../services/auth";
-import { ListSpaceAdmin } from "../@types";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
+import { ListSpaceAdmin } from "../../@types";
 
 interface Data {
   Quadras: ListSpaceAdmin [];

@@ -4,8 +4,8 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 
 import { ErrorMessage } from "./styles";
 
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
 
 type IdFormInput = {
   IdDeleteEsporte: string;

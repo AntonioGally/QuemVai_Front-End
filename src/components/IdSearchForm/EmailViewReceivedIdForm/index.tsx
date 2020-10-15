@@ -6,9 +6,9 @@ import ViewEmail from "../../ViewEmailReceived";
 import { Form, Col, Button } from "react-bootstrap";
 import { ErrorMessage } from "./styles";
 
-import api from "../../services/api";
-import { ViewEmailReceivedAdmin } from "../../@types";
-import { getTokenAdmin } from "../../services/auth";
+import api from "../../../services/api";
+import { ViewEmailReceivedAdmin } from "../../../@types";
+import { getTokenAdmin } from "../../../services/auth";
 
 type EmailReceivedIdForm = {
   IdEmailReceived: number;

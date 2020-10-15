@@ -2,7 +2,7 @@ import React from "react";
 
 import { MyNavBar, MyLink } from "./styles";
 import { NavLink, Link } from "react-router-dom";
-import { logout } from "../../components/services/auth";
+import { logout } from "../../services/auth";
 
 import { Nav } from "react-bootstrap";
 

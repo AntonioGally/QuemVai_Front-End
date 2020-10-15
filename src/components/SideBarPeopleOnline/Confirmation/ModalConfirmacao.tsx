@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 import { Modal, Col, Row, Button } from "react-bootstrap";
 
-import api from "../../services/api";
-import { Token } from "../../services/auth";
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
 
 export interface Props {
   id: number;

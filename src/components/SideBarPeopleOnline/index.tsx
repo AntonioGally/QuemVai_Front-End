@@ -3,10 +3,10 @@ import { useSideBarPeopleContext } from "../../Context/ReloadSideBar";
 import { Row } from "react-bootstrap";
 import { Container, MyRowPeople } from "./styles";
 
-import { FriendsList } from "../@types";
+import { FriendsList } from "../../@types";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
 
 import ModalInfoUser from "./ModalInfoUser";
 

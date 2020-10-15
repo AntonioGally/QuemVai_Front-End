@@ -6,9 +6,9 @@ import { ErrorMessage } from "./styles";
 
 import RespondEmail from "../../RespondEmail";
 
-import api from "../../services/api";
-import { EmailRespondedAdmin } from "../../@types";
-import { getTokenAdmin } from "../../services/auth";
+import api from "../../../services/api";
+import { EmailRespondedAdmin } from "../../../@types";
+import { getTokenAdmin } from "../../../services/auth";
 
 type EmailRespondedIdForm = {
   IdEmail: number;

@@ -16,9 +16,9 @@ import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 import ConfirmDeleteFavorite from "./confirmation/ConfirmDeleteFavorite";
 import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";
 import ModalAddFavorite from "./ModalAddFavorite";
-import api from "../services/api";
-import { Token } from "../services/auth";
-import { FavoriteSpaceList } from "../@types";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
+import { FavoriteSpaceList } from "../../@types";
 
 interface Data {
   SpaceList: FavoriteSpaceList[];

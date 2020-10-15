@@ -13,10 +13,10 @@ import {
 
 import any_data3 from "../../img/icones/any_data3.jpg";
 
-import { InvitesSendedTrustList } from "../@types";
+import { InvitesSendedTrustList } from "../../@types";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
 
 interface Data {
   InvitesSended: InvitesSendedTrustList[];

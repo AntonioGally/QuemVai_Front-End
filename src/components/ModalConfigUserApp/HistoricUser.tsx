@@ -4,9 +4,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import any_data4 from "../../img/icones/any_data4.jpg";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
-import { HistoricUserList } from "../@types";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
+import { HistoricUserList } from "../../@types";
 
 import {
   MyTitleForm,

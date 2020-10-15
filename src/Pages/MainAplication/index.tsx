@@ -5,8 +5,8 @@ import { Redirect } from "react-router-dom";
 import LayoutCellApp from "../../components/LayoutCellApp";
 import LayoutDesktopApp from "../../components/LayoutDesktopApp";
 
-import api from "../../components/services/api";
-import { Token, logout } from "../../components/services/auth";
+import api from "../../services/api";
+import { Token, logout } from "../../services/auth";
 
 const MainAplication: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);

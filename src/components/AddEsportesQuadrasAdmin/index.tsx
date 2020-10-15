@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { MyContainer, ErrorMessage, SportsList } from "./styles";
 import EsportesExistentesData from "../DataList/EsportesExistentesData";
 
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
-import { ListSportsAdmin } from "../@types";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
+import { ListSportsAdmin } from "../../@types";
 
 type FormAddEsporte = {
   id_quadra: number;

@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 // import PeopleOnline from "../PeopleOnline";
 // import FooterApp from "../FooterApp";
 
-import { logout } from "../services/auth";
+import { logout } from "../../services/auth";
 
 import Development2 from "../../img/materiais/Development2.svg";
 

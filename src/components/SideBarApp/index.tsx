@@ -12,8 +12,8 @@ import {
 
 import { NavLink } from "react-router-dom";
 import { Row } from "react-bootstrap";
-import api from "../services/api";
-import { getTokenAdmin, Token } from "../services/auth";
+import api from "../../services/api";
+import { getTokenAdmin, Token } from "../../services/auth";
 
 import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";

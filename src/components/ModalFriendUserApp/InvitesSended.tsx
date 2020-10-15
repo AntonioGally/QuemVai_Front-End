@@ -12,11 +12,11 @@ import {
   CancelIcon,
 } from "./styles";
 
-import { InvitesSendedList } from "../@types";
+import { InvitesSendedList } from "../../@types";
 // import CancelarSolicitacao from "./Confirmação/CancelarSolicitacao";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
 
 interface Data {
   InvitesSended: InvitesSendedList[];

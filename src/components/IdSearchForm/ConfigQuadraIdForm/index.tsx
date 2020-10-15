@@ -5,9 +5,9 @@ import { Form, Col, Button } from "react-bootstrap";
 import { ErrorMessage } from "./styles";
 import ConfigQuadrasAdmin from "../../ConfigQuadrasAdmin";
 
-import api from "../../services/api";
-import { ConfigSpaceAdmin } from "../../@types";
-import { getTokenAdmin } from "../../services/auth";
+import api from "../../../services/api";
+import { ConfigSpaceAdmin } from "../../../@types";
+import { getTokenAdmin } from "../../../services/auth";
 
 type ConfigQuadraIdForm = {
   id: number;

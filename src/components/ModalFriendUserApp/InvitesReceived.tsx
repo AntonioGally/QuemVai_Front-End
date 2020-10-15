@@ -13,12 +13,12 @@ import {
   RefuseIcon,
 } from "./styles";
 
-import { InvitesReceivedList } from "../@types";
+import { InvitesReceivedList } from "../../@types";
 import RecusarSolicitacao from "./Confirmação/RecusarSolicitacao";
 import AceitarSolicitacao from "./Confirmação/AceitarSolicitacao";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
 
 interface Data {
   InvitesReceived: InvitesReceivedList[];

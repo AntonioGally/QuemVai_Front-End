@@ -2,10 +2,10 @@ import React from "react";
 
 // import { Container } from './styles';
 
-import Header from "../../components/Header";
-import NavBar from "../../components/NavBar";
-import FormCadastro from "../../components/FormCadastro";
-import Footer from "../../components/Footer";
+import Header from "../../FrontPage/Header";
+import NavBar from "../../FrontPage/NavBar";
+import FormCadastro from "../../FrontPage/FormCadastro";
+import Footer from "../../FrontPage/Footer";
 
 const CadastroUser: React.FC = () => {
   return (

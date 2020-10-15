@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { MyContainer, ErrorMessage, MyTable } from "./styles";
 import DeleteSport from "./DeleteSport";
 import "./ConfigQuadrasAdmin.css";
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
 import ConfigQuadraIdForm from "../IdSearchForm/ConfigQuadraIdForm";
 import ConfirmDeleteSpace from "./ConfirmDeleteSpace";
 

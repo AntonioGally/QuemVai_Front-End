@@ -1,9 +1,9 @@
 import React from "react";
 
-import Header from "../../components/Header";
-import NavBar from "../../components/NavBar";
-import InformationDocument from "../../components/InformationDocument";
-import Footer from "../../components/Footer";
+import Header from "../../FrontPage/Header";
+import NavBar from "../../FrontPage/NavBar";
+import InformationDocument from "../../FrontPage/InformationDocument";
+import Footer from "../../FrontPage/Footer";
 const Documentos: React.FC = () => {
   return (
     <div>

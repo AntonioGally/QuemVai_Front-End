@@ -6,9 +6,9 @@ import { Form, Col, Button } from "react-bootstrap";
 import { ErrorMessage, MyContainer } from "./styles";
 import ConfigEsportesAdmin from "../../ConfigEsportesAdmin";
 
-import api from "../../services/api";
-import { ConfigSportsAdmin } from "../../@types";
-import { getTokenAdmin } from "../../services/auth";
+import api from "../../../services/api";
+import { ConfigSportsAdmin } from "../../../@types";
+import { getTokenAdmin } from "../../../services/auth";
 
 type ConfigEsporteIdForm = {
   IdSport: number;

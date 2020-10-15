@@ -13,8 +13,8 @@ import "./styles.css";
 import { useForm } from "react-hook-form";
 import QuemVaiLogo2 from "../../img/logo/QuemVaiLogo2.png";
 
-import api from "../services/api";
-import { login, isAuthenticated, isAuthenticatedAdmin } from "../services/auth";
+import api from "../../services/api";
+import { login, isAuthenticated, isAuthenticatedAdmin } from "../../services/auth";
 
 export interface Props {
   show: boolean;

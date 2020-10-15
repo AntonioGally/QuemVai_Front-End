@@ -4,9 +4,9 @@ import { Table } from "react-bootstrap";
 import { MyContainer, MyWrapperTable } from "./styles";
 import EmailRespondedData from "../DataList/EmailRespondedData";
 
-import api from "../services/api";
-import { ListEmailRespondedAdmin } from "../@types";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import { ListEmailRespondedAdmin } from "../../@types";
+import { getTokenAdmin } from "../../services/auth";
 
 interface Data {
   EmailsResponded: ListEmailRespondedAdmin[];

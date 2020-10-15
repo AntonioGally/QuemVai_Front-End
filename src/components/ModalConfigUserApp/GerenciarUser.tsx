@@ -13,9 +13,9 @@ import {
 import { MyTitleForm, MyLableText, MyForm, MyButton, EditIcon } from "./styles";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
-import api from "../services/api";
-import { Token } from "../services/auth";
-import { FormConfigUser, FormConfigUserAltered } from "../@types";
+import api from "../../services/api";
+import { Token } from "../../services/auth";
+import { FormConfigUser, FormConfigUserAltered } from "../../@types";
 
 import ModalConfirmDeleteAcc from "./confirmation/ModalConfirmDeleteAcc";
 

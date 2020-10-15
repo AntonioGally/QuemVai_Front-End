@@ -4,9 +4,9 @@ import { Table } from "react-bootstrap";
 import EsportesExistentesData from "../DataList/EsportesExistentesData";
 import { MyContainer, MyWrapperTable } from "./styles";
 
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
-import { ListSportsAdmin } from "../@types";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
+import { ListSportsAdmin } from "../../@types";
 
 interface Data {
   Esportes: ListSportsAdmin[];

@@ -3,8 +3,8 @@ import { useSideBarPeopleContext } from "../../../Context/ReloadSideBar";
 import { Modal, Col, Row } from "react-bootstrap";
 import "../ModalFriendStyles.css";
 
-import api from "../../services/api";
-import { Token } from "../../services/auth";
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
 
 export interface Props {
   id: number;

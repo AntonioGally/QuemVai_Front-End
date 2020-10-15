@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Modal, Button } from "react-bootstrap";
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
 
 export interface Props {
   show: boolean;

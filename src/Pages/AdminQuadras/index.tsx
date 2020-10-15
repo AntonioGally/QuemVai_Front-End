@@ -6,10 +6,10 @@ import { MyHeader } from "./styles";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import QuadrasExistentesAdmin from "../../components/QuadrasExistentesAdmin";
 import QuadrasConfigAddLayout from "../../components/QuadrasConfigAddLayout";
-import Footer from "../../components/Footer";
+import Footer from "../../FrontPage/Footer";
 
-import api from "../../components/services/api";
-import { Token, logout } from "../../components/services/auth";
+import api from "../../services/api";
+import { Token, logout } from "../../services/auth";
 
 const Admin: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);

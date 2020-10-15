@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { Form, Col, Button } from "react-bootstrap";
 import { MyLableText, MyForm, MyButton } from "./styles";
 
-import api from "../services/api";
-import { getTokenAdmin } from "../services/auth";
+import api from "../../services/api";
+import { getTokenAdmin } from "../../services/auth";
 import EmailRespondIdForm from "../IdSearchForm/EmailRespondIdForm";
 
 export interface IdEmailResponded {

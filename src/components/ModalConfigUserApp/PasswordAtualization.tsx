@@ -7,8 +7,8 @@ import { MyLableText, MyForm, MyButton, MyTitleForm, EditIcon } from "./styles";
 import "./ModalConfigStyles.css";
 import SvgModalConfigUser from "../../img/icones/SvgModalConfigUser.png";
 
-import api from "../services/api";
-import { Token, logout, login } from "../services/auth";
+import api from "../../services/api";
+import { Token, logout, login } from "../../services/auth";
 
 type Passwords = {
   userPassword: string;
