@@ -3,9 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 import { MyHeader } from "./styles";
-import NavBarAdmin from "../../components/NavBarAdmin";
-import QuadrasExistentesAdmin from "../../components/QuadrasExistentesAdmin";
-import QuadrasConfigAddLayout from "../../components/QuadrasConfigAddLayout";
+import NavBarAdmin from "../../Desktop/components/NavBarAdmin";
+import QuadrasExistentesAdmin from "../../Desktop/components/QuadrasExistentesAdmin";
+import QuadrasConfigAddLayout from "../../Desktop/components/QuadrasConfigAddLayout";
 import Footer from "../../FrontPage/Footer";
 
 import api from "../../services/api";

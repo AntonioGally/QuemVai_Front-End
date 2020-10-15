@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 import { Redirect } from "react-router-dom";
 
-import LayoutCellApp from "../../components/LayoutCellApp";
-import LayoutDesktopApp from "../../components/LayoutDesktopApp";
+import LayoutCellApp from "../../Mobile/components/LayoutCellApp";
+import LayoutDesktopApp from "../../Desktop/components/LayoutDesktopApp";
 
 import api from "../../services/api";
 import { Token, logout } from "../../services/auth";

@@ -3,10 +3,10 @@ import { Link, Redirect } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 import { MyHeader } from "./styles";
-import NavBarAdmin from "../../components/NavBarAdmin";
-import EmailReceived from "../../components/EmailReceived";
-import EmailResponded from "../../components/EmailResponded";
-import EmailViewRespondLayout from "../../components/EmailViewRespondLayout";
+import NavBarAdmin from "../../Desktop/components/NavBarAdmin";
+import EmailReceived from "../../Desktop/components/EmailReceived";
+import EmailResponded from "../../Desktop/components/EmailResponded";
+import EmailViewRespondLayout from "../../Desktop/components/EmailViewRespondLayout";
 import Footer from "../../FrontPage/Footer";
 
 import api from "../../services/api";

@@ -4,9 +4,9 @@ import { Link, Redirect } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { MyHeader } from "./styles";
 
-import NavBarAdmin from "../../components/NavBarAdmin";
-import EsportesExistentesAdmin from "../../components/EsportesExistentesAdmin";
-import EsportesConfigAddLauout from "../../components/EsportesConfigAddLayout";
+import NavBarAdmin from "../../Desktop/components/NavBarAdmin";
+import EsportesExistentesAdmin from "../../Desktop/components/EsportesExistentesAdmin";
+import EsportesConfigAddLauout from "../../Desktop/components/EsportesConfigAddLayout";
 import Footer from "../../FrontPage/Footer";
 
 import api from "../../services/api";
