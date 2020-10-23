@@ -1,19 +1,69 @@
 import React from "react";
-import { MySearchInput } from "./styles";
+import { Form } from "react-bootstrap";
+import { MySearchInput, SearchIcon, MyRow } from "./styles";
+import { useForm } from "react-hook-form";
 import "./styles.css";
+
+import ModalSearch from "../ModalSearch";
+
+type searchBox = {
+  word: string;
+};
+
 const GoogleMaps: React.FC = () => {
+  const [modalShow, setModalShow] = React.useState(false);
+  const [auxWord, setAuxWord] = React.useState("");
+
+  const { register, handleSubmit, errors } = useForm<searchBox>();
+
+  function onSubmit(data: searchBox) {
+    setAuxWord(data.word);
+    setModalShow(true);
+  }
   return (
     <>
       <div
         className="row MyRowGoogleMaps"
         style={{ backgroundColor: "transparent", width: "100%" }}
       >
-        <div
-          className="col sm-8"
-          style={{ padding: 0, backgroundColor: "transparent" }}
-        >
-          <MySearchInput placeholder="Pesquisar" />
-        </div>
+        <MyRow>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <MySearchInput
+              placeholder="Pesquisar"
+              defaultValue={auxWord}
+              type="text"
+              name="word"
+              id="word"
+              ref={register({
+                maxLength: {
+                  value: 20,
+                  message: "Insira no máximo 20 caractéres",
+                },
+                required: {
+                  value: true,
+                  message: "Preencha o campo",
+                },
+              })}
+            />
+            <button type="submit" style={{ border: "none" }}>
+              <SearchIcon />
+            </button>
+            {errors.word && (errors.word as any).type === "maxLength" && (
+              <div className="wrapperErrorGoogleMaps">
+                <div className="text-danger">
+                  {(errors.word as any).message}
+                </div>
+              </div>
+            )}
+            {errors.word && (errors.word as any).type === "required" && (
+              <div className="wrapperErrorGoogleMaps">
+                <div className="text-danger">
+                  {(errors.word as any).message}
+                </div>
+              </div>
+            )}
+          </Form>
+        </MyRow>
         <div
           className="col MyColGoogleMaps"
           style={{ display: "none", padding: 0, maxWidth: "30%" }}
@@ -36,6 +86,15 @@ const GoogleMaps: React.FC = () => {
         className="MyMap"
         title={"teste"}
       ></iframe>
+      {modalShow ? (
+        <ModalSearch
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          wordTyped={auxWord}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };

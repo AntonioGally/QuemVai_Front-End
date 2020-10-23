@@ -59,6 +59,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
                     <Col lg={2} md={4}>
                       <CompassIconFavorite />
                     </Col>
+                    
                     <Col lg={8} md={12}>
                       <Row style={{ margin: 0 }}>
                         <TextContentFavorite>

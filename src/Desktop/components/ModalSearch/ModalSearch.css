@@ -1,0 +1,23 @@
+.WrapperModalSearch {
+  position: relative;
+  min-height: 700px;
+}
+
+.SvgModalSearch {
+  width: 320px;
+  height: 266px;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+}
+@media (max-width: 1200px) {
+  .SvgModalSearch {
+    display: none;
+  }
+}
+
+.MyColCardModalSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

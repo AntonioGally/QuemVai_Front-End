@@ -278,3 +278,40 @@ export interface EventsInfoByUf {
   SportsName: string;
   SportsDescription: string;
 }
+
+export interface SearchMain {
+  Sports: [
+    {
+      id: number;
+      name: string;
+      description: string;
+    }
+  ];
+  Users: [
+    {
+      id: number;
+      username: string;
+      photos: string;
+    }
+  ];
+  Events: [
+    {
+      id: number;
+      id_space: number;
+      id_author: number;
+      id_sport: number;
+      name_event: string;
+      event_date: string;
+      created_at: string;
+    }
+  ];
+  Spaces: [
+    {
+      id: number;
+      name: string;
+      address: string;
+      CEP: number;
+      description: string;
+    }
+  ];
+}

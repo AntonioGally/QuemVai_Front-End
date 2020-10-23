@@ -1,19 +1,26 @@
-@media (max-width:768px){
-    .MyColGoogleMaps{
-        display:unset !important;
-    }
-    .MyRowGoogleMaps{
-        position: absolute;
-        margin:90px 0 0 15px; 
-        width:100%;
-        padding:0 20px;
-    }
-}
-.MyMap{
-    border:0;
-    width: 100%;
-    min-height: 100%;
-}
-.MyRowGoogleMaps{
+@media (max-width: 768px) {
+  .MyColGoogleMaps {
+    display: unset !important;
+  }
+  .MyRowGoogleMaps {
     position: absolute;
+    margin: 90px 0 0 15px;
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+.MyMap {
+  border: 0;
+  width: 100%;
+  min-height: 100%;
+}
+.MyRowGoogleMaps {
+  position: absolute;
+}
+
+.wrapperErrorGoogleMaps {
+  background-color: var(--fontWhite);
+  padding:10px;
+  width:fit-content;
+  border-radius: 10px;
 }
