@@ -45,7 +45,7 @@ const GoogleMaps: React.FC = () => {
                 },
               })}
             />
-            <button type="submit" style={{ border: "none" }}>
+            <button type="submit" style={{ border: "none", outline: 0 }}>
               <SearchIcon />
             </button>
             {errors.word && (errors.word as any).type === "maxLength" && (

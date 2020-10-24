@@ -86,7 +86,7 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
           </div>
           <MyTitle>Pesquisa</MyTitle>
 
-          <Modal.Body style={{ padding: "30px" }}>
+          <Modal.Body style={{ padding: "30px" }} className="BodyModalSearch">
             {existPeople ? (
               <div className="WrapperCardsModalSearch">
                 <TitleCardWrapper>Pessoas</TitleCardWrapper>
@@ -128,7 +128,7 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
                   <MyCard key={information.id}>
                     <Row>
                       <Col lg={3} className="MyColCardModalSearch">
-                        <WhistleIcon />
+                        <WhistleIcon style={{ fill: "var(--fontBlack)" }} />
                       </Col>
                       <Col
                         lg={9}
@@ -142,11 +142,15 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
                           </Row>
                           <Row style={{ alignItems: "center" }}>
                             <SubTitle>Endereço: </SubTitle>
-                            <TextContent>{information.name_event}</TextContent>
+                            <TextContent>
+                              {information.EventsOwnerSpaces.address}
+                            </TextContent>
                           </Row>
                           <Row style={{ alignItems: "center" }}>
                             <SubTitle>CEP: </SubTitle>
-                            <TextContent>{information.name_event}</TextContent>
+                            <TextContent>
+                              {information.EventsOwnerSpaces.CEP}
+                            </TextContent>
                           </Row>
                         </div>
                       </Col>
@@ -165,7 +169,7 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
                   <MyCard key={information.id}>
                     <Row>
                       <Col lg={3} className="MyColCardModalSearch">
-                        <VolleyIcon />
+                        <VolleyIcon style={{ fill: "var(--fontBlack)" }} />
                       </Col>
 
                       <Col
@@ -194,7 +198,7 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
                   <MyCard key={information.id}>
                     <Row>
                       <Col lg={3} className="MyColCardModalSearch">
-                        <CompassIcon />
+                        <CompassIcon style={{ fill: "var(--fontBlack)" }} />
                       </Col>
 
                       <Col lg={6}>

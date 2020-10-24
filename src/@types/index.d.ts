@@ -303,6 +303,18 @@ export interface SearchMain {
       name_event: string;
       event_date: string;
       created_at: string;
+      EventsOwnerSpaces: {
+        id: number;
+        name: string;
+        address: string;
+        CEP: number;
+        UF: string;
+        latitude: string;
+        longitude: string;
+        description: string;
+        status: boolean;
+        isStatus: boolean;
+      };
     }
   ];
   Spaces: [
@@ -314,4 +326,23 @@ export interface SearchMain {
       description: string;
     }
   ];
+}
+
+export interface SportsFilter {
+  Sport_id: number;
+  Name_Sport: string;
+  Sport_Description: string;
+  Space_id: number;
+  Space_name: string;
+  Space_address: string;
+  Space_CEP: number;
+  Space_UF: string;
+  Space_Description: string;
+  Space_status: number;
+}
+
+export interface ExistingSportList {
+  id: number;
+  name: string;
+  description: string;
 }

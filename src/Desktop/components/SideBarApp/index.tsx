@@ -19,6 +19,7 @@ import ModalConfigUserApp from "../ModalConfigUserApp";
 import ModalFriendUserApp from "../ModalFriendUserApp";
 import ModalEvents from "../ModalEventsUserApp";
 import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
+import ModalSports from "../ModalSports";
 
 import ModalDevelopment from "../ModalDevelopment";
 
@@ -36,6 +37,7 @@ const SideBarApp: React.FC = () => {
   const [modalConfigShow, setModalConfigShow] = React.useState(false);
   const [modalEventsShow, setModalEventsShow] = React.useState(false);
   const [modalViewEvents, setModalViewEvents] = React.useState(false);
+  const [modalSportsShow, setModalSportsShow] = React.useState(false);
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
   const [modalDevelopmentShow, setModalDevelopmentShow] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
@@ -183,7 +185,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(false);
                 setQuadrasClick(false);
                 setAmigosClick(false);
-                setModalDevelopmentShow(true);
+                setModalSportsShow(true);
               }}
               className={`${esportesClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -304,6 +306,18 @@ const SideBarApp: React.FC = () => {
           }}
           idEvent={eventId}
           createdAt={createdAt}
+        />
+      ) : (
+        ""
+      )}
+      {modalSportsShow ? (
+        <ModalSports
+          show={modalSportsShow}
+          onHide={() => {
+            setModalSportsShow(false);
+            setEsportesClick(false);
+            setInicioClick(true);
+          }}
         />
       ) : (
         ""

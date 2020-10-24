@@ -1,7 +1,8 @@
-.WrapperModalSearch {
+.WrapperModalSports {
   position: relative;
 }
-.BodyModalSearch {
+
+.BodyModalSports {
   max-height: 700px;
   min-height: 700px;
   overflow-y: scroll;
@@ -9,20 +10,20 @@
   scrollbar-width: thin;
 }
 
-.BodyModalSearch::-webkit-scrollbar {
+.BodyModalSports::-webkit-scrollbar {
   width: 8px;
   display: unset !important;
   /* era pora mostrar esse scrol, mas buga o svg */
 }
-.BodyModalSearch::-webkit-scrollbar-thumb {
+.BodyModalSports::-webkit-scrollbar-thumb {
   background-color: gray;
   border-radius: 4px;
 }
-.BodyModalSearch::-webkit-scrollbar-track {
+.BodyModalSports::-webkit-scrollbar-track {
   display: none;
 }
 
-.SvgModalSearch {
+.SvgModalSports {
   width: 320px;
   height: 266px;
   position: absolute;
@@ -30,13 +31,8 @@
   z-index: 0;
 }
 @media (max-width: 1200px) {
-  .SvgModalSearch {
+  .SvgModalSports {
     display: none;
   }
 }
 
-.MyColCardModalSearch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
