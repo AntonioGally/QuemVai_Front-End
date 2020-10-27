@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 import { SportsVolleyball } from "@styled-icons/material/SportsVolleyball";
+import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
 import { Exit } from "@styled-icons/boxicons-regular/Exit";
 import { Compass } from "@styled-icons/boxicons-regular/Compass";
 import { Filter } from "@styled-icons/fa-solid/Filter";
@@ -81,6 +82,9 @@ export const VolleyIcon = styled(SportsVolleyball)`
   ${iconsStyle}
 `;
 export const ExitIcon = styled(Exit)`
+  ${iconsStyle}
+`;
+export const SearchIcon = styled(SearchAlt)`
   ${iconsStyle}
 `;
 export const CompassIcon = styled(Compass)`

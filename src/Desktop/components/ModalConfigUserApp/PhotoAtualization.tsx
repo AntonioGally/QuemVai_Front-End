@@ -32,6 +32,7 @@ const PhotoAtualization: React.FC = () => {
     var photos = "";
 
     var file = data.userPhoto[0];
+    console.log(data.userPhoto)
     var fileType = file.type;
     if (
       fileType === "image/jpeg" ||
@@ -85,7 +86,7 @@ const PhotoAtualization: React.FC = () => {
               { photos },
               config
             );
-            if (response.data["Photo updated"]) {
+            if (response.data["Photo updated"] && response.status === 200) {
               setSucesso("Foto atualizada com suceso!");
               setErros("");
               setTimeout(function () {

@@ -60,6 +60,11 @@ const ModalConfigUserApp: React.FC = () => {
       Informações sobre o local
     </Tooltip>
   );
+  const renderTooltipAdd = (props: any) => (
+    <Tooltip id="search-icon" {...props}>
+      Adicionar aos favoritos
+    </Tooltip>
+  );
 
   if (modalSpaceInfo) {
     return (
@@ -82,7 +87,13 @@ const ModalConfigUserApp: React.FC = () => {
       </div>
       <Row className="MyRowFavorites">
         <MyTitleForm style={{ margin: 0 }}>Lugares favoritos</MyTitleForm>
-        <PlusIcon onClick={() => setModalAddFavorite(true)} />
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 250, hide: 250 }}
+          overlay={renderTooltipAdd}
+        >
+          <PlusIcon onClick={() => setModalAddFavorite(true)} />
+        </OverlayTrigger>
       </Row>
 
       {!isSomething ? (

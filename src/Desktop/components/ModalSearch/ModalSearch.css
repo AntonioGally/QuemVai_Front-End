@@ -1,6 +1,25 @@
 .WrapperModalSearch {
   position: relative;
 }
+.MyScroll {
+  max-height: 600px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.MyScroll::-webkit-scrollbar {
+  width: 8px;
+  display: unset !important;
+  /* era pora mostrar esse scrol, mas buga o svg */
+}
+.MyScroll::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
+}
+.MyScroll::-webkit-scrollbar-track {
+  display: none;
+}
+
 .BodyModalSearch {
   max-height: 700px;
   min-height: 700px;
@@ -10,7 +29,7 @@
 }
 
 .BodyModalSearch::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
   display: unset !important;
   /* era pora mostrar esse scrol, mas buga o svg */
 }

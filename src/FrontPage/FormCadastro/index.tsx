@@ -31,7 +31,7 @@ const FormCadastro: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(true);
   const [auxEmail, setAuxEmail] = React.useState("");
 
-  const SubmitForm = async (data: FormCadastroUser) => {
+  const SubmitForm = async (data: FormCadastroUser) => { 
     const name = data.userName;
     const username = data.userNickName;
     const email = data.userEmail;

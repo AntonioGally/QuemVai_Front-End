@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";
+import ModalCreateEvents from "../ModalEventsUserApp/ModalCreateEvents";
+
 import {
   ArrowBackIcon,
   MyTitle,
@@ -12,9 +15,18 @@ import {
   ExitIcon,
   FilterIcon,
   ButtonFilter,
+  SearchIcon,
 } from "./styles";
 import "./ModalSports.css";
-import { Modal, Row, Col, Form, Spinner } from "react-bootstrap";
+import {
+  Modal,
+  Row,
+  Col,
+  Form,
+  Spinner,
+  Tooltip,
+  OverlayTrigger,
+} from "react-bootstrap";
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 import { SportsFilter } from "../../../@types";
@@ -49,6 +61,10 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
   const [dataSpaces, setDataSpaces] = useState<DataSpace>();
   const [filtering, setFiltering] = useState(false);
 
+  const [auxId, setAuxId] = useState(Number);
+  const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
+  const [modalCreateEvents, setModalCreateEvents] = React.useState(false);
+
   const { register, handleSubmit } = useForm<IFormInput>();
 
   useEffect(() => {
@@ -74,10 +90,35 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
       setDataSports({ SportsList: response });
     });
   }, []);
+
+  if (modalSpaceInfo) {
+    return (
+      <ModalSpaceInfo
+        show={modalSpaceInfo}
+        onHide={() => setModalSpaceInfo(false)}
+        id={auxId}
+      />
+    );
+  }
+  if (modalCreateEvents) {
+    return (
+      <ModalCreateEvents
+        show={modalCreateEvents}
+        onHide={() => setModalCreateEvents(false)}
+        onCreateEvent={() => {
+          setModalCreateEvents(false);
+          onHide();
+        }}
+        id={auxId}
+      />
+    );
+  }
+
   const onSubmitSport = async (data: IFormInput) => {
     setFiltering(true);
     setLoading(true);
     var id_sport = data.id_sport;
+
     var config = {
       headers: { "x-auth-token": Token() },
       validateStatus: function (status: any) {
@@ -85,7 +126,7 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
       },
     };
     var sportsFilter = [] as any;
-    setDataSportsInfo({ SportsList: sportsFilter });//limpando o array
+    setDataSportsInfo({ SportsList: sportsFilter }); //limpando o array
     try {
       setLoading(true);
       const response = await api.get("/api/search/uf/sport/SP", config);
@@ -108,6 +149,23 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
       setLoading(false);
     }
   };
+
+  const renderTooltipFilter = (props: any) => (
+    <Tooltip id="filter-icon" {...props}>
+      Filtrar por esportes
+    </Tooltip>
+  );
+  const renderTooltipSearch = (props: any) => (
+    <Tooltip id="search-icon" {...props}>
+      Informações do espaço
+    </Tooltip>
+  );
+  const renderTooltipExit = (props: any) => (
+    <Tooltip id="Exit-icon" {...props}>
+      Criar evento nesse espaço
+    </Tooltip>
+  );
+
   return (
     <div>
       <Modal size="lg" centered animation={true} show={show} onHide={onHide}>
@@ -148,7 +206,13 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
               </Col>
               <Col lg={1} md={1}>
                 <ButtonFilter type="submit">
-                  <FilterIcon />
+                  <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 250, hide: 250 }}
+                    overlay={renderTooltipFilter}
+                  >
+                    <FilterIcon />
+                  </OverlayTrigger>
                 </ButtonFilter>
               </Col>
             </Row>
@@ -170,22 +234,47 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
                       </Col>
 
                       <Col lg={6}>
-                        <Row style={{ alignItems: "center" }}>
+                        <Row style={{ alignItems: "center", margin: 0 }}>
                           <SubTitle>Nome: </SubTitle>
                           <TextContent>{information.Space_name}</TextContent>
                         </Row>
-                        <Row style={{ alignItems: "center" }}>
+                        <Row style={{ alignItems: "center", margin: 0 }}>
                           <SubTitle>Endereço: </SubTitle>
                           <TextContent>{information.Space_address}</TextContent>
                         </Row>
-                        <Row style={{ alignItems: "center" }}>
+                        <Row style={{ alignItems: "center", margin: 0 }}>
                           <SubTitle>CEP: </SubTitle>
                           <TextContent>{information.Space_CEP}</TextContent>
                         </Row>
                       </Col>
 
                       <Col lg={3} className="MyColCardModalSearch">
-                        <ExitIcon />
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipSearch}
+                        >
+                          <SearchIcon
+                            style={{ width: "48%", height: "48%" }}
+                            onClick={() => {
+                              setModalSpaceInfo(true);
+                              setAuxId(information.Space_id);
+                            }}
+                          />
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipExit}
+                        >
+                          <ExitIcon
+                            style={{ width: "48%", height: "48%" }}
+                            onClick={() => {
+                              setModalCreateEvents(true);
+                              setAuxId(information.Space_id);
+                            }}
+                          />
+                        </OverlayTrigger>
                       </Col>
                     </Row>
                   </MyCard>
@@ -217,7 +306,32 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
                       </Col>
 
                       <Col lg={3} className="MyColCardModalSearch">
-                        <ExitIcon />
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipSearch}
+                        >
+                          <SearchIcon
+                            style={{ width: "48%", height: "48%" }}
+                            onClick={() => {
+                              setModalSpaceInfo(true);
+                              setAuxId(information.id);
+                            }}
+                          />
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipExit}
+                        >
+                          <ExitIcon
+                            style={{ width: "48%", height: "48%" }}
+                            onClick={() => {
+                              setModalCreateEvents(true);
+                              setAuxId(information.id);
+                            }}
+                          />
+                        </OverlayTrigger>
                       </Col>
                     </Row>
                   </MyCard>

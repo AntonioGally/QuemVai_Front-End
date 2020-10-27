@@ -292,6 +292,15 @@ export interface SearchMain {
       id: number;
       username: string;
       photos: string;
+      idFriendUser: [
+        {
+          id: number;
+          status_friendships: string;
+          securityFriend: boolean;
+          id_User: number;
+          id_Friend: number;
+        }
+      ];
     }
   ];
   Events: [

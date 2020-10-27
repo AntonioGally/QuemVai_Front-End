@@ -2,7 +2,15 @@ import React from "react";
 
 import { useForm } from "react-hook-form";
 
-import { Form, Row, Col, Container, Spinner } from "react-bootstrap";
+import {
+  Form,
+  Row,
+  Col,
+  Container,
+  Spinner,
+  Tooltip,
+  OverlayTrigger,
+} from "react-bootstrap";
 import { MyLableText, MyForm, MyButton, MyTitleForm, EditIcon } from "./styles";
 import "./ModalConfigStyles.css";
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
@@ -86,6 +94,12 @@ const ModalConfigUserApp: React.FC = () => {
     }
   };
 
+  const renderTooltipEdit = (props: any) => (
+    <Tooltip id="edit-icon" {...props}>
+      Editar informações
+    </Tooltip>
+  );
+
   return (
     <div className="WrapperModalConfig">
       <div className="MySvgGerenciarUserModal">
@@ -116,7 +130,15 @@ const ModalConfigUserApp: React.FC = () => {
                         required: true,
                       })}
                     />
-                    <EditIcon onClick={() => setEditPassword(!editPassword)} />
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 250, hide: 250 }}
+                      overlay={renderTooltipEdit}
+                    >
+                      <EditIcon
+                        onClick={() => setEditPassword(!editPassword)}
+                      />
+                    </OverlayTrigger>
                   </Row>
                   {errors.userPassword &&
                     (errors.userPassword as any).type === "required" && (
@@ -154,11 +176,17 @@ const ModalConfigUserApp: React.FC = () => {
                         required: true,
                       })}
                     />
-                    <EditIcon
-                      onClick={() =>
-                        setEditConfirmPassword(!editConfirmPassword)
-                      }
-                    />
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 250, hide: 250 }}
+                      overlay={renderTooltipEdit}
+                    >
+                      <EditIcon
+                        onClick={() =>
+                          setEditConfirmPassword(!editConfirmPassword)
+                        }
+                      />
+                    </OverlayTrigger>
                   </Row>
                   {errors.userPasswordConfirm &&
                     (errors.userPasswordConfirm as any).type === "required" && (

@@ -39,23 +39,12 @@ const GoogleMaps: React.FC = () => {
                   value: 20,
                   message: "Insira no máximo 20 caractéres",
                 },
-                required: {
-                  value: true,
-                  message: "Preencha o campo",
-                },
               })}
             />
             <button type="submit" style={{ border: "none", outline: 0 }}>
               <SearchIcon />
             </button>
             {errors.word && (errors.word as any).type === "maxLength" && (
-              <div className="wrapperErrorGoogleMaps">
-                <div className="text-danger">
-                  {(errors.word as any).message}
-                </div>
-              </div>
-            )}
-            {errors.word && (errors.word as any).type === "required" && (
               <div className="wrapperErrorGoogleMaps">
                 <div className="text-danger">
                   {(errors.word as any).message}

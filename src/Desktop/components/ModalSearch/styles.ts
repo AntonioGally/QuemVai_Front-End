@@ -7,6 +7,8 @@ import { Exit } from "@styled-icons/boxicons-regular/Exit";
 import { Compass } from "@styled-icons/boxicons-regular/Compass";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 
+import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
+
 export const ArrowBackIcon = styled(ArrowBack)`
   width: 35px;
   height: 35px;
@@ -49,6 +51,9 @@ export const NameUser = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media (max-width: 1000px) {
+    margin: 5% auto 5% auto;
+  }
 `;
 
 var iconsStyle = css`
@@ -57,6 +62,10 @@ var iconsStyle = css`
   fill: var(--buttonFill);
   color: var(--buttonFill);
   cursor: pointer;
+  @media (max-width: 1000px) {
+    width: 55px;
+    height: 55px;
+  }
 `;
 
 export const AddUserIcon = styled(AddUser)`
@@ -87,5 +96,8 @@ export const ExitIcon = styled(Exit)`
   ${iconsStyle}
 `;
 export const CompassIcon = styled(Compass)`
+  ${iconsStyle}
+`;
+export const SearchIcon = styled(SearchAlt)`
   ${iconsStyle}
 `;

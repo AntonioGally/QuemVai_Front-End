@@ -9,6 +9,8 @@ import {
   Container,
   InputGroup,
   Spinner,
+  Tooltip,
+  OverlayTrigger,
 } from "react-bootstrap";
 import { MyTitleForm, MyLableText, MyForm, MyButton, EditIcon } from "./styles";
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
@@ -78,7 +80,7 @@ const ModalConfigUserApp: React.FC = () => {
         setLoading(false);
       }
     } catch (err) {
-      setLoading(false);     
+      setLoading(false);
     }
   };
 
@@ -98,6 +100,11 @@ const ModalConfigUserApp: React.FC = () => {
       setAuxEmail(informations["info"]["email"]);
     });
   }, []);
+  const renderTooltipEdit = (props: any) => (
+    <Tooltip id="edit-icon" {...props}>
+      Editar informações
+    </Tooltip>
+  );
 
   return (
     <div className="WrapperModalConfig">
@@ -129,7 +136,13 @@ const ModalConfigUserApp: React.FC = () => {
                       (errors.userName as any).type === "required" && (
                         <div className="error">O Nome é obrigatório</div>
                       )}
-                    <EditIcon onClick={() => setEditName(!editName)} />
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 250, hide: 250 }}
+                      overlay={renderTooltipEdit}
+                    >
+                      <EditIcon onClick={() => setEditName(!editName)} />
+                    </OverlayTrigger>
                   </Row>
                 </Form.Group>
               </MyForm>
@@ -151,7 +164,15 @@ const ModalConfigUserApp: React.FC = () => {
                         required: true,
                       })}
                     />
-                    <EditIcon onClick={() => setEditUsername(!editUsername)} />
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 250, hide: 250 }}
+                      overlay={renderTooltipEdit}
+                    >
+                      <EditIcon
+                        onClick={() => setEditUsername(!editUsername)}
+                      />
+                    </OverlayTrigger>
                   </Row>
                   {errors.userNickName &&
                     (errors.userNickName as any).type === "required" && (
@@ -183,7 +204,13 @@ const ModalConfigUserApp: React.FC = () => {
                         },
                       })}
                     />
-                    <EditIcon onClick={() => setEditEmail(!editEmail)} />
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 250, hide: 250 }}
+                      overlay={renderTooltipEdit}
+                    >
+                      <EditIcon onClick={() => setEditEmail(!editEmail)} />
+                    </OverlayTrigger>
                   </Row>
                   {errors.userEmail &&
                     (errors.userEmail as any).type === "required" && (
@@ -283,7 +310,15 @@ const ModalConfigUserApp: React.FC = () => {
                             required: true,
                           })}
                         />
-                        <EditIcon onClick={() => setEditNumber(!editNumber)} />
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipEdit}
+                        >
+                          <EditIcon
+                            onClick={() => setEditNumber(!editNumber)}
+                          />
+                        </OverlayTrigger>
                       </Row>
                     </Col>
                     {errors.UserNumber &&

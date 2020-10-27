@@ -69,7 +69,7 @@ const ModalFriendUserApp: React.FC = () => {
         inputIdUser.value = "";
         setTimeout(() => {
           setSucesso("");
-        }, 5000);
+        }, 3000);
       }
     } catch (err) {
       console.log(err);
