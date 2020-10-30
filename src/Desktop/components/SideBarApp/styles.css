@@ -95,6 +95,15 @@ body {
   font-family: "Poppins";
   color: var(--fontWhite);
 }
+.myRowLinksSideBarApp:hover span{
+  color: var(--buttonFill) !important;
+  transition: all 0.5s ease-in-out;
+}
+.myRowLinksSideBarApp:hover svg {
+  color: var(--buttonFill) !important;
+  fill: var(--buttonFill) !important;
+  transition: all 0.5s ease-in-out;
+}
 
 @media (max-width: 1300px) {
   .MyNotificationsContainer span {

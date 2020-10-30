@@ -20,8 +20,8 @@ import ModalFriendUserApp from "../ModalFriendUserApp";
 import ModalEvents from "../ModalEventsUserApp";
 import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
 import ModalSports from "../ModalSports";
+import ModalQuadras from "../ModalQuadras";
 
-import ModalDevelopment from "../ModalDevelopment";
 
 import { parseISO, format } from "date-fns";
 import { pt } from "date-fns/locale";
@@ -38,8 +38,8 @@ const SideBarApp: React.FC = () => {
   const [modalEventsShow, setModalEventsShow] = React.useState(false);
   const [modalViewEvents, setModalViewEvents] = React.useState(false);
   const [modalSportsShow, setModalSportsShow] = React.useState(false);
+  const [modalQuadrasShow, setModalQuadrasShow] = React.useState(false);
   const [modalFriendShow, setModalFriendShow] = React.useState(false);
-  const [modalDevelopmentShow, setModalDevelopmentShow] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(false);
 
   const [inicioClick, setInicioClick] = React.useState(true);
@@ -215,7 +215,7 @@ const SideBarApp: React.FC = () => {
                 setEventosClick(false);
                 setQuadrasClick(true);
                 setAmigosClick(false);
-                setModalDevelopmentShow(true);
+                setModalQuadrasShow(true);
               }}
               className={`${quadrasClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -225,12 +225,12 @@ const SideBarApp: React.FC = () => {
           <Row className="myRowLinksSideBarApp" style={{ marginBottom: "10%" }}>
             <div
               onClick={() => {
-                setModalFriendShow(true);
                 setInicioClick(false);
                 setEsportesClick(false);
                 setEventosClick(false);
                 setQuadrasClick(false);
                 setAmigosClick(true);
+                setModalFriendShow(true);
               }}
               className={`${amigosClick ? "SideBarAppActiveLink" : ""}`}
             >
@@ -322,12 +322,11 @@ const SideBarApp: React.FC = () => {
       ) : (
         ""
       )}
-      {modalDevelopmentShow ? (
-        <ModalDevelopment
-          show={modalDevelopmentShow}
+      {modalQuadrasShow ? (
+        <ModalQuadras
+          show={modalQuadrasShow}
           onHide={() => {
-            setModalDevelopmentShow(false);
-            setEsportesClick(false);
+            setModalQuadrasShow(false);
             setQuadrasClick(false);
             setInicioClick(true);
           }}

@@ -8,6 +8,7 @@ import {
   MyButton,
   InviteIcon,
   MyCard,
+  SearchIcon
 } from "./styles";
 import { Container, Form, Row, Col } from "react-bootstrap";
 
@@ -85,6 +86,7 @@ const ModalFriendUserApp: React.FC = () => {
             alignItems: "center",
           }}
         >
+          <SearchIcon />
           <MyTitleForm style={{ marginBottom: "4%" }}>
             Enviar solicitações
           </MyTitleForm>

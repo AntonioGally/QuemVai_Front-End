@@ -1,0 +1,40 @@
+.WrapperModalQuadras {
+  position:relative;
+}
+.SvgModalQuadras {
+  width: 320px;
+  height: 266px;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+}
+.BodyModalQuadras {
+  max-height: 700px;
+  min-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.MyColCardModalQuadras {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Scroll_Quadras {
+  max-height: 600px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.Scroll_Quadras::-webkit-scrollbar {
+  width: 8px;
+  display: unset !important;
+  /* era pora mostrar esse scrol, mas buga o svg */
+}
+.Scroll_Quadras::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
+}
+.Scroll_Quadras::-webkit-scrollbar-track {
+  display: none;
+}

@@ -39,6 +39,7 @@ const GoogleMaps: React.FC = () => {
                   value: 20,
                   message: "Insira no máximo 20 caractéres",
                 },
+                required : true,
               })}
             />
             <button type="submit" style={{ border: "none", outline: 0 }}>

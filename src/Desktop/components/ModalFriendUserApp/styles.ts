@@ -15,6 +15,8 @@ import { DeleteForever } from "@styled-icons/material/DeleteForever";
 import { PersonDelete } from "@styled-icons/evaicons-solid/PersonDelete";
 import { DoneAllOutline } from "@styled-icons/evaicons-outline/DoneAllOutline";
 
+import { SearchAlt2 } from "@styled-icons/boxicons-regular/SearchAlt2";
+
 export const MyTitleForm = styled.h3`
   margin-top: 2%;
   font-family: "Poppins";
@@ -168,4 +170,13 @@ export const RefuseIcon = styled(PersonDelete)`
   flex-shrink: 0;
   cursor: pointer;
   margin-right: 10px;
+`;
+
+export const SearchIcon = styled(SearchAlt2)`
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  color: var(--fontBlack);
+  fill: var(--fontBlack);
+  cursor: pointer;
 `;
