@@ -127,7 +127,12 @@ const ModalEventsUserApp: React.FC<Props> = ({ show, onHide }) => {
             </Row>
             <MyWrapperCards>
               {data?.SpaceList.map((information) => (
-                <MyCards key={information.id}>
+                <MyCards
+                  key={information.id}
+                  style={{
+                    display: `${!information.status ? "block" : "none"}`,
+                  }}
+                >
                   <Row
                     style={{ alignItems: "center", justifyContent: "center" }}
                   >

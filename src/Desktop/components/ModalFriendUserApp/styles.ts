@@ -17,6 +17,8 @@ import { DoneAllOutline } from "@styled-icons/evaicons-outline/DoneAllOutline";
 
 import { SearchAlt2 } from "@styled-icons/boxicons-regular/SearchAlt2";
 
+import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
+
 export const MyTitleForm = styled.h3`
   margin-top: 2%;
   font-family: "Poppins";
@@ -179,4 +181,13 @@ export const SearchIcon = styled(SearchAlt2)`
   color: var(--fontBlack);
   fill: var(--fontBlack);
   cursor: pointer;
+`;
+export const ArrowBackIcon = styled(ArrowBack)`
+  width: 35px;
+  height: 35px;
+  fill: var(--fontBlack);
+  color: var(--fontBlack);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin: 4% 0 0 5%;
 `;

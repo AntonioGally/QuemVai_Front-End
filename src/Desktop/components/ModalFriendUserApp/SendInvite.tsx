@@ -8,12 +8,21 @@ import {
   MyButton,
   InviteIcon,
   MyCard,
-  SearchIcon
+  SearchIcon,
 } from "./styles";
-import { Container, Form, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Row,
+  Col,
+  Tooltip,
+  OverlayTrigger,
+} from "react-bootstrap";
 
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";
+
+import ModalSearchFriend from "./ModalSearchFriend";
 
 type idSubmitForm = {
   idUser: number;
@@ -27,6 +36,7 @@ const ModalFriendUserApp: React.FC = () => {
   const [data, setData] = useState<Data>();
   const [erros, setErros] = React.useState("");
   const [sucesso, setSucesso] = React.useState("");
+  const [modalSearchFriend, setModalSearchFriend] = React.useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -76,6 +86,20 @@ const ModalFriendUserApp: React.FC = () => {
       console.log(err);
     }
   };
+
+  const renderTooltipSearch = (props: any) => (
+    <Tooltip id="search-icon" {...props}>
+      Procurar por NickName
+    </Tooltip>
+  );
+  if (modalSearchFriend) {
+    return (
+      <ModalSearchFriend
+        show={modalSearchFriend}
+        onHide={() => setModalSearchFriend(false)}
+      />
+    );
+  }
   return (
     <div className="WrapperModalFriends">
       <Container fluid>
@@ -86,7 +110,13 @@ const ModalFriendUserApp: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <SearchIcon />
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 250 }}
+            overlay={renderTooltipSearch}
+          >
+            <SearchIcon onClick={() => setModalSearchFriend(true)} />
+          </OverlayTrigger>
           <MyTitleForm style={{ marginBottom: "4%" }}>
             Enviar solicitações
           </MyTitleForm>

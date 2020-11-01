@@ -217,17 +217,16 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
                     key={information.id}
                     style={{
                       display: `${
+                        Number(
+                          information.idFriendUser.map((i) => {
+                            return i.id_Friend;
+                          })
+                        ) === information.id &&
                         String(
                           information.idFriendUser.map((i) => {
                             return i.status_friendships;
                           })
-                        ) !== "" &&
-                        information.id ===
-                          Number(
-                            information.idFriendUser.map((i) => {
-                              return i.id_Friend;
-                            })
-                          )
+                        ) !== ""
                           ? "none"
                           : "block"
                       }`,
@@ -355,7 +354,12 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
               <div className="WrapperCardsModalSearch MyScroll">
                 <TitleCardWrapper>Espaços</TitleCardWrapper>
                 {data?.SearchList[3].Spaces.map((information) => (
-                  <MyCard key={information.id}>
+                  <MyCard
+                    key={information.id}
+                    style={{
+                      display: `${!information.status ? "block" : "none"}`,
+                    }}
+                  >
                     <Row>
                       <Col lg={3} className="MyColCardModalSearch">
                         <CompassIcon style={{ fill: "var(--fontBlack)" }} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";
 
 import "./ModalQuadras.css";
@@ -17,18 +17,34 @@ import {
 
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
+import { ListSpaceByUF } from "../../../@types";
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
+
 export interface Props {
   show: boolean;
   onHide: any;
+}
+interface Data {
+  SpaceList: ListSpaceByUF[];
 }
 
 const ModalQuadras: React.FC<Props> = ({ show, onHide }) => {
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
   const [auxId, setAuxId] = React.useState(Number);
-  const [success, setSuccess] = React.useState("");
-  const [erros, setErros] = React.useState("");
+  const [data, setData] = React.useState<Data>();
 
-  var data = [1, 2, 3, 4, 5, 6];
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/search/uf/space/SP", {
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [AllSpaces] = responses;
+      const spaces = await AllSpaces.data;
+      setData({ SpaceList: spaces });
+    });
+  }, []);
 
   const renderTooltipSearch = (props: any) => (
     <Tooltip id="search-icon" {...props}>
@@ -60,7 +76,7 @@ const ModalQuadras: React.FC<Props> = ({ show, onHide }) => {
             <ArrowBackIcon onClick={onHide} />
           </div>
           <MyTitle>Espaços</MyTitle>
-          <div
+          {/* <div
             className="text-success"
             style={{
               fontFamily: "Poppins",
@@ -79,11 +95,11 @@ const ModalQuadras: React.FC<Props> = ({ show, onHide }) => {
             }}
           >
             {erros}
-          </div>
+          </div> */}
           <Modal.Body style={{ padding: "30px" }} className="BodyModalQuadras">
             <div className="WrapperCardsModalQuadras Scroll_Quadras">
-              {data.map((information) => (
-                <MyCard key={information}>
+              {data?.SpaceList.map((information) => (
+                <MyCard key={information.id}>
                   <Row>
                     <Col lg={3} className="MyColCardModalQuadras">
                       <CompassIcon style={{ fill: "var(--fontBlack)" }} />
@@ -92,15 +108,15 @@ const ModalQuadras: React.FC<Props> = ({ show, onHide }) => {
                     <Col lg={6}>
                       <Row style={{ alignItems: "center", margin: 0 }}>
                         <SubTitle>Nome: </SubTitle>
-                        <TextContent>Joção</TextContent>
+                        <TextContent>{information.name}</TextContent>
                       </Row>
                       <Row style={{ alignItems: "center", margin: 0 }}>
                         <SubTitle>Endereço: </SubTitle>
-                        <TextContent>Rua dos Palmitos</TextContent>
+                        <TextContent>{information.address}</TextContent>
                       </Row>
                       <Row style={{ alignItems: "center", margin: 0 }}>
                         <SubTitle>CEP: </SubTitle>
-                        <TextContent>1234567489</TextContent>
+                        <TextContent>{information.CEP}</TextContent>
                       </Row>
                     </Col>
 
@@ -114,7 +130,7 @@ const ModalQuadras: React.FC<Props> = ({ show, onHide }) => {
                           style={{ width: "48%", height: "48%" }}
                           onClick={() => {
                             setModalSpaceInfo(true);
-                            setAuxId(2);
+                            setAuxId(information.id);
                           }}
                         />
                       </OverlayTrigger>

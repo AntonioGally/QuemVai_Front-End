@@ -49,6 +49,10 @@ export const TextContent = styled.div`
   font-weight: normal;
   font-size: 18px;
   margin-left: 10px;
+  max-width:60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 var iconsStyle = css`
   width: 65px;

@@ -209,7 +209,7 @@ export interface ListSpaceByUF {
   address: string;
   CEP: number;
   description: string;
-  status: false;
+  status: boolean;
   space: [
     {
       id: number;
@@ -224,7 +224,7 @@ export interface SpaceInformationByID {
   address: string;
   CEP: number;
   description: string;
-  status: false;
+  status: boolean;
   space: [
     {
       id: number;
@@ -239,7 +239,7 @@ export interface SpaceInformationEventeCreate {
   address: string;
   CEP: number;
   description: string;
-  status: false;
+  status: boolean;
   space: [
     {
       id: number;
@@ -333,6 +333,7 @@ export interface SearchMain {
       address: string;
       CEP: number;
       description: string;
+      status: boolean;
     }
   ];
 }
@@ -354,4 +355,23 @@ export interface ExistingSportList {
   id: number;
   name: string;
   description: string;
+}
+
+export interface SearchPeople {
+  Users: [
+    {
+      id: number;
+      username: string;
+      photos: string;
+      idFriendUser: [
+        {
+          id: number;
+          status_friendships: string;
+          securityFriend: boolean;
+          id_User: number;
+          id_Friend: number;
+        }
+      ];
+    }
+  ];
 }

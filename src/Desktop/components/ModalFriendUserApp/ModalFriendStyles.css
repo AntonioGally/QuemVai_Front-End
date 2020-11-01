@@ -97,23 +97,70 @@
 }
 .BackButtonConfirmation {
   background-color: #ed461d;
-  color:var(--fontBlack);
-  padding:10px;
+  color: var(--fontBlack);
+  padding: 10px;
   font-family: "Poppins";
-  font-size:15px;
-  width:100%;
-  border-bottom-left-radius:10px;
+  font-size: 15px;
+  width: 100%;
+  border-bottom-left-radius: 10px;
   text-align: center;
   cursor: pointer;
 }
 .AddButtonConfirmation {
   background-color: #33d7a3;
-  color:var(--fontBlack);
-  padding:10px;
+  color: var(--fontBlack);
+  padding: 10px;
   font-family: "Poppins";
-  font-size:15px;
-  width:100%;
-  border-bottom-right-radius:10px;
+  font-size: 15px;
+  width: 100%;
+  border-bottom-right-radius: 10px;
   text-align: center;
   cursor: pointer;
+}
+
+.BodyModalSearchFriend {
+  max-height: 700px;
+  min-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+
+.BodyModalSearchFriend::-webkit-scrollbar {
+  width: 12px;
+  display: unset !important;
+  /* era pora mostrar esse scrol, mas buga o svg */
+}
+.BodyModalSearchFriend::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
+}
+.BodyModalSearchFriend::-webkit-scrollbar-track {
+  display: none;
+}
+.SvgModalSearchFriends {
+  width: 320px;
+  height: 266px;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+}
+@media (max-width: 1200px) {
+  .SvgModalSearchFriends {
+    display: none;
+  }
+}
+.ButtonSubmitModalSearchFriend {
+  border: none;
+  outline: 0;
+  background-color: transparent;
+  width: fit-content;
+}
+.ButtonSubmitModalSearchFriend :hover {
+  border: none;
+  outline: 0;
+}
+.ButtonSubmitModalSearchFriend :active {
+  border: none;
+  outline: 0;
 }

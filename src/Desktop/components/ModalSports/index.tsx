@@ -284,7 +284,12 @@ const ModalSports: React.FC<Props> = ({ show, onHide }) => {
               <div>
                 <TitleCardWrapper>Espaços</TitleCardWrapper>
                 {dataSpaces?.SpaceList.map((information) => (
-                  <MyCard key={information.id}>
+                  <MyCard
+                    key={information.id}
+                    style={{
+                      display: `${!information.status ? "block" : "none"}`,
+                    }}
+                  >
                     <Row>
                       <Col lg={3} className="MyColCardModalSearch">
                         <CompassIcon style={{ fill: "var(--fontBlack)" }} />

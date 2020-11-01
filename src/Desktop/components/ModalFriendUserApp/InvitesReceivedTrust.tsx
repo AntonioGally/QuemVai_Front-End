@@ -73,7 +73,7 @@ const ModalFriendUserApp: React.FC<Props> = ({ called }) => {
         ) : (
           <div>
             {data?.InvitesReceived.map((information) => (
-              <MyCardInvitesSended>
+              <MyCardInvitesSended key={information.id_User}>
                 <Row
                   style={{
                     margin: 0,
