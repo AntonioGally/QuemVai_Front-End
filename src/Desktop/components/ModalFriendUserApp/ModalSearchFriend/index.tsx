@@ -31,7 +31,10 @@ const ModalSearchFriend: React.FC<Props> = ({ show, onHide }) => {
   return (
     <div>
       <Modal size="lg" centered animation={true} show={show} onHide={onHide}>
-        <div className="WrapperModalFriends" style={{ padding: 0 }}>
+        <div
+          className="WrapperModalFriends"
+          style={{ padding: 0, height: "unset" }}
+        >
           <div className="SvgModalSearchFriends">
             <img
               src={SvgModalConfigUser}

@@ -198,6 +198,7 @@ const ModalConfigUserApp: React.FC = () => {
         <ModalAddFavorite
           show={modalAddFavorite}
           onHide={() => setModalAddFavorite(false)}
+          alredyAdd={data?.SpaceList}
         />
       ) : (
         ""

@@ -19,6 +19,8 @@ import { SearchAlt2 } from "@styled-icons/boxicons-regular/SearchAlt2";
 
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 
+import { AddUser } from "@styled-icons/entypo/AddUser";
+
 export const MyTitleForm = styled.h3`
   margin-top: 2%;
   font-family: "Poppins";
@@ -190,4 +192,24 @@ export const ArrowBackIcon = styled(ArrowBack)`
   cursor: pointer;
   flex-shrink: 0;
   margin: 4% 0 0 5%;
+`;
+
+export const AddUserIcon = styled(AddUser)`
+  width: 65px;
+  height: 65px;
+  fill: var(--buttonFill);
+  color: var(--buttonFill);
+  cursor: pointer;
+  @media (max-width: 1000px) {
+    width: 55px;
+    height: 55px;
+  }
+`;
+
+export const MyCardLisPeople = styled.div`
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);
+  background-color: var(--fontWhite);
+  padding: 10px;
+  margin: 3%;
+  border-radius: 15px;
 `;
