@@ -43,9 +43,12 @@ const ModalConfigUserApp: React.FC = () => {
       }),
     ]).then(async (responses) => {
       const [PushSpaceList] = responses;
-      // eslint-disable-next-line
-      PushSpaceList.data != "" ? setIsSomething(true) : setIsSomething(false);
       const informations = await PushSpaceList.data;
+      if (Array(informations)[0].length === 0) {
+        setIsSomething(false);
+      } else {
+        setIsSomething(true);
+      }
       setData({ SpaceList: informations });
     });
   }, [reload]);
@@ -197,8 +200,13 @@ const ModalConfigUserApp: React.FC = () => {
       {modalAddFavorite ? (
         <ModalAddFavorite
           show={modalAddFavorite}
-          onHide={() => setModalAddFavorite(false)}
+          onHide={() => {
+            setModalAddFavorite(false);
+          }}
           alredyAdd={data?.SpaceList}
+          addedPlace={() => {
+            setReload(reload + 1);
+          }}
         />
       ) : (
         ""

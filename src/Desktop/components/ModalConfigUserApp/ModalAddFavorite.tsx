@@ -26,13 +26,19 @@ export interface Props {
   show: boolean;
   onHide: any;
   alredyAdd: any;
+  addedPlace?: any;
 }
 
 interface Data {
   SpaceList: ListSpaceByUF[];
 }
 
-const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, alredyAdd }) => {
+const ModalConfigUserApp: React.FC<Props> = ({
+  show,
+  onHide,
+  alredyAdd,
+  addedPlace,
+}) => {
   const [data, setData] = useState<Data>();
   const [modalSpaceInfo, setModalSpaceInfo] = React.useState(false);
   const [auxId, setAuxId] = React.useState(Number);
@@ -57,46 +63,51 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide, alredyAdd }) => {
       }),
     ]).then(async (responses) => {
       const [PushSpacesList] = responses;
-      // eslint-disable-next-line
       const informations = await PushSpacesList.data;
-
+      var aux_list = informations as [];
       var aux_alredy_add = alredyAdd as [];
 
       if (aux_alredy_add.length === 0) {
         setData({ SpaceList: informations });
       } else {
-        var countAllSpaces = 0;
-        var countAlredyAdd = 0;
-        var aux_list = informations as [];
-
-        while (countAllSpaces < informations.length) {
-          while (countAlredyAdd < alredyAdd.length) {
-            if (
-              alredyAdd[countAlredyAdd]["Space_id"] !==
-              informations[countAllSpaces].id
-            ) {
-              countAllSpaces += 1;
-            } else {
-              aux_list.splice(countAllSpaces, 1);
-              countAllSpaces += 1;
-              countAlredyAdd += 1;
+        for (let it2 in aux_alredy_add) {
+          for (let it1 in informations) {
+            if (alredyAdd[it2]["Space_id"] === informations[it1]["id"]) {
+              aux_list.splice(it1 as any, 1);
             }
           }
-          countAllSpaces += 1;
         }
         setData({ SpaceList: aux_list });
       }
     });
   }, [alredyAdd]);
-
-  const handleStar = async (id: number) => {};
+  const handleStar = async (id: number) => {
+    try {
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+      const response = await api.post(
+        `/api/favorites/add/place/${id}`,
+        {},
+        config
+      );
+      if (response.data["Favorite Place added"] && response.status === 200) {
+        addedPlace();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (modalSpaceInfo) {
     return (
       <ModalSpaceInfo
         show={modalSpaceInfo}
         onHide={() => setModalSpaceInfo(false)}
-        id={auxId}        
+        id={auxId}
       />
     );
   }
