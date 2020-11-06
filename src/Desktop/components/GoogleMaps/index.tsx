@@ -53,22 +53,7 @@ const GoogleMaps: React.FC = () => {
               </div>
             )}
           </Form>
-        </MyRow>
-        <div
-          className="col MyColGoogleMaps"
-          style={{ display: "none", padding: 0, maxWidth: "30%" }}
-        >
-          <img
-            src=""
-            alt="usuario"
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              float: "right",
-            }}
-          />
-        </div>
+        </MyRow>        
       </div>
 
       <iframe

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSideBarPeopleContext } from "../../../../Context/ReloadSideBar";
 
 import { Modal, Col, Row, Button } from "react-bootstrap";
 
@@ -12,7 +13,8 @@ export interface Props {
   show: boolean;
   onHide: any;
   onAddTrust?: any;
-  onRefuseTrust? : any;
+  onRefuseTrust?: any;
+  onRemoveFriend?: any;
 }
 
 const Confirmation: React.FC<Props> = ({
@@ -22,8 +24,10 @@ const Confirmation: React.FC<Props> = ({
   show,
   onHide,
   onAddTrust,
-  onRefuseTrust
+  onRefuseTrust,
+  onRemoveFriend
 }) => {
+  const { reloadPeople, setReloadPeople } = useSideBarPeopleContext();
   const [erros, setErros] = React.useState("");
   const [sucesso, setSucesso] = React.useState("");
   const [removeTrust, setRemoveTrust] = React.useState(false);
@@ -59,7 +63,8 @@ const Confirmation: React.FC<Props> = ({
         config
       );
       if (response.status === 200 && response.data["Deleted"] === true) {
-        onRefuseTrust()
+        setReloadPeople(reloadPeople + 1);
+        onRefuseTrust();
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao remover a confiança");
@@ -109,7 +114,8 @@ const Confirmation: React.FC<Props> = ({
         config
       );
       if (response.status === 200 && response.data["Removed"] === true) {
-        window.location.reload();
+        setReloadPeople(reloadPeople + 1);
+        onRemoveFriend();
       }
       if (response.status === 400) {
         setErros("Houve algum problema ao remover a amizade");

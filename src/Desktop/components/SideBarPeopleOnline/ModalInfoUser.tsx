@@ -39,6 +39,9 @@ const SideBarPeopleOnline: React.FC<Props> = ({
   show,
   onHide,
 }) => {
+
+
+
   const [trustFriend, setTrustFriend] = React.useState(false);
   const [removeTrust, setRemoveTrust] = React.useState(false);
   const [removeFriend, setRemoveFriend] = React.useState(false);
@@ -183,6 +186,7 @@ const SideBarPeopleOnline: React.FC<Props> = ({
             setRemoveTrust(false);
             onHide();
           }}
+          
         />
       ) : (
         ""
@@ -209,6 +213,10 @@ const SideBarPeopleOnline: React.FC<Props> = ({
           typeModal="removeFriend"
           show={removeFriend}
           onHide={() => setRemoveFriend(false)}
+          onRemoveFriend={() => {
+            setRemoveFriend(false);
+            onHide();
+          }}
         />
       ) : (
         ""

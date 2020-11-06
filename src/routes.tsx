@@ -10,6 +10,8 @@ import AdminQuadras from "./Pages/AdminQuadras";
 import AdminEmail from "./Pages/AdminEmail";
 import AdminEsportes from "./Pages/AdminEsportes";
 
+import Friends from "./Pages/Mobile/Friends";
+
 import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 
 import {
@@ -60,6 +62,7 @@ const src: React.FC = () => {
         <Route path="/CadastroUser" component={CadastroUser} />
         <Route path="/ForgotPassword" component={ForgotPassword} />
         <PrivateRouteUser path="/MainAplication" component={MainAplication} />
+        <PrivateRouteUser path="/MobileFriends" component={Friends} />
         <PrivateRouteAdmin path="/AdminQuadras" component={AdminQuadras} />
         <PrivateRouteAdmin path="/AdminEmail" component={AdminEmail} />
         <PrivateRouteAdmin path="/AdminEsportes" component={AdminEsportes} />

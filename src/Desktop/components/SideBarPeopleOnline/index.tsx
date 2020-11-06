@@ -80,6 +80,7 @@ const SideBarPeopleOnline: React.FC = () => {
           cell={cellPhoneNumber}
           show={modalShow}
           onHide={() => setModalShow(false)}
+          
         />
       ) : (
         ""
