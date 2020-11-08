@@ -40,9 +40,6 @@ const Friends: React.FC = () => {
           <FooterApp />
         </footer>
       </div>
-      {/* <div className="Desktop">
-        <Redirect to="/MainAplication" />
-      </div> */}
     </>
   );
 };

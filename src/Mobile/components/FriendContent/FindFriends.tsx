@@ -6,7 +6,7 @@ import ButtonOrange from "../../elements/ButtonOrange";
 
 const FriendContent: React.FC = () => {
   return (
-    <div>
+    <div style={{ marginTop: "40px" }}>
       <TitleFindFriends>
         <span>Encontre uma pessoa pelo seu código de amigo ;)</span>
         <span className="SpanNameUserFindFriendsMobile">
@@ -16,7 +16,7 @@ const FriendContent: React.FC = () => {
       </TitleFindFriends>
       <Form style={{ position: "relative", marginTop: "40px" }}>
         <MySearchInput
-          placeholder="Pesquisar"
+          placeholder="Digite o código de amigo..."
           type="text"
           name="word"
           id="word"
