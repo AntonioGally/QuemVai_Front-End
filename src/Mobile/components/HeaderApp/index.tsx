@@ -8,6 +8,7 @@ import { Token } from "../../../services/auth";
 
 const HeaderApp: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState(String);
+  const [isValid, setIsValid] = React.useState(Boolean);
 
   useEffect(() => {
     Promise.all([
@@ -20,7 +21,15 @@ const HeaderApp: React.FC = () => {
     ]).then(async (responses) => {
       const [PushUserInformation] = responses;
       const results = await PushUserInformation.data;
-      setUserPhoto(results["info"]["photos"]);
+      if (results["info"]) {
+        setUserPhoto(results["info"]["photos"]);
+        setIsValid(true);
+        //to fazendo isso pq quando o token n era válido,
+        //o site fazia logOut mas mesmo assim chegava a entrar no HeaderApp,
+        //então eu to fazendo dupla verificação
+      } else {
+        setIsValid(false);
+      }
     });
   }, []);
   return (
@@ -53,11 +62,15 @@ const HeaderApp: React.FC = () => {
         </Form>
       </Col>
       <Col style={{ maxWidth: "30%", textAlign: "center" }}>
-        <img
-          src={userPhoto}
-          alt="User"
-          style={{ borderRadius: "50%", width: "55px", height: "55px" }}
-        />
+        {isValid ? (
+          <img
+            src={userPhoto}
+            alt="User"
+            style={{ borderRadius: "50%", width: "55px", height: "55px" }}
+          />
+        ) : (
+          ""
+        )}
       </Col>
     </MyRow>
   );

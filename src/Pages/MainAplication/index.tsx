@@ -27,13 +27,16 @@ const MainAplication: React.FC = () => {
       }
     });
   }, []);
-  if (!isValid) {
-    return <Redirect to="/" />;
-  }
   return (
     <div style={{ overflow: "hidden" }}>
-      <LayoutCellApp />
-      <LayoutDesktopApp />
+      {!isValid ? (
+        <Redirect to="/" />
+      ) : (
+        <>
+          <LayoutCellApp />
+          <LayoutDesktopApp />
+        </>
+      )}
     </div>
   );
 };

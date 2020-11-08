@@ -29,7 +29,7 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
   const [passwordClick, setPasswordClick] = React.useState(Boolean);
   const [photoClick, setPhotoClick] = React.useState(Boolean);
   const [historicClick, setHistoricClick] = React.useState(Boolean);
-  const [favoritClick, setFavoritClick] = React.useState(Boolean);;
+  const [favoritClick, setFavoritClick] = React.useState(Boolean);
 
   return (
     <div>

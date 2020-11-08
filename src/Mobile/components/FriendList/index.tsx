@@ -12,7 +12,7 @@ import {
 const FriendList: React.FC = () => {
   var auxList = [1, 2, 3, 4, 5, 6];
   return (
-    <div style={{ height: "30vh" }}>
+    <div style={{ height: "25vh", overflow:"hidden" }}>
       <Container>
         <Title>Amigos</Title>
         <UserList>

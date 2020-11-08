@@ -30,7 +30,9 @@ const FooterApp: React.FC = () => {
         }}
       >
         <Col style={{ textAlign: "center" }}>
-          <HomeIcon />
+          <Link to="/MainAplication">
+            <HomeIcon />
+          </Link>
         </Col>
 
         <Col style={{ textAlign: "center" }}>

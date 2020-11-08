@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 20px;
+
   background-color: var(--primary);
   height: 100%;
 `;
@@ -9,13 +9,14 @@ export const Title = styled.div`
   font-family: "Poppins";
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
-  margin-top: 15px;
+  font-size: 24px; 
+  padding: 10px;
 `;
 export const UserList = styled.div`
   display: flex;
   overflow-x: auto;
   margin-top: 20px;
+  padding-left:10px;
 `;
 export const WrapperUser = styled.div`
   margin-right: 15px;

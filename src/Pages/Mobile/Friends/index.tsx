@@ -30,14 +30,20 @@ const Friends: React.FC = () => {
   if (!isValid) {
     return <Redirect to="/" />;
   }
+
   return (
-    <div style={{ overflow: "hidden" }}>
-      <FriendList />
-      <FriendContent />
-      <footer style={{ height: "10vh", position: "relative" }}>
-        <FooterApp />
-      </footer>
-    </div>
+    <>
+      <div style={{ overflow: "hidden", padding: 0 }} className="CellPhone">
+        <FriendList />
+        <FriendContent />
+        <footer style={{ height: "10vh", position: "relative" }}>
+          <FooterApp />
+        </footer>
+      </div>
+      {/* <div className="Desktop">
+        <Redirect to="/MainAplication" />
+      </div> */}
+    </>
   );
 };
 
