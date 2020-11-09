@@ -57,6 +57,8 @@ export const TitleFindFriends = styled.div`
     font-weight: 600;
     font-size: 14px;
     color: var(--fontBlack);
+  }
+  > a > span {
     &.SpanNameUserFindFriendsMobile {
       margin-left: 5px;
       color: blue;
@@ -138,7 +140,7 @@ export const MyButtonConfirm = styled.div`
   }
   background-color: var(--primary);
   border-radius: 3px;
-  margin-left:5px;
+  margin-left: 5px;
   padding: 0px 10px 0px 10px;
   text-align: center;
 `;

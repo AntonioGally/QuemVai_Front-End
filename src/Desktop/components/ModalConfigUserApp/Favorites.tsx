@@ -79,6 +79,20 @@ const ModalConfigUserApp: React.FC = () => {
       />
     );
   }
+  if (modalAddFavorite) {
+    return (
+      <ModalAddFavorite
+        show={modalAddFavorite}
+        onHide={() => {
+          setModalAddFavorite(false);
+        }}
+        alredyAdd={data?.SpaceList}
+        addedPlace={() => {
+          setReload(reload + 1);
+        }}
+      />
+    );
+  }
 
   return (
     <div
@@ -197,7 +211,7 @@ const ModalConfigUserApp: React.FC = () => {
       ) : (
         ""
       )}
-      {modalAddFavorite ? (
+      {/* {modalAddFavorite ? (
         <ModalAddFavorite
           show={modalAddFavorite}
           onHide={() => {
@@ -210,7 +224,7 @@ const ModalConfigUserApp: React.FC = () => {
         />
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 };

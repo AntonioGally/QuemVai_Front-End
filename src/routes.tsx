@@ -11,6 +11,7 @@ import AdminEmail from "./Pages/AdminEmail";
 import AdminEsportes from "./Pages/AdminEsportes";
 
 import Friends from "./Pages/Mobile/Friends";
+import SearchByName from "./Pages/Mobile/SearchByName";
 
 import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 
@@ -63,6 +64,7 @@ const src: React.FC = () => {
         <Route path="/ForgotPassword" component={ForgotPassword} />
         <PrivateRouteUser path="/MainAplication" component={MainAplication} />
         <PrivateRouteUser path="/MobileFriends" component={Friends} />
+        <PrivateRouteUser path="/MobileSearchByName" component={SearchByName} />
         <PrivateRouteAdmin path="/AdminQuadras" component={AdminQuadras} />
         <PrivateRouteAdmin path="/AdminEmail" component={AdminEmail} />
         <PrivateRouteAdmin path="/AdminEsportes" component={AdminEsportes} />
