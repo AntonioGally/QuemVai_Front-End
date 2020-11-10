@@ -1,12 +1,11 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import { Container, NavBar, MyLink } from "./styles";
-import { logout } from "../../../services/auth";
 
 import FormAccount from "./FormAccount";
 import PasswordAtualization from "./PasswordAtualization";
 import PhotoAtualization from "./PhotoAtualization";
 import Historic from "./Historic";
+import Favorites from "./Favorites";
 
 const AccountContent: React.FC = () => {
   const [click1, setClick1] = React.useState(true);
@@ -14,11 +13,6 @@ const AccountContent: React.FC = () => {
   const [click3, setClick3] = React.useState(false);
   const [click4, setClick4] = React.useState(false);
   const [click5, setClick5] = React.useState(false);
-  const [click6, setClick6] = React.useState(false);
-  if (click6) {
-    logout();
-    return <Redirect to="/" />;
-  }
   return (
     <Container>
       <NavBar>
@@ -92,15 +86,13 @@ const AccountContent: React.FC = () => {
             Favoritos
           </span>
         </MyLink>
-        <MyLink>
-          <span onClick={() => setClick6(true)}>Sair</span>
-        </MyLink>
       </NavBar>
       <div>
         {click1 ? <FormAccount /> : ""}
         {click2 ? <PasswordAtualization /> : ""}
         {click3 ? <PhotoAtualization /> : ""}
         {click4 ? <Historic /> : ""}
+        {click5 ? <Favorites /> : ""}
       </div>
     </Container>
   );
