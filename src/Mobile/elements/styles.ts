@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MyButton = styled.div`
+export const MyButton = styled.button`
   width: 100%;
   padding: 10px 30px 10px 30px;
   color: var(--fontWhite);
@@ -11,8 +11,9 @@ export const MyButton = styled.div`
   font-size: 13px;
   border-radius: 8px;
   text-align: center;
+  border:none;
 `;
-export const MyButtonFill = styled.div`
+export const MyButtonFill = styled.button`
   width: 100%;
   padding: 10px 30px 10px 30px;
   color: #f06543;

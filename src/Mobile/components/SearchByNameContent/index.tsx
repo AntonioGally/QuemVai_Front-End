@@ -22,7 +22,7 @@ const SearchByNameContent: React.FC = () => {
     return <Redirect to="/MobileFriends" />;
   }
   return (
-    <div style={{ height: "90vh" }}>
+    <div style={{ height: "100vh" }}>
       <div>
         <ArrowBackIcon onClick={() => setBackIcon(true)} />
       </div>

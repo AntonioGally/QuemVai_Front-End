@@ -5,9 +5,9 @@ import { Redirect } from "react-router-dom";
 import api from "../../../services/api";
 import { Token, logout } from "../../../services/auth";
 
-import SearchByNameContent from "../../../Mobile/components/SearchByNameContent";
-
-const SearchByName: React.FC = () => {
+import AccountHeader from "../../../Mobile/components/AccountHeader";
+import AccountContent from "../../../Mobile/components/AccountContent";
+const ManagementUser: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);
   useEffect(() => {
     Promise.all([
@@ -31,9 +31,10 @@ const SearchByName: React.FC = () => {
   }
   return (
     <div>
-      <SearchByNameContent />     
+      <AccountHeader />
+      <AccountContent />
     </div>
   );
 };
 
-export default SearchByName;
+export default ManagementUser;

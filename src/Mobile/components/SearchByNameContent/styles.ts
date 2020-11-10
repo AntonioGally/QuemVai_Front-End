@@ -64,8 +64,8 @@ export const AddUserIcon = styled(AddUser)`
   color: var(--primary);
 `;
 export const CardContainer = styled.div`
-  max-height: 40vh;
-  min-height: 40vh;
+  max-height: 50vh;
+  min-height: 50vh;
   overflow-y: auto;
 `;
 export const MyCard = styled.div`

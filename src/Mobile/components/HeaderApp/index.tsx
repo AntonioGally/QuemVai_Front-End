@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { Redirect } from "react-router-dom";
 import { MyRow, MySearchInput, SearchIcon } from "./styles";
 import { Col, Form } from "react-bootstrap";
 
@@ -9,6 +9,7 @@ import { Token } from "../../../services/auth";
 const HeaderApp: React.FC = () => {
   const [userPhoto, setUserPhoto] = React.useState(String);
   const [isValid, setIsValid] = React.useState(Boolean);
+  const [userClick, setUserClick] = React.useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -32,6 +33,9 @@ const HeaderApp: React.FC = () => {
       }
     });
   }, []);
+  if (userClick) {
+    return <Redirect to="/MobileManegementUser" />;
+  }
   return (
     <MyRow>
       <Col style={{ maxWidth: "70%" }}>
@@ -67,6 +71,7 @@ const HeaderApp: React.FC = () => {
             src={userPhoto}
             alt="User"
             style={{ borderRadius: "50%", width: "55px", height: "55px" }}
+            onClick={() => setUserClick(true)}
           />
         ) : (
           ""
