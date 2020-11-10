@@ -10,9 +10,9 @@ var footerIcon = css`
   height: 65%;
   width: 65%;
   cursor: pointer;
-  
-  color: var(--buttonFill);
-  fill: var(--buttonFill);
+
+  color: var(--fontWhite);
+  fill: var(--fontWhite);  
 `;
 
 export const HomeIcon = styled(HomeAlt)`
@@ -30,4 +30,3 @@ export const SpacesIcon = styled(Compass)`
 export const FriendsIcon = styled(UserFriends)`
   ${footerIcon};
 `;
-

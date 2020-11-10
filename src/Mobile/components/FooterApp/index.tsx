@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-
+import "./FooterApp.css";
 import {
   HomeIcon,
   SportsIcon,
@@ -19,6 +19,7 @@ const FooterApp: React.FC = () => {
         position: "absolute",
         left: 0,
         right: 0,
+        backgroundColor: "var(--primary)",
       }}
     >
       <Row
@@ -30,29 +31,33 @@ const FooterApp: React.FC = () => {
         }}
       >
         <Col style={{ textAlign: "center" }}>
-          <Link to="/MainAplication">
+          <NavLink to="/MainAplication" activeClassName="FooterAppMobileActive">
             <HomeIcon />
-          </Link>
+          </NavLink>
         </Col>
 
         <Col style={{ textAlign: "center" }}>
-          <Link to="/MobileSports">
+          <NavLink to="/MobileSports" activeClassName="FooterAppMobileActive">
             <SportsIcon />
-          </Link>
+          </NavLink>
         </Col>
 
         <Col style={{ textAlign: "center" }}>
-          <Link to="/MobileFriends">
+          <NavLink to="/MobileFriends" activeClassName="FooterAppMobileActive">
             <FriendsIcon />
-          </Link>
+          </NavLink>
         </Col>
 
         <Col style={{ textAlign: "center" }}>
-          <EventsIcon />
+          <NavLink to="/MobileEvents" activeClassName="FooterAppMobileActive">
+            <EventsIcon />
+          </NavLink>
         </Col>
 
         <Col style={{ textAlign: "center" }}>
-          <SpacesIcon />
+          <NavLink to="/MobileSpaces" activeClassName="FooterAppMobileActive">
+            <SpacesIcon />
+          </NavLink>
         </Col>
       </Row>
     </div>

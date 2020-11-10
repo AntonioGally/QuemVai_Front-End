@@ -14,13 +14,11 @@ import Friends from "./Pages/Mobile/Friends";
 import SearchByName from "./Pages/Mobile/SearchByName";
 import ManagementUser from "./Pages/Mobile/ManagementUser";
 import Sports from "./Pages/Mobile/Sports";
+import Spaces from "./Pages/Mobile/Spaces";
 
 import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 
-import {
-  isAuthenticatedAdmin,
-  isAuthenticated,
-} from "./services/auth";
+import { isAuthenticatedAdmin, isAuthenticated } from "./services/auth";
 const src: React.FC = () => {
   const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
     return (
@@ -67,8 +65,12 @@ const src: React.FC = () => {
         <PrivateRouteUser path="/MainAplication" component={MainAplication} />
         <PrivateRouteUser path="/MobileFriends" component={Friends} />
         <PrivateRouteUser path="/MobileSearchByName" component={SearchByName} />
-        <PrivateRouteUser path="/MobileManegementUser" component={ManagementUser} />
+        <PrivateRouteUser
+          path="/MobileManegementUser"
+          component={ManagementUser}
+        />
         <PrivateRouteUser path="/MobileSports" component={Sports} />
+        <PrivateRouteUser path="/MobileSpaces" component={Spaces} />
         <PrivateRouteAdmin path="/AdminQuadras" component={AdminQuadras} />
         <PrivateRouteAdmin path="/AdminEmail" component={AdminEmail} />
         <PrivateRouteAdmin path="/AdminEsportes" component={AdminEsportes} />

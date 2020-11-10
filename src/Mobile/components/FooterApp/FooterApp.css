@@ -1,0 +1,4 @@
+.FooterAppMobileActive svg {
+  color: var(--buttonFill);
+  fill: var(--buttonFill);
+}
