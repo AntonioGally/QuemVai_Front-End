@@ -77,7 +77,7 @@ export const TextContent = styled.div`
   font-size: 18px;
   margin-left: 10px;
   max-width: 60%;
-  white-space: nowrap;
+  white-pace: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

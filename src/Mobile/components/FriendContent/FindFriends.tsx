@@ -36,12 +36,7 @@ const FriendContent: React.FC = () => {
           className="d-flex justify-content-center"
           style={{ marginTop: "40px" }}
         >
-          <button
-            type="submit"
-            style={{ border: "none", outline: 0, padding: 0, borderRadius: 8 }}
-          >
-            <Buttons text="Encontrar" />
-          </button>
+          <Buttons text="Encontrar" submit/>
         </div>
 
         {/* {errors.word && (errors.word as any).type === "maxLength" && (

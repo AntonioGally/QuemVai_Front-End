@@ -30,8 +30,8 @@ const SearchByName: React.FC = () => {
     return <Redirect to="/" />;
   }
   return (
-    <div>
-      <SearchByNameContent />     
+    <div className="CellPhone">      
+      <SearchByNameContent />
     </div>
   );
 };

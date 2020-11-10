@@ -36,7 +36,9 @@ const FooterApp: React.FC = () => {
         </Col>
 
         <Col style={{ textAlign: "center" }}>
-          <SportsIcon />
+          <Link to="/MobileSports">
+            <SportsIcon />
+          </Link>
         </Col>
 
         <Col style={{ textAlign: "center" }}>

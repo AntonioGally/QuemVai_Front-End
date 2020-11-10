@@ -5,9 +5,10 @@ import { Redirect } from "react-router-dom";
 import api from "../../../services/api";
 import { Token, logout } from "../../../services/auth";
 
-import AccountHeader from "../../../Mobile/components/AccountHeader";
-import AccountContent from "../../../Mobile/components/AccountContent";
-const ManagementUser: React.FC = () => {
+import SportsContent from "../../../Mobile/components/SportsContent";
+import FooterApp from "../../../Mobile/components/FooterApp";
+
+const Sports: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);
   useEffect(() => {
     Promise.all([
@@ -30,11 +31,15 @@ const ManagementUser: React.FC = () => {
     return <Redirect to="/" />;
   }
   return (
-    <div className="CellPhone">
-      <AccountHeader />
-      <AccountContent />
+    <div className="CellPhone" style={{ padding: 0 }}>
+      <div style={{ height: "90vh", overflow: "hidden" }}>
+        <SportsContent />
+      </div>
+      <footer style={{ height: "10vh", position: "relative" }}>
+        <FooterApp />
+      </footer>
     </div>
   );
 };
 
-export default ManagementUser;
+export default Sports;
