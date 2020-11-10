@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Pencil } from "@styled-icons/boxicons-regular/Pencil";
+
+import { Search } from "@styled-icons/boxicons-regular/Search";
+import { Trash } from "@styled-icons/boxicons-regular/Trash";
+import { Map } from "@styled-icons/boxicons-regular/Map";
+import { SportsVolleyball } from "@styled-icons/material-rounded/SportsVolleyball";
 
 export const Container = styled.div`
   width: 100%;
@@ -81,4 +86,64 @@ export const EditIcon = styled(Pencil)`
   fill: var(--fontBlack);
   flex-shrink: 0;
   margin-left: 10px;
+`;
+
+export const MyTitleCard = styled.div`
+  font-family: "Poppins";
+  font-weight: 700;
+  font-size: 25px;
+  color: var(--fontBlack);
+  margin-bottom: 10px;
+  max-width: 165.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const SearchIconCard = styled(Search)`
+  width: 20px;
+  height: 20px;
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+  margin-left: 15px;
+  margin-top: -5px;
+  cursor: pointer;
+`;
+
+var HistoricIcons = css`
+  width: 25px;
+  height: 25px;
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+  &.IconModalHistoricInfo {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+export const MyTextCard = styled.div`
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--fontBlack);
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const PlaceIcon = styled(Map)`
+  ${HistoricIcons};
+  margin-right: 10px;
+`;
+export const SportIconCard = styled(SportsVolleyball)`
+  ${HistoricIcons};
+  margin-right: 10px;
+`;
+export const TrashIcon = styled(Trash)`
+  width: 20px;
+  height: 20px;
+  fill: red;
+  flex-shrink: 0;
+  cursor: pointer;
 `;

@@ -5,6 +5,8 @@ import { logout } from "../../../services/auth";
 
 import FormAccount from "./FormAccount";
 import PasswordAtualization from "./PasswordAtualization";
+import PhotoAtualization from "./PhotoAtualization";
+import Historic from "./Historic";
 
 const AccountContent: React.FC = () => {
   const [click1, setClick1] = React.useState(true);
@@ -97,6 +99,8 @@ const AccountContent: React.FC = () => {
       <div>
         {click1 ? <FormAccount /> : ""}
         {click2 ? <PasswordAtualization /> : ""}
+        {click3 ? <PhotoAtualization /> : ""}
+        {click4 ? <Historic /> : ""}
       </div>
     </Container>
   );
