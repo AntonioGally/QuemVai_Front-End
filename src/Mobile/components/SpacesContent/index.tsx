@@ -12,7 +12,6 @@ import {
   SubTitle,
   TextContent,
   SearchIcon,
-  ExitIcon,
 } from "./styles";
 
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";

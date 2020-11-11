@@ -8,6 +8,9 @@ import { Token, logout } from "../../../services/auth";
 import FriendList from "../../../Mobile/components/FriendList";
 import FriendContent from "../../../Mobile/components/FriendContent";
 import FooterApp from "../../../Mobile/components/FooterApp";
+
+import FriendListProvider from "../../../Context/ReloadFriendListMobile";
+
 const Friends: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);
   useEffect(() => {
@@ -34,11 +37,13 @@ const Friends: React.FC = () => {
   return (
     <>
       <div style={{ overflow: "hidden", padding: 0 }} className="CellPhone">
-        <FriendList />
-        <FriendContent />
-        <footer style={{ height: "10vh", position: "relative" }}>
-          <FooterApp />
-        </footer>
+        <FriendListProvider>
+          <FriendList />
+          <FriendContent />
+          <footer style={{ height: "10vh", position: "relative" }}>
+            <FooterApp />
+          </footer>
+        </FriendListProvider>
       </div>
     </>
   );

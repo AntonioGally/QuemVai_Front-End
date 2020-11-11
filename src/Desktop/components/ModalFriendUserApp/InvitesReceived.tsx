@@ -27,7 +27,7 @@ export interface Props {
   called: any;
 }
 
-const ModalFriendUserApp: React.FC<Props> = ({called}) => {
+const ModalFriendUserApp: React.FC<Props> = ({ called }) => {
   const [data, setData] = useState<Data>();
   const [auxID, setAuxID] = useState(Number);
   const [auxName, setAuxName] = useState("");
@@ -51,7 +51,7 @@ const ModalFriendUserApp: React.FC<Props> = ({called}) => {
       }
       setData({ InvitesReceived: invites });
     });
-  }, [reload,called]);
+  }, [reload, called]);
 
   return (
     <div className="WrapperModalFriends">

@@ -1,8 +1,10 @@
 import React from "react";
-import { Modal, Row, Col } from "react-bootstrap";
+import { Modal, Row } from "react-bootstrap";
 
 import api from "../../../../services/api";
 import { Token } from "../../../../services/auth";
+
+import Buttons from "../../../elements/Buttons";
 
 export interface Props {
   id: number;
@@ -12,7 +14,7 @@ export interface Props {
   onHide: any;
 }
 
-const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => {
+const Confirmacao: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => {
   const [erros, setErros] = React.useState("");
   const handleClickTrust = async () => {
     try {
@@ -71,7 +73,7 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
         <Modal.Body style={{ padding: 0, overflow: "hidden" }}>
           {isTrust ? (
             <p style={{ padding: 20, textAlign: "justify" }}>
-              Você deseja <b className="text-danger">EXCLUIR</b> a solicitação
+              Você deseja <b className="text-danger">RECUSAR</b> a solicitação
               de confiabilidade do usuário <b className="text-danger">{name}</b>{" "}
               de id <b className="text-danger">{id}</b> ?
             </p>
@@ -85,19 +87,25 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
 
           <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
           <Row style={{ width: "100%", margin: 0 }}>
-            <Col lg={6} md={12} style={{ padding: 0 }}>
-              <div onClick={onHide} className="BackButtonConfirmation">
-                Cancelar
-              </div>
-            </Col>
-            <Col lg={6} md={12} style={{ padding: 0 }}>
+            <Row style={{ width: "100%", margin: 0, justifyContent: "center" }}>
               <div
+                style={{ width: "80%" }}
                 onClick={!isTrust ? handleClick : handleClickTrust}
-                className="AddButtonConfirmation"
               >
-                Excluir
+                <Buttons text="Recusar" />
               </div>
-            </Col>
+            </Row>
+            <Row
+              style={{
+                width: "100%",
+                margin: "15px 0",
+                justifyContent: "center",
+              }}
+            >
+              <div style={{ width: "80%" }} onClick={onHide}>
+                <Buttons text="Cancelar" fill />
+              </div>
+            </Row>
           </Row>
         </Modal.Body>
       </Modal>
@@ -105,4 +113,4 @@ const Confirmação: React.FC<Props> = ({ id, name, isTrust, show, onHide }) => 
   );
 };
 
-export default Confirmação;
+export default Confirmacao;

@@ -33,6 +33,7 @@ const ModalSearchFriend: React.FC<Props> = ({ word }) => {
       const response = await PushSearchList.data;
 
       if (Array(response[1]["Users"])[0].length > 0) {
+        setErros("");
       } else {
         setErros("Não existem pessoas com esse apelido");
       }

@@ -106,7 +106,10 @@ const ModalFriendUserApp: React.FC<Props> = ({ called }) => {
                     onClick={() => handleClick(information.id_Friend)}
                   />
                 </Row>
-                <div className="text-danger" style={{ fontSize: "20px" }}>
+                <div
+                  className="text-danger"
+                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                >
                   {erros}
                 </div>
               </MyCardInvitesSended>

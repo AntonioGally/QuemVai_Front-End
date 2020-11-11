@@ -1,4 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import { useFriendListContext } from "../../../Context/ReloadFriendListMobile";
+
+import { FriendsList } from "../../../@types";
+
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
 
 import {
   Container,
@@ -9,27 +16,47 @@ import {
   WrapperUser,
 } from "./styles";
 
+interface Data {
+  GetFriends: FriendsList[];
+}
+
 const FriendList: React.FC = () => {
-  var auxList = [1, 2, 3, 4, 5, 6];
+  const { reload } = useFriendListContext();
+  const [data, setData] = useState<Data>();
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/user/friends", {
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [AllFriends] = responses;
+      const friends = await AllFriends.data;
+      setData({ GetFriends: friends });
+    });
+  }, [reload]);
+  function testeClick(lista : any) {
+    console.log(lista)
+  } 
   return (
-    <div style={{ height: "25vh", overflow:"hidden" }}>
+    <div style={{ height: "25vh", overflow: "hidden" }}>
       <Container>
-        <Title>Amigos</Title>
+        <Title>Amigos</Title>        
         <UserList>
-          {auxList.map((informations) => (
-            <WrapperUser key={informations}>
+          {data?.GetFriends.map((information) => (
+            <WrapperUser key={information.id_Friend}>
               <UserButton>
                 <img
-                  src="https://quemvai.blob.core.windows.net/fotos/d88a262f-df82-9aca-0dcd-e2b59e542a5a.jpg"
+                  src={information.photos}
                   alt="FriendUser"
                   style={{
                     borderRadius: "50%",
                     width: "70px",
                     height: "70px",
                   }}
+                  onClick={() => testeClick(information)}
                 />
               </UserButton>
-              <NameUser>Fulano {informations}</NameUser>
+              <NameUser>{information.username}</NameUser>
             </WrapperUser>
           ))}
         </UserList>
