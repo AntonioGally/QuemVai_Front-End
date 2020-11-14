@@ -21,6 +21,7 @@
     "react-hook-form": "^6.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "socket.io-client": "^3.0.1",
     "styled-components": "^5.1.1",
     "styled-icons": "^10.16.0",
     "typescript": "3.8.3"
@@ -56,6 +57,7 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/reactstrap": "^8.5.0",
+    "@types/socket.io-client": "^1.4.34",
     "@types/styled-components": "^5.1.2",
     "@types/typescript": "^2.0.0"
   }

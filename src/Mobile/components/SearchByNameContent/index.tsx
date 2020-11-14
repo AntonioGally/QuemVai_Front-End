@@ -1,23 +1,33 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
-import { Form, Row } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import any_data2 from "../../../img/icones/any_data2.svg";
 import {
   TitleFindFriends,
   MySearchInput,
   SearchIcon,
   ArrowBackIcon,
-  CardContainer,
-  MyCard,
-  NameUser,
-  AddUserIcon,
 } from "./styles";
 
 import Buttons from "../../elements/Buttons";
+import ListPeople from "./ListPeople";
+
+type wordSubmited = {
+  nameUser: string;
+};
 
 const SearchByNameContent: React.FC = () => {
-  var aux_list = [1, 2, 3, 4, 5, 6];
-  const [filter, setFilter] = React.useState(true);
+  const { register, handleSubmit, errors } = useForm<wordSubmited>();
+  const [existingPeople, setExistingPeople] = React.useState(false);
+  const [word, setWord] = React.useState("");
   const [backIcon, setBackIcon] = React.useState(false);
+
+  function submitFormHandle(data: wordSubmited) {
+    setExistingPeople(true);
+    setWord(data.nameUser);
+  }
+
   if (backIcon) {
     return <Redirect to="/MobileFriends" />;
   }
@@ -30,21 +40,25 @@ const SearchByNameContent: React.FC = () => {
         <TitleFindFriends style={{ textAlign: "center" }}>
           <span>Encontre uma pessoa pelo seu apelido ;)</span>
         </TitleFindFriends>
-        <Form style={{ position: "relative", marginTop: "40px" }}>
+        <Form
+          style={{ position: "relative", marginTop: "40px" }}
+          onSubmit={handleSubmit(submitFormHandle)}
+        >
           <MySearchInput
             placeholder="Digite o apelido que deseja pesquisar..."
             type="text"
-            name="word"
-            id="word"
-            // ref={register({
-            //   maxLength: {
-            //     value: 20,
-            //     message: "Insira no máximo 20 caractéres",
-            //   },
-            //   required: true,
-            // })}
+            name="nameUser"
+            id="nameUser"
+            ref={register({
+              required: {
+                value: true,
+                message: "Preencha o campo",
+              },
+            })}
           />
-
+          {errors.nameUser && (errors.nameUser as any).type === "required" && (
+            <div className="error">{(errors.nameUser as any).message}</div>
+          )}
           <SearchIcon />
           <div
             className="d-flex justify-content-center"
@@ -52,37 +66,19 @@ const SearchByNameContent: React.FC = () => {
           >
             <Buttons text="Encontrar" submit />
           </div>
-
-          {/* {errors.word && (errors.word as any).type === "maxLength" && (
-                <div className="wrapperErrorGoogleMaps">
-                  <div className="text-danger">
-                    {(errors.word as any).message}
-                  </div>
-                </div>
-              )} */}
         </Form>
+        {existingPeople ? (
+          <ListPeople word={word} />
+        ) : (
+          <div className="text-center">
+            <img
+              src={any_data2}
+              alt="Nothing"
+              style={{ width: "90%", height: "90%" }}
+            />
+          </div>
+        )}
       </div>
-      {filter ? (
-        <CardContainer>
-          {aux_list.map((information) => (
-            <MyCard key={information}>
-              <Row style={{ margin: 0, alignItems: "center" }}>
-                <img
-                  src="https://quemvai.blob.core.windows.net/fotos/d88a262f-df82-9aca-0dcd-e2b59e542a5a.jpg"
-                  alt="User"
-                  style={{ height: "50px", width: "50px", borderRadius: "50%" }}
-                />
-
-                <NameUser>Mário Sérgio Cortela {information}</NameUser>
-
-                <AddUserIcon />
-              </Row>
-            </MyCard>
-          ))}
-        </CardContainer>
-      ) : (
-        ""
-      )}
     </div>
   );
 };

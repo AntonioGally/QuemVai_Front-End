@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-
-import { MyCardLisPeople, NameUser, AddUserIcon } from "../styles";
-import { Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
-
-import { SearchMain } from "../../../../@types";
-import api from "../../../../services/api";
-import { Token } from "../../../../services/auth";
+import { Row } from "react-bootstrap";
+import { CardContainer, MyCard, NameUser, AddUserIcon } from "./styles";
+import { SearchMain } from "../../../@types";
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
 
 interface Data {
   UserList: SearchMain[];
@@ -14,11 +12,12 @@ export interface Props {
   word: String;
 }
 
-const ModalSearchFriend: React.FC<Props> = ({ word }) => {
+const SearchByNameContent: React.FC<Props> = ({ word }) => {
   const [success, setSuccess] = React.useState("");
   const [erros, setErros] = React.useState("");
   const [reload, setReload] = React.useState(Number);
   const [data, setData] = React.useState<Data>();
+
   useEffect(() => {
     Promise.all([
       api.post(
@@ -77,69 +76,43 @@ const ModalSearchFriend: React.FC<Props> = ({ word }) => {
     }
   };
 
-  const renderTooltipAdd = (props: any) => (
-    <Tooltip id="filter-icon" {...props}>
-      Adicionar usuário
-    </Tooltip>
-  );
-
   return (
     <div>
-      <div
-        className="text-success"
-        style={{
-          fontFamily: "Poppins",
-          fontSize: "25px",
-          marginLeft: "9%",
-        }}
-      >
-        {success}
-      </div>
-      <div
-        className="text-danger"
-        style={{
-          fontFamily: "Poppins",
-          fontSize: "25px",
-          marginLeft: "9%",
-        }}
-      >
-        {erros}
-      </div>
-      {data?.UserList[1].Users.map((information) => (
-        <MyCardLisPeople key={information.id}>
-          <Row>
-            <Col lg={3} className="MyColCardModalSearch">
+      <CardContainer>
+        <div
+          className="text-success"
+          style={{
+            fontFamily: "Poppins",
+          }}
+        >
+          {success}
+        </div>
+        <div
+          className="text-danger"
+          style={{
+            fontFamily: "Poppins",
+          }}
+        >
+          {erros}
+        </div>
+        {data?.UserList[1].Users.map((information) => (
+          <MyCard key={information.id}>
+            <Row style={{ margin: 0, alignItems: "center" }}>
               <img
                 src={information.photos}
                 alt="User"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  borderRadius: "50%",
-                }}
+                style={{ height: "50px", width: "50px", borderRadius: "50%" }}
               />
-            </Col>
-            <Col
-              lg={6}
-              className="MyColCardModalSearch"
-              style={{ justifyContent: "flex-start" }}
-            >
+
               <NameUser>{information.username}</NameUser>
-            </Col>
-            <Col lg={3} className="MyColCardModalSearch">
-              <OverlayTrigger
-                placement="top"
-                delay={{ show: 250, hide: 250 }}
-                overlay={renderTooltipAdd}
-              >
-                <AddUserIcon onClick={() => addUserHandler(information.id)} />
-              </OverlayTrigger>
-            </Col>
-          </Row>
-        </MyCardLisPeople>
-      ))}
+
+              <AddUserIcon onClick={() => addUserHandler(information.id)} />
+            </Row>
+          </MyCard>
+        ))}
+      </CardContainer>
     </div>
   );
 };
 
-export default ModalSearchFriend;
+export default SearchByNameContent;
