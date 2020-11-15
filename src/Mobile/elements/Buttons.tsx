@@ -28,7 +28,7 @@ const elements: React.FC<Props> = ({ text, fill, submit }) => {
     } else {
       return (
         <div>
-          <MyButtonFill>{text}</MyButtonFill>
+          <MyButtonFill type="button">{text}</MyButtonFill>
         </div>
       );
     }
@@ -38,7 +38,7 @@ const elements: React.FC<Props> = ({ text, fill, submit }) => {
       {submit ? (
         <MyButton type="submit">{text}</MyButton>
       ) : (
-        <MyButton>{text}</MyButton>
+        <MyButton type="button">{text}</MyButton>
       )}
     </div>
   );

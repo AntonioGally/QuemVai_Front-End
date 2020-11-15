@@ -1,15 +1,18 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
 
 import api from "../../../../services/api";
 import { Token, logout } from "../../../../services/auth";
+
+import { Modal, Row } from "react-bootstrap";
+
+import Buttons from "../../../elements/Buttons";
 
 export interface Props {
   show: boolean;
   onHide: any;
 }
 
-const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
+const Confirmation: React.FC<Props> = ({ show, onHide }) => {
   const [erros, setErros] = React.useState("");
 
   const DeleteAccount = async () => {
@@ -36,27 +39,32 @@ const ModalConfigUserApp: React.FC<Props> = ({ show, onHide }) => {
 
   return (
     <div>
-      <Modal size="sm" centered show={show} onHide={onHide}>
-        <Modal.Header closeButton>
-          <Modal.Title>Deletar conta</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Certeza que você deseja deletar sua conta?</p>
+      <Modal size="sm" centered animation={true} show={show} onHide={onHide}>
+        <Modal.Body style={{ padding: 0, overflow: "hidden" }}>
+          <p style={{ padding: 20, textAlign: "justify" }}>
+            Certeza que você deseja deletar sua conta?
+          </p>
           <div style={{ fontFamily: "Poppins", color: "red" }}>{erros}</div>
+          <Row style={{ width: "100%", margin: 0, justifyContent: "center" }}>
+            <div style={{ width: "80%" }} onClick={DeleteAccount}>
+              <Buttons text="Deletar" />
+            </div>
+          </Row>
+          <Row
+            style={{
+              width: "100%",
+              margin: "15px 0",
+              justifyContent: "center",
+            }}
+          >
+            <div style={{ width: "80%" }} onClick={onHide}>
+              <Buttons text="Cancelar" fill />
+            </div>
+          </Row>
         </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="success" onClick={onHide}>
-            Cancelar
-          </Button>
-          <Button variant="danger" onClick={DeleteAccount}>
-            Deletar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
 };
 
-export default ModalConfigUserApp;
+export default Confirmation;

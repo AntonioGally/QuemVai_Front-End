@@ -64,6 +64,7 @@ const ModalConfigUserApp: React.FC = () => {
           var newToken = response.data[" New token"];
           login(newToken);
           setSucesso("Senha atualizada com sucesso!");
+          setErros("");
 
           var userPasswordInput = document.getElementById(
             "userPassword"

@@ -65,6 +65,7 @@ const ModalConfigUserApp: React.FC = () => {
       );
       if (response.status === 200) {
         setSucesso("Dados atualizados com sucesso!");
+        setErros("");
         setLoading(false);
         setEditName(true);
         setEditUsername(true);
@@ -113,200 +114,60 @@ const ModalConfigUserApp: React.FC = () => {
       </div>
       <Container fluid style={{ marginTop: "10%" }}>
         <MyTitleForm>Suas informações</MyTitleForm>
-        <Form onSubmit={handleSubmit(FormSubmitConfigUser)}>
-          <Row style={{ marginBottom: "4%" }}>
-            <Col md={12} lg={6}>
-              <MyLableText> Nome </MyLableText>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <Row className="MyRowForm">
-                    <Form.Control
-                      readOnly={editName}
-                      className="MyInputForm"
-                      type="text"
-                      name="userName"
-                      id="userName"
-                      placeholder="ex.: Robson da Silva"
-                      defaultValue={data?.PushInformations.info.name}
-                      ref={register({
-                        required: true,
-                      })}
-                    />
-                    {errors.userName &&
-                      (errors.userName as any).type === "required" && (
-                        <div className="error">O Nome é obrigatório</div>
-                      )}
-                    <OverlayTrigger
-                      placement="top"
-                      delay={{ show: 250, hide: 250 }}
-                      overlay={renderTooltipEdit}
-                    >
-                      <EditIcon onClick={() => setEditName(!editName)} />
-                    </OverlayTrigger>
-                  </Row>
-                </Form.Group>
-              </MyForm>
-            </Col>
-            <Col md={12} lg={6}>
-              <MyLableText> Apelido </MyLableText>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <Row className="MyRowForm">
-                    <Form.Control
-                      readOnly={editUsername}
-                      className="MyInputForm"
-                      type="text"
-                      name="userNickName"
-                      id="userNickName"
-                      placeholder="ex.: RobSilva"
-                      defaultValue={data?.PushInformations.info.username}
-                      ref={register({
-                        required: true,
-                      })}
-                    />
-                    <OverlayTrigger
-                      placement="top"
-                      delay={{ show: 250, hide: 250 }}
-                      overlay={renderTooltipEdit}
-                    >
-                      <EditIcon
-                        onClick={() => setEditUsername(!editUsername)}
-                      />
-                    </OverlayTrigger>
-                  </Row>
-                  {errors.userNickName &&
-                    (errors.userNickName as any).type === "required" && (
-                      <div className="error">O NickName é obrigatório</div>
-                    )}
-                </Form.Group>
-              </MyForm>
-            </Col>
-          </Row>
-          <Row style={{ marginBottom: "4%" }}>
-            <Col md={12} lg={6}>
-              <MyLableText> Email </MyLableText>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <Row className="MyRowForm">
-                    <Form.Control
-                      readOnly={editEmail}
-                      className="MyInputForm"
-                      type="email"
-                      name="userEmail"
-                      id="userEmail"
-                      placeholder="ex.: robson@gmail.com"
-                      defaultValue={data?.PushInformations.info.email}
-                      ref={register({
-                        required: true,
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                          message: "Insira um email válido",
-                        },
-                      })}
-                    />
-                    <OverlayTrigger
-                      placement="top"
-                      delay={{ show: 250, hide: 250 }}
-                      overlay={renderTooltipEdit}
-                    >
-                      <EditIcon onClick={() => setEditEmail(!editEmail)} />
-                    </OverlayTrigger>
-                  </Row>
-                  {errors.userEmail &&
-                    (errors.userEmail as any).type === "required" && (
-                      <div className="error">O Email é obrigatório</div>
-                    )}
-                  {errors.userEmail &&
-                    (errors.userEmail as any).type === "pattern" && (
-                      <div className="error">
-                        {(errors.userEmail as any).message}
-                      </div>
-                    )}
-                </Form.Group>
-              </MyForm>
-            </Col>
-            <Col md={12} lg={6}>
-              <div className="row" style={{ margin: 0 }}>
-                <MyLableText>Telefone</MyLableText>
-              </div>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <InputGroup>
-                    <Col md={2} style={{ padding: 0 }}>
-                      <Form.Control
-                        readOnly={editNumber}
-                        className="MyInputForm"
-                        type="text"
-                        name="userDDD"
-                        id="userDDD"
-                        placeholder="01"
-                        defaultValue={data?.PushInformations.info.DDD}
-                        ref={register({
-                          pattern: {
-                            value: /^[0-9]+$/i,
-                            message: "Insira um número válido",
-                          },
-                          max: {
-                            value: 3,
-                            message: "Insira no máximo 3 números",
-                          },
-                          min: {
-                            value: 2,
-                            message: "Insira no mínimo 2 números",
-                          },
-                          required: true,
-                        })}
-                      />
-
-                      {errors.userDDD &&
-                        (errors.userDDD as any).type === "pattern" && (
-                          <div className="error">
-                            {(errors.userDDD as any).message}
-                          </div>
-                        )}
-                      {errors.userDDD &&
-                        (errors.userDDD as any).type === "max" && (
-                          <div className="error">
-                            {(errors.userDDD as any).message}
-                          </div>
-                        )}
-                      {errors.userDDD &&
-                        (errors.userDDD as any).type === "min" && (
-                          <div className="error">
-                            {(errors.userDDD as any).message}
-                          </div>
-                        )}
-                      {errors.userDDD &&
-                        (errors.userDDD as any).type === "required" && (
-                          <div className="error">O DDD é obrigatório</div>
-                        )}
-                    </Col>
-                    <Col style={{ padding: 0 }} md={10}>
+        {!data ? (
+          <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
+            <Spinner animation="border" />
+          </div>
+        ) : (
+          <>
+            <Form onSubmit={handleSubmit(FormSubmitConfigUser)}>
+              <Row style={{ marginBottom: "4%" }}>
+                <Col md={12} lg={6}>
+                  <MyLableText> Nome </MyLableText>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
                       <Row className="MyRowForm">
                         <Form.Control
-                          readOnly={editNumber}
+                          readOnly={editName}
                           className="MyInputForm"
                           type="text"
-                          name="UserNumber"
-                          id="UserNumber"
-                          placeholder="12345678"
-                          style={{ width: "76%" }}
-                          defaultValue={
-                            data?.PushInformations.info.cellPhoneNumber
-                          }
+                          name="userName"
+                          id="userName"
+                          placeholder="ex.: Robson da Silva"
+                          defaultValue={data?.PushInformations.info.name}
                           ref={register({
-                            pattern: {
-                              value: /^[0-9]+$/i,
-                              message: "Insira um número válido",
-                            },
-                            max: {
-                              value: 10,
-                              message: "Insira no máximo 10 números",
-                            },
-                            min: {
-                              value: 8,
-                              message: "Insira no mínimo 8 números",
-                            },
+                            required: true,
+                          })}
+                        />
+                        {errors.userName &&
+                          (errors.userName as any).type === "required" && (
+                            <div className="error">O Nome é obrigatório</div>
+                          )}
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipEdit}
+                        >
+                          <EditIcon onClick={() => setEditName(!editName)} />
+                        </OverlayTrigger>
+                      </Row>
+                    </Form.Group>
+                  </MyForm>
+                </Col>
+                <Col md={12} lg={6}>
+                  <MyLableText> Apelido </MyLableText>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
+                      <Row className="MyRowForm">
+                        <Form.Control
+                          readOnly={editUsername}
+                          className="MyInputForm"
+                          type="text"
+                          name="userNickName"
+                          id="userNickName"
+                          placeholder="ex.: RobSilva"
+                          defaultValue={data?.PushInformations.info.username}
+                          ref={register({
                             required: true,
                           })}
                         />
@@ -316,109 +177,257 @@ const ModalConfigUserApp: React.FC = () => {
                           overlay={renderTooltipEdit}
                         >
                           <EditIcon
-                            onClick={() => setEditNumber(!editNumber)}
+                            onClick={() => setEditUsername(!editUsername)}
                           />
                         </OverlayTrigger>
                       </Row>
-                    </Col>
-                    {errors.UserNumber &&
-                      (errors.UserNumber as any).type === "pattern" && (
-                        <div className="error">
-                          {(errors.UserNumber as any).message}
-                        </div>
-                      )}
-                    {errors.UserNumber &&
-                      (errors.UserNumber as any).type === "max" && (
-                        <div className="error">
-                          {(errors.UserNumber as any).message}
-                        </div>
-                      )}
-                    {errors.UserNumber &&
-                      (errors.UserNumber as any).type === "min" && (
-                        <div className="error">
-                          {(errors.UserNumber as any).message}
-                        </div>
-                      )}
-                    {errors.UserNumber &&
-                      (errors.UserNumber as any).type === "required" && (
-                        <div className="error">O número é obrigatório</div>
-                      )}
-                  </InputGroup>
-                </Form.Group>
-              </MyForm>
-              <Row>
-                {loading ? <Spinner animation="border" /> : ""}
-
-                <div
-                  className="text-danger"
-                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
-                >
-                  {erros}
-                </div>
-                <div
-                  className="text-success"
-                  style={{ fontFamily: "Poppins", fontSize: "20px" }}
-                >
-                  {sucesso}
-                </div>
+                      {errors.userNickName &&
+                        (errors.userNickName as any).type === "required" && (
+                          <div className="error">O NickName é obrigatório</div>
+                        )}
+                    </Form.Group>
+                  </MyForm>
+                </Col>
               </Row>
-            </Col>
-          </Row>
-          <Row
-            style={{
-              justifyContent: "flex-end",
-              marginTop: "7%",
-              alignItems: "center",
-            }}
-          >
-            <Col md={6} lg={4}>
-              <MyForm className="firstColumn">
-                <Form.Group>
-                  <Row className="MyRowForm">
-                    <MyLableText style={{ marginRight: "8%" }}>
-                      {" "}
-                      ID{" "}
-                    </MyLableText>
-                    <Form.Control
-                      className="MyInputFormID"
-                      type="text"
-                      id="userId"
-                      defaultValue={data?.PushInformations.info.id}
-                      readOnly
-                    />
+              <Row style={{ marginBottom: "4%" }}>
+                <Col md={12} lg={6}>
+                  <MyLableText> Email </MyLableText>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
+                      <Row className="MyRowForm">
+                        <Form.Control
+                          readOnly={editEmail}
+                          className="MyInputForm"
+                          type="email"
+                          name="userEmail"
+                          id="userEmail"
+                          placeholder="ex.: robson@gmail.com"
+                          defaultValue={data?.PushInformations.info.email}
+                          ref={register({
+                            required: true,
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                              message: "Insira um email válido",
+                            },
+                          })}
+                        />
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 250 }}
+                          overlay={renderTooltipEdit}
+                        >
+                          <EditIcon onClick={() => setEditEmail(!editEmail)} />
+                        </OverlayTrigger>
+                      </Row>
+                      {errors.userEmail &&
+                        (errors.userEmail as any).type === "required" && (
+                          <div className="error">O Email é obrigatório</div>
+                        )}
+                      {errors.userEmail &&
+                        (errors.userEmail as any).type === "pattern" && (
+                          <div className="error">
+                            {(errors.userEmail as any).message}
+                          </div>
+                        )}
+                    </Form.Group>
+                  </MyForm>
+                </Col>
+                <Col md={12} lg={6}>
+                  <div className="row" style={{ margin: 0 }}>
+                    <MyLableText>Telefone</MyLableText>
+                  </div>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
+                      <InputGroup>
+                        <Col md={2} style={{ padding: 0 }}>
+                          <Form.Control
+                            readOnly={editNumber}
+                            className="MyInputForm"
+                            type="text"
+                            name="userDDD"
+                            id="userDDD"
+                            placeholder="01"
+                            defaultValue={data?.PushInformations.info.DDD}
+                            ref={register({
+                              pattern: {
+                                value: /^[0-9]+$/i,
+                                message: "Insira um número válido",
+                              },
+                              max: {
+                                value: 3,
+                                message: "Insira no máximo 3 números",
+                              },
+                              min: {
+                                value: 2,
+                                message: "Insira no mínimo 2 números",
+                              },
+                              required: true,
+                            })}
+                          />
+
+                          {errors.userDDD &&
+                            (errors.userDDD as any).type === "pattern" && (
+                              <div className="error">
+                                {(errors.userDDD as any).message}
+                              </div>
+                            )}
+                          {errors.userDDD &&
+                            (errors.userDDD as any).type === "max" && (
+                              <div className="error">
+                                {(errors.userDDD as any).message}
+                              </div>
+                            )}
+                          {errors.userDDD &&
+                            (errors.userDDD as any).type === "min" && (
+                              <div className="error">
+                                {(errors.userDDD as any).message}
+                              </div>
+                            )}
+                          {errors.userDDD &&
+                            (errors.userDDD as any).type === "required" && (
+                              <div className="error">O DDD é obrigatório</div>
+                            )}
+                        </Col>
+                        <Col style={{ padding: 0 }} md={10}>
+                          <Row className="MyRowForm">
+                            <Form.Control
+                              readOnly={editNumber}
+                              className="MyInputForm"
+                              type="text"
+                              name="UserNumber"
+                              id="UserNumber"
+                              placeholder="12345678"
+                              style={{ width: "76%" }}
+                              defaultValue={
+                                data?.PushInformations.info.cellPhoneNumber
+                              }
+                              ref={register({
+                                pattern: {
+                                  value: /^[0-9]+$/i,
+                                  message: "Insira um número válido",
+                                },
+                                max: {
+                                  value: 10,
+                                  message: "Insira no máximo 10 números",
+                                },
+                                min: {
+                                  value: 8,
+                                  message: "Insira no mínimo 8 números",
+                                },
+                                required: true,
+                              })}
+                            />
+                            <OverlayTrigger
+                              placement="top"
+                              delay={{ show: 250, hide: 250 }}
+                              overlay={renderTooltipEdit}
+                            >
+                              <EditIcon
+                                onClick={() => setEditNumber(!editNumber)}
+                              />
+                            </OverlayTrigger>
+                          </Row>
+                        </Col>
+                        {errors.UserNumber &&
+                          (errors.UserNumber as any).type === "pattern" && (
+                            <div className="error">
+                              {(errors.UserNumber as any).message}
+                            </div>
+                          )}
+                        {errors.UserNumber &&
+                          (errors.UserNumber as any).type === "max" && (
+                            <div className="error">
+                              {(errors.UserNumber as any).message}
+                            </div>
+                          )}
+                        {errors.UserNumber &&
+                          (errors.UserNumber as any).type === "min" && (
+                            <div className="error">
+                              {(errors.UserNumber as any).message}
+                            </div>
+                          )}
+                        {errors.UserNumber &&
+                          (errors.UserNumber as any).type === "required" && (
+                            <div className="error">O número é obrigatório</div>
+                          )}
+                      </InputGroup>
+                    </Form.Group>
+                  </MyForm>
+                  <Row>
+                    {loading ? <Spinner animation="border" /> : ""}
+
+                    <div
+                      className="text-danger"
+                      style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                    >
+                      {erros}
+                    </div>
+                    <div
+                      className="text-success"
+                      style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                    >
+                      {sucesso}
+                    </div>
                   </Row>
-                </Form.Group>
-              </MyForm>
-            </Col>
-            <Col md={6} lg={4}>
-              <MyForm>
-                <div style={{ margin: "5%" }}>
-                  <button
-                    type="button"
-                    className="btn MyButtonDeleteAccount"
-                    onClick={() => setModalShow(true)}
-                    style={{ width: "100%" }}
-                  >
-                    Deletar Conta
-                  </button>
-                </div>
-              </MyForm>
-            </Col>
-            <Col md={6} lg={4}>
-              <MyForm>
-                <div style={{ margin: "5%" }}>
-                  <MyButton
-                    type="submit"
-                    className="btn"
-                    style={{ width: "100%" }}
-                  >
-                    Editar dados
-                  </MyButton>
-                </div>
-              </MyForm>
-            </Col>
-          </Row>
-        </Form>
+                </Col>
+              </Row>
+              <Row
+                style={{
+                  justifyContent: "flex-end",
+                  marginTop: "7%",
+                  alignItems: "center",
+                }}
+              >
+                <Col md={6} lg={4}>
+                  <MyForm className="firstColumn">
+                    <Form.Group>
+                      <Row className="MyRowForm">
+                        <MyLableText style={{ marginRight: "8%" }}>
+                          {" "}
+                          ID{" "}
+                        </MyLableText>
+                        <Form.Control
+                          className="MyInputFormID"
+                          type="text"
+                          id="userId"
+                          defaultValue={data?.PushInformations.info.id}
+                          readOnly
+                        />
+                      </Row>
+                    </Form.Group>
+                  </MyForm>
+                </Col>
+                <Col md={6} lg={4}>
+                  <MyForm>
+                    <div style={{ margin: "5%" }}>
+                      <button
+                        type="button"
+                        className="btn MyButtonDeleteAccount"
+                        onClick={() => setModalShow(true)}
+                        style={{ width: "100%" }}
+                      >
+                        Deletar Conta
+                      </button>
+                    </div>
+                  </MyForm>
+                </Col>
+                <Col md={6} lg={4}>
+                  <MyForm>
+                    <div style={{ margin: "5%" }}>
+                      <MyButton
+                        type="submit"
+                        className="btn"
+                        style={{ width: "100%" }}
+                      >
+                        Editar dados
+                      </MyButton>
+                    </div>
+                  </MyForm>
+                </Col>
+              </Row>
+            </Form>
+          </>
+        )}
       </Container>
       {modalShow ? (
         <ModalConfirmDeleteAcc

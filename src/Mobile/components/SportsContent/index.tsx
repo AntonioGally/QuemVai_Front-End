@@ -53,6 +53,8 @@ const SportsContent: React.FC = () => {
             // onChange={(e) => setTesteChange(e.target.value)}
             // ref={register}
           >
+            <option>Selecione...</option>
+
             {sport_list.map((information) => (
               <option key={information} value={information}>
                 {information}

@@ -7,6 +7,9 @@ import { Token, logout } from "../../../services/auth";
 
 import AccountHeader from "../../../Mobile/components/AccountHeader";
 import AccountContent from "../../../Mobile/components/AccountContent";
+
+import PhotosProvider from "../../../Context/ReloadPhotoMobile";
+
 const ManagementUser: React.FC = () => {
   const [isValid, setIsValid] = React.useState(true);
   useEffect(() => {
@@ -31,8 +34,10 @@ const ManagementUser: React.FC = () => {
   }
   return (
     <div className="CellPhone">
-      <AccountHeader />
-      <AccountContent />
+      <PhotosProvider>
+        <AccountHeader />
+        <AccountContent />
+      </PhotosProvider>
     </div>
   );
 };

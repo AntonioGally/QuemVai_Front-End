@@ -62,7 +62,7 @@ export const MySearchInput = styled.input`
   border-radius: 10px;
   height: 60px;
   outline: 0;
-  padding: 10px 10px 10px 25px;
+  padding: 10px;
   border: 0;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.25);
 
@@ -147,7 +147,6 @@ export const TrashIcon = styled(Trash)`
   flex-shrink: 0;
   cursor: pointer;
 `;
-
 
 export const SubtitleFavorites = styled.div`
   font-family: "Poppins";
