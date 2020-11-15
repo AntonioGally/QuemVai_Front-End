@@ -53,7 +53,6 @@ const ModalConfigUserApp: React.FC<Props> = ({
 }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const AuxDateCreated = parseISO(String(createdAt));
-  console.log(AuxDateCreated)
 
   const formattedDateCreated = format(
     AuxDateCreated,

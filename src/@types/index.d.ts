@@ -153,6 +153,23 @@ export interface HistoricUserList {
   SportsDescription: string;
 }
 
+export interface HistoricInfoById {
+  id: number;
+  AuthorID: number;
+  author: string;
+  photos: string;
+  name_event: string;
+  created_at: Date;
+  finished_at: Date;
+  SpaceName: string;
+  address: string;
+  CEP: string;
+  UF: string;
+  SpaceDescription: string;
+  SportsName: string;
+  SportsDescription: string;
+}
+
 export interface InvitesSendedList {
   id: number;
   id_User: number;
