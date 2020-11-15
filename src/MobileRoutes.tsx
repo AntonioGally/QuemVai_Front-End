@@ -9,7 +9,9 @@ import SearchByName from "./Pages/Mobile/SearchByName";
 import ManagementUser from "./Pages/Mobile/ManagementUser";
 import Sports from "./Pages/Mobile/Sports";
 import Spaces from "./Pages/Mobile/Spaces";
-import FriendsInfo from "./Pages/Mobile/FriendsInfo"
+import FriendsInfo from "./Pages/Mobile/FriendsInfo";
+import EventInformation from "./Pages/Mobile/EventInformation";
+import SpaceInformation from "./Pages/Mobile/SpaceInformation";
 
 const src: React.FC = () => {
   const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
@@ -41,7 +43,18 @@ const src: React.FC = () => {
         />
         <PrivateRouteUser path="/MobileSports" component={Sports} />
         <PrivateRouteUser path="/MobileSpaces" component={Spaces} />
-        <PrivateRouteUser path="/MobileFriendInfo/:id_Friend" component={FriendsInfo} />
+        <PrivateRouteUser
+          path="/MobileFriendInfo/:id_Friend"
+          component={FriendsInfo}
+        />
+        <PrivateRouteUser
+          path="/MobileEventInfo/:id_Event"
+          component={EventInformation}
+        />
+        <PrivateRouteUser
+          path="/MobileSpaceInfo/:id_space/:from_favorites"
+          component={SpaceInformation}
+        />
       </Switch>
     </HashRouter>
   );
