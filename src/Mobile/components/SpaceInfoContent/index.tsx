@@ -59,6 +59,9 @@ const SpaceInfoContent: React.FC<Props> = ({ idSpace, fromWhere }) => {
   if (arrowBack && fromWhere === "favorites") {
     return <Redirect to="/MobileManegementUser" />;
   }
+  if (arrowBack && fromWhere === "sports") {
+    return <Redirect to="/MobileSports" />;
+  }
   return (
     <div style={{ position: "relative", overflowX: "hidden" }}>
       <div>
