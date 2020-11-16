@@ -3,7 +3,14 @@ import ModalSpaceInfo from "../ModalEventsUserApp/ModalSpaceInfo";
 
 import "./ModalQuadras.css";
 
-import { Modal, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap";
+import {
+  Modal,
+  Row,
+  Col,
+  Tooltip,
+  OverlayTrigger,
+  Spinner,
+} from "react-bootstrap";
 
 import {
   ArrowBackIcon,
@@ -76,70 +83,61 @@ const ModalQuadras: React.FC<Props> = ({ show, onHide }) => {
             <ArrowBackIcon onClick={onHide} />
           </div>
           <MyTitle>Espaços</MyTitle>
-          {/* <div
-            className="text-success"
-            style={{
-              fontFamily: "Poppins",
-              fontSize: "25px",
-              marginLeft: "9%",
-            }}
-          >
-            {success}
-          </div>
-          <div
-            className="text-danger"
-            style={{
-              fontFamily: "Poppins",
-              fontSize: "25px",
-              marginLeft: "9%",
-            }}
-          >
-            {erros}
-          </div> */}
-          <Modal.Body style={{ padding: "30px" }} className="BodyModalQuadras">
-            <div className="WrapperCardsModalQuadras Scroll_Quadras">
-              {data?.SpaceList.map((information) => (
-                <MyCard key={information.id}>
-                  <Row>
-                    <Col lg={3} className="MyColCardModalQuadras">
-                      <CompassIcon style={{ fill: "var(--fontBlack)" }} />
-                    </Col>
-
-                    <Col lg={6}>
-                      <Row style={{ alignItems: "center", margin: 0 }}>
-                        <SubTitle>Nome: </SubTitle>
-                        <TextContent>{information.name}</TextContent>
-                      </Row>
-                      <Row style={{ alignItems: "center", margin: 0 }}>
-                        <SubTitle>Endereço: </SubTitle>
-                        <TextContent>{information.address}</TextContent>
-                      </Row>
-                      <Row style={{ alignItems: "center", margin: 0 }}>
-                        <SubTitle>CEP: </SubTitle>
-                        <TextContent>{information.CEP}</TextContent>
-                      </Row>
-                    </Col>
-
-                    <Col lg={3} className="MyColCardModalQuadras">
-                      <OverlayTrigger
-                        placement="top"
-                        delay={{ show: 250, hide: 250 }}
-                        overlay={renderTooltipSearch}
-                      >
-                        <SearchIcon
-                          style={{ width: "48%", height: "48%" }}
-                          onClick={() => {
-                            setModalSpaceInfo(true);
-                            setAuxId(information.id);
-                          }}
-                        />
-                      </OverlayTrigger>
-                    </Col>
-                  </Row>
-                </MyCard>
-              ))}
+          {!data ? (
+            <div className="text-center" style={{ marginTop: "5%" }}>
+              <Spinner animation="border" />
             </div>
-          </Modal.Body>
+          ) : (
+            <>
+              <Modal.Body
+                style={{ padding: "30px" }}
+                className="BodyModalQuadras"
+              >
+                <div className="WrapperCardsModalQuadras Scroll_Quadras">
+                  {data?.SpaceList.map((information) => (
+                    <MyCard key={information.id}>
+                      <Row>
+                        <Col lg={3} className="MyColCardModalQuadras">
+                          <CompassIcon style={{ fill: "var(--fontBlack)" }} />
+                        </Col>
+
+                        <Col lg={6}>
+                          <Row style={{ alignItems: "center", margin: 0 }}>
+                            <SubTitle>Nome: </SubTitle>
+                            <TextContent>{information.name}</TextContent>
+                          </Row>
+                          <Row style={{ alignItems: "center", margin: 0 }}>
+                            <SubTitle>Endereço: </SubTitle>
+                            <TextContent>{information.address}</TextContent>
+                          </Row>
+                          <Row style={{ alignItems: "center", margin: 0 }}>
+                            <SubTitle>CEP: </SubTitle>
+                            <TextContent>{information.CEP}</TextContent>
+                          </Row>
+                        </Col>
+
+                        <Col lg={3} className="MyColCardModalQuadras">
+                          <OverlayTrigger
+                            placement="top"
+                            delay={{ show: 250, hide: 250 }}
+                            overlay={renderTooltipSearch}
+                          >
+                            <SearchIcon
+                              style={{ width: "48%", height: "48%" }}
+                              onClick={() => {
+                                setModalSpaceInfo(true);
+                                setAuxId(information.id);
+                              }}
+                            />
+                          </OverlayTrigger>
+                        </Col>
+                      </Row>
+                    </MyCard>
+                  ))}
+                </div>
+              </Modal.Body>
+            </>
+          )}
         </div>
       </Modal>
     </div>

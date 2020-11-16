@@ -92,6 +92,9 @@ const SportsContent: React.FC = () => {
         }
         setDataSportsInfo({ SportsList: sportsFilter });
       }
+      if (name_sport === "Selecione...") {
+        setFiltering(false);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -147,132 +150,158 @@ const SportsContent: React.FC = () => {
             <WrapperCards>
               {filtering ? (
                 <>
-                  {dataSportsInfo?.SportsList.map((information) => (
-                    <MyCard key={information.Space_id}>
-                      <Row>
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "25%",
-                          }}
-                        >
-                          <CompassIcon style={{ fill: "var(--fontBlack)" }} />
-                        </div>
+                  {!dataSportsInfo ? (
+                    <div className="text-center" style={{ marginTop: "5%" }}>
+                      <Spinner animation="border" />
+                    </div>
+                  ) : (
+                    <>
+                      {dataSportsInfo?.SportsList.map((information) => (
+                        <MyCard key={information.Space_id}>
+                          <Row>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                width: "25%",
+                              }}
+                            >
+                              <CompassIcon
+                                style={{ fill: "var(--fontBlack)" }}
+                              />
+                            </div>
 
-                        <div style={{ width: "50%" }}>
-                          <Row style={{ alignItems: "center", margin: 0 }}>
-                            <SubTitle>Nome: </SubTitle>
-                            <TextContent>{information.Space_name}</TextContent>
-                          </Row>
-                          <Row style={{ alignItems: "center", margin: 0 }}>
-                            <SubTitle>Endereço: </SubTitle>
-                            <TextContent>
-                              {information.Space_address}
-                            </TextContent>
-                          </Row>
-                          <Row style={{ alignItems: "center", margin: 0 }}>
-                            <SubTitle>CEP: </SubTitle>
-                            <TextContent>{information.Space_CEP}</TextContent>
-                          </Row>
-                        </div>
+                            <div style={{ width: "50%" }}>
+                              <Row style={{ alignItems: "center", margin: 0 }}>
+                                <SubTitle>Nome: </SubTitle>
+                                <TextContent>
+                                  {information.Space_name}
+                                </TextContent>
+                              </Row>
+                              <Row style={{ alignItems: "center", margin: 0 }}>
+                                <SubTitle>Endereço: </SubTitle>
+                                <TextContent>
+                                  {information.Space_address}
+                                </TextContent>
+                              </Row>
+                              <Row style={{ alignItems: "center", margin: 0 }}>
+                                <SubTitle>CEP: </SubTitle>
+                                <TextContent>
+                                  {information.Space_CEP}
+                                </TextContent>
+                              </Row>
+                            </div>
 
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "25%",
-                          }}
-                        >
-                          <Link
-                            to={`/MobileSpaceInfo/${information.Space_id}/${fromSports}`}
-                            style={{ width: "40%" }}
-                          >
-                            <SearchIcon
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </Link>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                width: "25%",
+                              }}
+                            >
+                              <Link
+                                to={`/MobileSpaceInfo/${information.Space_id}/${fromSports}`}
+                                style={{ width: "40%" }}
+                              >
+                                <SearchIcon
+                                  style={{ width: "100%", height: "100%" }}
+                                />
+                              </Link>
 
-                          <Link
-                            style={{ width: "40%" }}
-                            to={`/MobileSpaceInfo/${information.Space_id}/${fromSports}`}
-                          >
-                            <ExitIcon
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </Link>
-                        </div>
-                      </Row>
-                    </MyCard>
-                  ))}
+                              <Link
+                                style={{ width: "40%" }}
+                                to={`/MobileSpaceInfo/${information.Space_id}/${fromSports}`}
+                              >
+                                <ExitIcon
+                                  style={{ width: "100%", height: "100%" }}
+                                />
+                              </Link>
+                            </div>
+                          </Row>
+                        </MyCard>
+                      ))}
+                    </>
+                  )}
                 </>
               ) : (
                 <>
-                  {dataSpaces?.SpaceList.map((information) => (
-                    <MyCard
-                      key={information.id}
-                      style={{
-                        display: `${!information.status ? "block" : "none"}`,
-                      }}
-                    >
-                      <Row>
-                        <div
+                  {!dataSpaces ? (
+                    <div className="text-center" style={{ marginTop: "5%" }}>
+                      <Spinner animation="border" />
+                    </div>
+                  ) : (
+                    <>
+                      {dataSpaces?.SpaceList.map((information) => (
+                        <MyCard
+                          key={information.id}
                           style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "25%",
+                            display: `${
+                              !information.status ? "block" : "none"
+                            }`,
                           }}
                         >
-                          <CompassIcon style={{ fill: "var(--fontBlack)" }} />
-                        </div>
+                          <Row>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                width: "25%",
+                              }}
+                            >
+                              <CompassIcon
+                                style={{ fill: "var(--fontBlack)" }}
+                              />
+                            </div>
 
-                        <div style={{ width: "50%" }}>
-                          <Row style={{ alignItems: "center", margin: 0 }}>
-                            <SubTitle>Nome: </SubTitle>
-                            <TextContent>{information.name}</TextContent>
-                          </Row>
-                          <Row style={{ alignItems: "center", margin: 0 }}>
-                            <SubTitle>Endereço: </SubTitle>
-                            <TextContent>{information.address}</TextContent>
-                          </Row>
-                          <Row style={{ alignItems: "center", margin: 0 }}>
-                            <SubTitle>CEP: </SubTitle>
-                            <TextContent>{information.CEP}</TextContent>
-                          </Row>
-                        </div>
+                            <div style={{ width: "50%" }}>
+                              <Row style={{ alignItems: "center", margin: 0 }}>
+                                <SubTitle>Nome: </SubTitle>
+                                <TextContent>{information.name}</TextContent>
+                              </Row>
+                              <Row style={{ alignItems: "center", margin: 0 }}>
+                                <SubTitle>Endereço: </SubTitle>
+                                <TextContent>{information.address}</TextContent>
+                              </Row>
+                              <Row style={{ alignItems: "center", margin: 0 }}>
+                                <SubTitle>CEP: </SubTitle>
+                                <TextContent>{information.CEP}</TextContent>
+                              </Row>
+                            </div>
 
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "25%",
-                          }}
-                        >
-                          <Link
-                            to={`/MobileSpaceInfo/${information.id}/${fromSports}`}
-                            style={{ width: "40%" }}
-                          >
-                            <SearchIcon
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </Link>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                width: "25%",
+                              }}
+                            >
+                              <Link
+                                to={`/MobileSpaceInfo/${information.id}/${fromSports}`}
+                                style={{ width: "40%" }}
+                              >
+                                <SearchIcon
+                                  style={{ width: "100%", height: "100%" }}
+                                />
+                              </Link>
 
-                          <Link
-                            style={{ width: "40%" }}
-                            to={`/MobileSpaceInfo/${information.id}/${fromSports}`}
-                          >
-                            <ExitIcon
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </Link>
-                        </div>
-                      </Row>
-                    </MyCard>
-                  ))}
+                              <Link
+                                style={{ width: "40%" }}
+                                to={`/MobileSpaceInfo/${information.id}/${fromSports}`}
+                              >
+                                <ExitIcon
+                                  style={{ width: "100%", height: "100%" }}
+                                />
+                              </Link>
+                            </div>
+                          </Row>
+                        </MyCard>
+                      ))}
+                    </>
+                  )}
                 </>
               )}
             </WrapperCards>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { Spinner } from "react-bootstrap";
+
 import { useFriendListContext } from "../../../Context/ReloadFriendListMobile";
 
 import { FriendsList } from "../../../@types";
@@ -39,26 +41,34 @@ const FriendList: React.FC = () => {
     <div style={{ height: "25vh", overflow: "hidden" }}>
       <Container>
         <Title>Amigos</Title>
-        <UserList>
-          {data?.GetFriends.map((information) => (
-            <WrapperUser key={information.id_Friend}>
-              <Link to={`/MobileFriendInfo/${information.id_Friend}`}>
-                <UserButton>
-                  <img
-                    src={information.photos}
-                    alt="FriendUser"
-                    style={{
-                      borderRadius: "50%",
-                      width: "70px",
-                      height: "70px",
-                    }}
-                  />
-                </UserButton>
-              </Link>
-              <NameUser>{information.username}</NameUser>
-            </WrapperUser>
-          ))}
-        </UserList>
+        {!data ? (
+          <div className="text-center">
+            <Spinner animation="border" />
+          </div>
+        ) : (
+          <>
+            <UserList>
+              {data?.GetFriends.map((information) => (
+                <WrapperUser key={information.id_Friend}>
+                  <Link to={`/MobileFriendInfo/${information.id_Friend}`}>
+                    <UserButton>
+                      <img
+                        src={information.photos}
+                        alt="FriendUser"
+                        style={{
+                          borderRadius: "50%",
+                          width: "70px",
+                          height: "70px",
+                        }}
+                      />
+                    </UserButton>
+                  </Link>
+                  <NameUser>{information.username}</NameUser>
+                </WrapperUser>
+              ))}
+            </UserList>
+          </>
+        )}
       </Container>
     </div>
   );

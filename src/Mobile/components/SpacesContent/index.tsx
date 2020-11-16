@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { Redirect } from "react-router-dom";
-import { Row } from "react-bootstrap";
+import { Redirect, Link } from "react-router-dom";
+import { Row, Spinner } from "react-bootstrap";
 import {
   ArrowBackIcon,
   Title,
@@ -16,9 +16,31 @@ import {
 
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
+import { ListSpaceByUF } from "../../../@types";
+import api from "../../../services/api";
+import { Token } from "../../../services/auth";
+
+interface Data {
+  SpaceList: ListSpaceByUF[];
+}
+
 const SpacesContent: React.FC = () => {
+  var fromSpaces = "spaces";
   const [arrowBack, setArrowBack] = React.useState(false);
-  var aux_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [data, setData] = React.useState<Data>();
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/search/uf/space/SP", {
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [AllSpaces] = responses;
+      const spaces = await AllSpaces.data;
+      setData({ SpaceList: spaces });
+    });
+  }, []);
+
   if (arrowBack) {
     return <Redirect to="/MainAplication" />;
   }
@@ -45,55 +67,65 @@ const SpacesContent: React.FC = () => {
       >
         <Title>Espaços</Title>
       </div>
-      <div>
-        <WrapperCards>
-          {aux_list.map((informations) => (
-            <MyCard key={informations}>
-              <Row>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "25%",
-                  }}
-                >
-                  <CompassIcon style={{ fill: "var(--fontBlack)" }} />
-                </div>
+      {!data ? (
+        <div className="text-center" style={{ marginTop: "5%" }}>
+          <Spinner animation="border" />
+        </div>
+      ) : (
+        <>
+          <div>
+            <WrapperCards>
+              {data?.SpaceList.map((information) => (
+                <MyCard key={information.id}>
+                  <Row>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "25%",
+                      }}
+                    >
+                      <CompassIcon style={{ fill: "var(--fontBlack)" }} />
+                    </div>
 
-                <div style={{ width: "50%" }}>
-                  <Row style={{ alignItems: "center", margin: 0 }}>
-                    <SubTitle>Nome: </SubTitle>
-                    <TextContent>Praça muito massa</TextContent>
-                    {/* <TextContent>{information.Space_name}</TextContent> */}
-                  </Row>
-                  <Row style={{ alignItems: "center", margin: 0 }}>
-                    <SubTitle>Endereço: </SubTitle>
-                    <TextContent>Rua Obelisco3</TextContent>
-                    {/* <TextContent>{information.Space_address}</TextContent> */}
-                  </Row>
-                  <Row style={{ alignItems: "center", margin: 0 }}>
-                    <SubTitle>CEP: </SubTitle>
-                    <TextContent>123456789</TextContent>
-                    {/* <TextContent>{information.Space_CEP}</TextContent> */}
-                  </Row>
-                </div>
+                    <div style={{ width: "50%" }}>
+                      <Row style={{ alignItems: "center", margin: 0 }}>
+                        <SubTitle>Nome: </SubTitle>
+                        <TextContent>{information.name}</TextContent>
+                      </Row>
+                      <Row style={{ alignItems: "center", margin: 0 }}>
+                        <SubTitle>Endereço: </SubTitle>
+                        <TextContent>{information.address}</TextContent>
+                      </Row>
+                      <Row style={{ alignItems: "center", margin: 0 }}>
+                        <SubTitle>CEP: </SubTitle>
+                        <TextContent>{information.CEP}</TextContent>
+                      </Row>
+                    </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "25%",
-                  }}
-                >
-                  <SearchIcon style={{ width: "48%", height: "48%" }} />
-                </div>
-              </Row>
-            </MyCard>
-          ))}
-        </WrapperCards>
-      </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "25%",
+                      }}
+                    >
+                      <Link
+                        to={`/MobileSpaceInfo/${information.id}/${fromSpaces}`}
+                        style={{ width: "40%" }}
+                      >
+                        <SearchIcon style={{ width: "100%", height: "100%" }} />
+                      </Link>
+                    </div>
+                  </Row>
+                </MyCard>
+              ))}
+            </WrapperCards>
+          </div>
+        </>
+      )}
     </div>
   );
 };
