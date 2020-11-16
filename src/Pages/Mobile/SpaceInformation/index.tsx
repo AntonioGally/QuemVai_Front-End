@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
 import api from "../../../services/api";
 import { Token, logout } from "../../../services/auth";
@@ -8,6 +8,7 @@ import { Token, logout } from "../../../services/auth";
 import SpaceInfoContent from "../../../Mobile/components/SpaceInfoContent";
 
 const SpaceInformation: React.FC = () => {
+  const { id_space, from_favorites }: any = useParams();
   const [isValid, setIsValid] = React.useState(true);
   useEffect(() => {
     Promise.all([
@@ -32,7 +33,7 @@ const SpaceInformation: React.FC = () => {
   return (
     <>
       <div style={{ overflow: "hidden", padding: 0 }} className="CellPhone">
-        <SpaceInfoContent />
+        <SpaceInfoContent idSpace={id_space} fromWhere={from_favorites} />
       </div>
     </>
   );

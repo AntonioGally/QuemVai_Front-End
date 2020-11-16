@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Row, Spinner } from "react-bootstrap";
 
 import any_data4 from "../../../img/icones/any_data4.jpg";
+import Confirmation from "../EventInfoContent/Confirmation";
 
 import {
   MyTitleCard,
@@ -25,6 +26,8 @@ const AccountContent: React.FC = () => {
   const [reload, setReload] = React.useState(0);
   const [data, setData] = useState<Data>();
   const [isSomething, setIsSomething] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [auxId, setAuxId] = useState(Number);
 
   useEffect(() => {
     Promise.all([
@@ -103,7 +106,12 @@ const AccountContent: React.FC = () => {
                         </Row>
                       </div>
                       <div style={{ width: "10%" }}>
-                        <TrashIcon />
+                        <TrashIcon
+                          onClick={() => {
+                            setModalShow(true);
+                            setAuxId(information.id);
+                          }}
+                        />
                       </div>
                     </Row>
                   </div>
@@ -112,6 +120,24 @@ const AccountContent: React.FC = () => {
             )}
           </div>
         </>
+      )}
+      {modalShow ? (
+        <Confirmation
+          show={modalShow}
+          onHide={() => {
+            setModalShow(false);
+          }}
+          onDelete={() => {
+            setModalShow(false);
+          }}
+          onDeleteIcon={() => {
+            setReload(reload + 1);
+            setModalShow(false);
+          }}
+          id={auxId}
+        />
+      ) : (
+        ""
       )}
     </div>
   );

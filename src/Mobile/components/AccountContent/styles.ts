@@ -2,10 +2,21 @@ import styled, { css } from "styled-components";
 
 import { Pencil } from "@styled-icons/boxicons-regular/Pencil";
 
+import { AddToQueue } from "@styled-icons/boxicons-regular/AddToQueue";
+
 import { Search } from "@styled-icons/boxicons-regular/Search";
 import { Trash } from "@styled-icons/boxicons-regular/Trash";
 import { Map } from "@styled-icons/boxicons-regular/Map";
 import { SportsVolleyball } from "@styled-icons/material-rounded/SportsVolleyball";
+
+export const AddIcon = styled(AddToQueue)`
+  width: 35px;
+  height: 35px;
+  color: var(--fontBlack);
+  fill: var(--fontBlack);
+  flex-shrink: 0;
+  margin-left: 10px;
+`;
 
 export const Container = styled.div`
   width: 100%;

@@ -15,6 +15,7 @@ import {
   TimeIcon,
 } from "./styles";
 
+import Confirmation from "./Confirmation";
 import Buttons from "../../elements/Buttons";
 
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
@@ -37,6 +38,7 @@ const EventInfoContent: React.FC = () => {
   const [created, setCreated] = useState("");
   const [finalizated, setFinalizated] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -102,7 +104,7 @@ const EventInfoContent: React.FC = () => {
               <div>
                 <div style={{ marginTop: "5%", marginBottom: "5%" }}>
                   <Row style={{ margin: 0, alignItems: "center" }}>
-                    <TitleEvent>LaLaLaLaLaLaLaLaLaLaLaLa</TitleEvent>
+                    <TitleEvent>{data?.HistoricInfo.name_event}</TitleEvent>
                     <CreatedContent>
                       <Row style={{ margin: 0, alignItems: "center" }}>
                         <img
@@ -207,7 +209,10 @@ const EventInfoContent: React.FC = () => {
                   </Row>
                 </div>
                 <div style={{ margin: "15% 10% 5% 5%" }}>
-                  <Row style={{ margin: 0, justifyContent: "flex-end" }}>
+                  <Row
+                    style={{ margin: 0, justifyContent: "flex-end" }}
+                    onClick={() => setModalShow(true)}
+                  >
                     <Buttons text="Deletar" />
                   </Row>
                 </div>
@@ -217,6 +222,21 @@ const EventInfoContent: React.FC = () => {
             <Redirect to="/MobileManegementUser" />
           )}
         </>
+      )}
+      {modalShow ? (
+        <Confirmation
+          show={modalShow}
+          onHide={() => {
+            setModalShow(false);
+          }}
+          onDelete={() => {
+            setModalShow(false);
+            setArrowBack(true);
+          }}
+          id={id_Event}
+        />
+      ) : (
+        ""
       )}
     </div>
   );

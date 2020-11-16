@@ -112,8 +112,6 @@ const ModalEventsUserApp: React.FC<Props> = ({
                       <Form.Control
                         readOnly
                         as="textarea"
-                        name="userMessage"
-                        id="userMessage"
                         value={data?.SpaceInfo.description}
                         rows={4}
                       />

@@ -9,7 +9,14 @@ import {
   SearchIconCard,
   PlusIcon,
 } from "./styles";
-import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  OverlayTrigger,
+  Tooltip,
+  Spinner,
+} from "react-bootstrap";
 import any_data from "../../../img/icones/any_data.svg";
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
@@ -112,92 +119,99 @@ const ModalConfigUserApp: React.FC = () => {
           <PlusIcon onClick={() => setModalAddFavorite(true)} />
         </OverlayTrigger>
       </Row>
-
-      {!isSomething ? (
-        <div style={{ textAlign: "center" }}>
-          <img
-            src={any_data}
-            alt="Any Data"
-            style={{ width: "60%", height: "60%" }}
-          />
+      {!data ? (
+        <div className="text-center">
+          <Spinner animation="border" />
         </div>
       ) : (
-        <Container fluid>
-          <div className="WrapperCardHistoricUser">
-            {data?.SpaceList.map((information) => {
-              return (
-                <div
-                  key={information.Space_id}
-                  className="MyCardHistoricUser"
-                  style={{ padding: 0 }}
-                >
-                  <Row
-                    className="justify-content-center"
-                    style={{
-                      margin: 0,
-                      width: "100%",
-                      paddingTop: "10px",
-                      borderBottom: "1px solid #C4C4C4",
-                    }}
-                  >
-                    <MyTitleCard>{information.nome}</MyTitleCard>
-                  </Row>
-                  <div style={{ padding: "15px" }}>
-                    <Col>
-                      <Row>
-                        <SubtitleFavorites>Endereço</SubtitleFavorites>
-                      </Row>
-                      <Row>
-                        <MyTextCard>{information.address}</MyTextCard>
-                      </Row>
-                    </Col>
-                    <Col>
-                      <Row>
-                        <SubtitleFavorites>CEP</SubtitleFavorites>
-                      </Row>
-                      <Row>
-                        <MyTextCard>{information.CEP}</MyTextCard>
-                      </Row>
-                    </Col>
-                    <Row
-                      style={{
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                      }}
+        <>
+          {!isSomething ? (
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={any_data}
+                alt="Any Data"
+                style={{ width: "60%", height: "60%" }}
+              />
+            </div>
+          ) : (
+            <Container fluid>
+              <div className="WrapperCardHistoricUser">
+                {data?.SpaceList.map((information) => {
+                  return (
+                    <div
+                      key={information.Space_id}
+                      className="MyCardHistoricUser"
+                      style={{ padding: 0 }}
                     >
-                      <OverlayTrigger
-                        placement="top"
-                        delay={{ show: 250, hide: 250 }}
-                        overlay={renderTooltipTrash}
+                      <Row
+                        className="justify-content-center"
+                        style={{
+                          margin: 0,
+                          width: "100%",
+                          paddingTop: "10px",
+                          borderBottom: "1px solid #C4C4C4",
+                        }}
                       >
-                        <TrashIcon
-                          style={{ marginRight: "20px" }}
-                          onClick={() => {
-                            setModalDeleteShow(true);
-                            setAuxID(information.Space_id);
+                        <MyTitleCard>{information.nome}</MyTitleCard>
+                      </Row>
+                      <div style={{ padding: "15px" }}>
+                        <Col>
+                          <Row>
+                            <SubtitleFavorites>Endereço</SubtitleFavorites>
+                          </Row>
+                          <Row>
+                            <MyTextCard>{information.address}</MyTextCard>
+                          </Row>
+                        </Col>
+                        <Col>
+                          <Row>
+                            <SubtitleFavorites>CEP</SubtitleFavorites>
+                          </Row>
+                          <Row>
+                            <MyTextCard>{information.CEP}</MyTextCard>
+                          </Row>
+                        </Col>
+                        <Row
+                          style={{
+                            justifyContent: "flex-end",
+                            alignItems: "center",
                           }}
-                        />
-                      </OverlayTrigger>
-                      <OverlayTrigger
-                        placement="top"
-                        delay={{ show: 250, hide: 250 }}
-                        overlay={renderTooltipSearch}
-                      >
-                        <SearchIconCard
-                          style={{ margin: 0, marginRight: "10px" }}
-                          onClick={() => {
-                            setModalSpaceInfo(true);
-                            setAuxID(information.Space_id);
-                          }}
-                        />
-                      </OverlayTrigger>
-                    </Row>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Container>
+                        >
+                          <OverlayTrigger
+                            placement="top"
+                            delay={{ show: 250, hide: 250 }}
+                            overlay={renderTooltipTrash}
+                          >
+                            <TrashIcon
+                              style={{ marginRight: "20px" }}
+                              onClick={() => {
+                                setModalDeleteShow(true);
+                                setAuxID(information.Space_id);
+                              }}
+                            />
+                          </OverlayTrigger>
+                          <OverlayTrigger
+                            placement="top"
+                            delay={{ show: 250, hide: 250 }}
+                            overlay={renderTooltipSearch}
+                          >
+                            <SearchIconCard
+                              style={{ margin: 0, marginRight: "10px" }}
+                              onClick={() => {
+                                setModalSpaceInfo(true);
+                                setAuxID(information.Space_id);
+                              }}
+                            />
+                          </OverlayTrigger>
+                        </Row>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Container>
+          )}
+        </>
       )}
       {modalDeleteShow ? (
         <ConfirmDeleteFavorite
