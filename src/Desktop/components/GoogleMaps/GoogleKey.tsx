@@ -1,1 +1,1 @@
-export default "YOUR KEY";
+export default "Your key";

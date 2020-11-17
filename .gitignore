@@ -3,3 +3,5 @@ build
 .netlify
 .vscode
 package-lock.json
+# dependencies
+/src/Desktop/components/GoogleMaps/GoogleKey.tsx
