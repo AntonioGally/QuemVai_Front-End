@@ -174,8 +174,8 @@ const PhotoAtualization: React.FC = () => {
         (image.src as any) = reader.result;
 
         image.onload = async function () {
-          var maxWidth = 500,
-            maxHeight = 500,
+          var maxWidth = 600,
+            maxHeight = 600,
             imageWidth = image.width,
             imageHeight = image.height;
 

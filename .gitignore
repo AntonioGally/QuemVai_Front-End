@@ -2,3 +2,4 @@ node_modules
 build
 .netlify
 .vscode
+package-lock.json
