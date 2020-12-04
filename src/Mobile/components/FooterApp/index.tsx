@@ -10,7 +10,10 @@ import {
   FriendsIcon,
 } from "./styles";
 
+import EventsModal from "./EventsModal";
+
 const FooterApp: React.FC = () => {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <div
       style={{
@@ -49,9 +52,7 @@ const FooterApp: React.FC = () => {
         </Col>
 
         <Col style={{ textAlign: "center" }}>
-          <NavLink to="/MobileEvents" activeClassName="FooterAppMobileActive">
-            <EventsIcon />
-          </NavLink>
+          <EventsIcon onClick={() => setModalShow(true)} />
         </Col>
 
         <Col style={{ textAlign: "center" }}>
@@ -60,6 +61,11 @@ const FooterApp: React.FC = () => {
           </NavLink>
         </Col>
       </Row>
+      {modalShow ? (
+        <EventsModal show={modalShow} onHide={() => setModalShow(false)} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

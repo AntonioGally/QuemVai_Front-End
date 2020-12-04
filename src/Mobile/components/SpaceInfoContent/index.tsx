@@ -65,6 +65,9 @@ const SpaceInfoContent: React.FC<Props> = ({ idSpace, fromWhere }) => {
   if (arrowBack && fromWhere === "spaces") {
     return <Redirect to="/MobileSpaces" />;
   }
+  if (arrowBack && fromWhere === "eventSpaces") {
+    return <Redirect to="/MobileEventSpace" />;
+  }
   return (
     <div style={{ position: "relative", overflowX: "hidden" }}>
       <div>

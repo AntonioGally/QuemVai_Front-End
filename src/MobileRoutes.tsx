@@ -12,6 +12,8 @@ import Spaces from "./Pages/Mobile/Spaces";
 import FriendsInfo from "./Pages/Mobile/FriendsInfo";
 import EventInformation from "./Pages/Mobile/EventInformation";
 import SpaceInformation from "./Pages/Mobile/SpaceInformation";
+import EventSpace from "./Pages/Mobile/EventSpace";
+import EventCreate from "./Pages/Mobile/EventCreate";
 
 const src: React.FC = () => {
   const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
@@ -55,6 +57,8 @@ const src: React.FC = () => {
           path="/MobileSpaceInfo/:id_space/:from_favorites"
           component={SpaceInformation}
         />
+        <PrivateRouteUser path="/MobileEventSpace" component={EventSpace} />
+        <PrivateRouteUser path="/MobileEventCreate/:id_space/:from_where" component={EventCreate} />
       </Switch>
     </HashRouter>
   );

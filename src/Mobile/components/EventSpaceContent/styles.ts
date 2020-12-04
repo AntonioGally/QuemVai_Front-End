@@ -1,9 +1,10 @@
-import styled, { css } from "styled-components";
+import styled, {css} from 'styled-components';
+
 
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
 import { Compass } from "@styled-icons/boxicons-regular/Compass";
-
+import { Exit } from "@styled-icons/boxicons-regular/Exit";
 
 export const ArrowBackIcon = styled(ArrowBack)`
   width:30px;
@@ -13,6 +14,7 @@ export const ArrowBackIcon = styled(ArrowBack)`
   flex-shrink:0;
   margin:10px 0 0 10px;
 `;
+
 export const Title = styled.div`
   font-family: "Poppins";
   font-style: normal;
@@ -36,7 +38,6 @@ export const WrapperCards = styled.div`
   }
   height: 70vh;
 `;
-
 export const MyCard = styled.div`
   box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);
   background-color: var(--fontWhite);
@@ -65,6 +66,7 @@ export const TextContent = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
 var iconsStyle = css`
   width: 65px;
   height: 65px;
@@ -76,6 +78,13 @@ var iconsStyle = css`
 
 
 export const SearchIcon = styled(SearchAlt)`
+  width:30px;
+  height:30px;
+  ${iconsStyle}
+`;
+export const ExitIcon = styled(Exit)`
+  width:30px;
+  height:30px;
   ${iconsStyle}
 `;
 export const CompassIcon = styled(Compass)`

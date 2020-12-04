@@ -155,6 +155,7 @@ const ModalEventsUserApp: React.FC<Props> = ({
         );
         if (response.data["Favorite Place added"] && response.status === 200) {
           setSuccess("Espaço favoritado com sucesso!");
+          setErros("");
           setTimeout(() => {
             setSuccess("");
           }, 3000);
