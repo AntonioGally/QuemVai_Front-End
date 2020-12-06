@@ -24,7 +24,6 @@ import { Modal, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap";
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
 
 import { SearchMain } from "../../../@types";
-import { SearchUserAux } from "../../../@types";
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";
 
@@ -32,9 +31,6 @@ import FilteringSports from "./FilteringSports";
 
 interface Data {
   SearchList: SearchMain[];
-}
-interface DataUser {
-  UserFilter: SearchUserAux[];
 }
 export interface Props {
   show: boolean;
@@ -44,7 +40,6 @@ export interface Props {
 
 const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
   const [data, setData] = useState<Data>();
-  const [userFilter, setUserFilter] = useState<DataUser>();
   const [existPeople, setExistPeople] = React.useState(false);
   const [existEvents, setExistEvents] = React.useState(false);
   const [existSports, setExistSports] = React.useState(false);
@@ -93,43 +88,6 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
         setExistSports(true);
       }
       if (Array(response[1]["Users"])[0].length > 0) {
-        var aux_list = [] as any;
-        // for (let count in response[1]["Users"]) {
-        //   if (response[1]["Users"][count]["idFriendUser"]) {
-        //     for (let count2 in response[1]["Users"][count]["idFriendUser"]) {
-        //       if (
-        //         response[1]["Users"][count]["idFriendUser"][count2][
-        //           "id_User"
-        //         ] === userId
-        //       ) {
-        //         if (
-        //           response[1]["Users"][count]["idFriendUser"][count2][
-        //             "status_friendships"
-        //           ] === ""
-        //         ) {
-        //           aux_list.push(response[1]["Users"][count]);
-        //         }
-        //       } else {
-        //         if (
-        //           Array(response[1]["Users"][count]["idFriendUser"][count2])[0]
-        //             .length <= 1
-        //         ) {
-        //           aux_list.push(response[1]["Users"][count]);
-        //         } else {
-        //           for (let count3 in aux_list) {
-        //             if (aux_list[count3]["id"] !== response[1]["Users"][count]["id"]) {
-        //               aux_list.push(response[1]["Users"][count]);
-        //             }
-        //           }
-        //           console.log("oi");
-        //         }
-        //       }
-        //     }
-        //   } else {
-        //     aux_list.push(response[1]["Users"][count]);
-        //   }
-        // }
-        setUserFilter({ UserFilter: aux_list });
         setExistPeople(true);
       }
       if (Array(response[2]["Events"])[0].length > 0) {
@@ -309,7 +267,7 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
               ""
             )}
             {existEvents ? (
-              <div className="WrapperCardsModalSearch">
+              <div className="WrapperCardsModalSearch MyScroll">
                 <TitleCardWrapper>Eventos</TitleCardWrapper>
                 {data?.SearchList[2].Events.map((information) => (
                   <MyCard key={information.id}>
@@ -350,7 +308,7 @@ const ModalSearch: React.FC<Props> = ({ show, onHide, wordTyped }) => {
             )}
 
             {existSports ? (
-              <div className="WrapperCardsModalSearch">
+              <div className="WrapperCardsModalSearch MyScroll">
                 <TitleCardWrapper>Esportes</TitleCardWrapper>
                 {data?.SearchList[0].Sports.map((information) => (
                   <MyCard key={information.id}>

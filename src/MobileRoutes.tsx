@@ -15,6 +15,7 @@ import SpaceInformation from "./Pages/Mobile/SpaceInformation";
 import EventSpace from "./Pages/Mobile/EventSpace";
 import EventCreate from "./Pages/Mobile/EventCreate";
 import ViewEvent from "./Pages/Mobile/ViewEvent";
+import SearchMain from "./Pages/Mobile/SearchMain";
 
 const src: React.FC = () => {
   const PrivateRouteUser = ({ component: Component, ...rest }: any) => {
@@ -59,8 +60,15 @@ const src: React.FC = () => {
           component={SpaceInformation}
         />
         <PrivateRouteUser path="/MobileEventSpace" component={EventSpace} />
-        <PrivateRouteUser path="/MobileEventCreate/:id_space/:from_where" component={EventCreate} />
-        <PrivateRouteUser path="/MobileViewEvent/:id_event" component={ViewEvent} />
+        <PrivateRouteUser
+          path="/MobileEventCreate/:id_space/:from_where"
+          component={EventCreate}
+        />
+        <PrivateRouteUser
+          path="/MobileViewEvent/:id_event"
+          component={ViewEvent}
+        />
+        <PrivateRouteUser path="/SearchMain/:word" component={SearchMain} />
       </Switch>
     </HashRouter>
   );
