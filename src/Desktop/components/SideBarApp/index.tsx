@@ -100,7 +100,6 @@ const SideBarApp: React.FC = () => {
             setCreatedAt(formattedDate);
             setModalEventsShow(false);
             setModalViewEvents(true);
-            console.log(auxList[count].AuthorID === userId);
             count = auxList.length + 1;
           } else {
             count += 1;

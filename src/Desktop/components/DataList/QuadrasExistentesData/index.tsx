@@ -31,8 +31,8 @@ const QuadrasExistentesData: React.FC<Props> = ({
         <td>{EnderecoQuadra}</td>
         <td>{CepQuadra}</td>
         <td>{UfQuadra}</td>
-        <td>{LatitudeQuadra}</td>
-        <td>{LongitudeQuadra}</td>
+        {/* <td>{LatitudeQuadra}</td> */}
+        {/* <td>{LongitudeQuadra}</td> */}
         <td>{DescricaoQuadra}</td>
         {StatusQuadra && <td>Ativa</td>}
         {!StatusQuadra && <td>Inativa</td>}

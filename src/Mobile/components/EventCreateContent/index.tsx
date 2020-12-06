@@ -341,7 +341,7 @@ const EventeCreateContent: React.FC<Props> = ({ idSpace, fromWhere }) => {
               }}
             >
               <div style={{ width: "80%" }}>
-                <Link to="MobileEventSpace">
+                <Link to="/MobileEventSpace">
                   <Buttons text="Voltar" fill />
                 </Link>
               </div>

@@ -47,8 +47,8 @@ const QuadrasExistentesAdmin: React.FC = () => {
                   <th>Endereço</th>
                   <th>CEP</th>
                   <th>UF</th>
-                  <th>Latitude</th>
-                  <th>Longitude</th>
+                  {/* <th>Latitude</th> */}
+                  {/* <th>Longitude</th> */}
                   <th>Descrição</th>
                   <th>Status</th>
                 </tr>
