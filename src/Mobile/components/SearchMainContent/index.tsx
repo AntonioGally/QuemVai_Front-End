@@ -177,8 +177,8 @@ const SearchMainContent: React.FC<Props> = ({ word }) => {
                   >
                     <Title>Pessoas</Title>
                   </div>
-                  {data?.SearchList[1].Users.map((information) => (
-                    <WrapperCards>
+                  <WrapperCards>
+                    {data?.SearchList[1].Users.map((information) => (
                       <MyCard key={information.id}>
                         <Row>
                           <div
@@ -220,8 +220,8 @@ const SearchMainContent: React.FC<Props> = ({ word }) => {
                           </div>
                         </Row>
                       </MyCard>
-                    </WrapperCards>
-                  ))}
+                    ))}
+                  </WrapperCards>
                 </div>
               </>
             ) : (

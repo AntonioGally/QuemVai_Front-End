@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@react-google-maps/api": "^1.13.0",
+    "@react-google-maps/api": "1.10.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -26,7 +26,8 @@
     "socket.io-client": "^3.0.1",
     "styled-components": "^5.1.1",
     "styled-icons": "^10.16.0",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "use-places-autocomplete": "^1.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

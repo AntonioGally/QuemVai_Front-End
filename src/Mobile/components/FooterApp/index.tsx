@@ -13,13 +13,14 @@ import {
 import EventsModal from "./EventsModal";
 
 import api from "../../../services/api";
-import { Token } from "../../../services/auth";
+import { Token, logout } from "../../../services/auth";
 
 const FooterApp: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [userId, setUserId] = React.useState(Number);
   const [eventId, setEventId] = React.useState(Number);
   const [viewEvents, setViewEvents] = React.useState(false);
+  const [isValid, setIsValid] = React.useState(true);
   useEffect(() => {
     Promise.all([
       api.get("/api/user/bring/me", {
@@ -31,9 +32,18 @@ const FooterApp: React.FC = () => {
     ]).then(async (responses) => {
       const [PushUserInformation] = responses;
       const results = await PushUserInformation.data;
-      setUserId(results["info"]["id"]);
+      if (!results["info"]) {
+        logout();
+        setIsValid(false);
+      } else {
+        setUserId(results["info"]["id"]);
+      }
     });
   }, []);
+
+  if (!isValid) {
+    return <Redirect to="/" />;
+  }
 
   const handleEventsClick = async () => {
     try {

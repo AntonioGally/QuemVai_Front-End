@@ -235,6 +235,24 @@ export interface ListSpaceByUF {
     }
   ];
 }
+export interface ListSpaceByUFAux {
+  id: number;
+  name: string;
+  address: string;
+  CEP: number;
+  latitude : number;
+  longitude: number
+  description: string;
+  status: boolean;
+  space: [
+    {
+      id: number;
+      name: string;
+      description: string;
+    }
+  ];
+}
+
 export interface SpaceInformationByID {
   id: number;
   name: string;
