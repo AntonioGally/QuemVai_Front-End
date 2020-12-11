@@ -20,7 +20,7 @@ import {
 // } from "use-places-autocomplete";
 
 import { greenMap } from "./MapStyle";
-import keyMap from "./GoogleKey";
+import keyMap from "./KeyFolder/GoogleKey";
 
 import ModalSearch from "../ModalSearch";
 import ModalCreateEvents from "../ModalEventsUserApp/ModalCreateEvents";
@@ -146,29 +146,28 @@ const GoogleMaps: React.FC = () => {
     setModalCreateEvent(true);
     var auxId = marker.id;
     setTeste(auxId);
-    console.log(teste);
   }
-  if (modalCreateEvent && teste) {
-    return (
-      <ModalCreateEvents
-        show={modalCreateEvent}
-        onHide={() => {
-          setModalCreateEvent(false);
-          setReload(reload + 1);
-        }}
-        id={teste}
-        onCreateEvent={() => {
-          setModalCreateEvent(false);
-          setReload(reload + 1);
-        }}
-      />
-    );
-  }
+  // if (modalCreateEvent && teste) {
+  //   return (
+  //     <ModalCreateEvents
+  //       show={modalCreateEvent}
+  //       onHide={() => {
+  //         setModalCreateEvent(false);
+  //         setReload(reload + 1);
+  //       }}
+  //       id={teste}
+  //       onCreateEvent={() => {
+  //         setModalCreateEvent(false);
+  //         setReload(reload + 1);
+  //       }}
+  //     />
+  //   );
+  // }
   return (
     <>
       <div
         className="row MyRowGoogleMaps"
-        style={{ backgroundColor: "transparent", width: "100%", zIndex:10 }}
+        style={{ backgroundColor: "transparent", width: "100%", zIndex: 10 }}
       >
         <MyRow>
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -266,6 +265,22 @@ const GoogleMaps: React.FC = () => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           wordTyped={auxWord}
+        />
+      ) : (
+        ""
+      )}
+      {modalCreateEvent && teste ? (
+        <ModalCreateEvents
+          show={modalCreateEvent}
+          onHide={() => {
+            setModalCreateEvent(false);
+            setReload(reload + 1);
+          }}
+          id={teste}
+          onCreateEvent={() => {
+            setModalCreateEvent(false);
+            setReload(reload + 1);
+          }}
         />
       ) : (
         ""

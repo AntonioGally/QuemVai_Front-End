@@ -4,4 +4,4 @@ build
 .vscode
 package-lock.json
 # dependencies
-/src/Desktop/components/GoogleMaps/GoogleKey.tsx
+#/src/Desktop/components/GoogleMaps/KeyFolder
