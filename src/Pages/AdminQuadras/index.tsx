@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import {  Redirect } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
-import { MyHeader } from "./styles";
 import NavBarAdmin from "../../Desktop/components/NavBarAdmin";
-import QuadrasExistentesAdmin from "../../Desktop/components/QuadrasExistentesAdmin";
+import QuadrasExistentesAdmin from "../../Desktop/components/AdminListSpace";
 import QuadrasConfigAddLayout from "../../Desktop/components/QuadrasConfigAddLayout";
 import Footer from "../../FrontPage/Footer";
+
+import AdminSideBar from "../../Desktop/components/AdminSideBar";
 
 import api from "../../services/api";
 import { Token, logout } from "../../services/auth";
@@ -36,22 +37,12 @@ const Admin: React.FC = () => {
 
   return (
     <Container fluid style={{ padding: 0 }}>
-      <header>
-        <MyHeader>
-          <Link to="/">
-            <span>Voltar</span>
-          </Link>
-
-          <Link to="/MainAplication">
-            <span>Aplicativo</span>
-          </Link>
-        </MyHeader>
-      </header>
+      <AdminSideBar />
+      {/*
       <NavBarAdmin />
-
       <QuadrasExistentesAdmin />
       <QuadrasConfigAddLayout />
-      <Footer />
+      <Footer /> */}
     </Container>
   );
 };

@@ -44,7 +44,6 @@ const AddQuadrasAdmin: React.FC = () => {
         { name, address, CEP, latitude, longitude, UF, description },
         config
       );
-      console.log(name, address, CEP, latitude, longitude, UF, description)
 
       if (response.data["User created"]) {
         alert("Quadra criada com sucesso!");

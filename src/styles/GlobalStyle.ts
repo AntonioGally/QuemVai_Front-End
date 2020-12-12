@@ -321,5 +321,6 @@ template {
 --buttonOutLined: #ED461D;
 --input: #B2FFE7;
 --borderInput: #0000008c;
+--blueAdmin: #096AD4;
 }
 `;

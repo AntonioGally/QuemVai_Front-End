@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { MySearchInput, SearchIcon, MyRow } from "./styles";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import {
   GoogleMap,
   Marker,
   useLoadScript,
-  InfoWindow,
 } from "@react-google-maps/api";
 
 // import usePlacesAutoComplete, {
@@ -61,59 +60,6 @@ const GoogleMaps: React.FC = () => {
   const [teste, setTeste] = React.useState(Number);
   const [data, setData] = React.useState<Data>();
   const [reload, setReload] = React.useState(Number);
-
-  var markersData = [
-    {
-      lat: -23.589115,
-      lng: -46.6595545,
-      id: 1,
-    },
-    {
-      lat: -20.913974,
-      lng: -47.577481,
-      id: 2,
-    },
-    {
-      lat: -23.51503,
-      lng: -46.594878,
-      id: 3,
-    },
-    {
-      lat: -23.54536,
-      lng: -46.71803,
-      id: 4,
-    },
-    {
-      lat: -23.4567,
-      lng: -46.5319,
-      id: 5,
-    },
-    {
-      lat: -20.354531,
-      lng: -40.317622,
-      id: 6,
-    },
-    {
-      lat: -23.5036,
-      lng: -46.5399,
-      id: 7,
-    },
-    {
-      lat: -23.567539,
-      lng: -46.591118,
-      id: 8,
-    },
-    {
-      lat: -23.721662,
-      lng: -46.538983,
-      id: 9,
-    },
-    {
-      lat: -23.568505,
-      lng: -46.626549,
-      id: 10,
-    },
-  ];
 
   useEffect(() => {
     Promise.all([
@@ -222,7 +168,6 @@ const GoogleMaps: React.FC = () => {
                     icon={{
                       url: markerEvent,
                       origin: new google.maps.Point(0, 0),
-                      anchor: new google.maps.Point(15, 15),
                       scaledSize: new google.maps.Size(50, 50),
                     }}
                   />
@@ -241,7 +186,6 @@ const GoogleMaps: React.FC = () => {
                     icon={{
                       url: markerSpace,
                       origin: new google.maps.Point(0, 0),
-                      anchor: new google.maps.Point(15, 15),
                       scaledSize: new google.maps.Size(50, 50),
                     }}
                   />{" "}
