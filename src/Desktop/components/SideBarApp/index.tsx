@@ -245,7 +245,7 @@ const SideBarApp: React.FC = () => {
           >
             {isAdmin ? (
               <NavLink
-                to="/AdminQuadras"
+                to="/Admin"
                 style={{ width: "80%", padding: "5px 0", marginBottom: "5%" }}
                 className="btn MyButtonSidebarApp"
               >

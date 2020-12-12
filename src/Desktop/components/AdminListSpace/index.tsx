@@ -14,7 +14,6 @@ import {
   Informations,
 } from "./styles";
 import { Row, Col, Spinner, Button } from "react-bootstrap";
-import QuadrasExistentesData from "../DataList/QuadrasExistentesData";
 import ModalAlterSpace from "./ModalAlterSpace";
 import ModalAddSpace from "./ModalAddSpace";
 import ModalDeleteSpace from "./ModalDeleteSpace";

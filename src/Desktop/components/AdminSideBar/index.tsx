@@ -15,6 +15,7 @@ import api from "../../../services/api";
 import { Token, logout } from "../../../services/auth";
 
 import AdminListSpace from "../AdminListSpace";
+import AdminEmails from "../AdminEmails";
 
 const AdminSideBar: React.FC = () => {
   const [userPhoto, setUserPhoto] = useState("");
@@ -39,8 +40,13 @@ const AdminSideBar: React.FC = () => {
     ]).then(async (responses) => {
       const [PushUserInformation] = responses;
       const results = await PushUserInformation.data;
-      setUserPhoto(results["info"]["photos"]);
-      setUserName(results["info"]["username"]);
+      if (!results["info"]) {
+        logout();
+        setArrowBack(true);
+      } else {
+        setUserPhoto(results["info"]["photos"]);
+        setUserName(results["info"]["username"]);
+      }
     });
   }, []);
 
@@ -171,14 +177,17 @@ const AdminSideBar: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      <PhotoAdm src={userPhoto} alt="adm" />{" "}
+                      <PhotoAdm src={userPhoto} alt="adm" />
                     </>
                   )}
                 </Row>
               </div>
             </Row>
           </MyHeader>
-          <Content>{quadrasClick ? <AdminListSpace /> : ""}</Content>
+          <Content>
+            {quadrasClick ? <AdminListSpace /> : ""}
+            {emailClick ? <AdminEmails /> : ""}
+          </Content>
         </Col>
       </Row>
     </div>

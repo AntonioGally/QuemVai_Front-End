@@ -77,7 +77,7 @@ const ModalLogin: React.FC<Props> = ({ show, onHide, emailCadastro }) => {
   }, []);
 
   if (redirectAdmin) {
-    return <Redirect to="/AdminQuadras" />;
+    return <Redirect to="/Admin" />;
   }
   if (redirectUser) {
     return <Redirect to="/MainAplication" />;

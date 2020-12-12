@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
-import NavBarAdmin from "../../Desktop/components/NavBarAdmin";
-import QuadrasExistentesAdmin from "../../Desktop/components/AdminListSpace";
-import QuadrasConfigAddLayout from "../../Desktop/components/QuadrasConfigAddLayout";
-import Footer from "../../FrontPage/Footer";
 
 import AdminSideBar from "../../Desktop/components/AdminSideBar";
 
@@ -38,11 +34,6 @@ const Admin: React.FC = () => {
   return (
     <Container fluid style={{ padding: 0 }}>
       <AdminSideBar />
-      {/*
-      <NavBarAdmin />
-      <QuadrasExistentesAdmin />
-      <QuadrasConfigAddLayout />
-      <Footer /> */}
     </Container>
   );
 };

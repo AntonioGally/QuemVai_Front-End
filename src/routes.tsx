@@ -6,9 +6,8 @@ import Documentos from "./Pages/Documentos";
 import CadastroUser from "./Pages/CadastroUser";
 import ForgotPassword from "./Pages/ForgotPassword";
 import MainAplication from "./Pages/MainAplication";
-import AdminQuadras from "./Pages/AdminQuadras";
-import AdminEmail from "./Pages/AdminEmail";
-import AdminEsportes from "./Pages/AdminEsportes";
+import Admin from "./Pages/Admin";
+
 
 
 
@@ -59,9 +58,7 @@ const src: React.FC = () => {
         <Route path="/CadastroUser" component={CadastroUser} />
         <Route path="/ForgotPassword" component={ForgotPassword} />
         <PrivateRouteUser path="/MainAplication" component={MainAplication} />        
-        <PrivateRouteAdmin path="/AdminQuadras" component={AdminQuadras} />
-        <PrivateRouteAdmin path="/AdminEmail" component={AdminEmail} />
-        <PrivateRouteAdmin path="/AdminEsportes" component={AdminEsportes} />
+        <PrivateRouteAdmin path="/Admin" component={Admin} />
       </Switch>
     </HashRouter>
   );
