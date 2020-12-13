@@ -93,7 +93,7 @@ const AdminEmails: React.FC = () => {
                 <span>Assunto</span>
               </div>
               <div style={{ width: "40%" }}>
-                <span>Data</span>
+                <span>Data da resposta</span>
               </div>
             </Header>
             <Body>

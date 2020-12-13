@@ -16,6 +16,7 @@ import { Token, logout } from "../../../services/auth";
 
 import AdminListSpace from "../AdminListSpace";
 import AdminEmails from "../AdminEmails";
+import AdminSports from "../AdminSports";
 
 const AdminSideBar: React.FC = () => {
   const [userPhoto, setUserPhoto] = useState("");
@@ -191,6 +192,7 @@ const AdminSideBar: React.FC = () => {
           <Content>
             {quadrasClick ? <AdminListSpace /> : ""}
             {emailClick ? <AdminEmails /> : ""}
+            {esportesClick ? <AdminSports /> : ""}
           </Content>
         </Col>
       </Row>

@@ -96,7 +96,7 @@ export interface ListSportsAdmin {
   description: string;
 }
 export interface ConfigSportsAdmin {
-  Criado: {
+  created: {
     id: number;
     name: string;
     description: string;
