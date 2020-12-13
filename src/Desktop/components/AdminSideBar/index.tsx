@@ -139,7 +139,11 @@ const AdminSideBar: React.FC = () => {
             </div>
           </SideBar>
         </Col>
-        <Col lg={10} md={10} style={{ padding: 0, height: "100%" }}>
+        <Col
+          lg={10}
+          md={10}
+          style={{ padding: 0, height: "100%", overflowY: "auto" }}
+        >
           <MyHeader>
             <Row
               style={{

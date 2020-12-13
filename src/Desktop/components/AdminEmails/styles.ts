@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 
+import { Trash } from "@styled-icons/boxicons-regular/Trash";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 import { Send } from "@styled-icons/feather/Send";
 
@@ -89,6 +90,9 @@ var iconsStyle = css`
 export const SendIcon = styled(Send)`
   ${iconsStyle}
   fill:none;
+`;
+export const TrashIcon = styled(Trash)`
+  ${iconsStyle}
 `;
 
 export const MyWrapper = styled.div`

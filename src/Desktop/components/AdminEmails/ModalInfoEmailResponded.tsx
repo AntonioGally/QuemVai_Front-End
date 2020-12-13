@@ -5,6 +5,7 @@ import { HeaderModal, ArrowBackIcon, TitleContent, MyInput } from "./styles";
 import { Modal, Form, Row, Col, Spinner } from "react-bootstrap";
 
 import api from "../../../services/api";
+import { ViewEmailRespondedAdmin } from "../../../@types";
 import { Token } from "../../../services/auth";
 
 export interface Props {
@@ -13,41 +14,45 @@ export interface Props {
   id: number;
 }
 
-type EmailReceivedInfo = {
-  id: number;
-  email_user: string;
-  subject: string;
-  message: string;
-  createdAt: string;
-};
-
 interface Data {
-  EmailInfo: EmailReceivedInfo;
+  EmailInfo: ViewEmailRespondedAdmin;
 }
 
 const AdminEmails: React.FC<Props> = ({ show, onHide, id }) => {
-  const [finalDate, setFinalDate] = useState("");
+  const [finalDateCreate, setFinalDateCreate] = useState("");
+  const [finalDateUpdate, setFinalDateUpdate] = useState("");
   const [data, setData] = useState<Data>();
 
   useEffect(() => {
     Promise.all([
-      api.get(`/api/admin/get/email/find/${id}`, {
+      api.get(`/api/admin/get/responded/email/find/${id}`, {
         headers: { "x-auth-token": Token() },
       }),
     ]).then(async (responses) => {
-      const [AllEmailsReceived] = responses;
-      const emails = await AllEmailsReceived.data;
-      const AuxDate = parseISO(String(emails["createdAt"]));
-
-      const formattedDate = format(
-        AuxDate,
+      const [AllEmailsResponded] = responses;
+      const emails = await AllEmailsResponded.data;
+      console.log(emails[0]);
+      const AuxDateCreated = parseISO(String(emails[0]["createdAt"]));
+      const formattedDate1 = format(
+        AuxDateCreated,
         "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
         {
           locale: pt,
         }
       );
-      setFinalDate(formattedDate);
-      setData({ EmailInfo: emails });
+      setFinalDateCreate(formattedDate1);
+
+      const AuxDateUpdated = parseISO(String(emails[0]["updatedAt"]));
+      const formattedDate2 = format(
+        AuxDateUpdated,
+        "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+        {
+          locale: pt,
+        }
+      );
+      setFinalDateUpdate(formattedDate2);
+
+      setData({ EmailInfo: emails[0] });
     });
   }, [id]);
 
@@ -59,6 +64,7 @@ const AdminEmails: React.FC<Props> = ({ show, onHide, id }) => {
         <HeaderModal>
           <ArrowBackIcon onClick={onHide} />
         </HeaderModal>
+
         {!data ? (
           <>
             <Spinner animation="border" />
@@ -136,14 +142,12 @@ const AdminEmails: React.FC<Props> = ({ show, onHide, id }) => {
                               name="dateUser"
                               id="dateUser"
                               readOnly
-                              defaultValue={finalDate}
+                              defaultValue={finalDateCreate}
                             />
                           </MyInput>
                         </Form.Group>
                       </Row>
                     </div>
-                  </Col>
-                  <Col md={6} lg={6} style={{ padding: "20px" }}>
                     <div style={{ marginBottom: "5%" }}>
                       <Row style={{ margin: 0 }}>
                         <TitleContent>Mensagem do usuário</TitleContent>
@@ -158,6 +162,90 @@ const AdminEmails: React.FC<Props> = ({ show, onHide, id }) => {
                               id="messageUser"
                               readOnly
                               defaultValue={data?.EmailInfo.message}
+                            />
+                          </MyInput>
+                        </Form.Group>
+                      </Row>
+                    </div>
+                  </Col>
+                  <Col md={6} lg={6} >
+                  <div style={{ marginBottom: "5%" }}>
+                      <Row style={{ margin: 0 }}>
+                        <TitleContent>Email da empresa</TitleContent>
+                      </Row>
+                      <Row style={{ margin: 0 }}>
+                        <Form.Group style={{ margin: 0, width: "100%" }}>
+                          <MyInput>
+                            <Form.Control
+                              name="emailResponse"
+                              id="emailResponse"
+                              readOnly
+                              defaultValue={data?.EmailInfo.ownerMessage.map(
+                                (i) => {
+                                  return i.email_user;
+                                }
+                              )}
+                            />
+                          </MyInput>
+                        </Form.Group>
+                      </Row>
+                    </div>
+                    <div style={{ marginBottom: "5%" }}>
+                      <Row style={{ margin: 0 }}>
+                        <TitleContent>Assunto da resposta</TitleContent>
+                      </Row>
+                      <Row style={{ margin: 0 }}>
+                        <Form.Group style={{ margin: 0, width: "100%" }}>
+                          <MyInput>
+                            <Form.Control
+                              name="subjectResponse"
+                              id="subjectResponse"
+                              readOnly
+                              defaultValue={data?.EmailInfo.ownerMessage.map(
+                                (i) => {
+                                  return i.subject;
+                                }
+                              )}
+                            />
+                          </MyInput>
+                        </Form.Group>
+                      </Row>
+                    </div>
+                    <div style={{ marginBottom: "5%" }}>
+                      <Row style={{ margin: 0 }}>
+                        <TitleContent>Data de envio da resposta</TitleContent>
+                      </Row>
+                      <Row style={{ margin: 0 }}>
+                        <Form.Group style={{ margin: 0, width: "100%" }}>
+                          <MyInput>
+                            <Form.Control
+                              name="updateResponse"
+                              id="updateResponse"
+                              readOnly
+                              defaultValue={finalDateUpdate}
+                            />
+                          </MyInput>
+                        </Form.Group>
+                      </Row>
+                    </div>
+                    <div style={{ marginBottom: "5%" }}>
+                      <Row style={{ margin: 0 }}>
+                        <TitleContent>Mensagem da resposta</TitleContent>
+                      </Row>
+                      <Row style={{ margin: 0 }}>
+                        <Form.Group style={{ margin: 0, width: "100%" }}>
+                          <MyInput>
+                            <Form.Control
+                              as="textarea"
+                              rows={8}
+                              name="messageResponse"
+                              id="messageResponse"
+                              readOnly
+                              defaultValue={data?.EmailInfo.ownerMessage.map(
+                                (i) => {
+                                  return i.message;
+                                }
+                              )}
                             />
                           </MyInput>
                         </Form.Group>

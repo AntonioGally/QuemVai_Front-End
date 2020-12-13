@@ -28,7 +28,7 @@ const AdminEmails: React.FC = () => {
             setEmailsRespondidosClick(true);
           }}
         >
-          Email's Recebidos
+          Email's Respondidos
         </MyLink>
       </MyNavBar>
       <Content>

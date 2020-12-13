@@ -11,7 +11,7 @@ import {
   Informations,
 } from "./styles";
 
-import { Row, Col, Spinner, Button } from "react-bootstrap";
+import { Row, Spinner, Button } from "react-bootstrap";
 
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";
@@ -46,7 +46,7 @@ const AdminEmails: React.FC = () => {
 
   function RespondHandler() {
     if (!auxId) {
-      setErros("Selecione um espaço");
+      setErros("Selecione um email");
     } else {
       setErros("");
       setModalRespondEmail(true);
@@ -55,7 +55,7 @@ const AdminEmails: React.FC = () => {
 
   function InfoHandler() {
     if (!auxId) {
-      setErros("Selecione um espaço");
+      setErros("Selecione um email");
     } else {
       setErros("");
       setModalInfoEmail(true);
@@ -137,7 +137,11 @@ const AdminEmails: React.FC = () => {
               marginTop: "2%",
             }}
           >
-            <Button variant="primary" onClick={InfoHandler}>
+            <Button
+              variant="primary"
+              onClick={InfoHandler}
+              style={{ marginBottom: "10px" }}
+            >
               Visualizar
             </Button>
           </Row>
