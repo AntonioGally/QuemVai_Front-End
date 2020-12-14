@@ -18,6 +18,7 @@ import AdminListSpace from "../AdminListSpace";
 import AdminEmails from "../AdminEmails";
 import AdminSports from "../AdminSports";
 import AdminUsers from "../AdminUsers";
+import AdminEvents from "../AdminEvents";
 
 const AdminSideBar: React.FC = () => {
   const [userPhoto, setUserPhoto] = useState("");
@@ -195,6 +196,7 @@ const AdminSideBar: React.FC = () => {
             {emailClick ? <AdminEmails /> : ""}
             {esportesClick ? <AdminSports /> : ""}
             {usuariosClick ? <AdminUsers /> : ""}
+            {eventosClick ? <AdminEvents /> : ""}
           </Content>
         </Col>
       </Row>

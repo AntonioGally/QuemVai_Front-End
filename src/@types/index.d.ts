@@ -429,7 +429,24 @@ export interface UserList {
   id: number;
   name: string;
   username: string;
-  email : string;
+  email: string;
   photos: string;
   isAdmin: boolean;
+}
+
+export interface EventInfo {
+  Id_Event: number;
+  id_space: number;
+  AuthorID: number;
+  author: string;
+  photos: string;
+  name_event: string;
+  created_at: string;
+  SpaceName: string;
+  address: string;
+  CEP: string;
+  UF: string;
+  SpaceDescription: string;
+  SportsName: string;
+  SportsDescription: string;
 }
