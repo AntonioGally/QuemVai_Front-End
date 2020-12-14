@@ -282,3 +282,14 @@ export const MyButtonFinishEvent = styled.button`
   padding: 10px 46px;
   color: var(--fontWhite);
 `;
+export const ContainerParticipants = styled.div`
+  max-width: 30%;
+  overflow-x: auto;
+  display: flex;
+`;
+export const UserButton = styled.img`
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  flex-shrink: 0;
+`;

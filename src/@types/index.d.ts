@@ -450,3 +450,13 @@ export interface EventInfo {
   SportsName: string;
   SportsDescription: string;
 }
+
+export interface AllParticipants {
+  participant: [
+    {
+      id: number;
+      participants: string;
+      photos: string;
+    }
+  ];
+}

@@ -22,7 +22,6 @@ import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
 import ModalSports from "../ModalSports";
 import ModalQuadras from "../ModalQuadras";
 
-
 import { parseISO, format } from "date-fns";
 import { pt } from "date-fns/locale";
 
@@ -118,26 +117,6 @@ const SideBarApp: React.FC = () => {
       <nav id="sidebar">
         <div className="sidebar-header" style={{ display: "flex" }}>
           <div className="col">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                margin: "13% 0 20% 0",
-              }}
-            >
-              <Row
-                className="MyNotificationsContainer"
-                onClick={() => {
-                  navigator.geolocation.getCurrentPosition((location) => {
-                    console.log(location);
-                  });
-                }}
-              >
-                <RingIcon />
-                <span className="NumberSpan">3</span>
-                <span className="NotificationsSpan">Notificações</span>
-              </Row>
-            </div>
             <Row
               className="justify-content-center"
               style={{ marginBottom: "15px" }}

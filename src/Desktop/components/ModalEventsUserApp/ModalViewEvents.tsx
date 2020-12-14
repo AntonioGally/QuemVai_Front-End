@@ -10,9 +10,12 @@ import {
   SportIconCard,
   CalendarIcon,
   MyButtonFinishEvent,
+  ContainerParticipants,
+  UserButton,
 } from "./styles";
 
 import { EventsInfoByUf } from "../../../@types";
+import { AllParticipants } from "../../../@types";
 import api from "../../../services/api";
 import { Token } from "../../../services/auth";
 
@@ -22,11 +25,14 @@ export interface Props {
   show: boolean;
   onHide: any;
   idEvent: Number;
-  createdAt: string;
+  createdAt?: string;
 }
 
 interface Data {
   EventsInfo: EventsInfoByUf[];
+}
+interface DataParticipants {
+  Participants: AllParticipants;
 }
 
 const ModalEventsUserApp: React.FC<Props> = ({
@@ -36,9 +42,14 @@ const ModalEventsUserApp: React.FC<Props> = ({
   createdAt,
 }) => {
   const [data, setData] = useState<Data>();
+  const [dataParticipants, setDataParticipants] = useState<DataParticipants>();
   const [erros, setErros] = useState("");
   const [success, setSuccess] = useState("");
   const [auxPhotos, setAuxPhotos] = useState("");
+  const [auxIdUser, setAuxIdUser] = useState(Number);
+  const [auxAuthorId, setAuxAuthorId] = useState(Number);
+  const [reloadPeople, setReloadPeople] = useState(0);
+
   useEffect(() => {
     Promise.all([
       api.get(`/api/event/get/find/${idEvent}`, {
@@ -57,8 +68,63 @@ const ModalEventsUserApp: React.FC<Props> = ({
         return i.photos;
       });
       setAuxPhotos(photos);
+      setAuxAuthorId(informations[0]["AuthorID"]);
     });
   }, [idEvent]);
+
+  useEffect(() => {
+    Promise.all([
+      api.get("/api/user/bring/me", {
+        validateStatus: function (status) {
+          return status < 501; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [PushUserInformation] = responses;
+      const results = await PushUserInformation.data;
+      setAuxIdUser(results["info"]["id"]);
+    });
+  }, []);
+
+  useEffect(() => {
+    Promise.all([
+      api.get(`/api/event/participant/${idEvent}`, {
+        validateStatus: function (status) {
+          return status < 501; // Resolve only if the status code is less than 500
+        },
+        headers: { "x-auth-token": Token() },
+      }),
+    ]).then(async (responses) => {
+      const [PushUserInformation] = responses;
+      const results = await PushUserInformation.data;
+      setDataParticipants({ Participants: results[0] });
+    });
+  }, [reloadPeople, idEvent]);
+
+  const handleEnter = async () => {
+    try {
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+
+      const response = await api.post(`/api/event/enter/${idEvent}`, {}, config);
+      // eslint-disable-next-line
+      if (response.status === 200) {
+        setSuccess("Você entrou no evento!");
+        setReloadPeople(reloadPeople + 1);
+        setErros("");
+      }
+      if (response.status === 400) {
+        setErros("Houve algum problema");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleDelete = async () => {
     var idSpace = data?.EventsInfo.map((i) => {
@@ -233,11 +299,23 @@ const ModalEventsUserApp: React.FC<Props> = ({
             <Row
               style={{ margin: "10% 0 0 0", justifyContent: "space-between" }}
             >
-              <div>Participantes</div>
+              <ContainerParticipants>
+                {dataParticipants?.Participants.participant.map(
+                  (information) => (
+                    <UserButton src={information.photos} alt="Participant" />
+                  )
+                )}
+              </ContainerParticipants>
               <div>
-                <MyButtonFinishEvent onClick={handleDelete}>
-                  Finalizar evento
-                </MyButtonFinishEvent>
+                {auxIdUser === auxAuthorId ? (
+                  <MyButtonFinishEvent onClick={handleDelete}>
+                    Finalizar evento
+                  </MyButtonFinishEvent>
+                ) : (
+                  <MyButtonFinishEvent onClick={handleEnter}>
+                    Entrar no evento
+                  </MyButtonFinishEvent>
+                )}
               </div>
             </Row>
           </Modal.Body>

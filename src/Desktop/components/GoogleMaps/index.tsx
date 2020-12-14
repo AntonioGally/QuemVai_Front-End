@@ -3,15 +3,13 @@ import { Form } from "react-bootstrap";
 import { MySearchInput, SearchIcon, MyRow } from "./styles";
 import { useForm } from "react-hook-form";
 import "./styles.css";
+import { parseISO, format } from "date-fns";
+import { pt } from "date-fns/locale";
 
 import markerSpace from "../../../img/icones/markerSpace.png";
 import markerEvent from "../../../img/icones/markerEvent.png";
 
-import {
-  GoogleMap,
-  Marker,
-  useLoadScript,
-} from "@react-google-maps/api";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 // import usePlacesAutoComplete, {
 //   getGeocode,
@@ -23,6 +21,7 @@ import keyMap from "./KeyFolder/GoogleKey";
 
 import ModalSearch from "../ModalSearch";
 import ModalCreateEvents from "../ModalEventsUserApp/ModalCreateEvents";
+import ModalViewEvents from "../ModalEventsUserApp/ModalViewEvents";
 
 import { ListSpaceByUFAux } from "../../../@types";
 import api from "../../../services/api";
@@ -60,6 +59,9 @@ const GoogleMaps: React.FC = () => {
   const [teste, setTeste] = React.useState(Number);
   const [data, setData] = React.useState<Data>();
   const [reload, setReload] = React.useState(Number);
+  const [auxIdEvent, setAuxIdEvent] = React.useState(0);
+  const [modalViewEvents, setModalViewEvents] = React.useState(false);
+  const [finalDate, setFinalDate] = React.useState("");
 
   useEffect(() => {
     Promise.all([
@@ -93,22 +95,46 @@ const GoogleMaps: React.FC = () => {
     var auxId = marker.id;
     setTeste(auxId);
   }
-  // if (modalCreateEvent && teste) {
-  //   return (
-  //     <ModalCreateEvents
-  //       show={modalCreateEvent}
-  //       onHide={() => {
-  //         setModalCreateEvent(false);
-  //         setReload(reload + 1);
-  //       }}
-  //       id={teste}
-  //       onCreateEvent={() => {
-  //         setModalCreateEvent(false);
-  //         setReload(reload + 1);
-  //       }}
-  //     />
-  //   );
-  // }
+  const HandleEvent = async (marker: any) => {
+    var id_space = marker.id;
+
+    try {
+      var config = {
+        headers: { "x-auth-token": Token() },
+        validateStatus: function (status: any) {
+          return status < 500; // Resolve only if the status code is less than 500
+        },
+      };
+      const response = await api.get("/api/event/get/all", config);
+
+      // eslint-disable-next-line
+      if (response.status === 200) {
+        for (let count in response.data) {
+          if (response.data[count]["id_space"] === id_space) {
+            setAuxIdEvent(response.data[count]["Id_Event"]);
+            const AuxDate = parseISO(
+              String(response.data[count]["created_at"])
+            );
+
+            const formattedDate = format(
+              AuxDate,
+              "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+              {
+                locale: pt,
+              }
+            );
+            setFinalDate(formattedDate);
+            setModalViewEvents(true);
+          }
+        }
+      }
+      if (response.status === 400) {
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div
@@ -162,9 +188,9 @@ const GoogleMaps: React.FC = () => {
                       lat: Number(marker.latitude),
                       lng: Number(marker.longitude),
                     }}
-                    // onClick={() => {
-                    //   MarkerSelected(marker);
-                    // }}
+                    onClick={() => {
+                      HandleEvent(marker);
+                    }}
                     icon={{
                       url: markerEvent,
                       origin: new google.maps.Point(0, 0),
@@ -225,6 +251,16 @@ const GoogleMaps: React.FC = () => {
             setModalCreateEvent(false);
             setReload(reload + 1);
           }}
+        />
+      ) : (
+        ""
+      )}
+      {modalViewEvents ? (
+        <ModalViewEvents
+          show={modalViewEvents}
+          onHide={() => setModalViewEvents(false)}
+          idEvent={auxIdEvent}
+          createdAt={finalDate}
         />
       ) : (
         ""
