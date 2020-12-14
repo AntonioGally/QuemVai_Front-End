@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { UserMinus } from "@styled-icons/boxicons-regular/UserMinus";
 import { Verified } from "@styled-icons/material/Verified";
 
-export const Container = styled.div`  
+export const Container = styled.div`
   overflow-y: auto;
   scrollbar-width: thin;
   ::-webkit-scrollbar {
@@ -42,8 +42,9 @@ export const MyRowPeople = styled.div`
   text-overflow: ellipsis;
   width: 90%;
   font-family: "Poppins";
+  font-weight: 600;
   font-size: 15pt;
-  color: var(--fontBlack);
+  color: var(--fontWhite);
   text-align: center;
   cursor: pointer;
 

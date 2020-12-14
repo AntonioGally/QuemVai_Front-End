@@ -25,7 +25,7 @@ const Confirmation: React.FC<Props> = ({
   onHide,
   onAddTrust,
   onRefuseTrust,
-  onRemoveFriend
+  onRemoveFriend,
 }) => {
   const { reloadPeople, setReloadPeople } = useSideBarPeopleContext();
   const [erros, setErros] = React.useState("");
@@ -86,10 +86,7 @@ const Confirmation: React.FC<Props> = ({
         {},
         config
       );
-      if (
-        response.status === 200 &&
-        response.data["Send soliciatation"] === true
-      ) {
+      if (response.status === 200) {
         setSucesso("Solicitação enviada :)");
         setErros("");
       }

@@ -240,8 +240,8 @@ export interface ListSpaceByUFAux {
   name: string;
   address: string;
   CEP: number;
-  latitude : number;
-  longitude: number
+  latitude: number;
+  longitude: number;
   description: string;
   status: boolean;
   space: [
@@ -423,4 +423,13 @@ export interface SearchPeople {
       ];
     }
   ];
+}
+
+export interface UserList {
+  id: number;
+  name: string;
+  username: string;
+  email : string;
+  photos: string;
+  isAdmin: boolean;
 }
