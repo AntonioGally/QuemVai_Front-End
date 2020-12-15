@@ -43,8 +43,8 @@
 
 ## About The Project
 
-![App Presentation](https://quemvai.blob.core.windows.net/system/AppPresentation.gif)<br/>
-![About Page](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/materiais/print.png)<br/>
+<img src="https://quemvai.blob.core.windows.net/system/AppPresentation.gif" alt="App Presentation"/><br/>
+<img src="src/img/materiais/print.png" alt="Print About Page"><br/>
 
 Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
 Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
