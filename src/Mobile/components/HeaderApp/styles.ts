@@ -3,7 +3,7 @@ import { SearchAlt2 } from "@styled-icons/boxicons-regular/SearchAlt2";
 
 export const MyRow = styled.div`
   display: flex;
-
+  z-index:10;
   margin-top: 15%;
   width: 100%;
   position: absolute;

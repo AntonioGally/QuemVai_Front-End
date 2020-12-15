@@ -14,16 +14,15 @@
   <h3 align="center">Quem Vai</h3>
 
   <p align="center">
-    Um aplicativo de encontros em áreas de lazer pública   <br/> A meeting app in public leisure areas
+    Um aplicativo que promove encontros em áreas de lazer pública   <br/> A meeting app in public leisure areas
     <br />
     <a href="https://github.com/AntonioGally/QuemVai_Front-End"><strong> Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/AntonioGally/QuemVai_Front-End">View Demo</a>
+    <a href="https://quemvai.netlify.app/#/">View Demo</a>
     ·
     <a href="https://github.com/AntonioGally/QuemVai_Front-End/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AntonioGally/QuemVai_Front-End/issues">Request Feature</a>
   </p>
 </p>
 
@@ -44,7 +43,8 @@
 
 ## About The Project
 
-[![Quem Vai About Page][product-screenshot]](https://quemvai.blob.core.windows.net/system/AppPresentation.gif)<br/>
+![App Presentation](https://quemvai.blob.core.windows.net/system/AppPresentation.gif)<br/>
+![About Page](https://github.com/AntonioGally/QuemVai_Front-End/tree/AplicationWeb/src/img/materiais/print.png)<br/>
 
 Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
 Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
@@ -79,16 +79,7 @@ no desenvolvimento. Aqui está uma lista de procedimentos passo a passo para bai
 
 ### Prerequisites
 
-Mínimo:
-
-- Core2Duo
-- 4GB_Ram
-
-Recomendável:
-
-- Pentium_G5400
-- 8GB_Ram
-
+Esteja ciente que é necessário uma chave da <a href="https://console.cloud.google.com/apis/library?folder=&organizationId=&project=quem-vai-6868">Google Maps API</a> <b>válida</b>. Mais específicamente, a API chamada <b>Maps JavaScript API</b><br/>
 Necessário:
 
 - <a href="https://git-scm.com/downloads">Git Bash</a>
@@ -118,6 +109,12 @@ yarn install
 
 ```sh
 yarn start
+```
+5. Entre na pasta GoogleMaps, tanto no Mobile quanto no Desktop e coloque sua chave
+
+```sh
+cd src/Desktop/components/GoogleMaps/KeyFolder/GoogleKey.tsx
+cd src/Mobile/components/GoogleMaps/KeyFolder/GoogleKey.tsx
 ```
 
 <!-- ROADMAP -->
