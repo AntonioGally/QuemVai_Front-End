@@ -37,14 +37,14 @@
   - [Installation](#installation)
 - [Contributing](#contributing)
 - [Contact](#contact)
-- [Acknowledgements](#Acknowledgements)
-
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-<img src="https://quemvai.blob.core.windows.net/system/AppPresentation.gif" alt="App Presentation"/><br/>
 <img src="src/img/materiais/print.png" alt="Print About Page"><br/>
+<img src="src/img/materiais/print3.png" alt="Print Admin Page"><br/>
+<img src="src/img/materiais/print2.png" alt="Print Main Aplication Page"><br/>
+
 
 Existem vários aplicativos de encontro disponíveis no mercado hoje em dia, mas nós queríamos algo mais. Por meio do aplicativo
 Quem Vai, nós democratizamos a busca e o uso de áreas de lazer, ciente que a maior plataforma de mapas que nós temos (google maps)
@@ -61,7 +61,7 @@ Quem vai é fruto de um trabalho de conclusão de curso do ensino técnico de in
 
 ### Built With
 
-Aqui está uma lista dos Frameworks que nós utilizamos na maior parte do projeto
+Aqui está uma lista dos Frameworks e bibliotecas que eu utilizei no projeto
 
 - [React](https://pt-br.reactjs.org)
 - [React-Bootstrap](https://react-bootstrap.github.io)
@@ -69,6 +69,7 @@ Aqui está uma lista dos Frameworks que nós utilizamos na maior parte do projet
 - [React-Hook-Form](https://react-hook-form.com)
 - [Axios](https://github.com/axios/axios)
 - [Date-Fns](https://date-fns.org/v2.16.1/docs/Locale)
+- [React-Google-Maps]()
 
 <!-- GETTING STARTED -->
 
@@ -140,20 +141,6 @@ Antônio Lima Gally Neto - antonio.gally@gmail.com
 Link do Projeto: [https://github.com/AntonioGally/QuemVai_Front-End](https://github.com/AntonioGally/QuemVai_Front-End)
 
 <!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
-
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Img Shields](https://shields.io)
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Pages](https://pages.github.com)
-- [Animate.css](https://daneden.github.io/animate.css)
-- [Loaders.css](https://connoratherton.com/loaders)
-- [Slick Carousel](https://kenwheeler.github.io/slick)
-- [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-- [Sticky Kit](http://leafo.net/sticky-kit)
-- [JVectorMap](http://jvectormap.com)
-- [Font Awesome](https://fontawesome.com)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

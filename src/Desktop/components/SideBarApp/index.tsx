@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSideBarContext } from "../../../Context/ReloadSideBar";
 import "./styles.css";
 import {
-  RingIcon,
   HomeIcon,
   SportsIcon,
   EventsIcon,

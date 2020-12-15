@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Row, Spinner } from "react-bootstrap";
 
 import SvgModalConfigUser from "../../../img/icones/SvgModalConfigUser.png";
@@ -44,7 +44,7 @@ const SearchMainContent: React.FC<Props> = ({ word }) => {
   const [erros, setErros] = React.useState("");
   const [reload, setReload] = React.useState(Number);
 
-  const [auxId, setAuxId] = useState(Number);
+  // const [auxId, setAuxId] = useState(Number);
   const [userId, setUserId] = useState(Number);
 
   useEffect(() => {
